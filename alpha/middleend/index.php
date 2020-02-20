@@ -34,7 +34,7 @@ function login_njit($ucid,$pass){
 	$response = curl_exec($ch);
 	curl_close ($ch);
 
-	if (strpos($response,"Error: Failed Login")==false) return "NJIT Accept";
+	if (strpos($response,"Rejected")==false) return "NJIT Accept";
 	return "NJIT Reject";
 }
 ?>
