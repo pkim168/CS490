@@ -4,22 +4,24 @@ $str_json = file_get_contents('php://input');
 //decoding json into response array
 $response = json_decode($str_json, true); 
 //initial setting of variables
-$ucid="none";
-$pass="none";
+$requestType='';
+$ucid="";
+$pass="";
 
+if(isset($response['requestType'])) $ucid = $response['resquestType'];
 if(isset($response['ucid'])) $ucid = $response['ucid'];
 if(isset($response['pass'])) $pass = $response['pass'];
 
-$res_project=login_project($ucid,$pass);	
+$res_project=login_project($requestType,$ucid,$pass);	
 $res_njit=login_njit($ucid,$pass);
 $data = array($res_project,$res_njit);
 echo json_encode($data);
 
 
 // curl backend 
-function login_project($ucid,$pass){
+function login_project($requestType,$ucid,$pass){
 	//data from json response
-	$data = array('ucid' => $ucid,'pass' =>$pass);
+	$data = array('requestType' => $requestType, 'ucid' => $ucid,'pass' =>$pass);
 	//url to backend
 	$url = "https://web.njit.edu/~pk549/490/alpha/login.php";
 	//initialize curl session and return a curl handle
