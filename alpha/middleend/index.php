@@ -1,5 +1,3 @@
-<h1>CS 490</h1>
-<h2>Middle End</h2>
 <?php
 //grabbing json from backend
 $str_json = file_get_contents('php://input'); 
