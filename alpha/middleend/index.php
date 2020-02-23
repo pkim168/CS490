@@ -8,13 +8,13 @@ $requestType='';
 $ucid="";
 $pass="";
 
-if(isset($response['requestType'])) $ucid = $response['resquestType'];
+if(isset($response['requestType'])) $requestType = $response['requestType'];
 if(isset($response['ucid'])) $ucid = $response['ucid'];
 if(isset($response['pass'])) $pass = $response['pass'];
 
 $res_project=login_project($requestType,$ucid,$pass);	
 $res_njit=login_njit($ucid,$pass);
-$data = array($res_project,$res_njit);
+$data = array($res_project, $res_njit);
 echo json_encode($data);
 
 
@@ -44,23 +44,20 @@ function login_project($requestType,$ucid,$pass){
 
 // curl njit
 function login_njit($ucid,$pass){
-	//url to njit 
 	$url = "http://myhub.njit.edu/vrs/ldapAuthenticateServlet";
-	//data from json response
-	$data= array("user_name" => $ucid,"passwd" => $pass);
-	//initialize curl session and return a curl handle
-	//initialize curl session and return a curl handle
-	$ch = curl_init($url);
-	//options for a curl transfer
-	
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+	$data= array("user_name" => $ucid,"passwd" =>$pass);
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-	//execute curl session
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data)); 
 	$response = curl_exec($ch);
-	//close curl session
 	curl_close ($ch);
-	//return response
-	return $response;
+	if($response == "") {
+		return "Verified";
+	}
+	else {
+		return "Rejected";
+	}
 }
 ?>
