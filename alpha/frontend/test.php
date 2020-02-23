@@ -9,7 +9,7 @@
 	}
 	$ucid = $_POST["ucid"];
 	$pass = $_POST["pass"];
-	$url = ;
+	$url = "https://web.njit.edu/~jrd62/CS490/index.php";
 	
 	$ch = curl_init($url);
 	
@@ -29,7 +29,7 @@
 	$result = curl_exec($ch);
 	curl_close($ch);
 	$result = json_decode($result, true);
-	echo 
-	
+	echo "Database: ".$result[0];
+	echo "NJIT: ".$result[1];
 	
 ?>
