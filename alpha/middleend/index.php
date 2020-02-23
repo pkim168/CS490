@@ -23,9 +23,10 @@ function login_project($ucid,$pass){
 	//url to backend
 	$url = "https://web.njit.edu/~pk549/490/alpha/login.php";
 	//initialize curl session and return a curl handle
-	$ch = curl_init();
+	$ch = curl_init($url);
 	//options for a curl transfer
-	curl_setopt($ch, CURLOPT_URL, $url);
+	
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 	//execute curl session
@@ -46,11 +47,13 @@ function login_njit($ucid,$pass){
 	//data from json response
 	$data= array("user_name" => $ucid,"passwd" => $pass);
 	//initialize curl session and return a curl handle
-	$ch = curl_init();
-	//options for a curl transer
-	curl_setopt($ch, CURLOPT_URL, $url);
+	//initialize curl session and return a curl handle
+	$ch = curl_init($url);
+	//options for a curl transfer
+	
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data)); 
+	curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 	//execute curl session
 	$response = curl_exec($ch);
 	//close curl session
