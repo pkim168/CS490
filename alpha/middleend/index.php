@@ -44,7 +44,7 @@ function login_njit($ucid,$pass){
 	//url to njit 
 	$url = "http://myhub.njit.edu/vrs/ldapAuthenticateServlet";
 	//data from json response
-	$data= array("user_name" => 'jrd62',"passwd" =>'JrDom1997');
+	$data= array("user_name" => $ucid,"passwd" => $pass);
 	//initialize curl session and return a curl handle
 	$ch = curl_init();
 	//options for a curl transer
