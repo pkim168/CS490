@@ -28,6 +28,7 @@
 	
 	$result = curl_exec($ch);
 	curl_close($ch);
+	echo join(' ', str_split(bin2hex($word), 2));
 	$result = json_decode($result, true);
 	echo "Database: ".$result[0];
 	echo "NJIT: ".$result[1];
