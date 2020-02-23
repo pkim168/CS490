@@ -18,17 +18,14 @@
 				"pass" => $pass);
 				
 	$payload = json_encode($data);
-	
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-	
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-	
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	
 	$result = curl_exec($ch);
 	curl_close($ch);
+	
 	$result = json_decode($result, true);
-	echo "Database: ".$result[0];
+	echo "Database: ".$result[0]."\n";
 	echo "NJIT: ".$result[1];
 	
 ?>
