@@ -27,11 +27,7 @@
 	
 	$result = curl_exec($ch);
 	curl_close($ch);
-	echo join(' ', str_split(bin2hex($result), 2));
-	var_dump($result);
 	$result = json_decode($result, true);
-	echo json_last_error();
-	var_dump($result);
 	echo "Database: ".$result[0];
 	echo "NJIT: ".$result[1];
 	
