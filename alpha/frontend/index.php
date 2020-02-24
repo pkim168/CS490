@@ -1,6 +1,5 @@
 <html>
 	<head>
-    <!-- When submitted, the form opens checkUser.php. user_name and password are required elements and the form cannot be submitted without them-->
 		<meta charset="utf-8"/>
 		<link rel="stylesheet" href="styles.css">
 		<script>

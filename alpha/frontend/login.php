@@ -9,7 +9,7 @@
 	}
 	$ucid = $_POST["ucid"];
 	$pass = $_POST["pass"];
-	$url = "https://web.njit.edu/~jrd62/CS490/login.php";
+	$url = "https://web.njit.edu/~jrd62/CS490/index.php";
 	
 	$ch = curl_init($url);
 	$data = array(
