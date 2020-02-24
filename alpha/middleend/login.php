@@ -14,7 +14,10 @@ if(isset($response['pass'])) $pass = $response['pass'];
 
 $res_project=login_project($requestType,$ucid,$pass);	
 $res_njit=login_njit($ucid,$pass);
-$data = array($res_project, $res_njit);
+$data = array(
+	'backend' => $res_project, 
+	'njit' => $res_njit
+);
 echo json_encode($data);
 
 
