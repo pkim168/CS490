@@ -1,0 +1,17 @@
+Login Verification
+	JSON Fields:
+		requestType: 'login'
+		ucid: ___
+		pass: ___
+	
+	Receive JSON Object:
+		["Verified"] or ["Rejected"]
+	
+User Data
+	JSON Fields:
+		requestType: 'getUser'
+		ucid: ___
+	
+	Receive JSON Object:
+		[ucid, role]
+		
