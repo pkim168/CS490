@@ -1,0 +1,71 @@
+Remove NJIT spoof
+
+Online Exam System
+	Open-ended Python questions
+		Write a function named "xxxxx" that takes arguments "xxx" and "xxx" and does operation "x" and "x"
+		
+	Instructor and Student Access
+	1 login page
+		Different site for roles
+		If invalid credentials, only show message, else redirect to new page.
+	
+	5 Use cases
+		Instructor should be able to add questions to question bank
+			Question
+				Difficulty,
+				Topic,
+				Minimum 2 test cases with format: "if you use argument x, should return this"
+			not needed for beta but for final
+
+				Split screen, show related questions in the question bank
+				Filter question bank using dropdown categories difficulty and topic
+					Only show once filters are selected
+					Pagination?
+		
+		Select question to make exam
+			split screen, left side exam, right side question bank
+			button to move to exam, button to remove from exam
+			assign points to questions when in exam
+			show total possible points
+			questions only have points when in exam
+			submit button
+			1 instructor, 1 class/section
+			
+			no deleting
+			
+			multiple instructors can access same exam
+		
+		Student login and take exam
+			List points a question is worth
+			exam ends when instructor releases scores
+			cant see results until exam is released
+			
+		questions are autograded (Middle End)
+			Gets a students answer as string.
+			store in database
+			confirm that name of function is correct.
+			run php function exec to run python interpreter and run a python file. Use test cases on student answer
+				Put string into a python file, and run it
+			scoring table
+				name
+				test cases
+				instructor should be able to overwrite the score
+			Default score is 0 until graded
+				
+			Should exams be autograded when submitted but shown until released, or when the instructor clicks a button?
+			
+		Student review results
+			show scoring table
+			show student answer
+			show test cases
+			Reason why wrong?
+			
+Online exam system:
+  2 login roles: teacher + student
+use cases:
+  1) teacher login and adds questions to question bank
+  2) teacher selects questions to make exam
+  3) student logs in and takes exam
+  4) Exam is autograded. Instructor takes scores adds comments and releases exam
+  5) Student reviews results
+  
