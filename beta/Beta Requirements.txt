@@ -69,3 +69,9 @@ use cases:
   4) Exam is autograded. Instructor takes scores adds comments and releases exam
   5) Student reviews results
   
+  
+Visual representation - Front end
+grader - middle end
+tables - back end
+
+Session only on frontend. whenever sending a post request, add a variable that indicates its in a session. Check for variable before doing anything.
