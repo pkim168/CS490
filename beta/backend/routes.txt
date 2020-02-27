@@ -1,0 +1,49 @@
+Login Verification (https://web.njit.edu/~pk549/490/beta/userTbl.php)
+	Send:
+		{
+			requestType: 'login'
+			ucid: ___
+			pass: ___
+		}
+		
+	Receive:
+		{
+			message: 'Verified' or 'Rejected'
+			role: '1' (Student) or '2' (Teacher) //Only returned if login is verified
+		}	
+
+Get Questions (https://web.njit.edu/~pk549/490/beta/questionTbl.php)
+	Send:
+	{
+		requestType: 'getQuestions',
+		/* Optional Fields */
+		difficulty: 'Easy', 'Medium', or 'Hard'
+		tag: To be decided
+	}
+
+	Receive:
+	{
+		0: {
+			question: (String),
+			functionName: (String),
+			difficulty: 'Easy, 'Medium', or 'Hard'
+			tag: (string)
+			testCases: {
+				0: Testcase 1,
+				1: Testcase 2,
+				etc.
+			}
+		},
+		1: {
+			question: (String),
+			functionName: (String),
+			difficulty: 'Easy, 'Medium', or 'Hard'
+			tag: (string)
+			testCases: {
+				0: Testcase 1,
+				1: Testcase 2,
+				etc.
+			}
+		},
+		etc.
+	}

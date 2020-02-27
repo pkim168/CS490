@@ -29,9 +29,10 @@
 			break;
 	}
 	
-	function checkUser($ucid, $pass){		
+	function checkUser($ucid, $pass){	
+		
 		if(empty($ucid) || empty($pass)){
-			$data[] = "Rejected";
+			$data['message'] = "Rejected";
 			return json_encode($data);
 		}
 		
@@ -42,11 +43,12 @@
 		";
 		$result = mysqli_query($db, $query);
 		if($result->num_rows == 0){
-			$data[] = "Rejected";
+			$data['message'] = "Rejected";
 			return json_encode($data);
 		}
-
-		$data[] = "Verified";
+		$row = mysqli_fetch_array($result)
+		$data['message'] = "Verified";
+		$data['role'] = $row['490rolesTbl_roleId'];
 		return json_encode($data);
 	}
 	
