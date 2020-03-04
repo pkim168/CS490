@@ -22,11 +22,12 @@
 			$pass = getData($json['pass']);
 			echo checkUser($ucid, $pass);
 			break;
-		
+		/*
 		case 'getUser':
 			$ucid = getData($json['ucid']);
 			echo getUser($ucid);
 			break;
+		*/
 	}
 	
 	function checkUser($ucid, $pass){	
@@ -46,12 +47,12 @@
 			$data['message'] = "Rejected";
 			return json_encode($data);
 		}
-		$row = mysqli_fetch_array($result)
+		$row = mysqli_fetch_array($result);
 		$data['message'] = "Verified";
 		$data['role'] = $row['490rolesTbl_roleId'];
 		return json_encode($data);
 	}
-	
+	/*
 	function getUser($ucid){
 		$data = array();
 		
@@ -79,4 +80,5 @@
 		
 		return json_encode($data);
 	}
+	*/
 ?>
