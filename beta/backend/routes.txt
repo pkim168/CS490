@@ -1,16 +1,16 @@
 Login Verification (https://web.njit.edu/~pk549/490/beta/userTbl.php)
 	Send:
-		{
-			requestType: 'login'
-			ucid: ___
-			pass: ___
-		}
+	{
+		requestType: 'login'
+		ucid: ___
+		pass: ___
+	}
 		
 	Receive:
-		{
-			message: 'Verified' or 'Rejected'
-			role: '1' (Student) or '2' (Teacher) //Only returned if login is verified
-		}	
+	{
+		message: 'Verified' or 'Rejected'
+		role: '1' (Student) or '2' (Teacher) //Only returned if login is verified
+	}	
 
 Get Questions (https://web.njit.edu/~pk549/490/beta/questionTbl.php)
 	Send:
@@ -44,6 +44,129 @@ Get Questions (https://web.njit.edu/~pk549/490/beta/questionTbl.php)
 				1: Testcase 2,
 				etc.
 			}
+		},
+		etc.
+	}
+	
+Get All Exams (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+	Send:
+	{
+		requestType: 'getExams',
+		/* Optional Fields */
+		teacherId: (string)
+	}
+
+	Receive:
+	{
+		0: {
+			examId: (String),
+			points: (String)
+		},
+		1: {
+			examId: (String),
+			points: (String)
+		},
+		etc.
+	}
+	
+Get Exam Questions (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+	Send:
+	{
+		requestType: 'getExamQuestions',
+		/* Optional Fields */
+		examId: (string)
+	}
+
+	Receive:
+	{
+		0: {
+			question: (String),
+			functionName: (String),
+			difficulty: 'Easy, 'Medium', or 'Hard'
+			tag: (string)
+			testCases: {
+				0: Testcase 1,
+				1: Testcase 2,
+				etc.
+			}
+		},
+		1: {
+			question: (String),
+			functionName: (String),
+			difficulty: 'Easy, 'Medium', or 'Hard'
+			tag: (string)
+			testCases: {
+				0: Testcase 1,
+				1: Testcase 2,
+				etc.
+			}
+		},
+		etc.
+	}
+	
+Get Student's Exams (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+	Send:
+	{
+		requestType: 'getStudentExams',
+		/* Optional Fields */
+		studentId: (string)
+	}
+
+	Receive:
+	{
+		0: {
+			examId: (String),
+			studentExamId: (String),
+			points: (String),
+			status: (String)
+		},
+		1: {
+			examId: (String),
+			studentExamId: (String),
+			points: (String),
+			status: (String)
+		},
+		etc.
+	}
+	
+Get Student Exam Answers (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+	Send:
+	{
+		requestType: 'getStudentAnswers',
+		/* Optional Fields */
+		examId: (string)
+		studentExamId: (String),
+	}
+
+	Receive:
+	{
+		0: {
+			questionId: (String),
+			question: (String),
+			functionName: (String),
+			difficulty: 'Easy, 'Medium', or 'Hard'
+			tag: (string)
+			testCases: {
+				0: Testcase 1,
+				1: Testcase 2,
+				etc.
+			}
+			answer: (String),
+			comments: (String)
+		},
+		1: {
+			questionId: (String),
+			question: (String),
+			functionName: (String),
+			difficulty: 'Easy, 'Medium', or 'Hard'
+			tag: (string)
+			testCases: {
+				0: Testcase 1,
+				1: Testcase 2,
+				etc.
+			}
+			answer: (String),
+			comments: (String)
 		},
 		etc.
 	}
