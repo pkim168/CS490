@@ -17,12 +17,6 @@
 			}
 			echo getQuestions($difficulty, $tag);
 			break;
-		/*
-		case 'getUser':
-			$ucid = getData($json['ucid']);
-			echo getUser($ucid);
-			break;
-		*/
 	}
 	
 	function getQuestions($difficulty, $tag) {

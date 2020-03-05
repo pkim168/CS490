@@ -1,74 +1,4 @@
-Login Verification (https://web.njit.edu/~pk549/490/beta/userTbl.php)
-	Send:
-	{
-		requestType: 'login'
-		ucid: ___
-		pass: ___
-	}
-		
-	Receive:
-	{
-		message: 'Verified' or 'Rejected'
-		role: '1' (Student) or '2' (Teacher) //Only returned if login is verified
-	}	
-
-Get Questions (https://web.njit.edu/~pk549/490/beta/questionTbl.php)
-	Send:
-	{
-		requestType: 'getQuestions',
-		/* Optional Fields */
-		difficulty: 'Easy', 'Medium', or 'Hard'
-		tag: To be decided
-	}
-
-	Receive:
-	{
-		0: {
-			question: (String),
-			functionName: (String),
-			difficulty: 'Easy, 'Medium', or 'Hard'
-			tag: (string)
-			testCases: {
-				0: Testcase 1,
-				1: Testcase 2,
-				etc.
-			}
-		},
-		1: {
-			question: (String),
-			functionName: (String),
-			difficulty: 'Easy, 'Medium', or 'Hard'
-			tag: (string)
-			testCases: {
-				0: Testcase 1,
-				1: Testcase 2,
-				etc.
-			}
-		},
-		etc.
-	}
-	
-Get All Exams (https://web.njit.edu/~pk549/490/beta/examTbl.php)
-	Send:
-	{
-		requestType: 'getExams',
-		/* Optional Fields */
-		teacherId: (string)
-	}
-
-	Receive:
-	{
-		0: {
-			examId: (String),
-			points: (String)
-		},
-		1: {
-			examId: (String),
-			points: (String)
-		},
-		etc.
-	}
-	
+// Get a list of all questions in an exam
 Get Exam Questions (https://web.njit.edu/~pk549/490/beta/examTbl.php)
 	Send:
 	{
@@ -103,7 +33,8 @@ Get Exam Questions (https://web.njit.edu/~pk549/490/beta/examTbl.php)
 		},
 		etc.
 	}
-	
+
+// Get a list of all Exams assigned to a student
 Get Student's Exams (https://web.njit.edu/~pk549/490/beta/examTbl.php)
 	Send:
 	{
@@ -128,7 +59,8 @@ Get Student's Exams (https://web.njit.edu/~pk549/490/beta/examTbl.php)
 		},
 		etc.
 	}
-	
+
+// Get a list of questions and answers for a student's exam
 Get Student Exam Answers (https://web.njit.edu/~pk549/490/beta/examTbl.php)
 	Send:
 	{

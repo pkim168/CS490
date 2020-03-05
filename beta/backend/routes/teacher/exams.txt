@@ -1,0 +1,60 @@
+GET
+	// Get a list of all exams created by a teacher
+	Get All Exams (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: 'getExams',
+			/* Optional Fields */
+			teacherId: (string)
+		}
+
+		Receive:
+		{
+			0: {
+				examId: (String),
+				points: (String)
+			},
+			1: {
+				examId: (String),
+				points: (String)
+			},
+			etc.
+		}
+		
+	// Get a list of all questions in an exam
+	Get Exam Questions (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: 'getExamQuestions',
+			/* Optional Fields */
+			examId: (string)
+		}
+
+		Receive:
+		{
+			0: {
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: Testcase 1,
+					1: Testcase 2,
+					etc.
+				}
+			},
+			1: {
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: Testcase 1,
+					1: Testcase 2,
+					etc.
+				}
+			},
+			etc.
+		}
+
+INSERT

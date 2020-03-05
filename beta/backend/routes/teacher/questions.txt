@@ -1,0 +1,73 @@
+GET
+	// Get a list of all questions in the database
+	Get Questions (https://web.njit.edu/~pk549/490/beta/questionTbl.php)
+		Send:
+		{
+			requestType: 'getQuestions',
+			/* Optional Fields */
+			difficulty: 'Easy', 'Medium', or 'Hard'
+			tag: To be decided
+		}
+
+		Receive:
+		{
+			0: {
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: Testcase 1,
+					1: Testcase 2,
+					etc.
+				}
+			},
+			1: {
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: Testcase 1,
+					1: Testcase 2,
+					etc.
+				}
+			},
+			etc.
+		}
+
+	// Get a list of all tags in the database
+	Get Tags (https://web.njit.edu/~pk549/490/beta/questionTbl.php)
+		Send:
+		{
+			requestType: 'getTags'
+		}
+
+		Receive:
+		{
+			0: tag1,
+			1: tag2,
+			etc
+		}
+
+INSERT
+	// Insert new question into the database
+	New Question (https://web.njit.edu/~pk549/490/beta/questionTbl.php)
+		Send:
+		{
+			requestType: 'newQuestion',
+			question: (String),
+			functionName: (String),
+			difficulty: 'Easy, 'Medium', or 'Hard'
+			tag: (string)
+			testCases: {
+				0: Testcase 1,
+				1: Testcase 2,
+				etc.
+			}
+		}
+
+		Receive:
+		{
+			message: "Success" or "Failed"
+		}
