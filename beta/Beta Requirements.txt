@@ -33,7 +33,7 @@ Online Exam System
 			
 			no deleting
 			
-			multiple instructors can access same exam
+			multiple instructors can access same exam?
 		
 		Student login and take exam
 			List points a question is worth

@@ -1,104 +1,141 @@
-// Get a list of all questions in an exam
-Get Exam Questions (https://web.njit.edu/~pk549/490/beta/examTbl.php)
-	Send:
-	{
-		requestType: 'getExamQuestions',
-		/* Optional Fields */
-		examId: (string)
-	}
+GET
+	// Get a list of all questions in an exam
+	Get Exam Questions (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: 'getExamQuestions',
+			/* Optional Fields */
+			examId: (string)
+		}
 
-	Receive:
-	{
-		0: {
-			question: (String),
-			functionName: (String),
-			difficulty: 'Easy, 'Medium', or 'Hard'
-			tag: (string)
-			testCases: {
-				0: Testcase 1,
-				1: Testcase 2,
-				etc.
-			}
-		},
-		1: {
-			question: (String),
-			functionName: (String),
-			difficulty: 'Easy, 'Medium', or 'Hard'
-			tag: (string)
-			testCases: {
-				0: Testcase 1,
-				1: Testcase 2,
-				etc.
-			}
-		},
-		etc.
-	}
+		Receive:
+		{
+			0: {
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: Testcase 1,
+					1: Testcase 2,
+					etc.
+				}
+			},
+			1: {
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: Testcase 1,
+					1: Testcase 2,
+					etc.
+				}
+			},
+			etc.
+		}
 
-// Get a list of all Exams assigned to a student
-Get Student's Exams (https://web.njit.edu/~pk549/490/beta/examTbl.php)
-	Send:
-	{
-		requestType: 'getStudentExams',
-		/* Optional Fields */
-		studentId: (string)
-	}
+	// Get a list of all Exams assigned to a student
+	Get Student's Exams (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: 'getStudentExams',
+			/* Optional Fields */
+			studentId: (string)
+		}
 
-	Receive:
-	{
-		0: {
-			examId: (String),
+		Receive:
+		{
+			0: {
+				examId: (String),
+				studentExamId: (String),
+				points: (String),
+				status: (String)
+			},
+			1: {
+				examId: (String),
+				studentExamId: (String),
+				points: (String),
+				status: (String)
+			},
+			etc.
+		}
+
+	// Get a list of questions and answers for a student's exam
+	Get Student Exam Answers (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: 'getStudentAnswers',
+			/* Optional Fields */
+			examId: (String)
 			studentExamId: (String),
-			points: (String),
-			status: (String)
-		},
-		1: {
-			examId: (String),
-			studentExamId: (String),
-			points: (String),
-			status: (String)
-		},
-		etc.
-	}
+		}
 
-// Get a list of questions and answers for a student's exam
-Get Student Exam Answers (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Receive:
+		{
+			0: {
+				questionId: (String),
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: Testcase 1,
+					1: Testcase 2,
+					etc.
+				}
+				answer: (String),
+				comments: (String)
+			},
+			1: {
+				questionId: (String),
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: Testcase 1,
+					1: Testcase 2,
+					etc.
+				}
+				answer: (String),
+				comments: (String)
+			},
+			etc.
+		}
+
+INSERT
+	// Submit student's exam
+	Submit Student's Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
 	Send:
-	{
-		requestType: 'getStudentAnswers',
-		/* Optional Fields */
-		examId: (string)
-		studentExamId: (String),
-	}
-
-	Receive:
-	{
-		0: {
-			questionId: (String),
-			question: (String),
-			functionName: (String),
-			difficulty: 'Easy, 'Medium', or 'Hard'
-			tag: (string)
-			testCases: {
-				0: Testcase 1,
-				1: Testcase 2,
-				etc.
-			}
-			answer: (String),
-			comments: (String)
-		},
-		1: {
-			questionId: (String),
-			question: (String),
-			functionName: (String),
-			difficulty: 'Easy, 'Medium', or 'Hard'
-			tag: (string)
-			testCases: {
-				0: Testcase 1,
-				1: Testcase 2,
-				etc.
-			}
-			answer: (String),
-			comments: (String)
-		},
-		etc.
-	}
+		{
+			0: {
+				questionId: (String),
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: Testcase 1,
+					1: Testcase 2,
+					etc.
+				}
+				answer: (String),
+				comments: (String)
+			},
+			1: {
+				questionId: (String),
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: Testcase 1,
+					1: Testcase 2,
+					etc.
+				}
+				answer: (String),
+				comments: (String)
+			},
+			etc.
+		}

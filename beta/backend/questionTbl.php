@@ -17,6 +17,10 @@
 			}
 			echo getQuestions($difficulty, $tag);
 			break;
+		
+		case 'newQuestion':
+			break;
+			
 	}
 	
 	function getQuestions($difficulty, $tag) {

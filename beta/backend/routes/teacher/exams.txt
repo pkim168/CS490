@@ -4,21 +4,16 @@ GET
 		Send:
 		{
 			requestType: 'getExams',
-			/* Optional Fields */
-			teacherId: (string)
+			ucid: teacherId
 		}
 
 		Receive:
 		{
-			0: {
-				examId: (String),
-				points: (String)
-			},
-			1: {
-				examId: (String),
-				points: (String)
-			},
-			etc.
+			exams: {
+				0: examId,
+				1: examId,
+				etc.
+			}
 		}
 		
 	// Get a list of all questions in an exam
@@ -26,7 +21,6 @@ GET
 		Send:
 		{
 			requestType: 'getExamQuestions',
-			/* Optional Fields */
 			examId: (string)
 		}
 
@@ -41,7 +35,8 @@ GET
 					0: Testcase 1,
 					1: Testcase 2,
 					etc.
-				}
+				},
+				points: (String)
 			},
 			1: {
 				question: (String),
@@ -53,8 +48,136 @@ GET
 					1: Testcase 2,
 					etc.
 				}
+				points: (String)
+			},
+			etc.
+		}
+
+	// Get a list of students who took an exam
+	Get Exam Students (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: 'getExamStudents',
+			examId: (String)
+		}
+
+		Receive:
+		{
+			0: studentId,
+			1: studentId,
+			etc.
+		}
+
+	// Get a list of questions and answers for a student's exam
+	Get Student Exam Answers (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: 'getStudentAnswers',
+			examId: (String),
+			ucid: studentId
+		}
+
+		Receive:
+		{
+			0: {
+				questionId: (String),
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: Testcase 1,
+					1: Testcase 2,
+					etc.
+				}
+				answer: (String),
+				comments: (String)
+			},
+			1: {
+				questionId: (String),
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: Testcase 1,
+					1: Testcase 2,
+					etc.
+				}
+				answer: (String),
+				comments: (String)
 			},
 			etc.
 		}
 
 INSERT
+
+	// Create new Exam
+	Submit new Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: 'newExam',
+			ucid: teacherId
+			questions: {
+				0: {
+					question: (String),
+					functionName: (String),
+					difficulty: 'Easy, 'Medium', or 'Hard'
+					tag: (string)
+					testCases: {
+						0: Testcase 1,
+						1: Testcase 2,
+						etc.
+					},
+					points: (String)
+				},
+				1: {
+					question: (String),
+					functionName: (String),
+					difficulty: 'Easy, 'Medium', or 'Hard'
+					tag: (string)
+					testCases: {
+						0: Testcase 1,
+						1: Testcase 2,
+						etc.
+					}
+					points: (String)
+				},
+				etc.
+			}
+		}
+
+		Receive: 
+			{
+				message: "Success" or "Failed"
+			}
+
+	// Add comments and change score for a student's exam
+	Edit Student Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+			{
+				requestType: "editStudentExam",
+				examId: (String),
+				ucid: studentId,
+				totalPoints: (String),
+				questions: {
+					0: {
+						questionId: (String),
+						points: (String),
+						answer: (String),
+						comments: (String)
+					},
+					1: {
+						questionId: (String),
+						points: (String),
+						answer: (String),
+						comments: (String)
+					},
+					etc.
+				}
+			}
+
+		Receive: 
+			{
+				message: "Success" or "Failed"
+			}
