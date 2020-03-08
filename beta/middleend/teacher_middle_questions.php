@@ -8,45 +8,49 @@ $requestType = $response['requestType'];
 
 //checking request type
 switch($requestType) {
-    case 'getExamQuestions':
-		//initial setting of variables
-		$requestType="getExamQuestions";
-        $examId="";
+    case 'getQuestions':
+        //initial setting of variables
+        $requestType="getQuestions";
+        $difficulty="";
+        $tag="";
 
         if(isset($response['requestType'])) $requestType = $response['requestType'];
-        if(isset($response['examId'])) $examId = $response['examId'];
+        if(isset($response['difficulty'])) $difficulty = $response['difficulty'];
+        if(isset($response['tag'])) $tag = $response['tag'];
 
-        $res_project=get_exam_questions($requestType,$examId);	
+        $res_project=get_exams($requestType,$ucid);	
         $data = array(
             'backend' => $res_project, 
         );
         echo json_encode($data);
         break;
-    case 'getStudentAnswers':
-		//initial setting of variables
-		$requestType="getStudentAnswers";
-        $examId="";
-        $studentId="";
+    case 'getTags':
+        //initial setting of variables
+        $requestType="getTags";
 
         if(isset($response['requestType'])) $requestType = $response['requestType'];
-        if(isset($response['examId'])) $examId = $response['examId'];
-        if(isset($response['studentId'])) $studentId = $response['studentId'];
 
-        $res_project=get_student_exam_answers($requestType,$examId,$studentId);	
+        $res_project=get_tags($requestType);	
         $data = array(
             'backend' => $res_project, 
         );
         echo json_encode($data);
         break;
-    case 'getStudentExams':
-		//initial setting of variables
-		$requestType="getStudentExams";
-        $studentId="";
+    case 'newQuestion':
+        //initial setting of variables
+        $requestType="newQuestion";
+        $question="";
+        $functionName="";
+        $difficulty="";
+        $tag="";
 
-		if(isset($response['requestType'])) $requestType = $response['requestType'];
-        if(isset($response['studentId'])) $studentId = $response['studentId'];
+        if(isset($response['requestType'])) $requestType = $response['requestType'];
+        if(isset($response['question'])) $question = $response['question'];
+        if(isset($response['functionName'])) $functionName = $response['functionName'];
+        if(isset($response['difficulty'])) $difficulty = $response['difficulty'];
+        if(isset($response['tag'])) $tag = $response['tag'];
 
-        $res_project=get_student_exams($requestType,$studentId);	
+        $res_project=new_question($requestType,$question,$functionName,$difficulty,$tag);	
         $data = array(
             'backend' => $res_project, 
         );
@@ -56,13 +60,12 @@ switch($requestType) {
         break;
 }
 
-
 // curl backend 
-function get_exam_questions($requestType,$examId){
+function get_questions($requestType,$difficulty,$tag){
 	//data from json response
-	$data = array('requestType' => $requestType, 'examId' => $examId);
+	$data = array('requestType' => $requestType, 'difficulty' => $difficulty, 'tag' => $tag,);
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/beta/questionTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
@@ -80,11 +83,11 @@ function get_exam_questions($requestType,$examId){
 }
 
 // curl backend 
-function get_student_exam_answers($requestType,$examId,$studentId){
+function get_tags($requestType){
 	//data from json response
-	$data = array('requestType' => $requestType, 'examId' => $examId, 'studentId' => $studentId);
+	$data = array('requestType' => $requestType);
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/beta/questionTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
@@ -102,11 +105,11 @@ function get_student_exam_answers($requestType,$examId,$studentId){
 }
 
 // curl backend 
-function get_student_exams($requestType,$studentId){
+function new_question($requestType,$question,$functionName,$difficulty,$tag){
 	//data from json response
-	$data = array('requestType' => $requestType, 'studentId' => $studentId);
+	$data = array('requestType' => $requestType, 'question' => $question, 'functionName' => $functionName, 'difficulty' => $difficulty, 'tag' => $tag);
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/beta/questionTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
