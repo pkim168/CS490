@@ -42,8 +42,7 @@ GET
 		Send:
 		{
 			requestType: 'getStudentExams',
-			/* Optional Fields */
-			studentId: (string)
+			ucid: (string)
 		}
 
 		Receive:
@@ -75,6 +74,7 @@ GET
 		Receive:
 		{
 			0: {
+				status: (String),
 				questionId: (String),
 				question: (String),
 				functionName: (String),
@@ -86,21 +86,26 @@ GET
 					etc.
 				}
 				answer: (String),
-				comments: (String)
+				comments: (String),
+				pointsEarned: (String),
+				totalqPoints: (String)
 			},
 			1: {
+				status: (String),
 				questionId: (String),
 				question: (String),
 				functionName: (String),
 				difficulty: 'Easy, 'Medium', or 'Hard'
-				stag: (string)
+				tag: (string)
 				testCases: {
 					0: Testcase 1,
 					1: Testcase 2,
 					etc.
 				}
 				answer: (String),
-				comments: (String)
+				comments: (String),
+				pointsEarned: (String),
+				totalqPoints: (String)
 			},
 			etc.
 		}

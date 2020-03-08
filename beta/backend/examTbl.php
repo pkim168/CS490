@@ -96,6 +96,11 @@
 		}
 		while($row = mysqli_fetch_array($result)) {
 			$temp = array();
-			
+			$temp["examId"] = $row["490examTbl_examId"];
+			$temp["studentExamId"] = $row["sExamId"];
+			$temp["status"] = $row["status"];
+			array_push($data, $temp);
+		}
+		return json_encode($data);
 	}
 ?>
