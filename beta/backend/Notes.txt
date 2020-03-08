@@ -1,0 +1,3 @@
+When exam is created, insert into studentExam table
+Exam for student should be created using exam question table
+When student submits, then insert into examGrades table

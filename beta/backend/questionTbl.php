@@ -13,7 +13,7 @@
 				$difficulty = getData($json['difficulty']);
 			}
 			if(!empty($json['tag'])) {
-				$tag = getData()json['tag']);
+				$tag = getData($json['tag']);
 			}
 			echo getQuestions($difficulty, $tag);
 			break;
@@ -54,11 +54,13 @@
 				array_push($data[$count]["testCases"], $row["testCase"]);
 			}
 			else {
+				temp["questionId"] = $row["questionId"];
 				temp["question"] = $row["question"];
 				temp["functionName"] = $row["functionName"];
 				temp["difficulty"] = $row["difficultyLvl"];
 				temp["tag"] = $row["tag"];
 				temp["testCases"] = array($row["testCase"]);
+				array_push($data, $temp);
 				$count++;
 			}
 		}

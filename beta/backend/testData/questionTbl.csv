@@ -1,0 +1,5 @@
+﻿addtion,"Write a function named ""addition"" that takes arguments x and y and returns the x+y",Easy,Operations
+multiplication,"Write a function named ""multiplication"" that takes arguments x and y and returns the x*y",Easy,Operations
+division,"Write a function named ""division"" that takes arguments x and y and returns the x/y",Easy,Operations
+subtraction,"Write a function named ""subtraction"" that takes arguments x and y and returns x-y",Easy,Operations
+square,"Write a function named ""square"" that takes argument x and returns x*x",Easy,Operations

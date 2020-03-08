@@ -11,6 +11,7 @@ GET
 		Receive:
 		{
 			0: {
+				questionId: (String),
 				question: (String),
 				functionName: (String),
 				difficulty: 'Easy, 'Medium', or 'Hard'
@@ -22,6 +23,7 @@ GET
 				}
 			},
 			1: {
+				questionId: (String),
 				question: (String),
 				functionName: (String),
 				difficulty: 'Easy, 'Medium', or 'Hard'
@@ -66,9 +68,8 @@ GET
 		Send:
 		{
 			requestType: 'getStudentAnswers',
-			/* Optional Fields */
-			examId: (String)
-			studentExamId: (String),
+			examId: (String),
+			ucid: (String)
 		}
 
 		Receive:
@@ -92,7 +93,7 @@ GET
 				question: (String),
 				functionName: (String),
 				difficulty: 'Easy, 'Medium', or 'Hard'
-				tag: (string)
+				stag: (string)
 				testCases: {
 					0: Testcase 1,
 					1: Testcase 2,
