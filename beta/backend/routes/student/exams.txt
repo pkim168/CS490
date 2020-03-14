@@ -1,10 +1,10 @@
 GET
 	// Get a list of all questions in an exam
+	// Use to create exam when student takes the exam
 	Get Exam Questions (https://web.njit.edu/~pk549/490/beta/examTbl.php)
 		Send:
 		{
 			requestType: 'getExamQuestions',
-			/* Optional Fields */
 			examId: (string)
 		}
 
@@ -21,6 +21,7 @@ GET
 					1: Testcase 2,
 					etc.
 				}
+				totalPoints: (String)
 			},
 			1: {
 				questionId: (String),
@@ -33,11 +34,13 @@ GET
 					1: Testcase 2,
 					etc.
 				}
+				totalPoints: (String)
 			},
 			etc.
 		}
 
 	// Get a list of all Exams assigned to a student
+	// Use to show all exams a student has. Includes exam status
 	Get Student's Exams (https://web.njit.edu/~pk549/490/beta/examTbl.php)
 		Send:
 		{
@@ -50,19 +53,22 @@ GET
 			0: {
 				examId: (String),
 				studentExamId: (String),
-				points: (String),
+				pointsEarned: (String),
+				totalPoints: (String),
 				status: (String)
 			},
 			1: {
 				examId: (String),
 				studentExamId: (String),
-				points: (String),
+				pointsEarned: (String),
+				totalPoints: (String),
 				status: (String)
 			},
 			etc.
 		}
-
+	
 	// Get a list of questions and answers for a student's exam
+	// Use when student is reviewing exam
 	Get Student Exam Answers (https://web.njit.edu/~pk549/490/beta/examTbl.php)
 		Send:
 		{
@@ -74,7 +80,6 @@ GET
 		Receive:
 		{
 			0: {
-				status: (String),
 				questionId: (String),
 				question: (String),
 				functionName: (String),
@@ -88,10 +93,9 @@ GET
 				answer: (String),
 				comments: (String),
 				pointsEarned: (String),
-				totalqPoints: (String)
+				totalPoints: (String)
 			},
 			1: {
-				status: (String),
 				questionId: (String),
 				question: (String),
 				functionName: (String),
@@ -105,43 +109,62 @@ GET
 				answer: (String),
 				comments: (String),
 				pointsEarned: (String),
-				totalqPoints: (String)
+				totalPoints: (String)
 			},
 			etc.
 		}
 
 INSERT
+	// Submit new Exam
+	Submit New Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+	Send:
+			{
+				ucid: (String),
+				totalPoints: (String),
+				0: {
+					questionId: (String),
+					answer: (String),
+					comments: (String),
+					points: (String)
+				},
+				1: {
+					questionId: (String),
+					answer: (String),
+					comments: (String),
+					points: (String)
+				},
+				etc.
+			}
+		Receive:
+			{
+				message: "Success" or "Failed"
+				error: Error Message
+			}
+	
 	// Submit student's exam
 	Submit Student's Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
-	Send:
-		{
-			0: {
-				questionId: (String),
-				question: (String),
-				functionName: (String),
-				difficulty: 'Easy, 'Medium', or 'Hard'
-				tag: (string)
-				testCases: {
-					0: Testcase 1,
-					1: Testcase 2,
-					etc.
-				}
-				answer: (String),
-				comments: (String)
-			},
-			1: {
-				questionId: (String),
-				question: (String),
-				functionName: (String),
-				difficulty: 'Easy, 'Medium', or 'Hard'
-				tag: (string)
-				testCases: {
-					0: Testcase 1,
-					1: Testcase 2,
-					etc.
-				}
-				answer: (String),
-				comments: (String)
-			},
-			etc.
-		}
+		Send:
+			{
+				ucid: (String),
+				examId: (String),
+				0: {
+					questionId: (String),
+					answer: (String),
+					comments: (String),
+					pointsEarned: (String),
+					totalPoints: (String)
+				},
+				1: {
+					questionId: (String),
+					answer: (String),
+					comments: (String),
+					pointsEarned: (String),
+					totalPoints: (String)
+				},
+				etc.
+			}
+		Receive:
+			{
+				message: "Success" or "Failed"
+				error: Error Message
+			}
