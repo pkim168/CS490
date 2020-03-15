@@ -7,10 +7,10 @@
 
 	switch($requestType) {
 		case 'getStudentAnswers':
-			if(!empty($json['ucid'])) {
+			if (!empty($json['ucid'])) {
 				$ucid = getData($json['ucid']);
 			}
-			if(!empty($json['examId'])) {
+			if (!empty($json['examId'])) {
 				$examId = getData($json['examId']);
 			}
 			echo getStudentAnswers($ucid, $examId);
@@ -24,26 +24,49 @@
 			break;
 			
 		case 'getExamQuestions':
-			if(!empty($json['examId'])) {
+			if (!empty($json['examId'])) {
 				$examId = getData($json['examId']);
 			}
 			echo getExamQuestions($examId);
 			break;
 			
 		case 'submitStudentExam':
-			if(!empty($json)) {
-				$json = getData($json['examId']);
-			}
 			echo submitStudentExam($json);
 			break;
 			
-		case 'submitNewExam':
-			if(!empty($json)) {
-				$json = getData($json['examId']);
-			}
+		case 'createNewExam':
 			echo submitNewExam($json);
 			break;
 		
+		case 'getExams':
+			if (!empty($json['ucid'])) {
+				$ucid = getData($json['ucid']);
+			}
+			echo getExams($ucid);
+			break;
+			
+		case 'getExamStatuses':
+			if (!empty($json['examId'])) {
+				$examId = getData($json['examId']);
+			}
+			echo getExamStatuses($examId);
+			break;
+			
+		case 'editStudentExam':
+			echo editStudentExam($json);
+			break;
+			
+		case 'releaseExam':
+			if (!empty($examId)) {
+				$examId = getData($json['examId']);
+			}
+			echo releaseExam($examId);
+			break;
+		
+		default:
+			$data = array();
+			$data["message"] = "Invalid Request Type";
+			echo json_encode($data);
 	}
 	
 	function getStudentAnswers($ucid, $examId) {
@@ -74,14 +97,17 @@
 		$count = -1;
 		$questionId = "";
 		$result = mysqli_query($db, $query);
-		if($result->num_rows == 0){
+		if ($result->num_rows == 0){
 			$data["message"] = "Error".mysqli_error();
 			return json_encode($data);
 		}
-		while($row = mysqli_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($result)) {
 			$temp = array();
+			$test = array();
 			if ($questionId == $row["questionId"]) {
-				array_push($data[$count]["testCases"], $row["testCase"]);
+				$test["case"] = $row["testCase"];
+				$test["data"] = $row["testData"];
+				array_push($data[$count]["testCases"], $test);
 			}
 			else {
 				$temp["questionId"] = $row["questionId"];
@@ -89,7 +115,9 @@
 				$temp["functionName"] = $row["functionName"];
 				$temp["difficulty"] = $row["difficultyLvl"];
 				$temp["tag"] = $row["tag"];
-				$temp["testCases"] = array($row["testCase"]);
+				$test["case"] = $row["testCase"];
+				$test["data"] = $row["testData"];
+				$temp["testCases"] = array($test);
 				$temp["answer"] = $row["answer"];
 				$temp["comments"] = $row["comments"];
 				$temp["pointsEarned"] = $row["pointsEarned"];
@@ -111,11 +139,11 @@
 		";
 		
 		$result = mysqli_query($db, $query);
-		if($result->num_rows == 0){
+		if ($result->num_rows == 0){
 			$data["message"] = "Error".mysqli_error();
 			return json_encode($data);
 		}
-		while($row = mysqli_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($result)) {
 			$temp = array();
 			$temp["examId"] = $row["490examTbl_examId"];
 			$temp["studentExamId"] = $row["sExamId"];
@@ -153,14 +181,17 @@
 		$count = -1;
 		$questionId = "";
 		$result = mysqli_query($db, $query);
-		if($result->num_rows == 0){
+		if ($result->num_rows == 0){
 			$data["message"] = "Error".mysqli_error();
 			return json_encode($data);
 		}
-		while($row = mysqli_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($result)) {
 			$temp = array();
+			$test = array();
 			if ($questionId == $row["questionId"]) {
-				array_push($data[$count]["testCases"], $row["testCase"]);
+				$test["case"] = $row["testCase"];
+				$test["data"] = $row["testData"];
+				array_push($data[$count]["testCases"], $test);
 			}
 			else {
 				$temp["questionId"] = $row["questionId"];
@@ -168,7 +199,9 @@
 				$temp["functionName"] = $row["functionName"];
 				$temp["difficulty"] = $row["difficultyLvl"];
 				$temp["tag"] = $row["tag"];
-				$temp["testCases"] = array($row["testCase"]);
+				$test["case"] = $row["testCase"];
+				$test["data"] = $row["testData"];
+				$temp["testCases"] = array($test);
 				$temp["totalPoints"] = $row["totalPoints"];
 				$questionId = $row["questionId"];
 				array_push($data, $temp);
@@ -180,15 +213,15 @@
 	}
 	
 	//Testing Needed
-	function submitNewExam($json) {
+	function createNewExam($json) {
 		global $db;
 		$data = array();
 		$ucid = '';
 		$totalPoints = '0';
-		if(!empty($json['ucid'])) {
+		if (!empty($json['ucid'])) {
 			$ucid = getData($json['ucid']);
 		}
-		if(!empty($json['totalPoints'])) {
+		if (!empty($json['totalPoints'])) {
 			$ucid = getData($json['totalPoints']);
 		}
 		$query = "INSERT INTO 490examTbl VALUES (DEFAULT, '$ucid', '$totalPoints');";
@@ -197,8 +230,10 @@
 			$data["error"] = mysqli_error();
 			return json_encode($data);
 		}
+		$examId = mysqli_insert_id($db);
 		
-		$query = "
+		// If previous line doesn't work, uncomment this block
+		/* $query = "
 			SELECT DISTINCT 490examTbl.examId
 			FROM 490examTbl
 			LEFT JOIN
@@ -207,8 +242,12 @@
 			WHERE 490studentExamTbl.490examTbl_examId IS NULL;
 		";
 		$result = mysqli_query($db, $query);
+		if ($result->num_rows == 0){
+			$data["message"] = "Error".mysqli_error();
+			return json_encode($data);
+		}
 		$row = mysqli_fetch_array($result);
-		$examId = $row["examId"];
+		$examId = $row["examId"]; */
 		
 		$query = "
 			SELECT DISTINCT studentId
@@ -216,14 +255,18 @@
 			WHERE teacherId = '$ucid';
 		";
 		$result = mysqli_query($db, $query);
-		while($row = mysqli_fetch_array($result)) {
+		if ($result->num_rows == 0){
+			$data["message"] = "Error".mysqli_error();
+			return json_encode($data);
+		}
+		while ($row = mysqli_fetch_array($result)) {
 			$students = array();
 			array_push($students, $row["studentId"]);
 		}
 		
-		$query = "INSERT INTO 490studentExamTbl VALUES "
-		foreach($students as &$student) {
-			$query .= "(DEFAULT, '$student', '$examId', '0'),"
+		$query = "INSERT INTO 490studentExamTbl VALUES ";
+		foreach ($students as $student) {
+			$query .= "(DEFAULT, '$student', '$examId', '0'),";
 		}
 		unset($student);
 		$query = substr($query, 0, -1).";";
@@ -233,12 +276,12 @@
 			return json_encode($data);
 		}
 		
-		$query = "INSERT INTO 490examQuestionTbl VALUES "
+		$query = "INSERT INTO 490examQuestionTbl VALUES ";
 		$question = $json["questions"];
-		for($i = 0; $i < count($questions); $i++) {
+		for ($i = 0; $i < count($questions); $i++) {
 			$questionId = $questions[$i]["questionId"];
 			$points = $questions[$i]["points"];
-			$query .= "($examId, '$questionId'', '$points'),"
+			$query .= "('$examId', '$questionId', '$points'),";
 		}
 		$query = substr($query, 0, -1).";";
 		if (!mysqli_query($db, $query)){
@@ -256,16 +299,16 @@
 		global $db;
 		$data = array();
 		$ucid = $examId = "";
-		if(!empty($json['ucid'])) {
+		if (!empty($json['ucid'])) {
 			$ucid = getData($json['ucid']);
 		}
-		if(!empty($json['examId'])) {
+		if (!empty($json['examId'])) {
 			$ucid = getData($json['examId']);
 		}
 		$query = "
 			UPDATE 490studentExamTbl
 			SET status = '1'
-			WHERE 490userTbl_ucid = '$ucid' AND 490examTbl_examId = '$examId;
+			WHERE 490userTbl_ucid = '$ucid' AND 490examTbl_examId = '$examId';
 		";
 		if (!mysqli_query($db, $query)){
 			$data["message"] = "Failure";
@@ -276,22 +319,141 @@
 		$query = "
 			SELECT sExamId
 			FROM 490studentExamTbl
-			WHERE 490userTbl_ucid = '$ucid' AND 490examTbl_examId = '$examId;
+			WHERE 490userTbl_ucid = '$ucid' AND 490examTbl_examId = '$examId';
 		";
 		$result = mysqli_query($db, $query);
+		if ($result->num_rows == 0){
+			$data["message"] = "Error".mysqli_error();
+			return json_encode($data);
+		}
 		$row = mysqli_fetch_array($result);
 		$sExamId = $row["sExamId"];
 		
-		$query = "INSERT INTO 490examGradesTbl VALUES "
+		$query = "INSERT INTO 490examGradesTbl VALUES ";
 		$question = $json["questions"];
-		for($i = 0; $i < count($questions); $i++) {
+		for ($i = 0; $i < count($questions); $i++) {
 			$questionId = $questions[$i]["questionId"];
 			$answer = $questions[$i]["answer"];
 			$pointsEarned = $questions[$i]["pointsEarned"];
 			$totalPoints = $questions[$i]["totalPoints"];
-			$query .= "($sExamId, '$questionId'', '$pointsEarned', '$totalPoints', '$answer', NULL),"
+			$query .= "('$sExamId', '$questionId', '$pointsEarned', '$totalPoints', '$answer', NULL),";
 		}
 		$query = substr($query, 0, -1).";";
+		if (!mysqli_query($db, $query)){
+			$data["message"] = "Failure";
+			$data["error"] = mysqli_error();
+			return json_encode($data);
+		}
+		
+		$data["message"] = "Success";
+		return json_encode($data);
+	}
+	
+	function getExams($ucid) {
+		global $db;
+		$data = array();
+		$query = "
+			SELECT * FROM 490examTbl
+			WHERE teacherId = '$ucid';
+		";
+		
+		$result = mysqli_query($db, $query);
+		if ($result->num_rows == 0){
+			$data["message"] = "Error".mysqli_error();
+			return json_encode($data);
+		}
+		while ($row = mysqli_fetch_array($result)) {
+			array_push($data, $row["examId"]);
+		}
+		return json_encode($data);
+	}
+	
+	function getExamStatuses($examId) {
+		global $db;
+		$data = array();
+		$query = "
+			SELECT 490userTbl_ucid, status FROM 490studentExamTbl
+			WHERE 490examTbl_examId = '$examId';
+		";
+		
+		$result = mysqli_query($db, $query);
+		if ($result->num_rows == 0){
+			$data["message"] = "Error".mysqli_error();
+			return json_encode($data);
+		}
+		while ($row = mysqli_fetch_array($result)) {
+			$temp = array();
+			$temp["ucid"] = $row["490userTbl_ucid"];
+			$temp["status"] = $row["status"];
+			array_push($data, $temp);
+		}
+		return json_encode($data);
+	}
+	
+	// Testing Needed
+	function editStudentExam($json) {
+		global $db;
+		$data = array();
+		$ucid = $examId = "";
+		if (!empty($json['ucid'])) {
+			$ucid = getData($json['ucid']);
+		}
+		if (!empty($json['examId'])) {
+			$ucid = getData($json['examId']);
+		}
+		$query = "
+			SELECT sExamId FROM 490studentExamTbl
+			WHERE 490userTbl_ucid = '$ucid' AND 490examTbl_examId = '$examId';
+		";
+		$result = mysqli_query($db, $query);
+		if ($result->num_rows == 0){
+			$data["message"] = "Error".mysqli_error();
+			return json_encode($data);
+		}
+		$row = mysqli_fetch_array($result);
+		$sExamId = $row["sExamId"];
+		$query = "";
+		$question = $json["questions"];
+		for ($i = 0; $i < count($questions); $i++) {
+			$questionId = $questions[$i]["questionId"];
+			$pointsEarned = $questions[$i]["points"];
+			$comments = $questions[$i]["comments"];
+			$query .= "
+				UPDATE 490examGradesTbl 
+				SET 
+					pointsEarned = '$pointsEarned', 
+					comments = '$comments';
+				WHERE 490studentExamTbl_sExamId = '$sExamId' AND 490questionTbl_questionId = '$questionId';
+			";
+		}
+		if (mysqli_multi_query($db, $query)){
+			do {
+				$result = mysqli_store_result($db);
+				if (!$result) {
+					$data["message"] = "Failure";
+					$data["error"] = mysqli_error();
+					return json_encode($data);
+				}
+			} while (mysqli_next_result($db));
+		} else {
+			$data["message"] = "Failure";
+			$data["error"] = mysqli_error();
+			return json_encode($data);
+		}
+		
+		$data["message"] = "Success";
+		return json_encode($data);
+	}
+	
+	// Testing Needed
+	function releaseExam($examId) {
+		global $db;
+		$data = array();
+		$query = "
+			UPDATE 490studentExamTbl 
+			SET status = '2'
+			WHERE 490examTbl_examId = '$examId';
+		";
 		if (!mysqli_query($db, $query)){
 			$data["message"] = "Failure";
 			$data["error"] = mysqli_error();

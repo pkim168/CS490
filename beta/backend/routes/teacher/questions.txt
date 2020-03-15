@@ -12,6 +12,7 @@ GET
 		Receive:
 		{
 			0: {
+				questionId: (String),
 				question: (String),
 				functionName: (String),
 				difficulty: 'Easy, 'Medium', or 'Hard'
@@ -23,6 +24,7 @@ GET
 				}
 			},
 			1: {
+				questionId: (String),
 				question: (String),
 				functionName: (String),
 				difficulty: 'Easy, 'Medium', or 'Hard'
@@ -61,8 +63,30 @@ INSERT
 			difficulty: 'Easy, 'Medium', or 'Hard'
 			tag: (string)
 			testCases: {
-				0: Testcase 1,
-				1: Testcase 2,
+				0: {
+					case: Testcase,
+					data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+				},
+				1: {
+					case: Testcase,
+					data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+				},
 				etc.
 			}
 		}

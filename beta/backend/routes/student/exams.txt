@@ -114,57 +114,32 @@ GET
 			etc.
 		}
 
-INSERT
-	// Submit new Exam
-	Submit New Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
-	Send:
-			{
-				ucid: (String),
-				totalPoints: (String),
-				0: {
-					questionId: (String),
-					answer: (String),
-					comments: (String),
-					points: (String)
-				},
-				1: {
-					questionId: (String),
-					answer: (String),
-					comments: (String),
-					points: (String)
-				},
-				etc.
-			}
-		Receive:
-			{
-				message: "Success" or "Failed"
-				error: Error Message
-			}
-	
-	// Submit student's exam
+INSERT	
+	// Submit student's exam. Changes status to 1
 	Submit Student's Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
 		Send:
-			{
-				ucid: (String),
-				examId: (String),
+		{
+			ucid: (String),
+			examId: (String),
+			questions: {
 				0: {
 					questionId: (String),
 					answer: (String),
-					comments: (String),
 					pointsEarned: (String),
 					totalPoints: (String)
 				},
 				1: {
 					questionId: (String),
 					answer: (String),
-					comments: (String),
 					pointsEarned: (String),
 					totalPoints: (String)
 				},
 				etc.
 			}
+		}
+		
 		Receive:
-			{
-				message: "Success" or "Failed"
-				error: Error Message
-			}
+		{
+			message: "Success" or "Failed"
+			error: Error Message
+		}

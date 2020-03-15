@@ -9,11 +9,9 @@ GET
 
 		Receive:
 		{
-			exams: {
-				0: examId,
-				1: examId,
-				etc.
-			}
+			0: examId,
+			1: examId,
+			etc.
 		}
 		
 	// Get a list of all questions in an exam
@@ -27,44 +25,80 @@ GET
 		Receive:
 		{
 			0: {
+				questionId: (String),
 				question: (String),
 				functionName: (String),
 				difficulty: 'Easy, 'Medium', or 'Hard'
 				tag: (string)
 				testCases: {
-					0: Testcase 1,
-					1: Testcase 2,
-					etc.
-				},
-				points: (String)
-			},
-			1: {
-				question: (String),
-				functionName: (String),
-				difficulty: 'Easy, 'Medium', or 'Hard'
-				tag: (string)
-				testCases: {
-					0: Testcase 1,
-					1: Testcase 2,
+					0: {
+						case: Testcase,
+						data: Test Data (json)
+					},
+					1: {
+						case: Testcase,
+						data: Test Data (json)
+					},
 					etc.
 				}
-				points: (String)
+				totalPoints: (String)
+			},
+			1: {
+				questionId: (String),
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					1: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					etc.
+				}
+				totalPoints: (String)
 			},
 			etc.
 		}
 
 	// Get a list of students who took an exam
-	Get Exam Students (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+	Get Student Exam Statuses (https://web.njit.edu/~pk549/490/beta/examTbl.php)
 		Send:
 		{
-			requestType: 'getExamStudents',
+			requestType: 'getExamStatuses',
 			examId: (String)
 		}
 
 		Receive:
 		{
-			0: studentId,
-			1: studentId,
+			0: {
+				ucid: studentId,
+				status: (string)
+			},
+			1: {
+				ucid: studentId,
+				status: (string)
+			},
 			etc.
 		}
 
@@ -80,110 +114,147 @@ GET
 		Receive:
 		{
 			0: {
-				status: (String),
 				questionId: (String),
 				question: (String),
 				functionName: (String),
 				difficulty: 'Easy, 'Medium', or 'Hard'
 				tag: (string)
 				testCases: {
-					0: Testcase 1,
-					1: Testcase 2,
+					0: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					1: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
 					etc.
 				}
 				answer: (String),
 				comments: (String),
 				pointsEarned: (String),
-				totalqPoints: (String)
+				totalPoints: (String)
 			},
 			1: {
-				status: (String),
 				questionId: (String),
 				question: (String),
 				functionName: (String),
 				difficulty: 'Easy, 'Medium', or 'Hard'
 				tag: (string)
 				testCases: {
-					0: Testcase 1,
-					1: Testcase 2,
+					0: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					1: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
 					etc.
 				}
 				answer: (String),
 				comments: (String),
 				pointsEarned: (String),
-				totalqPoints: (String)
+				totalPoints: (String)
 			},
 			etc.
 		}
 
 INSERT
 
-	// Create new Exam
-	Submit new Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+	// Create new Exam. Creates student exams with status 0
+	Create new Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
 		Send:
 		{
-			requestType: 'newExam',
-			ucid: teacherId
+			requestType: "createNewExam",
+			ucid: (String),
+			totalPoints: (String),
 			questions: {
 				0: {
-					question: (String),
-					functionName: (String),
-					difficulty: 'Easy, 'Medium', or 'Hard'
-					tag: (string)
-					testCases: {
-						0: Testcase 1,
-						1: Testcase 2,
-						etc.
-					},
+					questionId: (String),
 					points: (String)
 				},
 				1: {
-					question: (String),
-					functionName: (String),
-					difficulty: 'Easy, 'Medium', or 'Hard'
-					tag: (string)
-					testCases: {
-						0: Testcase 1,
-						1: Testcase 2,
-						etc.
-					}
+					questionId: (String),
 					points: (String)
+				},
+				etc.
+			}
+		}
+		Receive:
+		{
+			message: "Success" or "Failed"
+			error: Error Message
+		}
+		
+	// Add comments and change score for a student's exam
+	Edit Student Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: "editStudentExam",
+			examId: (String),
+			ucid: studentId,
+			questions: {
+				0: {
+					questionId: (String),
+					points: (String),
+					comments: (String)
+				},
+				1: {
+					questionId: (String),
+					points: (String),
+					comments: (String)
 				},
 				etc.
 			}
 		}
 
 		Receive: 
-			{
-				message: "Success" or "Failed"
-			}
-
-	// Add comments and change score for a student's exam
-	Edit Student Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		{
+			message: "Success" or "Failed"
+		}
+		
+	// Release exams to students. Changes status to 2
+	Release Student Exams (https://web.njit.edu/~pk549/490/beta/examTbl.php)
 		Send:
-			{
-				requestType: "editStudentExam",
-				examId: (String),
-				ucid: studentId,
-				totalPoints: (String),
-				questions: {
-					0: {
-						questionId: (String),
-						points: (String),
-						answer: (String),
-						comments: (String)
-					},
-					1: {
-						questionId: (String),
-						points: (String),
-						answer: (String),
-						comments: (String)
-					},
-					etc.
-				}
-			}
+		{
+			requestType: "releaseExam",
+			examId: (String)
+		}
 
 		Receive: 
-			{
-				message: "Success" or "Failed"
-			}
+		{
+			message: "Success" or "Failed"
+		}
