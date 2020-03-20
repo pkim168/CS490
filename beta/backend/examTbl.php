@@ -422,7 +422,7 @@
 				UPDATE 490examGradesTbl 
 				SET 
 					pointsEarned = '$pointsEarned', 
-					comments = '$comments';
+					comments = '$comments'
 				WHERE 490studentExamTbl_sExamId = '$sExamId' AND 490questionTbl_questionId = '$questionId';
 			";
 		}
