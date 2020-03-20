@@ -33,11 +33,27 @@ GET
 				testCases: {
 					0: {
 						case: Testcase,
-						data: Test Data (json)
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
 					},
 					1: {
 						case: Testcase,
-						data: Test Data (json)
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
 					},
 					etc.
 				}
