@@ -115,6 +115,7 @@ INSERT
 	Submit Student's Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
 		Send:
 		{
+			requestType: 'submitStudentExam',
 			ucid: (String),
 			examId: (String),
 			questions: {
