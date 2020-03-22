@@ -1,3 +1,21 @@
+<?php
+	session_start([
+		'use_only_cookies' => 1,
+		'cookie_lifetime' => 0,
+		'cookie_secure' => 1,
+		'cookie_httponly' => 1
+	]);
+	
+	//If a session with user_id exists, go to updateInventory.php
+	if(array_key_exists('ucid', $_SESSION)){
+    echo "<script> console.log('Session exists') </script>";
+		if($_SESSION["role"] == 1)
+			header('Location: ./student.php');
+		if($_SESSION["role"] == 2)
+			header('Location: ./teacher.php');
+	}
+	
+?>
 <html>
 	<head>
 		<meta charset="utf-8"/>

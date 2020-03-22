@@ -1,4 +1,18 @@
 <?php
+	session_start([
+		'use_only_cookies' => 1,
+		'cookie_lifetime' => 0,
+		'cookie_secure' => 1,
+		'cookie_httponly' => 1
+	]);
+	
+	
+	
+	else{
+    echo "<script> console.log('Session does not exist') </script>";
+    header('Location: ./index.php');
+	}
+	
 	$ucidErr = $passErr = "";
 	$ucid = $password = "";
 	if(empty($_POST["ucid"])){
