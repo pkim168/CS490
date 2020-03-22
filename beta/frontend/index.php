@@ -51,6 +51,7 @@
 							var p = document.createElement('p');
 							p.textContent = "Backend: ".concat(data['backend'], " NJIT: ", data['njit']);
 							p.setAttribute('id', 'result');
+							
 							document.getElementById('div').appendChild(p);
 						}
 					})
