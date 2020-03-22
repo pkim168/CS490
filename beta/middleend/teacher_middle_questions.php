@@ -18,7 +18,7 @@ switch($requestType) {
         if(isset($response['difficulty'])) $difficulty = $response['difficulty'];
         if(isset($response['tag'])) $tag = $response['tag'];
 
-        $res_project=get_exams($requestType,$ucid);	
+        $res_project=get_questions($requestType,$difficulty,$tag);	
         $data = array(
             'backend' => $res_project, 
         );
@@ -42,15 +42,17 @@ switch($requestType) {
         $question="";
         $functionName="";
         $difficulty="";
-        $tag="";
+		$tag="";
+		$testCases=$response['testCases'];
 
         if(isset($response['requestType'])) $requestType = $response['requestType'];
         if(isset($response['question'])) $question = $response['question'];
         if(isset($response['functionName'])) $functionName = $response['functionName'];
         if(isset($response['difficulty'])) $difficulty = $response['difficulty'];
-        if(isset($response['tag'])) $tag = $response['tag'];
+		if(isset($response['tag'])) $tag = $response['tag'];
+		if(isset($response['testCases'])) $testCases = $response['testCases'];
 
-        $res_project=new_question($requestType,$question,$functionName,$difficulty,$tag);	
+        $res_project=new_question($requestType,$question,$functionName,$difficulty,$tag,$testCases);	
         $data = array(
             'backend' => $res_project, 
         );
@@ -63,7 +65,7 @@ switch($requestType) {
 // curl backend 
 function get_questions($requestType,$difficulty,$tag){
 	//data from json response
-	$data = array('requestType' => $requestType, 'difficulty' => $difficulty, 'tag' => $tag,);
+	$data = array('requestType' => $requestType, 'difficulty' => $difficulty, 'tag' => $tag);
 	//url to backend
 	$url = "https://web.njit.edu/~pk549/490/beta/questionTbl.php";
 	//initialize curl session and return a curl handle
@@ -105,9 +107,9 @@ function get_tags($requestType){
 }
 
 // curl backend 
-function new_question($requestType,$question,$functionName,$difficulty,$tag){
+function new_question($requestType,$question,$functionName,$difficulty,$tag,$testCases){
 	//data from json response
-	$data = array('requestType' => $requestType, 'question' => $question, 'functionName' => $functionName, 'difficulty' => $difficulty, 'tag' => $tag);
+	$data = array('requestType' => $requestType, 'question' => $question, 'functionName' => $functionName, 'difficulty' => $difficulty, 'tag' => $tag, 'testCases' => $testCases);
 	//url to backend
 	$url = "https://web.njit.edu/~pk549/490/beta/questionTbl.php";
 	//initialize curl session and return a curl handle

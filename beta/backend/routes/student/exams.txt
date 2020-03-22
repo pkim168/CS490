@@ -53,15 +53,11 @@ GET
 			0: {
 				examId: (String),
 				studentExamId: (String),
-				pointsEarned: (String),
-				totalPoints: (String),
 				status: (String)
 			},
 			1: {
 				examId: (String),
 				studentExamId: (String),
-				pointsEarned: (String),
-				totalPoints: (String),
 				status: (String)
 			},
 			etc.
@@ -119,6 +115,7 @@ INSERT
 	Submit Student's Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
 		Send:
 		{
+			requestType: 'submitStudentExam',
 			ucid: (String),
 			examId: (String),
 			questions: {
