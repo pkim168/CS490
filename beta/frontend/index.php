@@ -6,8 +6,8 @@
 		'cookie_httponly' => 1
 	]);
 	
-	//If a session with user_id exists, go to updateInventory.php
-	if(array_key_exists('ucid', $_SESSION)){
+	
+	if(array_key_exists('role', $_SESSION)){
     echo "<script> console.log('Session exists') </script>";
 		if($_SESSION["role"] == 1)
 			header('Location: ./student.php');
