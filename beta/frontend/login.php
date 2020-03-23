@@ -8,7 +8,7 @@
 		if($_SESSION["role"] == 2)
 			header('Location: ./teacherView.php');
 	
-	else{
+	}else{
     header('Location: ./index.php');
 	}
 	
