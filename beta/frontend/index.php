@@ -8,7 +8,6 @@
 	
 	
 	if(array_key_exists('role', $_SESSION)){
-    echo "<script> console.log('Session exists') </script>";
 		if($_SESSION["role"] == 1)
 			header('Location: ./studentView.php');
 		if($_SESSION["role"] == 2)
@@ -39,20 +38,11 @@
 				.then((response) => {
 					console.log(response);
 					response.json().then((data) => {
-						if(document.getElementById('result') == null) {
-							var p = document.createElement('p');
-							p.textContent = data['backend'];
-							p.setAttribute('id', 'result');
-							document.getElementById('div').appendChild(p);
+						if(data["message"] == "Verified") {
+							location.href = "https://web.njit.edu/~dn236/CS490/beta/login.php";
 						}
 						else {
-							var result = document.getElementById('result');
-							document.getElementById('div').removeChild(result);
-							var p = document.createElement('p');
-							p.textContent = data['backend'];
-							p.setAttribute('id', 'result');
-							document.getElementById('div').appendChild(p);
-							
+							alert("Invalid Login");
 						}
 					})
 				})
