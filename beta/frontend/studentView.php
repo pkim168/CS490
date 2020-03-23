@@ -37,6 +37,8 @@
 				</div>
 			</div>
 			<div id="filters" class="flex-container row" style="width:100%; float:left">
+			
+			</div>
 		</div>
 	</body>
 </html>

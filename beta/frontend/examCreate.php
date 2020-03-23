@@ -1,5 +1,5 @@
 <?php 
-		session_start([
+	session_start([
 		'use_only_cookies' => 1,
 		'cookie_lifetime' => 0,
 		'cookie_secure' => 1,
@@ -10,7 +10,7 @@
 	if(array_key_exists('role', $_SESSION)){
     echo "<script> console.log('Session exists') </script>";
 		if($_SESSION["role"] == 1)
-			header('Location: ./student.php');
+			header('Location: ./studentView.php');
 	else{
     echo "<script> console.log('Session does not exist') </script>";
     header('Location: ./index.php');
@@ -85,7 +85,7 @@
 				  console.log(p);
 				}
 				// cURL to middle end
-				fetch("********LINK HERE********", {
+				fetch("https://web.njit.edu/~jrd62/CS490/teacher_middle_questions.php", {
 					method: "POST",
 					body: formData
 				})
@@ -148,14 +148,14 @@
 			
 			function back(){
 				// Go back to previous page
-				location.href = 'Location: ./teacherView.php';
+				location.href = '********LINK HERE********';
 				return;
 			}
 		</script>
 	</head>
 	<body>
 		<?php
-			echo "<p id='ucid' hidden></p>";
+			echo "<p id='ucid' hidden>$_SESSION['ucid']</p>";
 		?>
 		<div class="flex-container column" style="width: 50%; margin: 0%; float:left; border-right: 1px black solid;">
 			<div class="flex-container column" style="margin: 0%; float:left;">
