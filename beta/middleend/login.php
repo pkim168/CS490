@@ -13,12 +13,7 @@ if(isset($response['ucid'])) $ucid = $response['ucid'];
 if(isset($response['pass'])) $pass = $response['pass'];
 
 $res_project=login_project($requestType,$ucid,$pass);	
-$res_njit=login_njit($ucid,$pass);
-$data = array(
-	'backend' => $res_project, 
-	'njit' => $res_njit
-);
-echo json_encode($data);
+echo $res_project;
 
 
 // curl backend 
@@ -38,29 +33,7 @@ function login_project($requestType,$ucid,$pass){
 	$response = curl_exec($ch);
 	//close curl session
 	curl_close ($ch);
-	//decoding response
-	$response_decode = json_decode($response);
 	//return response
-	return $response_decode[0];
-}
-
-
-// curl njit
-function login_njit($ucid,$pass){
-	$url = "http://myhub.njit.edu/vrs/ldapAuthenticateServlet";
-	$data= array("user_name" => $ucid,"passwd" =>$pass);
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_POST, 1);
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data)); 
-	$response = curl_exec($ch);
-	curl_close ($ch);
-	if($response == "") {
-		return "Verified";
-	}
-	else {
-		return "Rejected";
-	}
+	return $response;
 }
 ?>
