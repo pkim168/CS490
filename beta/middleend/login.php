@@ -26,7 +26,7 @@ function login_project($requestType,$ucid,$pass){
 	//data from json response
 	$data = array('requestType' => $requestType, 'ucid' => $ucid,'pass' =>$pass);
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/alpha/userTbl.php";
+	$url = "https://web.njit.edu/~dn236/CS490/beta/tempBackend/userTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer
