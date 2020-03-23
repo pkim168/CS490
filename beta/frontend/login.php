@@ -1,21 +1,14 @@
 <?php
-	session_start([
-		'use_only_cookies' => 1,
-		'cookie_lifetime' => 0,
-		'cookie_secure' => 1,
-		'cookie_httponly' => 1
-	]);
+	session_start();
 
 		
 	if(array_key_exists('role', $_SESSION)){
-    echo "<script> console.log('Session exists') </script>";
 		if($_SESSION["role"] == 1)
 			header('Location: ./studentView.php');
 		if($_SESSION["role"] == 2)
 			header('Location: ./teacherView.php');
 	
 	else{
-    echo "<script> console.log('Session does not exist') </script>";
     header('Location: ./index.php');
 	}
 	
