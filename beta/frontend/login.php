@@ -1,10 +1,5 @@
 <?php
-	session_start([
-		'use_only_cookies' => 1,
-		'cookie_lifetime' => 0,
-		'cookie_secure' => 1,
-		'cookie_httponly' => 1
-	]);
+	session_start();
 
 		
 	if(array_key_exists('role', $_SESSION)){

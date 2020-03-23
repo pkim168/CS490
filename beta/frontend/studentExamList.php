@@ -2,18 +2,16 @@
 	// If session doesn't exists, redirect to login page
 	session_start();
 	ob_start();
-	/*
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
-		header('Location: ********LINK HERE********');
+		header('Location: ./index.php');
+	} 
+	if ($_SESSION['role'] = '2') {
+		header('Location: ./teacherView.php');
 	}
-	if ($_SESSION['role'] != '1') {
-		header('Location: ********LINK HERE********');
-	}
-	*/
 	$data = array();
 	$data['requestType'] = 'getExams';
 	$data['ucid'] = $_SESSION['ucid'];
-	$url = "****************URL HERE *********************";
+	$url = "https://web.njit.edu/~jrd62/CS490/student_middle.php";
 	
 	$ch = curl_init($url);
 	$payload = json_encode($data);

@@ -13,7 +13,7 @@
 	$data = array();
 	$data['requestType'] = 'getExamStatuses';
 	$data['examId'] = $_SESSION['examId'];
-	$url = "****************URL HERE *********************";
+	$url = "https://web.njit.edu/~jrd62/CS490/teacher_middle_exam.php";
 	
 	$ch = curl_init($url);
 	$payload = json_encode($data);
@@ -49,7 +49,7 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							location.href = '********LINK HERE********'
+							location.href = "https://web.njit.edu/~jrd62/CS490/teacher_middle_exam.php"
 						}
 						else {
 							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));

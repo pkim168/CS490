@@ -9,7 +9,7 @@
 	} 
 	if ($_SESSION['role'] = '1') {
 		header('Location: ./studentView.php');
-	}*/
+	}
 	ob_start();
 	
 	
