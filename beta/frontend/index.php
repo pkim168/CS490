@@ -10,11 +10,11 @@
 	if(array_key_exists('role', $_SESSION)){
     echo "<script> console.log('Session exists') </script>";
 		if($_SESSION["role"] == 1)
-			header('Location: ./student.php');
+			header('Location: ./studentView.php');
 		if($_SESSION["role"] == 2)
-			header('Location: ./teacher.php');
+			header('Location: ./teacherView.php');
 	}
-	
+
 ?>
 <html>
 	<head>
@@ -32,7 +32,7 @@
 				formData.append('ucid', ucid);
 				formData.append('pass', pass);
 				
-				fetch("https://web.njit.edu/~dn236/CS490/Alpha/login.php", {
+				fetch("https://web.njit.edu/~dn236/CS490/beta/login.php", {
 					method: "POST",
 					body: formData
 				})
@@ -41,7 +41,7 @@
 					response.json().then((data) => {
 						if(document.getElementById('result') == null) {
 							var p = document.createElement('p');
-							p.textContent = "Backend: ".concat(data['backend'], " NJIT: ", data['njit']);
+							p.textContent = data['backend'];
 							p.setAttribute('id', 'result');
 							document.getElementById('div').appendChild(p);
 						}
@@ -49,10 +49,10 @@
 							var result = document.getElementById('result');
 							document.getElementById('div').removeChild(result);
 							var p = document.createElement('p');
-							p.textContent = "Backend: ".concat(data['backend'], " NJIT: ", data['njit']);
+							p.textContent = data['backend'];
 							p.setAttribute('id', 'result');
-							
 							document.getElementById('div').appendChild(p);
+							
 						}
 					})
 				})

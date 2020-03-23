@@ -44,6 +44,11 @@
 	$result = curl_exec($ch);
 	curl_close($ch);
 	
+	//set session vars
+	$temp = json_decode($result);
+	$_SESSION['ucid'] = $ucid;
+	$_SESSION['role'] = data['role'];
+	
 	echo $result;
 	
 ?>

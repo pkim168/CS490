@@ -1,0 +1,3 @@
+https://web.njit.edu/~dn236/CS490/beta/teacherView.php
+https://web.njit.edu/~jrd62/CS490/teacher_middle_questions.php
+https://web.njit.edu/~jrd62/CS490/teacher_middle_exam.php

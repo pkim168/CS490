@@ -1,15 +1,8 @@
 <?php 
 	// If session doesn't exists, redirect to login page
-	if(session_id() == '' || !isset($_SESSION)) {
-		header('Location: ./index.php');
-	} 
-	session_start();
-	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
-		header('Location: ./index.php');
-	} 
-	if ($_SESSION['role'] = '1') {
-		header('Location: ./studentView.php');
-	}*/
+	/* if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
+		header('Location: ********LINK HERE********');
+	} */
 	
 	ob_start();
 ?>
@@ -43,7 +36,7 @@
 				formData.append('ucid', document.getElementById("ucid").innerText);
 				formData.append('totalPoints', score);
 				// cURL to middle end
-				fetch("Location: ./studentView.php", {
+				fetch("********LINK HERE********", {
 					method: "POST",
 					body: formData
 				})
@@ -150,7 +143,7 @@
 	</head>
 	<body>
 		<?php
-			echo "<p id='ucid' hidden>{$_SESSION['ucid']}</p>";
+			echo "<p id='ucid' hidden></p>";
 		?>
 		<div class="flex-container column" style="width: 50%; margin: 0%; float:left; border-right: 1px black solid;">
 			<div class="flex-container column" style="margin: 0%; float:left;">

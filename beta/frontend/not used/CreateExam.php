@@ -43,7 +43,7 @@
 				formData.append('ucid', document.getElementById("ucid").innerText);
 				formData.append('totalPoints', score);
 				// cURL to middle end
-				fetch("Location: ./studentView.php", {
+				fetch("********LINK HERE********", {
 					method: "POST",
 					body: formData
 				})
