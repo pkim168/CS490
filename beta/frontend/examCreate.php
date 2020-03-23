@@ -48,7 +48,7 @@
 				formData.append('ucid', document.getElementById("ucid").innerText);
 				formData.append('totalPoints', score);
 				// cURL to middle end
-				fetch("********LINK HERE********", {
+				fetch("https://web.njit.edu/~jrd62/CS490/teacher_middle_exam.php", {
 					method: "POST",
 					body: formData
 				})
@@ -148,7 +148,7 @@
 			
 			function back(){
 				// Go back to previous page
-				location.href = '********LINK HERE********';
+				location.href = 'Location: ./teacherView.php';
 				return;
 			}
 		</script>

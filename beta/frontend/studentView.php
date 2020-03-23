@@ -10,7 +10,7 @@
 	if(array_key_exists('ucid', $_SESSION)){
     echo "<script> console.log('Session exists') </script>";
 		if($_SESSION["role"] == 2)
-			header('Location: ./quesCreate.php');
+			header('Location: ./teacherView.php');
 	}
 	
 ?>
@@ -23,12 +23,20 @@
 				
 			}
 			
+			
 		</script>
 	</head> 
 	<body>
 		<?php
 			echo "<p id='ucid' hidden></p>";
 		?>
-		
+		<div class="flex-container column" style="margin: 0%;">
+			<div class="flex-container column" style="margin: 0%; float:left;">
+				<div class="flex-container row">
+					<h2> Graded Exams </h2>
+				</div>
+			</div>
+			<div id="filters" class="flex-container row" style="width:100%; float:left">
+		</div>
 	</body>
 </html>
