@@ -33,11 +33,16 @@
 		<div class="flex-container column" style="margin: 0%;">
 			<div class="flex-container column" style="margin: 0%; float:left;">
 				<div class="flex-container row">
-					<h2> Graded Exams </h2>
+					<h2> Exams </h2>
 				</div>
 			</div>
-			<div id="filters" class="flex-container row" style="width:100%; float:left">
-			
+			<div  class="flex-container row" style="width:100%; float:left">
+				<table id="graded" style = "width:100%; float:left">
+					<tr> 
+						<th> Graded Exams </th>
+						<th> Grade </th>
+					</tr>
+				</table>
 			</div>
 		</div>
 	</body>
