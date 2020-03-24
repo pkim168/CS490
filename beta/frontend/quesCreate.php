@@ -30,28 +30,30 @@
 			}
 			
 			function create(){
-				let formData = new FormData();
-				formData.append('requestType', 'newQuestion');
-				formData.append('question', document.getElementById('question').value);
-				formData.append('functionName', document.getElementById('functionName').value);
-				formData.append('difficulty', document.getElementById('difficulty').value);
-				formData.append('tag', document.getElementById('tag').value);
+				let formData = {};
+				formData['requestType'] = 'newQuestion';
+				formData['question'] = document.getElementById('question').value);
+				formData['functionName'] = document.getElementById('functionName').value);
+				formData['difficulty'] = document.getElementById('difficulty').value);
+				formData['tag'] = document.getElementById('tag').value);
+				formData['testCases'] = [];
 				numTestCases = document.getElementById('numTestCases').value;
 				for (var i=0; i<numTestCases; i++) {
-					let testCase = new FormData();
+					let testCase = {};
 					var caseString = document.getElementById("testCase").value;
-					testCase.append('case', caseString);
-					let data = new FormData();
+					testCase['case'] = caseString;
+					let data = {};
 					var argc = document.getElementById("".concat('input ', (i+1).toString())).value;
-					data.append('argc', argc);
+					data['argc'] = argc;
+					data['parameters'] = [];
 					var arg = document.getElementById("".concat('argument ', (i+1).toString()));
 					for (var j=0; j<argc; j++) {
-						data.append('parameters', arg.children[j].children[1].value);
+						data['parameters'].push(arg.children[j].children[1].value);
 					}
 					var output = document.getElementById("".concat('output ', (i+1).toString())).value;
-					data.append('result', output);
-					testCase.append('data', data);
-					formData.append('testCases', testCase);
+					data['result'] = output;
+					testCase['data'] = data;
+					formData['testCases'].push(testCase);
 				}
 				// cURL to middle end
 				fetch("https://web.njit.edu/~dn236/CS490/beta/CreateQuestion2", {
@@ -162,7 +164,7 @@
 			function filter() {
 				var diff = document.getElementById("difficulty").value;
 				var tag = document.getElementById("tag").value;
-				let formData = new FormData();
+				let formData = {};
 				formData.append('requestType', 'getQuestions');
 				formData.append('difficulty', diff);
 				formData.append('tag', tag);
@@ -178,7 +180,7 @@
 					console.log(response);
 					response.json().then((data) => {
 						var questions = document.getElementById('questions');
-						while (questions.childNodes.length > 1) {
+						while (questions.childNodes.length > 2) {
 							questions.removeChild(questions.lastChild);
 						}
 						if (data.hasOwnProperty('message')) {

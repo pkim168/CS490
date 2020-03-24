@@ -29,9 +29,10 @@
 					return;
 				}
 				var score = 0;
-				let formData = new FormData();
+				let formData = {};
+				formData['questions'] = []
 				for (var i=1; i<table.rows.length; i++) {
-					let question = new FormData();
+					let question = {};
 					var questionId = table.rows[i].children[0].innerHTML;
 					var points = table.rows[i].children[1].firstChild.value;
 					if (points == "" || isNaN(points)) {
@@ -39,13 +40,13 @@
 						return;
 					}
 					score += Number(table.rows[i].children[1].firstChild.value);
-					question.append('questionId', questionId);
-					question.append('points', points);
-					formData.append('questions', question);
+					question['questionId'] = questionId;
+					question['points'] = points;
+					formData['questions'].push(question);
 				}
-				formData.append('requestType', 'createNewExam');
-				formData.append('ucid', document.getElementById("ucid").innerText);
-				formData.append('totalPoints', score);
+				formData['requestType'] = 'createNewExam';
+				formData['ucid'] = document.getElementById("ucid").innerText;
+				formData['totalPoints'] = score;
 				for (var p of formData) {
 				  console.log(p);
 				}
