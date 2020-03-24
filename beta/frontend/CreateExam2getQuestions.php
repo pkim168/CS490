@@ -20,12 +20,8 @@
 	$ch = curl_init($url);
 	$data = array();
 	$data['requestType'] = 'getQuestions';
-	if ($difficulty != ""){
-		$data['difficulty'] = $difficulty;
-	}
-	if ($tag != ""){
-		$data['tag'] = $tag;
-	}				
+	$data['difficulty'] = $difficulty;
+	$data['tag'] = $tag;
 	$payload = json_encode($data);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
