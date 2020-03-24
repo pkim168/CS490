@@ -1,21 +1,14 @@
-<?php
-	session_start([
-		'use_only_cookies' => 1,
-		'cookie_lifetime' => 0,
-		'cookie_secure' => 1,
-		'cookie_httponly' => 1
-	]);
-	
-
-	if(array_key_exists('ucid', $_SESSION)){
-    echo "<script> console.log('Session exists') </script>";
+<?php 
+	// If session doesn't exists, redirect to login page
+	session_start();
+	if(array_key_exists('role', $_SESSION)){
+		if($_SESSION["role"] == 1)
+			header('Location: ./studentView.php');
 		if($_SESSION["role"] == 2)
 			header('Location: ./teacherView.php');
-	}else{
-    echo "<script> console.log('Session does not exist') </script>";
-    header('Location: ./index.php');
 	}
-	
+	ob_start();
+
 	
 ?>
 <html>
@@ -23,54 +16,25 @@
 		<meta charset="utf-8"/>
 		<link rel="stylesheet" href="styles.css">
 		<script>
-			function takeExam(){
-				
-			}
-			
 			
 		</script>
-	</head> 
+	</head>
 	<body>
 		<?php
-			echo "<p id='ucid' hidden></p>";
+			echo "<p id='ucid' hidden>{$_SESSION['ucid']}</p>";
 		?>
-		<div class="flex-container column" style="margin: 0%;">
-			<div class="flex-container column" style="margin: 0%; float:left;">
-				<div class="flex-container row">
-					<h2> Exams </h2>
-				</div>
+		<div class="flex-container column" style="width: 100%; margin: 0%; float:left; border-right: 1px black solid;">
+			<div class="flex-container row">
+				<h1> <?php echo "Welcome ".$_SESSION['ucid']?> </h1>
 			</div>
-			<div  class="flex-container row" style="width:100%; float:left">
-				<table id="graded" style = "width:100%; float:left">
-					<tr> 
-						<th> Graded Exams </th>
-						<th> Grade </th>
-						<?php
-						$data = array();
-						$data['requestType'] = "getStudentExams";
-						$data['ucid'] = $_SESSION['ucid'];
-						$url = "https://web.njit.edu/~jrd62/CS490/student_middle.php"
-						
-						$ch = curl_init($url);
-						$payload = json_encode($data);
-						curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-						curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-						curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-						$result = curl_exec($ch);
-						curl_close($ch);
-						$json = json_decode($result, true);
-						for($i=0;i<count($result);i++){
-							
-					</tr>
-				</table>
+			<div class="flex-container row">
+				<button type="button" style="height: 40px; width: 150px" onclick="location.href = '***********************';">See All Exams</button>
 			</div>
-			<div  class="flex-container row" style="width:100%; float:left">
-				<table id="graded" style = "width:100%; float:left">
-					<tr> 
-						<th> Avaiable Exams </th>
-					</tr>
-				</table>
+			<div class="flex-container row">
+				<button type="button" style="height: 40px; width: 150px" onclick="location.href = '***********************';">Log Out</button>
 			</div>
 		</div>
+		
 	</body>
 </html>
+<?php ob_flush();?>
