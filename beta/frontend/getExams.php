@@ -12,7 +12,7 @@
 		header('Location: ./studentView.php');
 	}
 	
-	$ucid = $_POST["ucid"];
+	$ucid = $_SESSION["ucid"];
 	
 	$url = "https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php";
 	$ch = curl_init($url);
