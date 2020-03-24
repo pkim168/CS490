@@ -40,31 +40,33 @@
 		<script>
 			function submit(){
 				var table = document.getElementById("equestions");
-				let formData = new FormData();
-				formData.append('requestType', 'submitStudentExam');
-				formData.append('ucid', document.getElementById("ucid").innerText);
-				formData.append('examId', document.getElementById("examId").innerText);
+				let formData = {};
+				formData['requestType'] = 'submitStudentExam';
+				formData['ucid'] = document.getElementById("ucid").innerText;
+				formData['examId'] = document.getElementById("examId").innerText;
+				formData['questions'] = [];
 				for (var i=1; i<table.rows.length; i++) {
-					let question = new FormData();
+					let question = {};
 					var questionId = table.rows[i].id;
 					var answer = table.rows[i].children[1].innerText;
 					var points = table.rows[i].children[2].innerText;
-					question.append('questionId', questionId);
-					question.append('totalPoints', points);
-					question.append('answer', answer);
-					formData.append('questions', question);
+					question['questionId'] = questionId;
+					question['totalPoints'] = points;
+					question['answer'] = answer;
+					formData['questions'].push(question);
 				}
 				// cURL to middle end
-				fetch("*********link*******", {
+				fetch("https://web.njit.edu/~dn236/CS490/beta/student_middle.php", {
 					method: "POST",
-					body: formData
+					body: JSON.stringify(formData)
 				})
 				.then((response) => {
 					console.log(response);
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							location.href = 'Location: ./studentView.php'
+							alert('Good');
+							//location.href = 'Location: ./studentView.php'
 						}
 						else {
 							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));
@@ -108,7 +110,6 @@
 							for ($j=0; $j < count($testCases); $j++) {
 								$parameters = "\nParameters: ";
 								$data = json_decode($testCases[$j]['data'], true);
-								var_dump($data);
 								for ($h=0; $h < count($data['parameters']); $h++) {
 									$parameters .= $data['parameters'][strval($h)]."; ";
 								}
