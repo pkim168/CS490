@@ -12,8 +12,7 @@
 	} 
 	if (!empty(['role'])){
 		$_SESSION['role'] = $_GET['ucid'];
-	} 
-	echo $_SESSION['ucid'];
+	}
 	/* if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
 	} 
