@@ -99,6 +99,7 @@
 					</tr>
 					<?php
 						for ($i = 0; $i < count($json); $i++) {
+							var_dump($json);
 							echo "<tr id=".$json[$i]["questionId"].">";
 							echo "<td>".$json[$i]["question"]."</td>";
 							echo "<td><textarea style='width: 100%; resize:vertical' id='testCase' required></textarea></td>";
@@ -110,7 +111,7 @@
 								$data = $testCases[$j]['data'];
 								var_dump($data);
 								for ($h=0; $h < count($data['parameters']); $h++) {
-									$parameters .= $data['parameters'][$h]."; ";
+									$parameters .= $data['parameters'][strval($h)]."; ";
 								}
 								$str .= $parameters."\nOutput: ".$data['result']."\n";
 							}
