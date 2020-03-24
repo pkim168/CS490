@@ -176,11 +176,10 @@
 				})
 				.then((response) => {
 					console.log(response);
-					console.log(response.blob());
 					response.json().then((data) => {
 						var questions = document.getElementById('questions')
 						while (questions.firstChild()) {
-							questions.removeChild(questions.firstChild());
+							questions.removeChild(questions.firstChild);
 						}
 						var count = Object.keys(data).length;
 						for (var i=0; i<count; i++) {
