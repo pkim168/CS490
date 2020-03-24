@@ -47,12 +47,12 @@
 									body: roleData
 							})
 							.then((response) => {
+								console.log(response);
 								if(data['role']==  1 ){
 								
 									location.href = "https://web.njit.edu/~dn236/CS490/beta/studentView.php";
 								
 								}else{
-									let roleData = new FormData();
 									location.href = "https://web.njit.edu/~dn236/CS490/beta/teacherView.php";
 								}
 							});
