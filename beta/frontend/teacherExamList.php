@@ -28,7 +28,7 @@
 				var id = name.substr(1);
 				let formData = new FormData();
 				formData.append('requestType', 'releaseExam');
-				formData.append('examId', id);
+				formData.append('examId', id.substr(1));
 				// cURL to middle end
 				fetch("https://web.njit.edu/~dn236/CS490/beta/releaseExams.php", {
 					method: "POST",
