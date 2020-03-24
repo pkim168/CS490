@@ -52,7 +52,7 @@
 					<?php
 						for ($i = 0; $i < count($json); $i++) {
 							echo "<tr>";
-							echo "
+							echo "<td>".$json[$i]['examId']."</td>";
 							echo "</tr>";
 						}
 					?>
