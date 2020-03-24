@@ -65,7 +65,13 @@ switch($requestType) {
 // curl backend 
 function get_questions($requestType,$difficulty,$tag){
 	//data from json response
-	$data = array('requestType' => $requestType, 'difficulty' => $difficulty, 'tag' => $tag);
+	$data = array('requestType' => $requestType)
+	if ($difficulty != ""){
+		$data['difficulty'] = $difficulty;
+	}
+	if ($tag != ""){
+		$data['tag'] = $tag;
+	}
 	//url to backend
 	$url = "https://web.njit.edu/~pk549/490/beta/questionTbl.php";
 	//initialize curl session and return a curl handle
