@@ -6,13 +6,13 @@
         'cookie_httponly' => 1
     ]);
 	
-	
+	/*
 	if(array_key_exists('role', $_SESSION)){
 		if($_SESSION["role"] == 1)
 			header('Location: ./studentView.php');
 		if($_SESSION["role"] == 2)
 			header('Location: ./teacherView.php');
-	}
+	}*/
 	ob_start();
 ?>
 <html>
@@ -41,16 +41,10 @@
 						if(data["message"] == "Verified") {
 							
 							if(data['role']==  1 ){
-								<?php  
-								$_SESSION['role'] = 1;
-								header('Location: ./studentView.php');
-								?>
+								location.href = "https://web.njit.edu/~dn236/CS490/beta/studentView.php?role=1";
 								
 							}else{
-								<?php  
-								$_SESSION['role'] = 2;
-								header('Location: ./teacherView.php');
-								?>
+								location.href = "https://web.njit.edu/~dn236/CS490/beta/teacherView.php?role=2";
 							}
 						}
 						else {

@@ -6,7 +6,11 @@
         'cookie_secure' => 1,
         'cookie_httponly' => 1
     ]);
-	if (empty($_SESSION['role'])){
+	if (!empty($_GET['role'])){
+		$_SESSION['role'] = $_GET['role'];
+	}
+	
+	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
 	} 
 	if ($_SESSION['role'] != '2') {
