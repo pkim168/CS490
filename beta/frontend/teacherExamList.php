@@ -66,7 +66,7 @@
 				$data = array();
 				$data['requestType'] = 'getExams';
 				$data['ucid'] = $_SESSION['ucid'];
-				$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+				$url = "https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php";
 				$ch = curl_init($url);
 				$payload = json_encode($data);
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
