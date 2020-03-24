@@ -32,10 +32,10 @@
 			function create(){
 				let formData = {};
 				formData['requestType'] = 'newQuestion';
-				formData['question'] = document.getElementById('question').value);
-				formData['functionName'] = document.getElementById('functionName').value);
-				formData['difficulty'] = document.getElementById('difficulty').value);
-				formData['tag'] = document.getElementById('tag').value);
+				formData['question'] = document.getElementById('question').value;
+				formData['functionName'] = document.getElementById('functionName').value;
+				formData['difficulty'] = document.getElementById('difficulty').value;
+				formData['tag'] = document.getElementById('tag').value;
 				formData['testCases'] = [];
 				numTestCases = document.getElementById('numTestCases').value;
 				for (var i=0; i<numTestCases; i++) {
