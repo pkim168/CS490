@@ -228,8 +228,9 @@
 						<label style="width: 50%;">Tag:</label>
 						<select style="width: 50%;" id="tag" required>
 							<option value="" selected></option>
+							<option value="Lists">Lists</option>
 							<option value="Operations">Operations</option>
-							<option value="test">test</option>
+							<option value="Recursion">recursion</option>
 						</select>
 					</div>
 					<div class="flex-container row" style="width: 98%;">
