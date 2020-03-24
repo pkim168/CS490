@@ -124,7 +124,7 @@
 								$str .= $parameters."\nOutput: ".$data['result']."\n";
 							}
 							echo "<td><pre>".$str."</pre></td>";
-							echo "<td><input style='width: 100%;' value='".$json[$i]["pointsEarned"]."'></td>";							
+							echo "<td><input style='width: 100%;' defaultValue='".$json[$i]["pointsEarned"]."'></td>";							
 							echo "<td>".$json[$i]["totalPoints"]."</td>";
 							echo "<td><textarea style='width: 100%; resize:vertical'>".$json[$i]["comments"]."</textarea></td>";
 							
