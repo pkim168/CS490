@@ -69,7 +69,7 @@
 				})
 				.then((response) => {
 					console.log(response);
-					location.href = 'Location: ./studentView.php';
+					location.href = 'https://web.njit.edu/~dn236/CS490/beta/studentView.php';
 				})
 				.catch(function(error) {
 					console.log(error);
