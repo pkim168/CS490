@@ -65,8 +65,7 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							alert('Good');
-							//location.href = 'Location: ./studentView.php'
+							location.href = 'Location: ./studentView.php';
 						}
 						else {
 							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));

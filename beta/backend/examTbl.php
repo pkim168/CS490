@@ -402,7 +402,7 @@
 			$ucid = getData($json['ucid']);
 		}
 		if (!empty($json['examId'])) {
-			$ucid = getData($json['examId']);
+			$examId = getData($json['examId']);
 		}
 		$query = "
 			SELECT sExamId FROM 490studentExamTbl
@@ -411,7 +411,7 @@
 		$result = mysqli_query($db, $query);
 		if ($result->num_rows == 0){
 			$data["message"] = "Failure";
-			$data["error"] = mysqli_error();
+			$data["error"] = "select sExam".$ucid.mysqli_error().$examId;
 			return json_encode($data);
 		}
 		$row = mysqli_fetch_array($result);
@@ -430,20 +430,20 @@
 				WHERE 490studentExamTbl_sExamId = '$sExamId' AND 490questionTbl_questionId = '$questionId';
 			";
 		}
-		if (mysqli_multi_query($db, $query)){
+		/* if (mysqli_multi_query($db, $query)){
 			do {
 				$result = mysqli_store_result($db);
 				if (!$result) {
 					$data["message"] = "Failure";
 					$data["error"] = ''.mysqli_error();
-					return json_encode($data);
+					return "update".json_encode($data);
 				}
 			} while (mysqli_next_result($db));
 		} else {
 			$data["message"] = "Failure";
 			$data["error"] = ''.mysqli_error();
 			return json_encode($data);
-		}
+		} */
 		
 		$data["message"] = "Success";
 		return json_encode($data);
