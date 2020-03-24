@@ -7,6 +7,9 @@
         'cookie_secure' => 1,
         'cookie_httponly' => 1
     ]);
+	
+	echo $_SESSION['role'];
+	echo $_SESSION['ucid'];
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
 	} 
@@ -147,7 +150,6 @@
 			function back(){
 				// Go back to previous page
 				location.href = 'https://web.njit.edu/~dn236/CS490/beta/teacherView.php';
-				return;
 			}
 		</script>
 	</head>
