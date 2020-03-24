@@ -98,7 +98,6 @@
 						<th> Test Cases </th>
 					</tr>
 					<?php
-					var_dump($json);
 						for ($i = 0; $i < count($json); $i++) {
 							echo "<tr id=".$json[$i]["questionId"].">";
 							echo "<td>".$json[$i]["question"]."</td>";
