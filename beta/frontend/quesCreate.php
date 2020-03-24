@@ -9,7 +9,7 @@
 	} 
 	if ($_SESSION['role'] != '2') {
 		header('Location: ./index.php');
-	}*/
+	}
 	
 	ob_start();
 ?>
