@@ -1,13 +1,16 @@
 <?php 
 	// If session doesn't exists, redirect to login page
 	session_start();
-	if(array_key_exists('role', $_SESSION)){
-		if($_SESSION["role"] == 1)
-			header('Location: ./studentView.php');
-		if($_SESSION["role"] == 2)
-			header('Location: ./teacherView.php');
+	if(session_id() == '' || !isset($_SESSION)) {
+		header('Location: ./index.php');
+	} 
+	
+	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
+		header('Location: ./index.php');
+	} 
+	if ($_SESSION['role'] != '1') {
+		header('Location: ./index.php');
 	}
-	ob_start();
 
 	
 ?>
@@ -31,7 +34,7 @@
 				<button type="button" style="height: 40px; width: 150px" onclick="location.href = '***********************';">See All Exams</button>
 			</div>
 			<div class="flex-container row">
-				<button type="button" style="height: 40px; width: 150px" onclick="location.href = '***********************';">Log Out</button>
+				<button type="button" style="height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/beta/logout.php';">Log Out</button>
 			</div>
 		</div>
 		

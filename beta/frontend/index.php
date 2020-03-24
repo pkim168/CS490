@@ -34,7 +34,7 @@
 					console.log(response);
 					response.json().then((data) => {
 						if(data["message"] == "Verified") {
-							location.href = "https://web.njit.edu/~dn236/CS490/beta/login.php";
+							
 							if(data['role']==  1 ){
 								<?php  
 								$_SESSION['role'] = 1;
