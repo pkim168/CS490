@@ -52,7 +52,7 @@
 					formData.append('testCases', testCase);
 				}
 				// cURL to middle end
-				fetch("********LINK HERE********", {
+				fetch("https://web.njit.edu/~dn236/CS490/beta/CreateQuestion2", {
 					method: "POST",
 					body: formData
 				})
@@ -61,7 +61,7 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							location.href = '********LINK HERE********'
+							location.href = 'https://web.njit.edu/~dn236/CS490/beta/teacherView.php';
 						}
 						else {
 							alert(''.concat("There was a problem submitting the question. Please try again. Error message: ", data['error']));
@@ -172,7 +172,7 @@
 				  console.log(p);
 				}
 				// cURL to middle end
-				fetch("********LINK HERE********", {
+				fetch("https://web.njit.edu/~dn236/CS490/beta/CreateExam2getQuestions", {
 					method: "POST",
 					body: formData
 				})
@@ -197,12 +197,6 @@
 				.catch(function(error) {
 					console.log(error);
 				});
-				return;
-			}
-			
-			function back(){
-				// Go back to previous page
-				location.href = '********LINK HERE********';
 				return;
 			}
 		</script>
@@ -254,7 +248,6 @@
 				</div>
 				<div class="flex-container row">
 					<input type="submit" style="height: 40px; width: 150px" value="Submit Question">
-					<button type="button" style="height: 40px; width: 150px" onclick="back()">Back</button>
 				</div>
 			</form>
 		</div>
