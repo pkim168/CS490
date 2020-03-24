@@ -56,7 +56,7 @@
 					formData['questions'].push(question);
 				}
 				// cURL to middle end
-				fetch("******https://web.njit.edu/~dn236/CS490/beta/student_middle.php*******", {
+				fetch("https://web.njit.edu/~dn236/CS490/beta/grading.php", {
 					method: "POST",
 					body: JSON.stringify(formData)
 				})
@@ -65,7 +65,8 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							location.href = 'Location: ./studentView.php';
+							alert("Submitted. If working, remove this alert and uncomment next line");
+							//location.href = 'Location: ./studentView.php';
 						}
 						else {
 							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));
