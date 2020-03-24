@@ -66,7 +66,6 @@
 				$data = array();
 				$data['requestType'] = 'getExams';
 				$data['ucid'] = $_SESSION['ucid'];
-				echo $_SESSION['ucid'];
 				$url = "https://web.njit.edu/~pk549/CS490/beta/examTbl.php";
 				$ch = curl_init($url);
 				$payload = json_encode($data);
@@ -75,6 +74,7 @@
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				$result = curl_exec($ch);
 				curl_close($ch);
+				echo var_dump($result);
 				$json = json_decode($result, true);
 				echo var_dump($json);
 				if (!isset($json['message'])) {
