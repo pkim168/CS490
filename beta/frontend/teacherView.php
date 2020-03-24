@@ -13,12 +13,13 @@
 	if (!empty(['role'])){
 		$_SESSION['role'] = $_GET['ucid'];
 	} 
-	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
+	echo $_SESSION['ucid'];
+	/* if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
 	} 
 	if ($_SESSION['role'] != '2') {
 		header('Location: ./index.php');
-	}
+	} */
 	ob_start();
 	
 	
