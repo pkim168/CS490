@@ -9,7 +9,7 @@
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
 	} 
-	if ($_SESSION['role'] != '2') {
+	if ($_SESSION['role'] != '1') {
 		header('Location: ./index.php');
 	}
 	if (isset($_GET['examId'])){
@@ -44,19 +44,51 @@
 	<body>
 		<?php
 			echo "<p id='ucid' hidden>{$_SESSION['ucid']}</p>";
+			echo "<p id='examId' hidden>{$_SESSION['examId']}</p>";
 		?>
 		<div class="flex-container column" style="width: 100%; margin: 0%; float:left; border-right: 1px black solid;">
-			<div class="flex-container row">
-				<h1> Exam <?php echo $_SESSION['examId']?> </h1>
+			<div class="flex-container column" style="margin: 0%; float:left;">
+				<div class="flex-container row">
+					<h1> <?php echo "Exam ".$_SESSION['examId']?> </h1>
+				</div>
 			</div>
 			<div class="flex-container row" style="width:98%; float:left">
-				<table id="exams" style="width:100%">
+				<table id="equestions" style="width:100%">
+					<tr>
+						<th> Question </th>
+						<th> Answer </th>
+						<th> Test Cases </th>
+						<th> Points Earned </th>
+						<th> Points Total </th>
+						<th> Comments </th>
+					</tr>
 					<?php
+						$totalPointsEarned=0;
+						$maxPoints=0;
 						for ($i = 0; $i < count($json); $i++) {
-							echo "<tr>";
-							echo "<td>".$json[$i]['examId']."</td>";
+							echo "<tr id=".$json[$i]["questionId"].">";
+							echo "<td>".$json[$i]["question"]."</td>";
+							echo "<td>".$json[$i]["answer"]."</td>";
+							$testCases = $json[$i]["testCases"];
+							$str = $testCases[0]['case'];
+							for ($j=0; $j < count($testCases); $j++) {
+								$parameters = "\nParameters: ";
+								$data = json_decode($testCases[$j]['data'], true);
+								for ($h=0; $h < count($data['parameters']); $h++) {
+									$parameters .= $data['parameters'][strval($h)]."; ";
+								}
+								$str .= $parameters."\nOutput: ".$data['result']."\n";
+							}
+							echo "<td><pre>".$str."</pre></td>";
+							echo "<td>".$json[$i]["pointsEarned"]."</td>";							
+							echo "<td>".$json[$i]["totalPoints"]."</td>";
+							echo "<td>".$json[$i]["comments"]."</td>";
 							echo "</tr>";
+							$totalPointsEarned += (float)$json[$i]["pointsEarned"];
+							$maxPoints +=  (float)$json[$i]["totalPoints"];
 						}
+						$percentage = ceil(100*($totalPointsEarned / $maxPoints));
+						echo "<td></td><td></td><td></td><td> Percentage: ".$percentage."% </td>";
 					?>
 				</table>
 			</div>
@@ -64,4 +96,4 @@
 		
 	</body>
 </html>
-<?php ob_flush();?>	
+<?php ob_flush();?>
