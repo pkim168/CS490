@@ -107,8 +107,8 @@
 							$str = $testCases[0]['case'];
 							for ($j=0; $j < count($testCases); $j++) {
 								$parameters = "\nParameters: ";
-								$data = $testCases[$j]['data'];
-								var_dump(json_decode($data, true));
+								$data = json_decode($testCases[$j]['data'], true);
+								var_dump($data);
 								for ($h=0; $h < count($data['parameters']); $h++) {
 									$parameters .= $data['parameters'][strval($h)]."; ";
 								}
