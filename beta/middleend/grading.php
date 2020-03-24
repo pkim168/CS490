@@ -35,6 +35,12 @@ $question_num = count($questions);
 //grading each question
 for($i = 0; $i < $question_num; $i++){
     $question = $questions[$i];
+    //string question
+    $question_str = $question['question'];
+    //difficulty
+    $difficulty = $question['difficulty'];
+    //tag
+    $tag = $question['tag'];
     //questionId
     $questionId = $question['questionId'];
     //student answer
@@ -64,12 +70,26 @@ for($i = 0; $i < $question_num; $i++){
     //comments
     $comments = $grade[0];
     //grades
-    $final_grade = $grade[1];   
+    $final_grade = $grade[1]; 
+    
+    //send to backend
+    //data from json response
+    $data = array('questionId' => $questionId, 'question' => $question_str, 'functionName' => $functionName, 'difficulty' => $difficulty, 'tag' => $tag, 'testCases' => $testCases, 'answer' => $answer, 'comments' => $comments, 'pointsEarned' => $final_grade, 'totalPoints' => $totalPoints);
+    //url to backend
+    $url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+    //initialize curl session and return a curl handle
+    $ch = curl_init($url);
+    //options for a curl transfer	
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    //execute curl session
+    $send = curl_exec($ch);
+    //close curl session
+    curl_close ($ch);
+    //return response
+    return $send;
 }
-
-//get the average of the grades,
-$student_grade = ($final_grade)*100;
-$final = round($student_grade, 0);
 
 
 function grade_question($answer, $functionName, $parameters, $result, $totalPoints){
@@ -142,7 +162,7 @@ function grade_question($answer, $functionName, $parameters, $result, $totalPoin
     //adding comments to the grade
     $comma = ",";
     //$grade = round($grade, 0);
-    $grade = $comments .= $comma .= ($pointsEarned/$totalPoints);
+    $grade = $comments .= $comma .= ($pointsEarned);
     //returning grade
     //grade only tests for whether the function name and the parameters are correct
     return $grade;
