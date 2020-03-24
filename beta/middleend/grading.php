@@ -76,7 +76,7 @@ for($i = 0; $i < $question_num; $i++){
     $final_grade = $grade[1]; 
     //data from for response
     $data = array('questionId' => $questionId, 'answer' => $answer, 'comments' => $comments, 'pointsEarned' => $final_grade, 'totalPoints' => $totalPoints);
-    array_push($questions, $data);
+    array_push($student_questions, $data);
 }
 //send to backend
 //student answers
