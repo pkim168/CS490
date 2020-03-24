@@ -40,34 +40,6 @@
 			function exam(id) {
 				location.href = "".concat('********LINK HERE********?examId='.id);
 			}
-			
-			function releaseExam(name) {
-				var id = name.substr(1);
-				let formData = new FormData();
-				formData.append('requestType', 'releaseExam');
-				formData.append('examId', id);
-				// cURL to middle end
-				fetch("https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php", {
-					method: "POST",
-					body: formData
-				})
-				.then((response) => {
-					console.log(response);
-					response.json().then((data) => {
-						if (data["message"] == "Success") {
-							// Redirect back after successful submission
-							location.href = "https://web.njit.edu/~dn236/CS490/beta/teacherView.php";
-						}
-						else {
-							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));
-						}
-					})
-				})
-				.catch(function(error) {
-					console.log(error);
-				});
-				return;
-			}
 		</script>
 	</head>
 	<body>
@@ -93,11 +65,13 @@
 									echo "<td>Not Taken</td>";
 								} else if ($json[$i]['status'] == 1) {
 									echo "<td>Graded</td>";
+									echo "<td><button type='button' style='height: 40px; width: 100%' onclick='exam(this.id)'>View Results</button></td>";
+									echo "</tr>";
 								} else {
 									echo "<td>Released</td>";
+									echo "<td><button type='button' style='height: 40px; width: 100%' onclick='exam(this.id)'>View Results</button></td>";
+									echo "</tr>";
 								}
-								echo "<td><button type='button' style='height: 40px; width: 100%' onclick='exam(this.id)'>View Results</button></td>";
-								echo "</tr>";
 							}
 						}
 					?>
