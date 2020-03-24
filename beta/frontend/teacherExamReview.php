@@ -51,7 +51,12 @@
 					let question = {};
 					var questionId = table.rows[i].id;
 					var comments = table.rows[i].cells[5].firstChild.value;
-					var points = table.rows[i].cells[3].firstChild.innerText;
+					if (table.rows[i].cells[3].firstChild.value == "") {
+						var points = table.rows[i].cells[3].firstChild.placeholder;
+					}
+					else {
+						var points = table.rows[i].cells[3].firstChild.value;
+					}
 					console.log(points);
 					console.log(comments);
 					question['questionId'] = questionId;
@@ -124,7 +129,7 @@
 								$str .= $parameters."\nOutput: ".$data['result']."\n";
 							}
 							echo "<td><pre>".$str."</pre></td>";
-							echo "<td><input style='width: 100%;' defaultValue='".$json[$i]["pointsEarned"]."'></td>";							
+							echo "<td><input style='width: 100%;' placeholder='".$json[$i]["pointsEarned"]."'></td>";							
 							echo "<td>".$json[$i]["totalPoints"]."</td>";
 							echo "<td><textarea style='width: 100%; resize:vertical'>".$json[$i]["comments"]."</textarea></td>";
 							
