@@ -39,11 +39,10 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							alert(data['error']);
-							//location.href = 'https://web.njit.edu/~dn236/CS490/beta/teacherView.php';
+							location.href = 'https://web.njit.edu/~dn236/CS490/beta/teacherView.php';
 						}
 						else {
-							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));
+							alert(''.concat("There was a problem releasing the exam. Please try again. Error message: ", data['error']));
 						}
 					})
 				})
