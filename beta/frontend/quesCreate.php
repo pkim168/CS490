@@ -178,7 +178,7 @@
 					console.log(response);
 					response.json().then((data) => {
 						var questions = document.getElementById('questions')
-						while (questions.firstChild()) {
+						while (questions.firstChild) {
 							questions.removeChild(questions.firstChild);
 						}
 						var count = Object.keys(data).length;
