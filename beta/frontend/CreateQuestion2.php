@@ -9,7 +9,7 @@
 	$url = "https://web.njit.edu/~jrd62/CS490/teacher_middle_questions.php";
 	
 	$ch = curl_init($url);
-	$data = array()
+	$data = array();
 	$data['requestType'] = 'newQuestion';
 	$data['question'] = $_POST['question'];
 	$data['functionName'] = $_POST['functionName'];

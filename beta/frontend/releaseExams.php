@@ -10,7 +10,7 @@
 	$url = "https://web.njit.edu/~jrd62/CS490/teacher_middle_exam.php";
 	
 	$ch = curl_init($url);
-	$data = array()
+	$data = array();
 	$data['requestType'] = 'releaseExam';
 	$data['examId'] = $_POST['examId'];
 	$payload = json_encode($data);

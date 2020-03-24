@@ -10,7 +10,7 @@
 	$url = "https://web.njit.edu/~jrd62/CS490/teacher_middle_exam.php";
 	
 	$ch = curl_init($url);
-	$data = array()
+	$data = array();
 	$data['requestType'] = 'getExams';
 	$data['ucid'] = $_POST['ucid'];
 	$payload = json_encode($data);

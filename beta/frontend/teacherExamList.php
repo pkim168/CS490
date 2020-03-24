@@ -1,10 +1,5 @@
 <?php 
 	
-	// If session doesn't exists, redirect to login page
-	/*if(session_id() == '' || !isset($_SESSION)) {
-		header('Location: ./index.php');
-	} 
-	*/
 	session_start();
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
@@ -35,7 +30,7 @@
 		<script>
 			function exam(id) {
 				$_SESSION['examId'] = id;
-				location.href = '********LINK HERE********';
+				location.href = '';
 			}
 			
 			function releaseExam(name) {
@@ -44,7 +39,7 @@
 				formData.append('requestType', 'releaseExam');
 				formData.append('examId', id);
 				// cURL to middle end
-				fetch("********LINK HERE********", {
+				fetch("https://web.njit.edu/~dn236/CS490/beta/releaseExams.php", {
 					method: "POST",
 					body: formData
 				})
@@ -53,7 +48,7 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							location.href = 'https://web.njit.edu/~dn236/CS490/beta/releaseExams.php'
+							location.href = 'https://web.njit.edu/~dn236/CS490/beta/teacherView.php'
 						}
 						else {
 							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));
