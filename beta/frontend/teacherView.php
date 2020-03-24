@@ -13,12 +13,12 @@
 	if (!empty(['role'])){
 		$_SESSION['role'] = $_GET['ucid'];
 	}
-	/* if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
+	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
 	} 
 	if ($_SESSION['role'] != '2') {
 		header('Location: ./index.php');
-	} */
+	}
 	ob_start();
 	
 	
@@ -40,13 +40,13 @@
 				<h1> <?php echo "Welcome ".$_SESSION['ucid']?> </h1>
 			</div>
 			<div class="flex-container row">
-				<button type="button" style="height: 40px; width: 150px" onclick="location.href = '***********************';">Create Exam</button>
+				<button type="button" style="height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/beta/examCreate.php';">Create Exam</button>
 			</div>
 			<div class="flex-container row">
-				<button type="button" style="height: 40px; width: 150px" onclick="location.href = '***********************';">See All Exams</button>
+				<button type="button" style="height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/beta/teacherExamList.php';">See All Exams</button>
 			</div>
 			<div class="flex-container row">
-				<button type="button" style="height: 40px; width: 150px" onclick="location.href = '***********************';">Create Question</button>
+				<button type="button" style="height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/beta/quesCreate.php';">Create Question</button>
 			</div>
 			<div class="flex-container row">
 				<button type="button" style="height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/beta/logout.php';">Log Out</button>

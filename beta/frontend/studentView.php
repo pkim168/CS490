@@ -16,7 +16,7 @@
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
 	} 
-	if ($_SESSION['role'] != '2') {
+	if ($_SESSION['role'] != '1') {
 		header('Location: ./index.php');
 	}
 
