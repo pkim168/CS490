@@ -47,7 +47,7 @@
 				formData.append('requestType', 'releaseExam');
 				formData.append('examId', id);
 				// cURL to middle end
-				fetch("********LINK HERE********", {
+				fetch("https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php", {
 					method: "POST",
 					body: formData
 				})
@@ -56,7 +56,7 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							location.href = "https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php";
+							location.href = "https://web.njit.edu/~dn236/CS490/beta/teacherView.php";
 						}
 						else {
 							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));
