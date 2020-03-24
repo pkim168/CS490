@@ -56,7 +56,8 @@
 					formData['questions'].push(question);
 				}
 				// cURL to middle end
-				fetch("https://web.njit.edu/~jrd62/CS490/beta/grading.php", {
+				// "https://web.njit.edu/~jrd62/CS490/beta/grading.php"
+				fetch("https://web.njit.edu/~pk549/490/beta/grading.php", {
 					method: "POST",
 					body: JSON.stringify(formData)
 				})
