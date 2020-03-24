@@ -466,7 +466,7 @@
 			return json_encode($data);
 		}
 		$data["message"] = "Success";
-		$data["error"] = "None".query;
+		$data["error"] = "None".$query;
 		return json_encode($data);
 	}
 ?>
