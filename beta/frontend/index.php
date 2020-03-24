@@ -41,12 +41,12 @@
 						if(data["message"] == "Verified") {
 							if(data['role']==  1 ){
 								var str = "https://web.njit.edu/~dn236/CS490/beta/studentView.php?ucid=";
-								str = "".concat(str,ucid,"&role=",data['role'];
+								str = "".concat(str,ucid,"&role=",data['role']);
 								location.href = str;
 							
 							}else{
 								var str = "https://web.njit.edu/~dn236/CS490/beta/teacherView.php?ucid=";
-								str = "".concat(str,ucid,"&role=",data['role'];
+								str = "".concat(str,ucid,"&role=",data['role']);
 								location.href = str;
 							}
 						}
