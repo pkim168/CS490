@@ -7,24 +7,17 @@
 		header('Location: ./studentView.php');
 	}
 	
-	$ucid = $examId = "";
-	if(empty($_POST["ucid"])){
-		header('Location: ./index.php');
-	}
-	if(empty($_POST["examId"])){
-		header('Location: ./index.php');
-	}
 	$ucid = $_POST["ucid"];
-	$examId = $_POST["examId"];
+	$totalPoints = $_POST["totalPoints"];
 	$questions = $_POST["questions"];
 	
 	$url = "https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php";
 	
 	$ch = curl_init($url);
 	$data = array();
-	$data['requestType'] = 'submitStudentExam';
+	$data['requestType'] = 'createNewExam';
 	$data['ucid'] = $ucid;
-	$data['examId'] = $examId;
+	$data['totalPoints'] = $totalPoints;
 	$data['questions'] = $questions;
 	$payload = json_encode($data);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);

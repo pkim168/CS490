@@ -3,14 +3,14 @@
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
 	} 
-	if ($_SESSION['role'] = '2') {
+	if ($_SESSION['role'] == '2') {
 		header('Location: ./teacherView.php');
 	}
 	
 	$url = "https://web.njit.edu/~jrd62/CS490/student_middle.php";
 	
 	$ch = curl_init($url);
-	$data = array()
+	$data = array();
 	$data['requestType'] = 'submitStudentExam';
 	$data['ucid'] = $_POST['ucid'];
 	$data['examId'] = $_POST['examId'];
