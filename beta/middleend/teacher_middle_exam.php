@@ -17,10 +17,7 @@ switch($requestType) {
         if(isset($response['ucid'])) $examId = $response['ucid'];
 
         $res_project=get_exams($requestType,$ucid);	
-        $data = array(
-            'backend' => $res_project, 
-        );
-        echo json_encode($data);
+        echo $res_project;
         break;
     case 'getExamQuestions':
 		//initial setting of variables
@@ -31,10 +28,7 @@ switch($requestType) {
         if(isset($response['examId'])) $examId = $response['examId'];
 
         $res_project=get_exam_questions($requestType,$examId);	
-        $data = array(
-            'backend' => $res_project, 
-        );
-        echo json_encode($data);
+        echo $res_project;
         break;
     case 'getExamStatuses':
 		//initial setting of variables
@@ -45,10 +39,7 @@ switch($requestType) {
         if(isset($response['examId'])) $studentId = $response['examId'];
 
         $res_project=get_exam_statuses($requestType,$examId);	
-        $data = array(
-            'backend' => $res_project, 
-        );
-        echo json_encode($data);
+        echo $res_project;
         break;
     case 'getStudentAnswers':
 		//initial setting of variables
@@ -61,10 +52,7 @@ switch($requestType) {
         if(isset($response['ucid'])) $ucid = $response['ucid'];
 
         $res_project=get_student_answers($requestType,$examId,$ucid);	
-        $data = array(
-            'backend' => $res_project, 
-        );
-        echo json_encode($data);
+        echo $res_project;
         break;
     case 'createNewExam':
 		//initial setting of variables
@@ -79,10 +67,7 @@ switch($requestType) {
 		if(isset($response['questions'])) $questions = $response['questions'];
 
         $res_project=create_new_exam($requestType,$ucid,$totalPoints,$questions);	
-        $data = array(
-            'backend' => $res_project, 
-        );
-        echo json_encode($data);
+        echo $res_project;
         break;
     case 'editStudentExam':
 		//initial setting of variables
@@ -97,10 +82,7 @@ switch($requestType) {
         if(isset($response['questions'])) $questions = $response['questions'];
 
         $res_project=edit_student_exam($requestType,$examId,$ucid,$questions);	
-        $data = array(
-            'backend' => $res_project, 
-        );
-        echo json_encode($data);
+        echo $res_project;
 		break;
 	case 'releaseExam':
 		//initial setting of variables
@@ -111,10 +93,7 @@ switch($requestType) {
         if(isset($response['examId'])) $examId = $response['examId'];
 
         $res_project=release_exam($requestType,$examId);	
-        $data = array(
-            'backend' => $res_project, 
-        );
-        echo json_encode($data);
+        echo $res_project;
         break;
     default: 
         break;
@@ -137,10 +116,8 @@ function get_exams($requestType,$ucid){
 	$response = curl_exec($ch);
 	//close curl session
 	curl_close ($ch);
-	//decoding response
-	$response_decode = json_decode($response);
 	//return response
-	return $response_decode[0];
+	return $response;
 }
 
 // curl backend 
@@ -159,10 +136,8 @@ function get_exam_questions($requestType,$examId){
 	$response = curl_exec($ch);
 	//close curl session
 	curl_close ($ch);
-	//decoding response
-	$response_decode = json_decode($response);
 	//return response
-	return $response_decode[0];
+	return $response;
 }
 
 // curl backend 
@@ -181,10 +156,8 @@ function get_exam_statuses($requestType,$examId){
 	$response = curl_exec($ch);
 	//close curl session
 	curl_close ($ch);
-	//decoding response
-	$response_decode = json_decode($response);
 	//return response
-	return $response_decode[0];
+	return $response;
 }
 
 // curl backend 
@@ -203,10 +176,8 @@ function get_student_answers($requestType,$examId,$ucid){
 	$response = curl_exec($ch);
 	//close curl session
 	curl_close ($ch);
-	//decoding response
-	$response_decode = json_decode($response);
 	//return response
-	return $response_decode[0];
+	return $response;
 }
 
 // curl backend 
@@ -225,10 +196,8 @@ function create_new_exam($requestType,$ucid,$totalPoints,$questions){
 	$response = curl_exec($ch);
 	//close curl session
 	curl_close ($ch);
-	//decoding response
-	$response_decode = json_decode($response);
 	//return response
-	return $response_decode[0];
+	return $response;
 }
 
 // curl backend 
@@ -247,10 +216,8 @@ function edit_student_exam($requestType,$examId,$ucid,$questions){
 	$response = curl_exec($ch);
 	//close curl session
 	curl_close ($ch);
-	//decoding response
-	$response_decode = json_decode($response);
 	//return response
-	return $response_decode[0];
+	return $response;
 }
 
 // curl backend 
@@ -269,9 +236,7 @@ function release_exam($requestType,$examId){
 	$response = curl_exec($ch);
 	//close curl session
 	curl_close ($ch);
-	//decoding response
-	$response_decode = json_decode($response);
 	//return response
-	return $response_decode[0];
+	return $response;
 }
 ?>

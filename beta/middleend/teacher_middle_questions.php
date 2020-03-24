@@ -19,10 +19,7 @@ switch($requestType) {
         if(isset($response['tag'])) $tag = $response['tag'];
 
         $res_project=get_questions($requestType,$difficulty,$tag);	
-        $data = array(
-            'backend' => $res_project, 
-        );
-        echo json_encode($data);
+        echo $res_project;
         break;
     case 'getTags':
         //initial setting of variables
@@ -31,10 +28,7 @@ switch($requestType) {
         if(isset($response['requestType'])) $requestType = $response['requestType'];
 
         $res_project=get_tags($requestType);	
-        $data = array(
-            'backend' => $res_project, 
-        );
-        echo json_encode($data);
+        echo $res_project;
         break;
     case 'newQuestion':
         //initial setting of variables
@@ -53,10 +47,7 @@ switch($requestType) {
 		if(isset($response['testCases'])) $testCases = $response['testCases'];
 
         $res_project=new_question($requestType,$question,$functionName,$difficulty,$tag,$testCases);	
-        $data = array(
-            'backend' => $res_project, 
-        );
-        echo json_encode($data);
+        echo $res_project;
         break;
     default: 
         break;
@@ -65,13 +56,7 @@ switch($requestType) {
 // curl backend 
 function get_questions($requestType,$difficulty,$tag){
 	//data from json response
-	$data = array('requestType' => $requestType)
-	if ($difficulty != ""){
-		$data['difficulty'] = $difficulty;
-	}
-	if ($tag != ""){
-		$data['tag'] = $tag;
-	}
+	$data = array('requestType' => $requestType, 'difficulty' => $difficulty, 'tag' => $tag);
 	//url to backend
 	$url = "https://web.njit.edu/~pk549/490/beta/questionTbl.php";
 	//initialize curl session and return a curl handle
@@ -84,10 +69,8 @@ function get_questions($requestType,$difficulty,$tag){
 	$response = curl_exec($ch);
 	//close curl session
 	curl_close ($ch);
-	//decoding response
-	$response_decode = json_decode($response);
 	//return response
-	return $response_decode[0];
+	return $response;
 }
 
 // curl backend 
@@ -106,10 +89,8 @@ function get_tags($requestType){
 	$response = curl_exec($ch);
 	//close curl session
 	curl_close ($ch);
-	//decoding response
-	$response_decode = json_decode($response);
 	//return response
-	return $response_decode[0];
+	return $response;
 }
 
 // curl backend 
@@ -128,9 +109,7 @@ function new_question($requestType,$question,$functionName,$difficulty,$tag,$tes
 	$response = curl_exec($ch);
 	//close curl session
 	curl_close ($ch);
-	//decoding response
-	$response_decode = json_decode($response);
 	//return response
-	return $response_decode[0];
+	return $response;
 }
 ?>
