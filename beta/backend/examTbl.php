@@ -35,7 +35,7 @@
 			break;
 			
 		case 'createNewExam':
-			echo submitNewExam($json);
+			echo createNewExam($json);
 			break;
 		
 		case 'getExams':

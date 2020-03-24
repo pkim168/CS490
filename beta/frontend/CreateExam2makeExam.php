@@ -3,7 +3,7 @@
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
 	} 
-	if ($_SESSION['role'] = '1') {
+	if ($_SESSION['role'] == '1') {
 		header('Location: ./studentView.php');
 	}
 	
