@@ -17,10 +17,7 @@ switch($requestType) {
         if(isset($response['examId'])) $examId = $response['examId'];
 
         $res_project=get_exam_questions($requestType,$examId);	
-        $data = array(
-            'backend' => $res_project, 
-        );
-        echo json_encode($data);
+        echo $res_project;
         break;
     case 'getStudentAnswers':
 		//initial setting of variables
@@ -33,10 +30,7 @@ switch($requestType) {
         if(isset($response['ucid'])) $ucid = $response['ucid'];
 
         $res_project=get_student_exam_answers($requestType,$examId,$ucid);	
-        $data = array(
-            'backend' => $res_project, 
-        );
-        echo json_encode($data);
+        echo $res_project;
         break;
     case 'getStudentExams':
 		//initial setting of variables
@@ -47,10 +41,7 @@ switch($requestType) {
         if(isset($response['ucid'])) $ucid = $response['ucid'];
 
         $res_project=get_student_exams($requestType,$ucid);	
-        $data = array(
-            'backend' => $res_project, 
-        );
-        echo json_encode($data);
+        echo $res_project;
 		break;
 	case 'submitStudentExam':
 		//initial setting of variables
@@ -65,10 +56,7 @@ switch($requestType) {
 		if(isset($response['questions'])) $questions = $response['questions'];
 
         $res_project=submit_student_exam($requestType,$ucid,$examId,$questions);	
-        $data = array(
-            'backend' => $res_project, 
-        );
-        echo json_encode($data);
+        echo $res_project;
         break;
     default: 
         break;
@@ -91,10 +79,8 @@ function get_exam_questions($requestType,$examId){
 	$response = curl_exec($ch);
 	//close curl session
 	curl_close ($ch);
-	//decoding response
-	$response_decode = json_decode($response);
 	//return response
-	return $response_decode[0];
+	return $response;
 }
 
 // curl backend 
@@ -113,10 +99,8 @@ function get_student_exam_answers($requestType,$examId,$ucid){
 	$response = curl_exec($ch);
 	//close curl session
 	curl_close ($ch);
-	//decoding response
-	$response_decode = json_decode($response);
 	//return response
-	return $response_decode[0];
+	return $response;
 }
 
 // curl backend 
@@ -135,10 +119,8 @@ function get_student_exams($requestType,$ucid){
 	$response = curl_exec($ch);
 	//close curl session
 	curl_close ($ch);
-	//decoding response
-	$response_decode = json_decode($response);
 	//return response
-	return $response_decode[0];
+	return $response;
 }
 
 function submit_student_exam($requestType,$ucid,$examId,$questions){
@@ -156,9 +138,7 @@ function submit_student_exam($requestType,$ucid,$examId,$questions){
 	$response = curl_exec($ch);
 	//close curl session
 	curl_close ($ch);
-	//decoding response
-	$response_decode = json_decode($response);
 	//return response
-	return $response_decode[0];
+	return $response;
 }
 ?>
