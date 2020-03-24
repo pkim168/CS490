@@ -1,9 +1,14 @@
 <?php	
-	session_start();
+	session_start([
+        'use_only_cookies' => 1,
+        'cookie_lifetime' => 0,
+        'cookie_secure' => 1,
+        'cookie_httponly' => 1
+    ]);
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
 	} 
-	if ($_SESSION['role'] = '1') {
+	if ($_SESSION['role'] == '1') {
 		header('Location: ./studentView.php');
 	}
 	
