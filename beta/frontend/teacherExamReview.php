@@ -50,8 +50,8 @@
 				for (var i=1; i<table.rows.length-1; i++) {
 					let question = {};
 					var questionId = table.rows[i].id;
-					var comments = table.rows[i].children[5].value;
-					var points = table.rows[i].children[3].innerText;
+					var comments = table.rows[i].cells[5].firstChild.value;
+					var points = table.rows[i].cells[3].firstChild.innerText;
 					console.log(points);
 					console.log(comments);
 					question['questionId'] = questionId;
