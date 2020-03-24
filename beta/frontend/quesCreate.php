@@ -155,8 +155,8 @@
 			}
 			
 			function filter() {
-				var diff = document.getElementById("difficulty").value;
-				var tag = document.getElementById("tag").value;
+				var diff = document.getElementById("qdifficulty").value;
+				var tag = document.getElementById("qtag").value;
 				let formData = new FormData();
 				formData.append('requestType', 'getQuestions');
 				formData.append('difficulty', diff);
@@ -217,7 +217,7 @@
 					</div>
 					<div class="flex-container row" style="width: 98%;">
 						<label style="width: 50%;">Difficulty:</label>
-						<select style="width: 50%;" id="difficulty" required>
+						<select style="width: 50%;" id="qdifficulty" required>
 							<option value="" selected></option>
 							<option value="Easy">Easy</option>
 							<option value="Medium">Medium</option>
@@ -226,7 +226,7 @@
 					</div>
 					<div class="flex-container row" style="width: 98%;">
 						<label style="width: 50%;">Tag:</label>
-						<select style="width: 50%;" id="tag" required>
+						<select style="width: 50%;" id="qtag" required>
 							<option value="" selected></option>
 							<option value="Operations">Operations</option>
 							<option value="test">test</option>
@@ -238,7 +238,7 @@
 					</div>
 					<div class="flex-container row" style="width: 98%;">
 						<label style="width: 50%;"># of Test Cases:</label>
-						<input style="width: 50%;" type="number" id="numTestCases" min="1" value = "" oninput="testCases(this.value, this.id)" required/>
+						<input style="width: 50%;" type="number" id="numTestCases" min="1" value = "" oninput="testCases(this.value, this.id)" required />
 					</div>
 					<div class="flex-container column" style="width: 98%;" id="testCases">
 					</div>

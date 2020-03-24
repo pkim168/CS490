@@ -337,7 +337,7 @@
 			$answer = $questions[$i]["answer"];
 			$pointsEarned = $questions[$i]["pointsEarned"];
 			$totalPoints = $questions[$i]["totalPoints"];
-			$query .= "('$sExamId', '$questionId', '$pointsEarned', '$totalPoints', '$answer', NULL),";
+			$query .= "('$sExamId', '$questionId', '$pointsEarned', '$totalPoints', '$answer', ''),";
 		}
 		$query = substr($query, 0, -1).";";
 		if (!mysqli_query($db, $query)){
