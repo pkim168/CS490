@@ -18,7 +18,7 @@
 	$url = "https://web.njit.edu/~jrd62/CS490/teacher_middle_questions.php";
 	
 	$ch = curl_init($url);
-	$data = array()
+	$data = array();
 	$data['requestType'] = 'getQuestions';
 	if ($difficulty != ""){
 		$data['difficulty'] = $difficulty;
