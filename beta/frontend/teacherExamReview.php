@@ -57,8 +57,6 @@
 					else {
 						var points = table.rows[i].cells[3].firstChild.value;
 					}
-					console.log(points);
-					console.log(comments);
 					question['questionId'] = questionId;
 					question['points'] = points;
 					question['comments'] = comments;
