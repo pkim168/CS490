@@ -10,7 +10,7 @@
 	if (isset($_GET['ucid'])){
 		$_SESSION['ucid'] = $_GET['ucid'];
 	} 
-	if (isset(['role'])){
+	if (isset($_GET['role'])){
 		$_SESSION['role'] = $_GET['role'];
 	}
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
