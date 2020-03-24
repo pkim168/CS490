@@ -1,15 +1,19 @@
 <?php 
 	// If session doesn't exists, redirect to login page
-	session_start();
-	ob_start();
-	/*
+	session_start([
+        'use_only_cookies' => 1,
+        'cookie_lifetime' => 0,
+        'cookie_secure' => 1,
+        'cookie_httponly' => 1
+    ]);
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
-		header('Location: ********LINK HERE********');
+		header('Location: ./index.php');
+	} 
+	if ($_SESSION['role'] == '1') {
+		header('Location: ./studentView.php');
 	}
-	if ($_SESSION['role'] != '2') {
-		header('Location: ********LINK HERE********');
-	}
-	*/
+	ob_start();
+	
 	$data = array();
 	$data['requestType'] = 'getExamStatuses';
 	$data['examId'] = $_SESSION['examId'];
@@ -49,7 +53,7 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							location.href = "https://web.njit.edu/~jrd62/CS490/teacher_middle_exam.php"
+							location.href = "https://web.njit.edu/~jrd62/CS490/teacher_middle_exam.php";
 						}
 						else {
 							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));
@@ -78,18 +82,20 @@
 						<th> Status </th>
 					</tr>
 					<?php
-						for ($i = 0; $i < count($json); $i++) {
-							echo "<tr id=".$json[$i]['ucid'].">";
-							echo "<td>".$json[$i]['ucid']."</td>";
-							if ($json[$i]['status'] == 0) {
-								echo "<td>Not Taken</td>";
-							} else if ($json[$i]['status'] == 1) {
-								echo "<td>Graded</td>";
-							} else {
-								echo "<td>Released</td>";
+						if (!isset($json['message'])) {
+							for ($i = 0; $i < count($json); $i++) {
+								echo "<tr id=".$json[$i]['ucid'].">";
+								echo "<td>".$json[$i]['ucid']."</td>";
+								if ($json[$i]['status'] == 0) {
+									echo "<td>Not Taken</td>";
+								} else if ($json[$i]['status'] == 1) {
+									echo "<td>Graded</td>";
+								} else {
+									echo "<td>Released</td>";
+								}
+								echo "<td><button type='button' style='height: 40px; width: 100%' onclick='exam(this.id)'>View Results</button></td>";
+								echo "</tr>";
 							}
-							echo "<td><button type='button' style='height: 40px; width: 100%' onclick='exam(this.id)'>View Results</button></td>";
-							echo "</tr>";
 						}
 					?>
 				</table>

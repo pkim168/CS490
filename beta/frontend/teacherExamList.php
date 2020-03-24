@@ -22,7 +22,7 @@
 		<script>
 			function exam(id) {
 				$_SESSION['examId'] = id;
-				location.href = '';
+				location.href = 'https://web.njit.edu/~dn236/CS490/beta/teacherExamStudents.php';
 			}
 			
 			function releaseExam(name) {
