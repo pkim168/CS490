@@ -1,10 +1,5 @@
 <?php
-	session_start([
-		'use_only_cookies' => 1,
-		'cookie_lifetime' => 0,
-		'cookie_secure' => 1,
-		'cookie_httponly' => 1
-	]);
+	session_start();
 	
 	
 	if(array_key_exists('role', $_SESSION)){
@@ -40,6 +35,18 @@
 					response.json().then((data) => {
 						if(data["message"] == "Verified") {
 							location.href = "https://web.njit.edu/~dn236/CS490/beta/login.php";
+							if(data['role']==  1 ){
+								<?php  
+								$_SESSION['role'] = 1;
+								header('Location: ./studentView.php');
+								?>
+								
+							}else{
+								<?php  
+								$_SESSION['role'] = 2;
+								header('Location: ./teacherView.php');
+								?>
+							}
 						}
 						else {
 							alert("Invalid Login");

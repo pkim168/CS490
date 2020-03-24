@@ -24,6 +24,7 @@
 	$pass = $_POST["pass"];
 	$url = "https://web.njit.edu/~jrd62/CS490/beta/login.php";
 	
+	
 	$ch = curl_init($url);
 	$data = array(
 				"requestType" => "login",
@@ -36,11 +37,6 @@
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	$result = curl_exec($ch);
 	curl_close($ch);
-	
-	//set session vars
-	$temp = json_decode($result);
-	$_SESSION['ucid'] = $ucid;
-	$_SESSION['role'] = $temp['role'];
 	
 	echo $result;
 	
