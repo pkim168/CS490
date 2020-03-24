@@ -26,8 +26,9 @@ function get_exam_questions($requestType,$examId){
 	$response_questions = curl_exec($ch);
 	//close curl session
 	curl_close ($ch);
+	$response_decode = json_decode($response_questions, true);
 	//return response
-	return $response_questions;
+	return $response_decode[0];
 }
 
 //counting the amount of questions within exam
@@ -111,11 +112,11 @@ function grade_question($answer, $functionName, $parameters, $result, $totalPoin
     $answer_function_name = $split[1];
     //checking if function name is correct
     if($answer_function_name == $functionName){
-        $comments .= "Congrats. Function name is correct!";
+        $comments .= "Congrats. Function name is correct!\n";
         $pointsEarned += ($totalPoints*0.2);
     }
     else{
-        $comments .= "Better luck next time. Function name is not correct it's suppose to be $functionName";
+        $comments .= "Better luck next time. Function name is incorrect. Funcations $functionName and $answer_function_name\n";
     }
     //splitting original student answer
     $split_left = explode(")", $answer);
@@ -130,11 +131,11 @@ function grade_question($answer, $functionName, $parameters, $result, $totalPoin
     $parameters = preg_replace("/\s/","", $parameters);
     //checking student parameters with the test case parameters
     if(strcmp($student_parameters, $parameters) == 0){
-        $comments .= "Awesome you got the parameters correct";
+        $comments .= "Awesome you got the parameters correct\n";
         $pointsEarned += ($totalPoints*0.2);
     }
     else{
-        $comments .= "Better luck next time. The parameters you entered were incorrect. The correct parameters are $parameters";
+        $comments .= "Better luck next time. The parameters you entered were incorrect. $\n";
     } 
     //counting parameters to test through
     $parameter_count = count($parameters);
@@ -157,10 +158,10 @@ function grade_question($answer, $functionName, $parameters, $result, $totalPoin
         else{
             //error checking
             if($runpython == ""){
-                $comments .= "Testcase incorrect. For $answer_function_name($parameter)";
+                $comments .= "Testcase incorrect";
             }
             else{
-                $comments .= "Testcase incorrect. For $answer_function_name($parameter)";
+                $comments .= "Testcase incorrect";
             }
         }
     }
