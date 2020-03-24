@@ -47,9 +47,6 @@
 				formData['requestType'] = 'createNewExam';
 				formData['ucid'] = document.getElementById("ucid").innerText;
 				formData['totalPoints'] = score;
-				for (var p of formData) {
-				  console.log(p);
-				}
 				// cURL to middle end
 				fetch("https://web.njit.edu/~dn236/CS490/beta/CreateExam2makeExam.php", {
 					method: "POST",
