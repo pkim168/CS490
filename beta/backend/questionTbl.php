@@ -121,7 +121,7 @@
 		foreach ($tCases as $test) {
 			$case = $test["case"];
 			$tData = $test["data"];
-			$query .= "(DEFAULT, '$questionId', '$case', '$tData'),"
+			$query .= "(DEFAULT, '$questionId', '$case', '$tData'),";
 		}
 		unset($test);
 		$query = substr($query, 0, -1).";";

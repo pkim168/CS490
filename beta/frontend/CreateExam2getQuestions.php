@@ -22,13 +22,15 @@
 	$data['requestType'] = 'getQuestions';
 	$data['difficulty'] = $difficulty;
 	$data['tag'] = $tag;
+	$data['difficulty'] = '';
+	$data['tag'] = '';
 	$payload = json_encode($data);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	$result = curl_exec($ch);
 	curl_close($ch);
-	
+	echo var_dump($result);
 	echo $result;
 	
 ?>
