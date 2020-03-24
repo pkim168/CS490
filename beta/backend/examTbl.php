@@ -60,7 +60,7 @@
 			
 		case 'releaseExam':
 			$examId = '';
-			if (!empty($examId)) {
+			if (!empty($json['examId'])) {
 				$examId = getData($json['examId']);
 			}
 			echo releaseExam($examId);
@@ -466,7 +466,6 @@
 			return json_encode($data);
 		}
 		$data["message"] = "Success";
-		$data["error"] = "None".$query;
 		return json_encode($data);
 	}
 ?>
