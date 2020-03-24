@@ -185,7 +185,7 @@
 						for (var i=0; i<count; i++) {
 							var tr = document.createElement('tr');
 							tr.setAttribute("id", data[i]['questionId']);
-							var td = document.createElement('tr');
+							var td = document.createElement('td');
 							td.textContent = data[i]['question'];
 							tr.appendChild(td);
 							document.getElementById('questions').appendChild(tr);

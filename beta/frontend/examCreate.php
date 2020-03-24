@@ -95,10 +95,10 @@
 						for (var i=0; i<count; i++) {
 							var tr = document.createElement('tr');
 							tr.setAttribute("id", data[i]['questionId']);
-							var td = document.createElement('tr');
+							var td = document.createElement('td');
 							td.textContent = data[i]['question'];
 							tr.appendChild(td);
-							var tb = document.createElement('tr');
+							var tb = document.createElement('td');
 							var button = document.createElement('button');
 							button.setAttribute("type", "button");
 							button.setAttribute("onclick", "add(this.closest('tr'))");
