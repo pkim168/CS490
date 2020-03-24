@@ -467,6 +467,7 @@
 		}
 		
 		$data["message"] = "Success";
+		$data["error"] = "None";
 		return json_encode($data);
 	}
 ?>
