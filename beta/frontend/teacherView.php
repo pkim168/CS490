@@ -7,10 +7,10 @@
         'cookie_httponly' => 1
     ]);
 	
-	if (!isset($_GET['ucid'])){
+	if (isset($_GET['ucid'])){
 		$_SESSION['ucid'] = $_GET['ucid'];
 	} 
-	if (!isset(['role'])){
+	if (isset(['role'])){
 		$_SESSION['role'] = $_GET['role'];
 	}
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
