@@ -430,16 +430,13 @@
 				WHERE 490studentExamTbl_sExamId = '$sExamId' AND 490questionTbl_questionId = '$questionId';
 			";
 		}
-		$data["message"] = "Failure";
-		$data["error"] = $json["questions"]["points"].$query.mysqli_error().$json["questions"]["points"];
-		return json_encode($data);
 		if (mysqli_multi_query($db, $query)){
 			do {
 				$result = mysqli_store_result($db);
 				if (!$result) {
 					$data["message"] = "Failure";
-					$data["error"] = ''.mysqli_error();
-					return "update".json_encode($data);
+					$data["error"] = 'update'.mysqli_error();
+					return json_encode($data);
 				}
 			} while (mysqli_next_result($db));
 		} else {
