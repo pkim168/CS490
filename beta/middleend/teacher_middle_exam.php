@@ -14,7 +14,7 @@ switch($requestType) {
         $ucid="";
 
 		if(isset($response['requestType'])) $requestType = $response['requestType'];
-        if(isset($response['ucid'])) $examId = $response['ucid'];
+        if(isset($response['ucid'])) $ucid = $response['ucid'];
 
         $res_project=get_exams($requestType,$ucid);	
         echo $res_project;
@@ -36,7 +36,7 @@ switch($requestType) {
         $examId="";
 
 		if(isset($response['requestType'])) $requestType = $response['requestType'];
-        if(isset($response['examId'])) $studentId = $response['examId'];
+        if(isset($response['examId'])) $examId = $response['examId'];
 
         $res_project=get_exam_statuses($requestType,$examId);	
         echo $res_project;
