@@ -1,5 +1,10 @@
 <?php
-	session_start();
+	session_start([
+        'use_only_cookies' => 1,
+        'cookie_lifetime' => 0,
+        'cookie_secure' => 1,
+        'cookie_httponly' => 1
+    ]);
 	
 	
 	if(array_key_exists('role', $_SESSION)){
@@ -8,7 +13,7 @@
 		if($_SESSION["role"] == 2)
 			header('Location: ./teacherView.php');
 	}
-
+	ob_start();
 ?>
 <html>
 	<head>
@@ -79,3 +84,4 @@
 		</div>
 	</body>
 </html>
+<?php ob_flush()?>

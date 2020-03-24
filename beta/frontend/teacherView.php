@@ -1,11 +1,12 @@
 <?php 
 	// If session doesn't exists, redirect to login page
-	session_start();
-	if(session_id() == '' || !isset($_SESSION)) {
-		header('Location: ./index.php');
-	} 
-	
-	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
+	session_start([
+        'use_only_cookies' => 1,
+        'cookie_lifetime' => 0,
+        'cookie_secure' => 1,
+        'cookie_httponly' => 1
+    ]);
+	if (empty($_SESSION['role'])){
 		header('Location: ./index.php');
 	} 
 	if ($_SESSION['role'] != '2') {
