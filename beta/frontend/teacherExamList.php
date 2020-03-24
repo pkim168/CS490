@@ -17,7 +17,7 @@
 	$data = array();
 	$data['requestType'] = 'getExams';
 	$data['ucid'] = $_SESSION['ucid'];
-	$url = "****************URL HERE *********************";
+	$url = "https://web.njit.edu/~dn236/CS490/beta/getExams.php";
 	
 	$ch = curl_init($url);
 	$payload = json_encode($data);
@@ -53,7 +53,7 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							location.href = '********LINK HERE********'
+							location.href = 'https://web.njit.edu/~dn236/CS490/beta/releaseExams.php'
 						}
 						else {
 							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));

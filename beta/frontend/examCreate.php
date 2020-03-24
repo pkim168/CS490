@@ -10,9 +10,9 @@
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
 	} 
-	if ($_SESSION['role'] = '1') {
+	if ($_SESSION['role'] == '1') {
 		header('Location: ./studentView.php');
-	}*/
+	}
 	
 	ob_start();
 ?>
@@ -46,7 +46,7 @@
 				formData.append('ucid', document.getElementById("ucid").innerText);
 				formData.append('totalPoints', score);
 				// cURL to middle end
-				fetch("Location: ./studentView.php", {
+				fetch("https://web.njit.edu/~dn236/CS490/beta/CreateExam2makeExam.php", {
 					method: "POST",
 					body: formData
 				})
@@ -55,7 +55,7 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							location.href = '********LINK HERE********'
+							location.href = 'https://web.njit.edu/~dn236/CS490/beta/teacherView.php';
 						}
 						else {
 							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));
@@ -83,7 +83,7 @@
 				  console.log(p);
 				}
 				// cURL to middle end
-				fetch("********LINK HERE********", {
+				fetch("https://web.njit.edu/~dn236/CS490/beta/CreateExam2getQuestions.php", {
 					method: "POST",
 					body: formData
 				})
