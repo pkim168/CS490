@@ -202,7 +202,7 @@
 				$test["case"] = $row["testCase"];
 				$test["data"] = $row["testData"];
 				$temp["testCases"] = array($test);
-				$temp["totalPoints"] = $row["totalPoints"];
+				$temp["totalPoints"] = $row["points"];
 				$questionId = $row["questionId"];
 				array_push($data, $temp);
 				$count++;
