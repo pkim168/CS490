@@ -18,7 +18,7 @@
 	$data['requestType'] = 'getExams';
 	$data['ucid'] = $_SESSION['ucid'];
 	$url = "https://web.njit.edu/~dn236/CS490/beta/getExams.php";
-	
+	echo $data['ucid'];
 	$ch = curl_init($url);
 	$payload = json_encode($data);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
