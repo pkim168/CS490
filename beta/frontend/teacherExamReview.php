@@ -127,12 +127,12 @@
 							$maxPoints +=  (float)$json[$i]["totalPoints"];
 						}
 						$percentage = ceil(100*($totalPointsEarned / $maxPoints));
-						echo "<td></td><td></td><td></td><td> Percentage: ".$percentage."% </td>";
+						echo "<td></td><td></td><td></td><td></td><td> Percentage: ".$percentage."% </td><td></td>";
 					?>
 				</table>
 			</div>
 			<div class="flex-container row">
-				<button type="button" style="height: 40px; width: 150px" onclick="submit()">Submit Exam</button>
+				<button type="button" style="height: 40px; width: 150px" onclick="submit()">Submit Changes</button>
 			</div>
 		</div>
 		
