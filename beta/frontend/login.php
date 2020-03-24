@@ -28,10 +28,10 @@
 	curl_close($ch);
 	
 	$json = json_decode($result);
+		
+	echo json_encode($json);
 	
 	$_SESSION['role'] = $json['role'];
 	$_SESSION['ucid'] = $ucid;
-	
-	echo json_encode($json);
 	
 ?>
