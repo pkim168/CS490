@@ -39,23 +39,14 @@
 					console.log(response);
 					response.json().then((data) => {
 						if(data["message"] == "Verified") {
-							let roleData = new FormData();
-							roleData.append('role', data['role']);
-							roleData.append('ucid', ucid);
-							fetch("https://web.njit.edu/~dn236/CS490/beta/setData.php", {
-									method: "POST",
-									body: roleData
-							})
-							.then((response) => {
-								console.log(response);
-								if(data['role']==  1 ){
-								
-									location.href = "https://web.njit.edu/~dn236/CS490/beta/studentView.php";
-								
-								}else{
-									location.href = "https://web.njit.edu/~dn236/CS490/beta/teacherView.php";
-								}
-							});
+							if(data['role']==  1 ){
+								console.log('student');
+								//location.href = "https://web.njit.edu/~dn236/CS490/beta/studentView.php";
+							
+							}else{
+								console.log('teacher');
+								//location.href = "https://web.njit.edu/~dn236/CS490/beta/teacherView.php";
+							}
 						}
 						else {
 							alert("Invalid Login");
