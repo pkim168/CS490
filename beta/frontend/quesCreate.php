@@ -177,7 +177,7 @@
 				.then((response) => {
 					console.log(response);
 					response.json().then((data) => {
-						var questions = document.getElementById('questions')
+						var questions = document.getElementById('questions');
 						while (questions.firstChild) {
 							questions.removeChild(questions.firstChild);
 						}
