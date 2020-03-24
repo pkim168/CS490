@@ -25,6 +25,10 @@
 			}
 			
 			function releaseExam(name) {
+				var bool = confirm("Are you sure you want to release this exam?");
+				if (!bool) {
+					return false;
+				}
 				var id = name.substr(1);
 				let formData = new FormData();
 				formData.append('requestType', 'releaseExam');
