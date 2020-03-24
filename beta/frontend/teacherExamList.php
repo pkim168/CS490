@@ -77,11 +77,13 @@
 				<h1> Exams </h1>
 			</div>
 			<?php
-				for ($i = 0; $i < count($json); $i++) {
-					echo "<div class='flex-container row'>";
-					echo "<button type='button' id='".$json[$i]."' style='height: 40px; width: 150px' onclick='exam(this.id)'>Exam ".$json[$i]."</button>";
-					echo "<button type='button' id=r'".$json[$i]."' style='height: 40px; width: 150px' onclick='releaseExam(this.id)'>Release Exam ".$json[$i]."</button>";
-					echo "</div>";
+				if (!isset($json['message']) {
+					for ($i = 0; $i < count($json); $i++) {
+						echo "<div class='flex-container row'>";
+						echo "<button type='button' id='".$json[$i]."' style='height: 40px; width: 150px' onclick='exam(this.id)'>Exam ".$json[$i]."</button>";
+						echo "<button type='button' id=r'".$json[$i]."' style='height: 40px; width: 150px' onclick='releaseExam(this.id)'>Release Exam ".$json[$i]."</button>";
+						echo "</div>";
+					}
 				}
 			?>
 		</div>

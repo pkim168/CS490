@@ -12,7 +12,7 @@
 	$ch = curl_init($url);
 	$data = array();
 	$data['requestType'] = 'getExams';
-	$data['ucid'] = $_POST['ucid'];
+	$data['ucid'] = $_SESSION['ucid'];
 	$payload = json_encode($data);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
