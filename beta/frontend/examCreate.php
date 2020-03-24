@@ -74,12 +74,8 @@
 				var tag = document.getElementById("tag").value;
 				let formData = new FormData();
 				formData.append('requestType', 'getQuestions');
-				if (diff != "") {
-					formData.append('difficulty', diff);
-				}
-				if (tag != "") {
-					formData.append('tag', tag);
-				}
+				formData.append('difficulty', diff);
+				formData.append('tag', tag);
 				for (var p of formData) {
 				  console.log(p);
 				}
