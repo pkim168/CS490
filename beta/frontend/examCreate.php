@@ -33,7 +33,7 @@
 				formData['questions'] = []
 				for (var i=1; i<table.rows.length; i++) {
 					let question = {};
-					var questionId = table.rows[i].children[0].innerHTML;
+					var questionId = table.rows[i].substr(1);
 					var points = table.rows[i].children[1].firstChild.value;
 					if (points == "" || isNaN(points)) {
 						alert("All questions must have a numerical points value");
