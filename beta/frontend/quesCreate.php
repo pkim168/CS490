@@ -217,7 +217,7 @@
 					</div>
 					<div class="flex-container row" style="width: 98%;">
 						<label style="width: 50%;">Difficulty:</label>
-						<select style="width: 50%;" id="qdifficulty" required>
+						<select style="width: 50%;" id="difficulty" required>
 							<option value="" selected></option>
 							<option value="Easy">Easy</option>
 							<option value="Medium">Medium</option>
@@ -226,7 +226,7 @@
 					</div>
 					<div class="flex-container row" style="width: 98%;">
 						<label style="width: 50%;">Tag:</label>
-						<select style="width: 50%;" id="qtag" required>
+						<select style="width: 50%;" id="tag" required>
 							<option value="" selected></option>
 							<option value="Operations">Operations</option>
 							<option value="test">test</option>
@@ -256,7 +256,7 @@
 			</div>
 			<div id="filters" class="flex-container row" style="width:100%; float:left">
 				<label> &nbsp Difficulty: </label>
-				<select id="difficulty">
+				<select id="qdifficulty">
 					<option value="" selected></option>
 					<option value="Easy">Easy</option>
 					<option value="Medium">Medium</option>
@@ -264,7 +264,7 @@
 				</select>
 				<!--- Values will be changed --->
 				<label> &nbsp Tag: </label>
-				<select id="tag">
+				<select id="qtag">
 					<option value="" selected></option>
 					<option value="Operations">Operations</option>
 					<option value="test">test</option>
