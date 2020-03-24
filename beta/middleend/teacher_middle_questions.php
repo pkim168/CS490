@@ -31,22 +31,7 @@ switch($requestType) {
         echo $res_project;
         break;
     case 'newQuestion':
-        //initial setting of variables
-        $requestType="newQuestion";
-        $question="";
-        $functionName="";
-        $difficulty="";
-		$tag="";
-		$testCases=$response['testCases'];
-
-        if(isset($response['requestType'])) $requestType = $response['requestType'];
-        if(isset($response['question'])) $question = $response['question'];
-        if(isset($response['functionName'])) $functionName = $response['functionName'];
-        if(isset($response['difficulty'])) $difficulty = $response['difficulty'];
-		if(isset($response['tag'])) $tag = $response['tag'];
-		if(isset($response['testCases'])) $testCases = $response['testCases'];
-
-        $res_project=new_question($requestType,$question,$functionName,$difficulty,$tag,$testCases);	
+        $res_project=new_question($response);	
         echo $res_project;
         break;
     default: 
@@ -94,9 +79,7 @@ function get_tags($requestType){
 }
 
 // curl backend 
-function new_question($requestType,$question,$functionName,$difficulty,$tag,$testCases){
-	//data from json response
-	$data = array('requestType' => $requestType, 'question' => $question, 'functionName' => $functionName, 'difficulty' => $difficulty, 'tag' => $tag, 'testCases' => $testCases);
+function new_question($response){
 	//url to backend
 	$url = "https://web.njit.edu/~pk549/490/beta/questionTbl.php";
 	//initialize curl session and return a curl handle
@@ -104,7 +87,7 @@ function new_question($requestType,$question,$functionName,$difficulty,$tag,$tes
 	//options for a curl transfer	
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+	curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));
 	//execute curl session
 	$response = curl_exec($ch);
 	//close curl session
