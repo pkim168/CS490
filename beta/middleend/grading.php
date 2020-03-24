@@ -171,47 +171,5 @@ function grade_question($answer, $functionName, $parameters, $result, $totalPoin
     //returning grade
     //grade only tests for whether the function name and the parameters are correct
     return $grade;
-?>
-
-
-<!--what will be received-->
-<!--
-0: {
-	questionId: (String),
-	question: (String),
-	functionName: (String),
-	difficulty: 'Easy, 'Medium', or 'Hard'
-	tag: (string)
-	testCases: {
-		0: {
-			case: Testcase,
-			data: {
-				parameters: {
-					0: Parameter,
-					1: Parameter,
-					etc.
-				},
-				argc: Num of Arguments,
-				result: Expected output
-			}
-		},
-		1: {
-			case: Testcase,
-			data: {
-				parameters: {
-					0: Parameter,
-					1: Parameter,
-					etc.
-				},
-				argc: Num of Arguments,
-				result: Expected output
-			}
-		},
-		etc.
-	}
-	answer: (String),
-	comments: (String),
-	pointsEarned: (String),
-	totalPoints: (String)
 }
--->
+?>
