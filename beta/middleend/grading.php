@@ -167,7 +167,7 @@ function grade_question($answer, $functionName, $parameters, $result, $totalPoin
     //adding comments to the grade
     $comma = ",";
     //$grade = round($grade, 0);
-    $grade = $comments .= $comma .= ($pointsEarned);
+    $grade .= $comments .= $comma .= ($pointsEarned);
     //returning grade
     //grade only tests for whether the function name and the parameters are correct
     return $grade;
