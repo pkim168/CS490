@@ -1,25 +1,9 @@
 <?php
-	session_start();
-
-		
-	if(array_key_exists('role', $_SESSION)){
-		if($_SESSION["role"] == 1)
-			header('Location: ./studentView.php');
-		if($_SESSION["role"] == 2)
-			header('Location: ./teacherView.php');
 	
-	}else{
-    header('Location: ./index.php');
-	}
 	
 	$ucidErr = $passErr = "";
 	$ucid = $password = "";
-	if(empty($_POST["ucid"])){
-		header('Location: ./index.php');
-	}
-	if(empty($_POST["pass"])){
-		header('Location: ./index.php');
-	}
+	
 	$ucid = $_POST["ucid"];
 	$pass = $_POST["pass"];
 	$url = "https://web.njit.edu/~jrd62/CS490/beta/login.php";
