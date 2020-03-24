@@ -15,14 +15,11 @@
 	// Switch statement here, should check based on request type
 	
 	$requestType = getData($json['requestType']);
-	$requestType = 'login';
 
 	switch($requestType) {
 		case 'login':
 			$ucid = getData($json['ucid']);
 			$pass = getData($json['pass']);
-			$ucid = 'pk549';
-			$pass = 'test';
 			echo checkUser($ucid, $pass);
 			break;
 		/*
