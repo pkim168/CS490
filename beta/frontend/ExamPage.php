@@ -109,7 +109,6 @@
 								$parameters = "\nParameters: ";
 								$data = json_decode($testCases[$j]['data']);
 								$param = json_decode($data['parameters']);
-								var_dump($param);
 								for ($h=0; $h < count($param); $h++) {
 									$parameters .= $param[$h]."; ";
 								}
