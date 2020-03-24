@@ -108,10 +108,11 @@
 							$str = $testCases[0]['case'];
 							for ($j=0; $j < count($testCases); $j++) {
 								$parameters = "\nParameters: ";
-								for ($h=0; $h < count($testCases[$j]['data']['parameters']); $h++) {
-									$parameters .= $testCases[$j]['data']['parameters'][$h]."; ";
+								$data = json_decode($testCases[$j]['data']);
+								for ($h=0; $h < count(data['parameters']); $h++) {
+									$parameters .= data['parameters'][$h]."; ";
 								}
-								$str .= $parameters."\nOutput: ".$testCases[$j]['data']['result']."\n";
+								$str .= $parameters."\nOutput: ".data['result']."\n";
 							}
 							echo "<td><pre>".$str."</pre></td>";
 							echo "</tr>";
