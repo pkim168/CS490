@@ -94,9 +94,9 @@
 						var count = Object.keys(data).length;
 						for (var i=0; i<count; i++) {
 							var tr = document.createElement('tr');
-							tr.setAttribute("id", data[i][questionId]);
+							tr.setAttribute("id", data[i]['questionId']);
 							var td = document.createElement('tr');
-							td.textContent = data[i][question];
+							td.textContent = data[i]['question'];
 							tr.appendChild(td);
 							var tb = document.createElement('tr');
 							var button = document.createElement('button');
