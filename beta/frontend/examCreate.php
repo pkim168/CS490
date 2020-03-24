@@ -91,8 +91,8 @@
 					console.log(response);
 					response.json().then((data) => {
 						var questions = document.getElementById('questions');
-						while (questions.firstChild) {
-							questions.removeChild(questions.firstChild);
+						while (questions.childNodes.length > 1) {
+							questions.removeChild(questions.lastChild);
 						}
 						if (data.hasOwnProperty('message')) {
 							console.log(data['error']);
