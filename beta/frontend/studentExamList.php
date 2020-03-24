@@ -1,6 +1,11 @@
 <?php 
 	// If session doesn't exists, redirect to login page
-	session_start();
+	session_start([
+        'use_only_cookies' => 1,
+        'cookie_lifetime' => 0,
+        'cookie_secure' => 1,
+        'cookie_httponly' => 1
+    ]);
 	ob_start();
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
@@ -11,7 +16,7 @@
 	$data = array();
 	$data['requestType'] = 'getExams';
 	$data['ucid'] = $_SESSION['ucid'];
-	$url = "https://web.njit.edu/~jrd62/CS490/student_middle.php";
+	$url = "https://web.njit.edu/~jrd62/CS490/beta/student_middle.php";
 	
 	$ch = curl_init($url);
 	$payload = json_encode($data);
@@ -28,8 +33,7 @@
 		<link rel="stylesheet" href="styles.css">
 		<script>
 			function takeExam(id) {
-				$_SESSION['examId'] = id;
-				location.href = '********LINK HERE********';
+				location.href = "".concat('https://web.njit.edu/~dn236/CS490/beta/ExamPage.php?examId=', id);
 			}
 			
 			function viewResults(id) {
