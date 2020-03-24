@@ -58,7 +58,7 @@
 				// cURL to middle end
 				fetch("https://web.njit.edu/~dn236/CS490/beta/CreateQuestion2", {
 					method: "POST",
-					body: formData
+					body: JSON.stringify(formData)
 				})
 				.then((response) => {
 					console.log(response);
