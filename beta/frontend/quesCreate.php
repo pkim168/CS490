@@ -63,15 +63,7 @@
 				.then((response) => {
 					console.log(response);
 					response.json().then((data) => {
-						if (data["message"] == "Success") {
-							// Redirect back after successful submission
-							location.href = 'https://web.njit.edu/~dn236/CS490/beta/teacherView.php';
-							return false;
-						}
-						else {
-							alert(''.concat("There was a problem submitting the question. Please try again. Error message: ", data['error'], data['message']));
-							return false;
-						}
+						location.href = 'https://web.njit.edu/~dn236/CS490/beta/teacherView.php';
 					})
 				})
 				.catch(function(error) {

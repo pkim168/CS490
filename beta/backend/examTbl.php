@@ -437,13 +437,13 @@
 				$result = mysqli_store_result($db);
 				if (!$result) {
 					$data["message"] = "Failure";
-					$data["error"] = mysqli_error();
+					$data["error"] = ''.mysqli_error();
 					return json_encode($data);
 				}
 			} while (mysqli_next_result($db));
 		} else {
 			$data["message"] = "Failure";
-			$data["error"] = mysqli_error();
+			$data["error"] = ''.mysqli_error();
 			return json_encode($data);
 		}
 		
