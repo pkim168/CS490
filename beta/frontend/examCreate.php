@@ -89,7 +89,6 @@
 					console.log(response);
 					response.json().then((data) => {
 						var questions = document.getElementById('questions');
-						console.log(questions.childNodes.length);
 						while (questions.childNodes.length > 2) {
 							questions.removeChild(questions.lastChild);
 						}

@@ -56,7 +56,7 @@
 					formData['testCases'].push(testCase);
 				}
 				// cURL to middle end
-				fetch("https://web.njit.edu/~dn236/CS490/beta/CreateQuestion2", {
+				fetch("https://web.njit.edu/~dn236/CS490/beta/CreateQuestion2.php", {
 					method: "POST",
 					body: JSON.stringify(formData)
 				})
@@ -164,7 +164,7 @@
 			function filter() {
 				var diff = document.getElementById("difficulty").value;
 				var tag = document.getElementById("tag").value;
-				let formData = {};
+				let formData = new FormData();
 				formData.append('requestType', 'getQuestions');
 				formData.append('difficulty', diff);
 				formData.append('tag', tag);
@@ -172,7 +172,7 @@
 				  console.log(p);
 				}
 				// cURL to middle end
-				fetch("https://web.njit.edu/~dn236/CS490/beta/CreateExam2getQuestions", {
+				fetch("https://web.njit.edu/~dn236/CS490/beta/CreateExam2getQuestions.php", {
 					method: "POST",
 					body: formData
 				})
