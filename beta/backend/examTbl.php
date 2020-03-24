@@ -212,7 +212,6 @@
 		
 	}
 	
-	//Testing Needed
 	function createNewExam($json) {
 		global $db;
 		global $requestType;
@@ -297,7 +296,6 @@
 		return json_encode($data);
 	}
 	
-	//Testing Needed
 	function submitStudentExam($json) {
 		global $db;
 		$data = array();
@@ -451,10 +449,63 @@
 		return json_encode($data);
 	}
 	
-	// Testing Needed
 	function releaseExam($examId) {
 		global $db;
 		$data = array();
+		$query = "
+			SELECT sExamId
+			FROM
+			490studentExamTbl
+			WHERE 490examTbl_examId = '$examId' and status != '1';
+		";
+		$result = mysqli_query($db, $query);
+		if ($result->num_rows == 0){
+			$data["message"] = "Failure";
+			$data["error"] = "select sExam".mysqli_error();
+			return json_encode($data);
+		}
+		$sExamIds = array();
+		while ($row = mysqli_fetch_array($result)) {
+			array_push($sExamIds, $row["sExamId"]);
+		}
+		
+		$query = "
+			SELECT 490questionTbl_questionId, points
+			FROM
+			490examQuestionTbl
+			WHERE 490examTbl_examId = '$examId';
+		";
+		$result = mysqli_query($db, $query);
+		if ($result->num_rows == 0){
+			$data["message"] = "Failure";
+			$data["error"] = "select quest".mysqli_error();
+			return json_encode($data);
+		}
+		$questions = array();
+		while ($row = mysqli_fetch_array($result)) {
+			$temp = array();
+			$temp['questionId'] = $row['490questionTbl_questionId'];
+			$temp['totalPoints'] = $row['points'];
+			array_push($questions, $temp);
+		}
+		
+		$query = "INSERT INTO 490examGradesTbl VALUES ";
+		for ($i=0; $i < count($sExamIds); $i++) {
+			$id = $sExamIds[$i];
+			for ($j = 0; $j < count($questions); $j++) {
+				$questionId = $questions[$j]["questionId"];
+				$pointsEarned = '0';
+				$totalPoints = $questions[$j]["totalPoints"];
+				$query .= "('$id', '$questionId', '$pointsEarned', '$totalPoints', NULL, NULL),";
+			}
+		}
+		$query = substr($query, 0, -1).";";
+		if (!mysqli_query($db, $query)){
+			$data["message"] = "Failure";
+			$data["error"] = "insert".mysqli_error();
+			return json_encode($data);
+		}
+		
 		$query = "
 			UPDATE 490studentExamTbl 
 			SET status = '2'
@@ -462,9 +513,13 @@
 		";
 		if (!mysqli_query($db, $query)){
 			$data["message"] = "Failure";
-			$data["error"] = mysqli_error();
+			$data["error"] = "update".mysqli_error();
 			return json_encode($data);
 		}
+		
+		
+		// Get all students not in exam grades table
+		// for each student, create exam grade
 		$data["message"] = "Success";
 		return json_encode($data);
 	}
