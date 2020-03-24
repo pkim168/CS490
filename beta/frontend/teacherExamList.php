@@ -9,11 +9,11 @@
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
 	} 
-	if ($_SESSION['role'] = '1') {
+	if ($_SESSION['role'] == '1') {
 		header('Location: ./studentView.php');
 	}
 	
-	ob_start()
+	ob_start();
 	$data = array();
 	$data['requestType'] = 'getExams';
 	$data['ucid'] = $_SESSION['ucid'];

@@ -11,7 +11,7 @@
 		$_SESSION['ucid'] = $_GET['ucid'];
 	} 
 	if (!empty(['role'])){
-		$_SESSION['role'] = $_GET['ucid'];
+		$_SESSION['role'] = $_GET['role'];
 	}
 	echo $_SESSION['role'];
 	echo $_SESSION['ucid'];
