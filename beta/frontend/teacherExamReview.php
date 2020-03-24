@@ -69,6 +69,7 @@
 				})
 				.then((response) => {
 					console.log(response);
+					location.href = 'Location: ./studentView.php';
 				})
 				.catch(function(error) {
 					console.log(error);
