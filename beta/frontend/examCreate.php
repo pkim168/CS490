@@ -188,8 +188,9 @@
 				<label> &nbsp Tag: </label>
 				<select id="tag">
 					<option value="" selected></option>
+					<option value="Lists">Lists</option>
 					<option value="Operations">Operations</option>
-					<option value="test">test</option>
+					<option value="Recursion">recursion</option>
 				</select>
 				<button type="button" style="height: 27px; width: 80px" onclick="filter()">Filter</button>
 			</div>
