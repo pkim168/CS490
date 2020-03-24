@@ -22,8 +22,6 @@
 	$data['requestType'] = 'getQuestions';
 	$data['difficulty'] = $difficulty;
 	$data['tag'] = $tag;
-	$data['difficulty'] = '';
-	$data['tag'] = '';
 	$payload = json_encode($data);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
