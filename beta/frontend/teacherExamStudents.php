@@ -21,7 +21,7 @@
 	$data = array();
 	$data['requestType'] = 'getExamStatuses';
 	$data['examId'] = $_SESSION['examId'];
-	$url = "https://web.njit.edu/~jrd62/CS490/teacher_middle_exam.php";
+	$url = "https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php";
 	
 	$ch = curl_init($url);
 	$payload = json_encode($data);
