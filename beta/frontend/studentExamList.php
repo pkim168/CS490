@@ -37,7 +37,6 @@
 			}
 			
 			function viewResults(id) {
-				$_SESSION['examId'] = id;
 				location.href = "".concat('https://web.njit.edu/~dn236/CS490/beta/studentExamReview.php?examId=', id);
 			}
 		</script>
