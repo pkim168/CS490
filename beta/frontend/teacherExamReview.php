@@ -52,6 +52,8 @@
 					var questionId = table.rows[i].id;
 					var comments = table.rows[i].children[5].value;
 					var points = table.rows[i].children[3].innerText;
+					console.log(points);
+					console.log(comments);
 					question['questionId'] = questionId;
 					question['points'] = points;
 					question['comments'] = comments;
