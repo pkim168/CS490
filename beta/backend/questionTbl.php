@@ -111,24 +111,41 @@
 		$query = "INSERT INTO 490questionTbl VALUES (DEFAULT, '$fName', '$question', '$diff', '$tag');";
 		if (!mysqli_query($db, $query)){
 			$data["message"] = "Failure";
-			$data["error"] = mysqli_error();
+			$data["error"] = "questionTbl".mysqli_error().$fName.$question.$diff.$tag;
 			return json_encode($data);
 		}
 		$questionId = mysqli_insert_id($db);
 		
-		$query = "INSERT INTO 490testCaseTbl VALUES ";
+		$query = "";
 		$tCases = $json['testCases'];
 		foreach ($tCases as $test) {
 			$case = $test["case"];
-			$tData = $test["data"];
-			$query .= "(DEFAULT, '$questionId', '$case', '$tData'),";
+			$tData = json_encode($test["data"]);
+			$query .= "INSERT INTO 490testCaseTbl VALUES (DEFAULT, '$questionId', '$case', '$tData'); ";
 		}
 		unset($test);
-		$query = substr($query, 0, -1).";";
-		if (!mysqli_query($db, $query)){
+		
+		if (mysqli_multi_query($db, $query)){
+			do {
+				$result = mysqli_store_result($db);
+				if (!$result) {
+					$data["message"] = "Failure";
+					$data["error"] = mysqli_error();
+					return json_encode($data);
+				}
+			} while (mysqli_next_result($db));
+		} else {
 			$data["message"] = "Failure";
 			$data["error"] = mysqli_error();
 			return json_encode($data);
 		}
+		/* $query = substr($query, 0, -1).";";
+		if (!mysqli_query($db, $query)){
+			$data["message"] = "Failure";
+			$data["error"] = mysqli_error().$query;
+			return json_encode($data);
+		} */
+		$data["message"] = "Success";
+		return json_encode(data);
 	}
 ?>

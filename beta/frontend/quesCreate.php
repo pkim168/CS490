@@ -69,7 +69,7 @@
 							return false;
 						}
 						else {
-							alert(''.concat("There was a problem submitting the question. Please try again. Error message: ", data['error']));
+							alert(''.concat("There was a problem submitting the question. Please try again. Error message: ", data['error'], data['message']));
 							return false;
 						}
 					})
