@@ -7,19 +7,7 @@
 		header('Location: ./studentView.php');
 	}
 	
-	$ucid = $_POST["ucid"];
-	$totalPoints = $_POST["totalPoints"];
-	$questions = $_POST["questions"];
-	
-	$url = "https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php";
-	
-	$ch = curl_init($url);
-	$data = array();
-	$data['requestType'] = 'createNewExam';
-	$data['ucid'] = $ucid;
-	$data['totalPoints'] = $totalPoints;
-	$data['questions'] = $questions;
-	$payload = json_encode($data);
+	$payload = file_get_contents('php://input');
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
