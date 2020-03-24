@@ -64,6 +64,7 @@
 								echo "<td><button type='button' id='".$json[$i]['examId']."' style='height: 40px; width: 100%' onclick='takeExam(this.id)'>Take Exam</button></td>";
 							} else if ($json[$i]['status'] == 1) {
 								echo "<td>Graded</td>";
+								echo "<td></td>";
 							} else {
 								echo "<td>Released</td>";
 								echo "<td><button type='button' id='".$json[$i]['examId']."' style='height: 40px; width: 100%' onclick='viewResults(this.id)'>View Results</button></td>";

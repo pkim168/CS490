@@ -63,6 +63,7 @@
 								echo "<td>".$json[$i]['ucid']."</td>";
 								if ($json[$i]['status'] == 0) {
 									echo "<td>Not Taken</td>";
+									echo "<td></td>";
 								} else if ($json[$i]['status'] == 1) {
 									echo "<td>Graded</td>";
 									echo "<td><button type='button'id='".$json[$i]['ucid']."'  style='height: 40px; width: 100%' onclick='exam(this.id)'>View Results</button></td>";
