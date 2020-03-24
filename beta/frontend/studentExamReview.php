@@ -12,7 +12,9 @@
 	if ($_SESSION['role'] != '2') {
 		header('Location: ./index.php');
 	}
-	
+	if (isset($_GET['examId'])){
+		$_SESSION['examId'] = $_GET['examId'];
+	} 
 	$data = array();
 	$data['requestType'] = 'getStudentAnswers';
 	$data['examId'] = $_SESSION['examId'];
