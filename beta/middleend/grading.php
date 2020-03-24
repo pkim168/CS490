@@ -86,8 +86,8 @@ function grade_question($answer, $functionName, $pointsEarned, $parameters, $res
         $total_points += 5;
     }
     else{
-        $comments .= "Better luck next time. Function name is not correct";
-        $question_grade -= 5;
+        $comments .= "Better luck next time. Function name is not correct, it's suppose to be $functionName";
+        $question_grade += 0;
         $total_points += 5;
     }
     //splitting original student answer
@@ -108,7 +108,7 @@ function grade_question($answer, $functionName, $pointsEarned, $parameters, $res
     }
     else{
         $comments .= "Better luck next time. The parameters you entered were incorrect. The correct parameters are $parameters";
-        $question_grade--;
+        $question_grade += 0;
         $total_points++;
     } 
     //counting parameters to test through
@@ -131,11 +131,11 @@ function grade_question($answer, $functionName, $pointsEarned, $parameters, $res
         else{
             //error checking
             if($runpython == ""){
-                $question_grade -= 5;
+                $question_grade += 0;
                 $comments .= "Testcase incorrect. For $answer_function_name($parameter)";
             }
             else{
-                $question_grade -=5;
+                $question_grade += 0;
                 $comments .= "Testcase incorrect. For $answer_function_name($parameter)";
             }
         }
