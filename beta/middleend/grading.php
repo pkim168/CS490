@@ -32,6 +32,9 @@ function get_exam_questions($requestType,$examId){
 
 //counting the amount of questions within exam
 $question_num = count($questions);
+
+$student_questions = array();
+
 //grading each question
 for($i = 0; $i < $question_num; $i++){
     $question = $questions[$i];
@@ -72,12 +75,12 @@ for($i = 0; $i < $question_num; $i++){
     //grades
     $final_grade = $grade[1]; 
     //data from for response
-    $data = array('questionId' => $questionId, 'question' => $question_str, 'functionName' => $functionName, 'difficulty' => $difficulty, 'tag' => $tag, 'testCases' => $testCases, 'answer' => $answer, 'comments' => $comments, 'pointsEarned' => $final_grade, 'totalPoints' => $totalPoints);
+    $data = array('questionId' => $questionId, 'answer' => $answer, 'comments' => $comments, 'pointsEarned' => $final_grade, 'totalPoints' => $totalPoints);
+    array_push($questions, $data);
 }
-
 //send to backend
 //student answers
-$student_answers = array('requestType' => 'submitStudentExam', 'ucid' => $ucid, 'examId' => $examId, 'questions' => $data);
+$student_answers = array('requestType' => 'submitStudentExam', 'ucid' => $ucid, 'examId' => $examId, 'questions' => $student_questions);
 //url to backend
 $url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
 //initialize curl session and return a curl handle
