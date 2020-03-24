@@ -69,8 +69,11 @@
 							alert("Submitted. If working, remove this alert and uncomment next line");
 							//location.href = 'Location: ./studentView.php';
 						}
-						else {
+						else if (data["message"] == "Failure"){
 							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));
+						}
+						else {
+							alert('unknown error');
 						}
 					})
 				})

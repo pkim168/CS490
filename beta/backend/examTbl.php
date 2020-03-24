@@ -313,7 +313,7 @@
 		";
 		if (!mysqli_query($db, $query)){
 			$data["message"] = "Failure";
-			$data["error"] = mysqli_error();
+			$data["error"] = "update status".mysqli_error();
 			return json_encode($data);
 		}
 		
@@ -324,7 +324,7 @@
 		";
 		$result = mysqli_query($db, $query);
 		if ($result->num_rows == 0){
-			$data["message"] = "Error".mysqli_error();
+			$data["message"] = "Error select".mysqli_error();
 			return json_encode($data);
 		}
 		$row = mysqli_fetch_array($result);
@@ -343,7 +343,7 @@
 		$query = substr($query, 0, -1).";";
 		if (!mysqli_query($db, $query)){
 			$data["message"] = "Failure";
-			$data["error"] = mysqli_error();
+			$data["error"] = "insert".mysqli_error();
 			return json_encode($data);
 		}
 		
