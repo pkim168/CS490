@@ -91,7 +91,7 @@
 						while (questions.firstChild) {
 							questions.removeChild(questions.firstChild);
 						}
-						if (data.hasOwnProperty('message') {
+						if (data.hasOwnProperty('message')) {
 							console.log(data['error']);
 							return;
 						}
