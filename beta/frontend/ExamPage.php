@@ -12,7 +12,7 @@
 		header('Location: ./index.php');
 	}
 	//if teacher redirect to teacher landing
-	if ($_SESSION['role'] = '2') {
+	if ($_SESSION['role'] == '2') {
 		header('Location: ./teacherView.php');
 	}
 	if (isset($_GET['examId'])){
