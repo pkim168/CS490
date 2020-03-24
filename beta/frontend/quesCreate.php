@@ -212,7 +212,7 @@
 					<h1> New Question </h1>
 				</div>
 			</div>
-			<form onsubmit="return create();" style="width: 100%>
+			<form onsubmit="return create();" style="width: 100%">
 				<div class="flex-container column" style="width: 100%;margin: 0%; float:right;" id="form">
 					<div class="flex-container row" style="width: 98%;">
 						<label style="width: 50%;">Question:</label>
@@ -249,9 +249,9 @@
 					</div>
 					<div class="flex-container column" style="width: 98%;" id="testCases">
 					</div>
-				</div>
-				<div class="flex-container row">
-					<input type="submit" style="height: 40px; width: 150px" value="Submit Question">
+					<div class="flex-container row">
+						<input type="submit" style="height: 40px; width: 150px" value="Submit Question">
+					</div>
 				</div>
 			</form>
 		</div>
