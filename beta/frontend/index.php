@@ -40,12 +40,10 @@
 					response.json().then((data) => {
 						if(data["message"] == "Verified") {
 							if(data['role']==  1 ){
-								console.log('student');
-								//location.href = "https://web.njit.edu/~dn236/CS490/beta/studentView.php";
+								location.href = "https://web.njit.edu/~dn236/CS490/beta/studentView.php";
 							
 							}else{
-								console.log('teacher');
-								//location.href = "https://web.njit.edu/~dn236/CS490/beta/teacherView.php";
+								location.href = "https://web.njit.edu/~dn236/CS490/beta/teacherView.php";
 							}
 						}
 						else {
