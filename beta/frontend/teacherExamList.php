@@ -1,6 +1,11 @@
 <?php 
 	
-	session_start();
+	session_start([
+        'use_only_cookies' => 1,
+        'cookie_lifetime' => 0,
+        'cookie_secure' => 1,
+        'cookie_httponly' => 1
+    ]);
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
 	} 
@@ -22,6 +27,7 @@
 	$result = curl_exec($ch);
 	curl_close($ch);
 	$json = json_decode($result, true);
+	echo var_dump($json);
 ?>
 <html>
 	<head>
