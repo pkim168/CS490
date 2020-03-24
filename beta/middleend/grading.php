@@ -67,7 +67,7 @@ for($i = 0; $i < $question_num; $i++){
     }
 
     //calculate grade for each questions
-    $grade = grade_question($answer, $functionName, $parameters, $result, $totalPoints);
+    $grade = grade_question($answer, $backend_functionName, $parameters, $result, $totalPoints);
     //separate the grade
     $grade = explode(",", $grade);
     //comments
