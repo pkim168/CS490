@@ -69,7 +69,7 @@
 				})
 				.then((response) => {
 					console.log(response);
-					location.href = 'https://web.njit.edu/~dn236/CS490/beta/studentView.php';
+					location.href = "".concat('https://web.njit.edu/~dn236/CS490/beta/teacherExamStudents.php?examId=',document.getElementById('examId').innerText);
 				})
 				.catch(function(error) {
 					console.log(error);
