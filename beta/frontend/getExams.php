@@ -11,15 +11,9 @@
 	if ($_SESSION['role'] == '1') {
 		header('Location: ./studentView.php');
 	}
-	
-	$ucid = $_SESSION['ucid'];
-	
 	$url = "https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php";
 	$ch = curl_init($url);
-	$data = array();
-	$data['requestType'] = 'getExams';
-	$data['ucid'] = $ucid;
-	$payload = json_encode($data);
+	$payload = file_get_contents('php://input');
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
