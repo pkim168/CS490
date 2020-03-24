@@ -8,8 +8,6 @@
         'cookie_httponly' => 1
     ]);
 	
-	echo $_SESSION['role'];
-	echo $_SESSION['ucid'];
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
 	} 
@@ -147,10 +145,6 @@
 				return;
 			}
 			
-			function back(){
-				// Go back to previous page
-				location.href = 'https://web.njit.edu/~dn236/CS490/beta/teacherView.php';
-			}
 		</script>
 	</head>
 	<body>
@@ -173,7 +167,6 @@
 			</div>
 			<div class="flex-container row">
 				<button type="button" style="height: 40px; width: 150px" onclick="submit()">Create Exam</button>
-				<button type="button" style="height: 40px; width: 150px" onclick="back()">Back</button>
 			</div>
 		</div>
 		<div class="flex-container column" style="width: 50%; margin: 0%; float:right; border-left: 1px black solid;">
