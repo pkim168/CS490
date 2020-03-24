@@ -14,19 +14,6 @@
 	}
 	
 	ob_start();
-	$data = array();
-	$data['requestType'] = 'getExams';
-	$data['ucid'] = $_SESSION['ucid'];
-	$url = "https://web.njit.edu/~dn236/CS490/beta/getExams.php";
-	$ch = curl_init($url);
-	$payload = json_encode($data);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	$result = curl_exec($ch);
-	curl_close($ch);
-	$json = json_decode($result, true);
-	echo var_dump($json);
 ?>
 <html>
 	<head>
@@ -76,6 +63,19 @@
 				<h1> Exams </h1>
 			</div>
 			<?php
+				$data = array();
+				$data['requestType'] = 'getExams';
+				$data['ucid'] = $_SESSION['ucid'];
+				$url = "https://web.njit.edu/~dn236/CS490/beta/getExams.php";
+				$ch = curl_init($url);
+				$payload = json_encode($data);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				$result = curl_exec($ch);
+				curl_close($ch);
+				$json = json_decode($result, true);
+				echo var_dump($json);
 				if (!isset($json['message'])) {
 					for ($i = 0; $i < count($json); $i++) {
 						echo "<div class='flex-container row'>";
