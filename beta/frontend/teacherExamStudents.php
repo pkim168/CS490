@@ -31,7 +31,6 @@
 	$result = curl_exec($ch);
 	curl_close($ch);
 	$json = json_decode($result, true);
-	var_dump($json);
 ?>
 <html>
 	<head>
@@ -39,8 +38,7 @@
 		<link rel="stylesheet" href="styles.css">
 		<script>
 			function exam(id) {
-				$_SESSION['examId'] = id;
-				location.href = '********LINK HERE********';
+				location.href = "".concat('********LINK HERE********?examId='.id);
 			}
 			
 			function releaseExam(name) {
@@ -58,7 +56,7 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							location.href = "https://web.njit.edu/~jrd62/CS490/teacher_middle_exam.php";
+							location.href = "https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php";
 						}
 						else {
 							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));
