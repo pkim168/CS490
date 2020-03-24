@@ -146,7 +146,7 @@
 			
 			function back(){
 				// Go back to previous page
-				location.href = '********LINK HERE********';
+				location.href = 'https://web.njit.edu/~dn236/CS490/beta/teacherView.php';
 				return;
 			}
 		</script>
