@@ -14,7 +14,7 @@
 		header('Location: ./teacherView.php');
 	}
 	$data = array();
-	$data['requestType'] = 'getExams';
+	$data['requestType'] = 'getStudentExams';
 	$data['ucid'] = $_SESSION['ucid'];
 	$url = "https://web.njit.edu/~jrd62/CS490/beta/student_middle.php";
 	
