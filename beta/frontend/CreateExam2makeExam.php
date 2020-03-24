@@ -18,10 +18,10 @@
 	$examId = $_POST["examId"];
 	$questions = $_POST["questions"];
 	
-	$url = "https://web.njit.edu/~jrd62/CS490/teacher_middle_exam.php";
+	$url = "https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php";
 	
 	$ch = curl_init($url);
-	$data = array()
+	$data = array();
 	$data['requestType'] = 'submitStudentExam';
 	$data['ucid'] = $ucid;
 	$data['examId'] = $examId;

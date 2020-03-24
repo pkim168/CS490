@@ -181,6 +181,10 @@
 						while (questions.firstChild) {
 							questions.removeChild(questions.firstChild);
 						}
+						if (data.hasOwnProperty('message') {
+							console.log(data['error']);
+							return;
+						}
 						var count = Object.keys(data).length;
 						for (var i=0; i<count; i++) {
 							var tr = document.createElement('tr');
