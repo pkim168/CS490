@@ -304,7 +304,7 @@
 			$ucid = getData($json['ucid']);
 		}
 		if (!empty($json['examId'])) {
-			$ucid = getData($json['examId']);
+			$examId = getData($json['examId']);
 		}
 		$query = "
 			UPDATE 490studentExamTbl
@@ -324,7 +324,8 @@
 		";
 		$result = mysqli_query($db, $query);
 		if ($result->num_rows == 0){
-			$data["message"] = "Error select".mysqli_error();
+			$data["message"] = "Failure";
+			$data['error'] = "Error select".$ucid.$examId.mysqli_error();
 			return json_encode($data);
 		}
 		$row = mysqli_fetch_array($result);
@@ -337,13 +338,13 @@
 			$answer = $questions[$i]["answer"];
 			$pointsEarned = $questions[$i]["pointsEarned"];
 			$totalPoints = $questions[$i]["totalPoints"];
-			$comments = $questions[$i]["comments"];
+			$comments = getData($questions[$i]["comments"]);
 			$query .= "('$sExamId', '$questionId', '$pointsEarned', '$totalPoints', '$answer', '$comments'),";
 		}
 		$query = substr($query, 0, -1).";";
 		if (!mysqli_query($db, $query)){
 			$data["message"] = "Failure";
-			$data["error"] = "insert".mysqli_error();
+			$data["error"] = $query."insert".mysqli_error();
 			return json_encode($data);
 		}
 		
