@@ -11,6 +11,8 @@ for($i = 0; $i < $question_num; $i++){
     $question = json_decode($parse);
     //questionId
     $questionId = $question['questionId'];
+    //questionId
+    $question_name = $question['question'];
     //functionName
     $functionName = $question['functionName'];
     //difficulty
@@ -23,6 +25,7 @@ for($i = 0; $i < $question_num; $i++){
     for($j=0; $j < count($testCases); $j++){
         $data = $testCases['data'];
         $parameters = $data['parameters'];
+        $results = $data['results'];
     }
     //answer
     $answer = $question['answer'];
@@ -33,16 +36,37 @@ for($i = 0; $i < $question_num; $i++){
     //totalPoints
     $totalPoints = $question['totalPoints'];
     //calculate grade for each questions
-    $grade = grade_question($answer, $functionName, $pointsEarned, $parameters);
+    $grade = grade_question($answer, $functionName, $pointsEarned, $parameters, $results);
     //separate the grade
     $grade = explode(",", $grade);
     //comments
     $comments = $grade[0];
     //grades
-    $final_grade = $grade[1];     
+    $final_grade = $grade[1];   
+    
+    if($requestType == 'getStudentAnswers'){ 
+        //data from json response
+        $data = array('questionId' => $questionId, 'question' => $question_name, 'functionName' => $functionName, 'difficulty' => $difficulty, 'tag' => $tag, 'testCases' => $testCases, 'answer' => $answer, 'comments' => $comments, 'answer' => $final_grade, 'totalPoints' => $totalPoints); 
+        //url to backend
+        $url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+        //initialize curl session and return a curl handle
+        $ch = curl_init($url);
+        //options for a curl transfer	
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+        //execute curl session
+        $response = curl_exec($ch);
+        //close curl session
+        curl_close ($ch);
+        //decoding response
+        $response_decode = json_decode($response);
+        //return response
+        return $response_decode[0];
+    }
 }
 
-function grade_question($answer, $functionName, $pointsEarned, $parameters){
+function grade_question($answer, $functionName, $pointsEarned, $parameters, $results){
     //initial grade
     $question_grade = $pointsEarned;
     //total grade
@@ -87,6 +111,35 @@ function grade_question($answer, $functionName, $pointsEarned, $parameters){
         $question_grade--;
         $total_points++;
     } 
+    //counting parameters to test through
+    $parameter_count = count($parameters);
+    //setting file
+    $file = "test.py";
+    //testing for each parameter
+    for($i = 0; $i < $parameter_count; $i++){
+        //individual parameter
+        $parameter = $temp[$i];
+        $result = $results[$i];
+        //inserting code into file
+        file_put_contents($file, $answer . "\n" . "print($answer_function_name($parameter))");
+        //running the python code
+        $runpython = exec("python test.py");
+        //checking if code matches the result
+        if ($runpython == $result){
+            $comments .= "Awesome, code results were correct";
+        }
+        else{
+            //error checking
+            if($runpython == ""){
+                $question_grade -= 5;
+                $comments .= "Testcase incorrect. For $answer_function_name($parameter)";
+            }
+            else{
+                $question_grade -=5;
+                $comments .= "Testcase incorrect. For $answer_function_name($parameter)";
+            }
+        }
+    }
     //adding comments to the grade
     $comma = ",";
     //$grade = round($grade, 0);
