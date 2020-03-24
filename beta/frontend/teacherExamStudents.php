@@ -12,6 +12,10 @@
 	if ($_SESSION['role'] == '1') {
 		header('Location: ./studentView.php');
 	}
+	
+	if (isset($_GET['examId'])){
+		$_SESSION['examId'] = $_GET['examId'];
+	} 
 	ob_start();
 	
 	$data = array();

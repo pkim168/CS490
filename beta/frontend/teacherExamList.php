@@ -21,9 +21,7 @@
 		<link rel="stylesheet" href="styles.css">
 		<script>
 			function exam(id) {
-				console.log("hello");
-				$_SESSION['examId'] = id;
-				location.href = 'https://web.njit.edu/~dn236/CS490/beta/teacherExamStudents.php';
+				location.href = "".concat('https://web.njit.edu/~dn236/CS490/beta/teacherExamStudents.php?examId=', id);
 			}
 			
 			function releaseExam(name) {
