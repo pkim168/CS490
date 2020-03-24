@@ -15,10 +15,11 @@
 	if (isset($_GET['studentId'])){
 		$_SESSION['studentId'] = $_GET['studentId'];
 	} 
+	
 	$data = array();
 	$data['requestType'] = 'getStudentAnswers';
 	$data['examId'] = $_SESSION['examId'];
-	$data['ucid'] = $_SESSION['ucid'];
+	$data['ucid'] = $_SESSION['studentId'];
 	$url = "https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php";
 	
 	$ch = curl_init($url);
@@ -43,13 +44,13 @@
 			var table = document.getElementById("equestions");
 				let formData = {};
 				formData['requestType'] = 'editStudentExam';
-				formData['ucid'] = document.getElementById("ucid").innerText;
+				formData['ucid'] = document.getElementById("studentId").innerText;
 				formData['examId'] = document.getElementById("examId").innerText;
 				formData['questions'] = [];
-				for (var i=1; i<table.rows.length; i++) {
+				for (var i=1; i<table.rows.length-1; i++) {
 					let question = {};
 					var questionId = table.rows[i].id;
-					var comments = table.rows[i].children[5].innerText;
+					var comments = table.rows[i].children[5].value;
 					var points = table.rows[i].children[3].innerText;
 					question['questionId'] = questionId;
 					question['points'] = points;
@@ -85,6 +86,7 @@
 		<?php
 			echo "<p id='ucid' hidden>{$_SESSION['ucid']}</p>";
 			echo "<p id='examId' hidden>{$_SESSION['examId']}</p>";
+			echo "<p id='studentId' hidden>{$_SESSION['studentId']}</p>";
 		?>
 		<div class="flex-container column" style="width: 100%; margin: 0%; float:left; border-right: 1px black solid;">
 			<div class="flex-container column" style="margin: 0%; float:left;">
@@ -120,9 +122,9 @@
 								$str .= $parameters."\nOutput: ".$data['result']."\n";
 							}
 							echo "<td><pre>".$str."</pre></td>";
-							echo "<td><input style='width: 100%;' ></td>";							
+							echo "<td><input style='width: 100%;' value='".$json[$i]["pointsEarned"]."'></td>";							
 							echo "<td>".$json[$i]["totalPoints"]."</td>";
-							echo "<td><textarea style='width: 100%; resize:vertical'></textarea></td>";
+							echo "<td><textarea style='width: 100%; resize:vertical'>".$json[$i]["comments"]."</textarea></td>";
 							
 							echo "</tr>";
 							$totalPointsEarned += (float)$json[$i]["pointsEarned"];
