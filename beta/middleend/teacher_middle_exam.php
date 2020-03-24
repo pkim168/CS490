@@ -55,33 +55,11 @@ switch($requestType) {
         echo $res_project;
         break;
     case 'createNewExam':
-		//initial setting of variables
-		$requestType="createNewExam";
-		$ucid="";
-		$totalPoints="";
-		$questions=$response['questions'];
-
-		if(isset($response['requestType'])) $requestType = $response['requestType'];
-		if(isset($response['ucid'])) $ucid = $response['ucid'];
-		if(isset($response['totalPoints'])) $totalPoints = $response['totalPoints'];
-		if(isset($response['questions'])) $questions = $response['questions'];
-
-        $res_project=create_new_exam($requestType,$ucid,$totalPoints,$questions);	
+        $res_project=create_new_exam($response);	
         echo $res_project;
         break;
     case 'editStudentExam':
-		//initial setting of variables
-		$requestType="editStudentExam";
-        $examId="";
-        $ucid="";
-        $questions=$response['questions'];
-
-		if(isset($response['requestType'])) $requestType = $response['requestType'];
-        if(isset($response['examId'])) $examId = $response['examId'];
-        if(isset($response['ucid'])) $ucid = $response['ucid'];
-        if(isset($response['questions'])) $questions = $response['questions'];
-
-        $res_project=edit_student_exam($requestType,$examId,$ucid,$questions);	
+        $res_project=edit_student_exam($response);	
         echo $res_project;
 		break;
 	case 'releaseExam':
@@ -181,9 +159,7 @@ function get_student_answers($requestType,$examId,$ucid){
 }
 
 // curl backend 
-function create_new_exam($requestType,$ucid,$totalPoints,$questions){
-	//data from json response
-	$data = array('requestType' => $requestType, 'ucid' => $ucid, 'totalPoints' => $totalPoints, 'questions' => $questions);
+function create_new_exam($response){
 	//url to backend
 	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
 	//initialize curl session and return a curl handle
@@ -191,7 +167,7 @@ function create_new_exam($requestType,$ucid,$totalPoints,$questions){
 	//options for a curl transfer	
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+	curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));
 	//execute curl session
 	$response = curl_exec($ch);
 	//close curl session
@@ -201,9 +177,7 @@ function create_new_exam($requestType,$ucid,$totalPoints,$questions){
 }
 
 // curl backend 
-function edit_student_exam($requestType,$examId,$ucid,$questions){
-	//data from json response
-	$data = array('requestType' => $requestType, 'examId' => $examId, 'ucid' => $ucid, 'questions' => $questions);
+function edit_student_exam($response){
 	//url to backend
 	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
 	//initialize curl session and return a curl handle
@@ -211,7 +185,7 @@ function edit_student_exam($requestType,$examId,$ucid,$questions){
 	//options for a curl transfer	
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+	curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($response));
 	//execute curl session
 	$response = curl_exec($ch);
 	//close curl session
