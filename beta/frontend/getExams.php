@@ -12,12 +12,17 @@
 		header('Location: ./studentView.php');
 	}
 	
-	$url = "https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php";
+	$ucid = "";
 	
+	if(!empty($_POST["ucid"])){
+		$ucid = $_POST["ucid"];
+	}
+	
+	$url = "https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php";
 	$ch = curl_init($url);
 	$data = array();
 	$data['requestType'] = 'getExams';
-	$data['ucid'] = $_POST['ucid'];
+	$data['ucid'] = $ucid;
 	$payload = json_encode($data);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
