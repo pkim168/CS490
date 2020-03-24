@@ -496,7 +496,7 @@
 				$questionId = $questions[$j]["questionId"];
 				$pointsEarned = '0';
 				$totalPoints = $questions[$j]["totalPoints"];
-				$query .= "('$id', '$questionId', '$pointsEarned', '$totalPoints', NULL, NULL),";
+				$query .= "('$id', '$questionId', '$pointsEarned', '$totalPoints', '', ''),";
 			}
 		}
 		$query = substr($query, 0, -1).";";
