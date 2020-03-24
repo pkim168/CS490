@@ -71,25 +71,27 @@ for($i = 0; $i < $question_num; $i++){
     $comments = $grade[0];
     //grades
     $final_grade = $grade[1]; 
-    
-    //send to backend
-    //data from json response
+    //data from for response
     $data = array('questionId' => $questionId, 'question' => $question_str, 'functionName' => $functionName, 'difficulty' => $difficulty, 'tag' => $tag, 'testCases' => $testCases, 'answer' => $answer, 'comments' => $comments, 'pointsEarned' => $final_grade, 'totalPoints' => $totalPoints);
-    //url to backend
-    $url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
-    //initialize curl session and return a curl handle
-    $ch = curl_init($url);
-    //options for a curl transfer	
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-    //execute curl session
-    $send = curl_exec($ch);
-    //close curl session
-    curl_close ($ch);
-    //return response
-    return $send;
 }
+
+//send to backend
+//student answers
+$student_answers = array('requestType' => 'submitStudentExam', 'ucid' => $ucid, 'examId' => $examId, 'questions' => $data);
+//url to backend
+$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+//initialize curl session and return a curl handle
+$ch = curl_init($url);
+//options for a curl transfer	
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($student_answers));
+//execute curl session
+$send = curl_exec($ch);
+//close curl session
+curl_close ($ch);
+//return response
+return $send;
 
 
 function grade_question($answer, $functionName, $parameters, $result, $totalPoints){
@@ -167,6 +169,8 @@ function grade_question($answer, $functionName, $parameters, $result, $totalPoin
     //grade only tests for whether the function name and the parameters are correct
     return $grade;
 ?>
+
+
 <!--what will be received-->
 <!--
 0: {
