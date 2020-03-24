@@ -1,5 +1,5 @@
 get rid of test cases in ExamPage.php
 get rid of testcase text field in backend and wherever it appears
 points per item per question
-dont show exam history
+dont show full exam history
 fix grading
