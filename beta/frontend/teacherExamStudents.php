@@ -38,7 +38,7 @@
 		<link rel="stylesheet" href="styles.css">
 		<script>
 			function exam(id) {
-				location.href = "".concat('********LINK HERE********?examId='.id);
+				location.href = "".concat('https://web.njit.edu/~dn236/CS490/beta/teacherExamReview.php?studentId=',id);
 			}
 		</script>
 	</head>
@@ -65,11 +65,11 @@
 									echo "<td>Not Taken</td>";
 								} else if ($json[$i]['status'] == 1) {
 									echo "<td>Graded</td>";
-									echo "<td><button type='button' style='height: 40px; width: 100%' onclick='exam(this.id)'>View Results</button></td>";
+									echo "<td><button type='button'id='".$json[$i]['ucid']."'  style='height: 40px; width: 100%' onclick='exam(this.id)'>View Results</button></td>";
 									echo "</tr>";
 								} else {
 									echo "<td>Released</td>";
-									echo "<td><button type='button' style='height: 40px; width: 100%' onclick='exam(this.id)'>View Results</button></td>";
+									echo "<td><button type='button' id='".$json[$i]['ucid']."' style='height: 40px; width: 100%' onclick='exam(this.id)'>View Results</button></td>";
 									echo "</tr>";
 								}
 							}

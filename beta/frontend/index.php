@@ -6,13 +6,13 @@
         'cookie_httponly' => 1
     ]);
 	
-	/*
+	
 	if(array_key_exists('role', $_SESSION)){
 		if($_SESSION["role"] == 1)
 			header('Location: ./studentView.php');
 		if($_SESSION["role"] == 2)
 			header('Location: ./teacherView.php');
-	}*/
+	}
 	ob_start();
 ?>
 <html>
