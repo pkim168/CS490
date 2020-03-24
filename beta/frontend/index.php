@@ -42,14 +42,19 @@
 							let roleData = new FormData();
 							roleData.append('role', data['role']);
 							roleData.append('ucid', ucid);
-							if(data['role']==  1 ){
-								roleData.append('link', 'https://web.njit.edu/~dn236/CS490/beta/studentView.php');
-							}else{
-								roleData.append('link', "https://web.njit.edu/~dn236/CS490/beta/teacherView.php");
-							}
 							fetch("https://web.njit.edu/~dn236/CS490/beta/setData.php", {
-								method: "POST",
-								body: roleData
+									method: "POST",
+									body: roleData
+							})
+							.then((response) => {
+								if(data['role']==  1 ){
+								
+									location.href = "https://web.njit.edu/~dn236/CS490/beta/studentView.php";
+								
+								}else{
+									let roleData = new FormData();
+									location.href = "https://web.njit.edu/~dn236/CS490/beta/teacherView.php";
+								}
 							});
 						}
 						else {
