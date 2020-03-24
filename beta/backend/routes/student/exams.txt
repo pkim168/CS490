@@ -211,13 +211,15 @@ INSERT
 					questionId: (String),
 					answer: (String),
 					pointsEarned: (String),
-					totalPoints: (String)
+					totalPoints: (String),
+					comments: (String)
 				},
 				1: {
 					questionId: (String),
 					answer: (String),
 					pointsEarned: (String),
 					totalPoints: (String)
+					comments: (String)
 				},
 				etc.
 			}
