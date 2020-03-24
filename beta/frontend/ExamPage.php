@@ -15,11 +15,13 @@
 	if ($_SESSION['role'] = '2') {
 		header('Location: ./teacherView.php');
 	}
-	
+	if (isset($_GET['examId'])){
+		$_SESSION['examId'] = $_GET['examId'];
+	} 
 	$data = array();
 	$data['requestType'] = 'getExamQuestions';
 	$data['examId'] = $_SESSION['examId'];
-	$url = "https://web.njit.edu/~jrd62/CS490/student_middle.php";
+	$url = "https://web.njit.edu/~jrd62/CS490/beta/student_middle.php";
 	
 	$ch = curl_init($url);
 	$payload = json_encode($data);
@@ -75,82 +77,6 @@
 				return;
 			}
 			
-			function filter() {
-				var diff = document.getElementById("difficulty").value;
-				var tag = document.getElementById("tag").value;
-				let formData = new FormData();
-				formData.append('requestType', 'getQuestions');
-				if (diff != "") {
-					formData.append('difficulty', diff);
-				}
-				if (tag != "") {
-					formData.append('tag', tag);
-				}
-				for (var p of formData) {
-				  console.log(p);
-				}
-				// cURL to middle end
-				fetch("********LINK HERE********", {
-					method: "POST",
-					body: formData
-				})
-				.then((response) => {
-					console.log(response);
-					response.json().then((data) => {
-						var questions = document.getElementById('questions')
-						while (questions.firstChild()) {
-							questions.removeChild(questions.firstChild());
-						}
-						var count = Object.keys(data).length;
-						for (var i=0; i<count; i++) {
-							var tr = document.createElement('tr');
-							tr.setAttribute("id", data[i][questionId]);
-							var td = document.createElement('tr');
-							td.textContent = data[i][question];
-							tr.appendChild(td);
-							var tb = document.createElement('tr');
-							var button = document.createElement('button');
-							button.setAttribute("type", "button");
-							button.setAttribute("onclick", "add(this.closest('tr'))");
-							button.textContent = "Add";
-							tb.appendChild(button);
-							tr.appendChild(tb);
-							document.getElementById('questions').appendChild(tr);
-						}
-					})
-				})
-				.catch(function(error) {
-					console.log(error);
-				});
-				return;
-			}
-			
-			function add(question) {
-				if (document.getElementById('q'.concat(question.id))) {
-					alert("You already added this question");
-					return;
-				}
-				var tr = document.createElement('tr');
-				tr.setAttribute("id", 'q'.concat(question.id));
-				var td = document.createElement("td");
-				td.textContent = question.children[0].innerText;
-				tr.appendChild(td);
-				td = document.createElement("td");
-				var points = document.createElement("input");
-				td.appendChild(points);
-				tr.appendChild(td);
-				td = document.createElement("td");
-				var button = document.createElement("button");
-				button.setAttribute("type", "button");
-				button.setAttribute("style", "height: 40px; width: 150px");
-				button.setAttribute("onclick", "this.closest('tr').remove()");
-				button.textContent = "Delete";
-				td.appendChild(button);
-				tr.appendChild(td);
-				document.getElementById('equestions').appendChild(tr);
-				return;
-			}
-			
 			function testCases(testCase) {
 				var count = Object.keys(testCase).length;
 				var str = testCase[0]['case'];
@@ -162,12 +88,6 @@
 					str = "".concat(str, parameters, "\n Output: ", testCase[i]['data']['result'], "\n");
 				}
 				alert(str);
-			}
-			
-			function back(){
-				// Go back to previous page
-				location.href = '********LINK HERE********';
-				return;
 			}
 		</script>
 	</head>
