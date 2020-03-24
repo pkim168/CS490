@@ -3,16 +3,16 @@
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
 	} 
-	if ($_SESSION['role'] = '1') {
+	if ($_SESSION['role'] == '1') {
 		header('Location: ./studentView.php');
 	}
 	
 	$difficulty = $tag = "";
 	
-	if(empty($_POST["difficulty"])){
+	if(!empty($_POST["difficulty"])){
 		$difficulty = $_POST["difficulty"];
 	}
-	if(empty($_POST["tag"])){
+	if(!empty($_POST["tag"])){
 		$tag = $_POST["tag"];
 	}
 	$url = "https://web.njit.edu/~jrd62/CS490/teacher_middle_questions.php";

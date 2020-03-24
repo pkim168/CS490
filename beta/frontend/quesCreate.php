@@ -164,12 +164,8 @@
 				var tag = document.getElementById("tag").value;
 				let formData = new FormData();
 				formData.append('requestType', 'getQuestions');
-				if (diff != "") {
-					formData.append('difficulty', diff);
-				}
-				if (tag != "") {
-					formData.append('tag', tag);
-				}
+				formData.append('difficulty', diff);
+				formData.append('tag', tag);
 				for (var p of formData) {
 				  console.log(p);
 				}
@@ -205,12 +201,12 @@
 	</head>
 	<body onload="clearInp()">
 		<div class="flex-container column" style="width: 50%; margin: 0%; float:left; border-right: 1px black solid;">
-			<div class="flex-container column" style="margin: 0%; float:left;">
+			<div class="flex-container column" style="width:100% margin: 0%; float:left;">
 				<div class="flex-container row">
 					<h1> New Question </h1>
 				</div>
 			</div>
-			<form onsubmit="return create();">
+			<form onsubmit="return create();" style="width: 100%>
 				<div class="flex-container column" style="width: 100%;margin: 0%; float:right;" id="form">
 					<div class="flex-container row" style="width: 98%;">
 						<label style="width: 50%;">Question:</label>
