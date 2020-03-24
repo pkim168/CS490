@@ -111,12 +111,12 @@ function grade_question($answer, $functionName, $parameters, $result, $totalPoin
     //grabbing the function name
     $answer_function_name = $split[1];
     //checking if function name is correct
-    if($answer_function_name != $functionName){
+    if($answer_function_name == $functionName){
         $comments .= "Congrats. Function name is correct!\n";
         $pointsEarned += ($totalPoints*0.2);
     }
     else{
-        $comments .= "Better luck next time. Function name is incorrect.\n";
+        $comments .= "Better luck next time. Function name is incorrect. Funcations $functionName and $answer_function_name\n";
     }
     //splitting original student answer
     $split_left = explode(")", $answer);
@@ -130,12 +130,12 @@ function grade_question($answer, $functionName, $parameters, $result, $totalPoin
     $student_parameters = preg_replace("/\s/","", $answer_parameter);
     $parameters = preg_replace("/\s/","", $parameters);
     //checking student parameters with the test case parameters
-    if(strcmp($student_parameters, $parameters) != 0){
+    if(strcmp($student_parameters, $parameters) == 0){
         $comments .= "Awesome you got the parameters correct\n";
         $pointsEarned += ($totalPoints*0.2);
     }
     else{
-        $comments .= "Better luck next time. The parameters you entered were incorrect. $functionName\n";
+        $comments .= "Better luck next time. The parameters you entered were incorrect. $\n";
     } 
     //counting parameters to test through
     $parameter_count = count($parameters);
@@ -151,7 +151,7 @@ function grade_question($answer, $functionName, $parameters, $result, $totalPoin
         //running the python code
         $runpython = exec("python test.py");
         //checking if code matches the result
-        if ($runpython != $r){
+        if ($runpython == $r){
             $comments .= "Awesome code results were correct";
             $pointsEarned += ($totalPoints*0.6);
         }
