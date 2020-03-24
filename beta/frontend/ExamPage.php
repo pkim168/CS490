@@ -76,19 +76,6 @@
 				});
 				return;
 			}
-			
-			function testCases(testCase) {
-				var count = Object.keys(testCase).length;
-				var str = testCase[0]['case'];
-				for (var i=0; i<count; i++) {
-					var parameters = "\nParameters: "
-					for (var j=0; j < Object.keys(testCase[i]['data']['parameters']).length; j++) {
-						var parameters = "".concat(parameters, testCase[i]['data']['parameters'][j], "; ")
-					}
-					str = "".concat(str, parameters, "\n Output: ", testCase[i]['data']['result'], "\n");
-				}
-				alert(str);
-			}
 		</script>
 	</head>
 	<body>
@@ -111,6 +98,7 @@
 						<th> Test Cases </th>
 					</tr>
 					<?php
+					var_dump($json);
 						for ($i = 0; $i < count($json); $i++) {
 							echo "<tr id=".$json[$i]["questionId"].">";
 							echo "<td>".$json[$i]["question"]."</td>";
