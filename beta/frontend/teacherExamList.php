@@ -40,7 +40,8 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							location.href = 'https://web.njit.edu/~dn236/CS490/beta/teacherView.php'
+							alert(data['error']);
+							//location.href = 'https://web.njit.edu/~dn236/CS490/beta/teacherView.php';
 						}
 						else {
 							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));

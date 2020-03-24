@@ -465,9 +465,8 @@
 			$data["error"] = mysqli_error();
 			return json_encode($data);
 		}
-		
 		$data["message"] = "Success";
-		$data["error"] = "None";
+		$data["error"] = "None".query;
 		return json_encode($data);
 	}
 ?>
