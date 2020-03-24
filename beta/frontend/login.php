@@ -1,5 +1,10 @@
 <?php
-	
+	session_start([
+        'use_only_cookies' => 1,
+        'cookie_lifetime' => 0,
+        'cookie_secure' => 1,
+        'cookie_httponly' => 1
+    ]);
 	
 	$ucidErr = $passErr = "";
 	$ucid = $password = "";
@@ -22,6 +27,11 @@
 	$result = curl_exec($ch);
 	curl_close($ch);
 	
-	echo $result;
+	$json = json_decode($result);
+	
+	$_SESSION['role'] = $json['role'];
+	$_SESSION['ucid'] = $ucid;
+	
+	echo json_encode($json);
 	
 ?>
