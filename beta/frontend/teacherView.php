@@ -7,14 +7,12 @@
         'cookie_httponly' => 1
     ]);
 	
-	if (!empty($_GET['ucid'])){
+	if (!isset($_GET['ucid'])){
 		$_SESSION['ucid'] = $_GET['ucid'];
 	} 
-	if (!empty(['role'])){
+	if (!isset(['role'])){
 		$_SESSION['role'] = $_GET['role'];
 	}
-	echo $_SESSION['role'];
-	echo $_SESSION['ucid'];
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
 	} 
