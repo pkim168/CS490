@@ -1,0 +1,13 @@
+Login Verification (https://web.njit.edu/~pk549/490/beta/userTbl.php)
+	Send:
+	{
+		requestType: 'login'
+		ucid: ___
+		pass: ___
+	}
+		
+	Receive:
+	{
+		message: 'Verified' or 'Rejected'
+		role: '1' (Student) or '2' (Teacher) //Only returned if login is verified
+	}	
