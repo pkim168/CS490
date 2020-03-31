@@ -48,12 +48,13 @@
 				for (var i=1; i<table.rows.length; i++) {
 					let question = {};
 					var questionId = table.rows[i].id;
-					var answer = table.rows[i].children[1].innerText;
+					var answer = table.rows[i].children[1].firstChild.value;
 					var points = table.rows[i].children[2].innerText;
 					question['questionId'] = questionId;
 					question['totalPoints'] = points;
 					question['answer'] = answer;
 					formData['questions'].push(question);
+					console.log(answer);
 				}
 				// cURL to middle end
 				// 
