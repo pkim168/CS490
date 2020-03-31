@@ -1,0 +1,276 @@
+GET
+	// Get a list of all exams created by a teacher
+	Get All Exams (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: 'getExams',
+			ucid: teacherId
+		}
+
+		Receive:
+		{
+			0: examId,
+			1: examId,
+			etc.
+		}
+		
+	// Get a list of all questions in an exam
+	Get Exam Questions (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: 'getExamQuestions',
+			examId: (string)
+		}
+
+		Receive:
+		{
+			0: {
+				questionId: (String),
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					1: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					etc.
+				}
+				totalPoints: (String)
+			},
+			1: {
+				questionId: (String),
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					1: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					etc.
+				}
+				totalPoints: (String)
+			},
+			etc.
+		}
+
+	// Get a list of students who took an exam
+	Get Student Exam Statuses (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: 'getExamStatuses',
+			examId: (String)
+		}
+
+		Receive:
+		{
+			0: {
+				ucid: studentId,
+				status: (string)
+			},
+			1: {
+				ucid: studentId,
+				status: (string)
+			},
+			etc.
+		}
+
+	// Get a list of questions and answers for a student's exam
+	Get Student Exam Answers (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: 'getStudentAnswers',
+			examId: (String),
+			ucid: (String)
+		}
+
+		Receive:
+		{
+			0: {
+				questionId: (String),
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					1: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					etc.
+				}
+				answer: (String),
+				comments: (String),
+				pointsEarned: (String),
+				totalPoints: (String)
+			},
+			1: {
+				questionId: (String),
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					1: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					etc.
+				}
+				answer: (String),
+				comments: (String),
+				pointsEarned: (String),
+				totalPoints: (String)
+			},
+			etc.
+		}
+
+INSERT
+
+	// Create new Exam. Creates student exams with status 0
+	Create new Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: "createNewExam",
+			ucid: (String),
+			totalPoints: (String),
+			questions: {
+				0: {
+					questionId: (String),
+					points: (String)
+				},
+				1: {
+					questionId: (String),
+					points: (String)
+				},
+				etc.
+			}
+		}
+		Receive:
+		{
+			message: "Success" or "Failed"
+			error: Error Message
+		}
+		
+	// Add comments and change score for a student's exam
+	Edit Student Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: "editStudentExam",
+			examId: (String),
+			ucid: studentId,
+			questions: {
+				0: {
+					questionId: (String),
+					points: (String),
+					comments: (String)
+				},
+				1: {
+					questionId: (String),
+					points: (String),
+					comments: (String)
+				},
+				etc.
+			}
+		}
+
+		Receive: 
+		{
+			message: "Success" or "Failed"
+		}
+		
+	// Release exams to students. Changes status to 2
+	Release Student Exams (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: "releaseExam",
+			examId: (String)
+		}
+
+		Receive: 
+		{
+			message: "Success" or "Failed"
+		}

@@ -1,26 +1,24 @@
 <?php 
+	// If session doesn't exists, redirect to login page
 	session_start([
         'use_only_cookies' => 1,
         'cookie_lifetime' => 0,
         'cookie_secure' => 1,
         'cookie_httponly' => 1
     ]);
-	ob_start();
-	
-	//if no session data
 	if (empty($_SESSION['ucid']) || empty($_SESSION['role'])){
 		header('Location: ./index.php');
-	}
-	//if teacher redirect to teacher landing
-	if ($_SESSION['role'] == '2') {
-		header('Location: ./teacherView.php');
+	} 
+	if ($_SESSION['role'] != '1') {
+		header('Location: ./index.php');
 	}
 	if (isset($_GET['examId'])){
 		$_SESSION['examId'] = $_GET['examId'];
 	} 
 	$data = array();
-	$data['requestType'] = 'getExamQuestions';
+	$data['requestType'] = 'getStudentAnswers';
 	$data['examId'] = $_SESSION['examId'];
+	$data['ucid'] = $_SESSION['ucid'];
 	$url = "https://web.njit.edu/~jrd62/CS490/beta/student_middle.php";
 	
 	$ch = curl_init($url);
@@ -32,56 +30,15 @@
 	curl_close($ch);
 	$json = json_decode($result, true);
 	
+	
+	
+	ob_start();
 ?>
 <html>
 	<head>
 		<meta charset="utf-8"/>
 		<link rel="stylesheet" href="styles.css">
 		<script>
-			function submit(){
-				var table = document.getElementById("equestions");
-				let formData = {};
-				formData['requestType'] = 'submitStudentExam';
-				formData['ucid'] = document.getElementById("ucid").innerText;
-				formData['examId'] = document.getElementById("examId").innerText;
-				formData['questions'] = [];
-				for (var i=1; i<table.rows.length; i++) {
-					let question = {};
-					var questionId = table.rows[i].id;
-					var answer = table.rows[i].children[1].firstChild.value;
-					var points = table.rows[i].children[2].innerText;
-					question['questionId'] = questionId;
-					question['totalPoints'] = points;
-					question['answer'] = answer;
-					formData['questions'].push(question);
-					console.log(answer);
-				}
-				// cURL to middle end
-				// 
-				fetch("https://web.njit.edu/~jrd62/CS490/beta/grading.php", {
-					method: "POST",
-					body: JSON.stringify(formData)
-				})
-				.then((response) => {
-					console.log(response);
-					response.json().then((data) => {
-						if (data["message"] == "Success") {
-							// Redirect back after successful submission
-							location.href = 'https://web.njit.edu/~dn236/CS490/beta/studentView.php';
-						}
-						else if (data["message"] == "Failure"){
-							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));
-						}
-						else {
-							alert('unknown error');
-						}
-					})
-				})
-				.catch(function(error) {
-					console.log(error);
-				});
-				return;
-			}
 		</script>
 	</head>
 	<body>
@@ -100,15 +57,18 @@
 					<tr>
 						<th> Question </th>
 						<th> Answer </th>
-						<th> Points </th>
 						<th> Test Cases </th>
+						<th> Points Earned </th>
+						<th> Points Total </th>
+						<th> Comments </th>
 					</tr>
 					<?php
+						$totalPointsEarned=0;
+						$maxPoints=0;
 						for ($i = 0; $i < count($json); $i++) {
 							echo "<tr id=".$json[$i]["questionId"].">";
 							echo "<td>".$json[$i]["question"]."</td>";
-							echo "<td><textarea style='width: 100%; resize:vertical' id='testCase' required></textarea></td>";
-							echo "<td>".$json[$i]["totalPoints"]."</td>";
+							echo "<td>".$json[$i]["answer"]."</td>";
 							$testCases = $json[$i]["testCases"];
 							$str = $testCases[0]['case'];
 							for ($j=0; $j < count($testCases); $j++) {
@@ -120,13 +80,17 @@
 								$str .= $parameters."\nOutput: ".$data['result']."\n";
 							}
 							echo "<td><pre>".$str."</pre></td>";
+							echo "<td>".$json[$i]["pointsEarned"]."</td>";							
+							echo "<td>".$json[$i]["totalPoints"]."</td>";
+							echo "<td>".$json[$i]["comments"]."</td>";
 							echo "</tr>";
+							$totalPointsEarned += (float)$json[$i]["pointsEarned"];
+							$maxPoints +=  (float)$json[$i]["totalPoints"];
 						}
+						$percentage = ceil(100*($totalPointsEarned / $maxPoints));
+						echo "<td></td><td></td><td></td><td> Percentage: ".$percentage."% </td>";
 					?>
 				</table>
-			</div>
-			<div class="flex-container row">
-				<button type="button" style="height: 40px; width: 150px" onclick="submit()">Submit Exam</button>
 			</div>
 		</div>
 		

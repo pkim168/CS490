@@ -1,0 +1,232 @@
+GET
+	// Get a list of all questions in an exam
+	// Use to create exam when student takes the exam
+	Get Exam Questions (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: 'getExamQuestions',
+			examId: (string)
+		}
+
+		Receive:
+		{
+			0: {
+				questionId: (String),
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					1: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					etc.
+				}
+				totalPoints: (String)
+			},
+			1: {
+				questionId: (String),
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					1: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					etc.
+				}
+				totalPoints: (String)
+			},
+			etc.
+		}
+
+	// Get a list of all Exams assigned to a student
+	// Use to show all exams a student has. Includes exam status
+	Get Student's Exams (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: 'getStudentExams',
+			ucid: (string)
+		}
+
+		Receive:
+		{
+			0: {
+				examId: (String),
+				studentExamId: (String),
+				status: (String)
+			},
+			1: {
+				examId: (String),
+				studentExamId: (String),
+				status: (String)
+			},
+			etc.
+		}
+	
+	// Get a list of questions and answers for a student's exam
+	// Use when student is reviewing exam
+	Get Student Exam Answers (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: 'getStudentAnswers',
+			examId: (String),
+			ucid: (String)
+		}
+
+		Receive:
+		{
+			0: {
+				questionId: (String),
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					1: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					etc.
+				}
+				answer: (String),
+				comments: (String),
+				pointsEarned: (String),
+				totalPoints: (String)
+			},
+			1: {
+				questionId: (String),
+				question: (String),
+				functionName: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					1: {
+						case: Testcase,
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					etc.
+				}
+				answer: (String),
+				comments: (String),
+				pointsEarned: (String),
+				totalPoints: (String)
+			},
+			etc.
+		}
+
+INSERT	
+	// Submit student's exam. Changes status to 1
+	Submit Student's Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+		Send:
+		{
+			requestType: 'submitStudentExam',
+			ucid: (String),
+			examId: (String),
+			questions: {
+				0: {
+					questionId: (String),
+					answer: (String),
+					pointsEarned: (String),
+					totalPoints: (String),
+					comments: (String)
+				},
+				1: {
+					questionId: (String),
+					answer: (String),
+					pointsEarned: (String),
+					totalPoints: (String)
+					comments: (String)
+				},
+				etc.
+			}
+		}
+		
+		Receive:
+		{
+			message: "Success" or "Failed"
+			error: Error Message
+		}
