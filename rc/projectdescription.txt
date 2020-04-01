@@ -1,0 +1,94 @@
+Notes: Use Cases for CS 490 Project
+
+
+Prereq: Instructor and Student login. Successful log in sends user to correct landing page (student or instructor).
+
+
+1)Instructor adds a question to the Question Bank. 
+
+Every question is of the form "Write a question named _________ that takes arguments ___________ does ________________________ and returns (or prints) the result." Please use a text area for the body of the description.
+
+Pull down lists for topics (include at least six topics) and difficulty (only easy, medium and hard). No points!!!
+
+Two test cases for each question were required for the Beta. Now, you must have a minimum of two and a maximum of 6 test cases. I will include questions the answers for which might pass some test cases and not others.
+
+You must have a split screen that filters existing questions by topic, difficulty and keyword (found in the description).
+
+You must include a drop down for constraints (e.g. for, while, print) meaning the answer must include a for statement or a while statement or a print statement. Only one contraint per question.
+
+
+2)Instructor creates an Exam.
+
+Must use split screen.
+
+Points are assigned only to questions that have been added to an exam.
+
+
+3)Student takes exam.
+
+You must display the points for each question.
+
+You must use a text area for the student's answer. Make sure it is large enough (no single line text fields!).
+
+
+4) Instructor previews Auto-graded results.
+
+Itemize every sub-item per question. You should use a table where the last column of each row may be used by the instructor to override the score on that sub-item.
+
+For the Beta you were supposed to check the name of the function and run the two test cases. That would have been three rows in the results table. Going forward you will also check whether a colon appears at the end of the first line, and also if a required constraint was followed. Thus, for each question, your results table should have a minimum of 6 rows (5 sub-items and one comment).
+
+You can check for more sub-items, but, you must have the 5 described above at a minimum.
+
+
+
+5) Student reviews results.
+
+This should should the complete auto-grading and overridden results. The goal here is to be clear and precise (and hopefully, educational). You have been taking exams for years - you know what good feedback should look like.
+
+
+PS. Your system should be able to handle the following question:
+
+
+		Write a function named "operation" that takes three arguments: "op" which is an 			arithmetic operator, "+","-","*" or "/", and "a" and "b" which are two int numbers. 			The function must return the result.
+
+		For example, if operation is called as "operation("+", 2, 3)" the correct output would 		be 5.
+
+
+A completely correct answer to the above question would be as follows:
+
+
+		def operation(op, a, b):
+			if op == '+':
+				return a + b
+			elif op == '-':
+				return a - b
+			elif op == '*':
+				return a * b
+			elif op == '/':
+				return a / b
+			else:
+				return -1
+
+In order to properly test the above answer you will need 5 test cases. The student's answer might pass none, some or all of them.
+
+
+In order to test the above answer you will need at least 5 test cases.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
