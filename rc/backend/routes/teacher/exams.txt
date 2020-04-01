@@ -13,89 +13,6 @@ GET
 			1: examId,
 			etc.
 		}
-		
-	// Get a list of all questions in an exam
-	Get Exam Questions (https://web.njit.edu/~pk549/490/beta/examTbl.php)
-		Send:
-		{
-			requestType: 'getExamQuestions',
-			examId: (string)
-		}
-
-		Receive:
-		{
-			0: {
-				questionId: (String),
-				question: (String),
-				functionName: (String),
-				difficulty: 'Easy, 'Medium', or 'Hard'
-				tag: (string)
-				testCases: {
-					0: {
-						case: Testcase,
-						data: {
-							parameters: {
-								0: Parameter,
-								1: Parameter,
-								etc.
-							},
-							argc: Num of Arguments,
-							result: Expected output
-						}
-					},
-					1: {
-						case: Testcase,
-						data: {
-							parameters: {
-								0: Parameter,
-								1: Parameter,
-								etc.
-							},
-							argc: Num of Arguments,
-							result: Expected output
-						}
-					},
-					etc.
-				}
-				totalPoints: (String)
-			},
-			1: {
-				questionId: (String),
-				question: (String),
-				functionName: (String),
-				difficulty: 'Easy, 'Medium', or 'Hard'
-				tag: (string)
-				testCases: {
-					0: {
-						case: Testcase,
-						data: {
-							parameters: {
-								0: Parameter,
-								1: Parameter,
-								etc.
-							},
-							argc: Num of Arguments,
-							result: Expected output
-						}
-					},
-					1: {
-						case: Testcase,
-						data: {
-							parameters: {
-								0: Parameter,
-								1: Parameter,
-								etc.
-							},
-							argc: Num of Arguments,
-							result: Expected output
-						}
-					},
-					etc.
-				}
-				totalPoints: (String)
-			},
-			etc.
-		}
 
 	// Get a list of students who took an exam
 	Get Student Exam Statuses (https://web.njit.edu/~pk549/490/beta/examTbl.php)
@@ -132,12 +49,24 @@ GET
 			0: {
 				questionId: (String),
 				question: (String),
-				functionName: (String),
-				difficulty: 'Easy, 'Medium', or 'Hard'
-				tag: (string)
+				function: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				colon: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				constraints: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
 				testCases: {
 					0: {
-						case: Testcase,
+						itemId: (Int),
 						data: {
 							parameters: {
 								0: Parameter,
@@ -146,10 +75,12 @@ GET
 							},
 							argc: Num of Arguments,
 							result: Expected output
-						}
+						},
+						pointsEarned: (Int),
+						totalSubPoints: (Int)
 					},
 					1: {
-						case: Testcase,
+						itemId: (Int),
 						data: {
 							parameters: {
 								0: Parameter,
@@ -158,24 +89,37 @@ GET
 							},
 							argc: Num of Arguments,
 							result: Expected output
-						}
+						},
+						pointsEarned: (Int),
+						totalSubPoints: (Int)
 					},
 					etc.
 				}
 				answer: (String),
 				comments: (String),
-				pointsEarned: (String),
 				totalPoints: (String)
 			},
 			1: {
 				questionId: (String),
 				question: (String),
-				functionName: (String),
-				difficulty: 'Easy, 'Medium', or 'Hard'
-				tag: (string)
+				function: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				colon: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				constraints: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
 				testCases: {
 					0: {
-						case: Testcase,
+						itemId: (Int),
 						data: {
 							parameters: {
 								0: Parameter,
@@ -184,10 +128,12 @@ GET
 							},
 							argc: Num of Arguments,
 							result: Expected output
-						}
+						},
+						pointsEarned: (Int),
+						totalSubPoints: (Int)
 					},
 					1: {
-						case: Testcase,
+						itemId: (Int),
 						data: {
 							parameters: {
 								0: Parameter,
@@ -196,13 +142,14 @@ GET
 							},
 							argc: Num of Arguments,
 							result: Expected output
-						}
+						},
+						pointsEarned: (Int),
+						totalSubPoints: (Int)
 					},
 					etc.
 				}
 				answer: (String),
 				comments: (String),
-				pointsEarned: (String),
 				totalPoints: (String)
 			},
 			etc.
@@ -245,12 +192,56 @@ INSERT
 			questions: {
 				0: {
 					questionId: (String),
-					points: (String),
+					function: {
+						itemId: (Int),
+						pointsEarned: (Int)
+					},
+					colon: {
+						itemId: (Int),
+						pointsEarned: (Int)
+					},
+					constraints: {
+						itemId: (Int),
+						pointsEarned: (Int)
+					},
+					testCases: {
+						0: {
+							itemId: (Int),
+							pointsEarned: (Int)
+						},
+						1: {
+							itemId: (Int),
+							pointsEarned: (Int)
+						},
+						etc.
+					}
 					comments: (String)
 				},
 				1: {
 					questionId: (String),
-					points: (String),
+					function: {
+						itemId: (Int),
+						pointsEarned: (Int)
+					},
+					colon: {
+						itemId: (Int),
+						pointsEarned: (Int)
+					},
+					constraints: {
+						itemId: (Int),
+						pointsEarned: (Int)
+					},
+					testCases: {
+						0: {
+							itemId: (Int),
+							pointsEarned: (Int)
+						},
+						1: {
+							itemId: (Int),
+							pointsEarned: (Int)
+						},
+						etc.
+					}
 					comments: (String)
 				},
 				etc.

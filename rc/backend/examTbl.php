@@ -88,17 +88,17 @@
 			JOIN
 			(
 				SELECT * FROM 
-				490questionTbl
-				JOIN
+				490itemTbl
+				LEFT JOIN
 				490testCaseTbl
-				ON 490questionTbl.questionId = 490testCaseTbl.490questionTbl_questionId
+				ON 490itemTbl.testCaseId = 490testCaseTbl.testCaseId
 			) as B
-			ON A.490questionTbl_questionId = B.questionId
-			ORDER BY B.questionId;
+			ON A.examqId = 490examGradesTbl_examqId
+			ORDER BY A.490questionTbl_questionId;
 		";
 		
 		$count = -1;
-		$questionId = "";
+		$examqId = "";
 		$result = mysqli_query($db, $query);
 		if ($result->num_rows == 0){
 			$data["message"] = "Error".mysqli_error();
@@ -107,25 +107,73 @@
 		while ($row = mysqli_fetch_array($result)) {
 			$temp = array();
 			$test = array();
-			if ($questionId == $row["questionId"]) {
-				$test["case"] = $row["testCase"];
-				$test["data"] = $row["testData"];
-				array_push($data[$count]["testCases"], $test);
+			if ($examqId == $row["examqId"]) {
+				switch ($row["subitem"]) {
+					case "function":
+						$data[$count]["function"]["itemId"] = $row["itemId"];
+						$data[$count]["function"]["pointsEarned"] = $row["pointsEarned"];
+						$data[$count]["function"]["totalPoints"] = $row["totalPoints"];
+						break;
+					
+					case "colon":
+						$data[$count]["colon"]["itemId"] = $row["itemId"];
+						$data[$count]["colon"]["pointsEarned"] = $row["pointsEarned"];
+						$data[$count]["colon"]["totalPoints"] = $row["totalPoints"];
+						break;
+					
+					case "constraint":
+						$data[$count]["constraints"]["itemId"] = $row["itemId"];
+						$data[$count]["constraints"]["pointsEarned"] = $row["pointsEarned"];
+						$data[$count]["constraints"]["totalPoints"] = $row["totalPoints"];
+						break;
+					
+					default:
+						$test["itemId"] = $row["itemId"];
+						$test["data"] = $row["testData"];
+						$test["pointsEarned"] = $row["pointsEarned"];
+						$test["totalSubPoints"] = $row["totalSubPoints"];
+						array_push($data[$count]["testCases"], $test);
+						break;
+				}
 			}
 			else {
 				$temp["questionId"] = $row["questionId"];
 				$temp["question"] = $row["question"];
-				$temp["functionName"] = $row["functionName"];
-				$temp["difficulty"] = $row["difficultyLvl"];
-				$temp["tag"] = $row["tag"];
-				$test["case"] = $row["testCase"];
-				$test["data"] = $row["testData"];
-				$temp["testCases"] = array($test);
+				$temp["function"] = array();
+				$temp["colon"] = array();
+				$temp["constraints"] = array();
+				$temp["testCases"] = array();
 				$temp["answer"] = $row["answer"];
 				$temp["comments"] = $row["comments"];
-				$temp["pointsEarned"] = $row["pointsEarned"];
 				$temp["totalPoints"] = $row["totalPoints"];
-				$questionId = $row["questionId"];
+				switch ($row["subitem"]) {
+					case "function":
+						$temp["function"]["itemId"] = $row["itemId"];
+						$temp["function"]["pointsEarned"] = $row["pointsEarned"];
+						$temp["function"]["totalPoints"] = $row["totalPoints"];
+						break;
+					
+					case "colon":
+						$temp["colon"]["itemId"] = $row["itemId"];
+						$temp["colon"]["pointsEarned"] = $row["pointsEarned"];
+						$temp["colon"]["totalPoints"] = $row["totalPoints"];
+						break;
+					
+					case "constraints":
+						$temp["constraints"]["itemId"] = $row["itemId"];
+						$temp["constraints"]["pointsEarned"] = $row["pointsEarned"];
+						$temp["constraints"]["totalPoints"] = $row["totalPoints"];
+						break;
+					
+					default:
+						$test["itemId"] = $row["itemId"];
+						$test["data"] = $row["testData"];
+						$test["pointsEarned"] = $row["pointsEarned"];
+						$test["totalSubPoints"] = $row["totalSubPoints"];
+						array_push($temp["testCases"], $test);
+						break;
+				}
+				$examqId = $row["examqId"];
 				array_push($data, $temp);
 				$count++;
 			}
@@ -189,7 +237,6 @@
 			$temp = array();
 			$test = array();
 			if ($questionId == $row["questionId"]) {
-				$test["case"] = $row["testCase"];
 				$test["data"] = $row["testData"];
 				array_push($data[$count]["testCases"], $test);
 			}
@@ -197,9 +244,10 @@
 				$temp["questionId"] = $row["questionId"];
 				$temp["question"] = $row["question"];
 				$temp["functionName"] = $row["functionName"];
+				$temp["constraints"] = $row["constraints"];
 				$temp["difficulty"] = $row["difficultyLvl"];
 				$temp["tag"] = $row["tag"];
-				$test["case"] = $row["testCase"];
+				$test["testCaseId"] = $row["testCaseId"];
 				$test["data"] = $row["testData"];
 				$temp["testCases"] = array($test);
 				$temp["totalPoints"] = $row["points"];
@@ -336,15 +384,58 @@
 		for ($i = 0; $i < count($questions); $i++) {
 			$questionId = $questions[$i]["questionId"];
 			$answer = $questions[$i]["answer"];
-			$pointsEarned = $questions[$i]["pointsEarned"];
 			$totalPoints = $questions[$i]["totalPoints"];
 			$comments = getData($questions[$i]["comments"]);
-			$query .= "('$sExamId', '$questionId', '$pointsEarned', '$totalPoints', '$answer', '$comments'),";
+			$query .= "(DEFAULT, '$sExamId', '$questionId', '$totalPoints', '$answer', '$comments'),";
 		}
 		$query = substr($query, 0, -1).";";
 		if (!mysqli_query($db, $query)){
 			$data["message"] = "Failure";
-			$data["error"] = $query."insert".mysqli_error();
+			$data["error"] = $query."insert eG".mysqli_error();
+			return json_encode($data);
+		}
+		
+		$query = "
+			SELECT DISTINCT examqId
+			FROM 490examGradesTbl
+			WHERE 490studentExamTbl_sExamId = '$sExamId';
+		";
+		$result = mysqli_query($db, $query);
+		if ($result->num_rows == 0){
+			$data["message"] = "Failure";
+			$data['error'] = "Error select".$ucid.$examId.mysqli_error();
+			return json_encode($data);
+		}
+		
+		$count = 0;
+		query = "INSERT INTO 490itemTbl VALUES ";
+		while ($row = mysqli_fetch_array($result)) {
+			$examqId = $row["examqId"];
+			$fPoints = $questions[$count]["function"]["pointsEarned"];
+			$fTolPoints = $questions[$count]["function"]["totalSubPoints"];
+			$colTolPoints = $questions[$count]["colon"]["pointsEarned"];
+			$colPoints = $questions[$count]["colon"]["totalSubPoints"];
+			$conPoints = $questions[$count]["constraints"]["pointsEarned"];
+			$conTolPoints = $questions[$count]["constraints"]["totalSubPoints"];
+			$testCases = $questions[$count]["testCases"];
+			$query .= "
+				(DEFAULT, '$examqId', 'function', '$fPoints', '$fTolPoints', NULL),
+				(DEFAULT, '$examqId', 'colon', '$colPoints', '$colTolPoints', NULL),
+				(DEFAULT, '$examqId', 'constraints', '$conPoints', '$conTolPoints', NULL),
+			";
+			for ($j=0; $j < count($testCases); $j++) {
+				$testCaseId = $testCases[$j]["testCaseId"];
+				$pointsEarned = $testCases[$j]["pointsEarned"];
+				$totalSubPoints = $testCases[$j]["totalSubPoints"];
+				$query .= "
+					(DEFAULT, '$examqId', 'testCase$j', '$pointsEarned', '$totalSubPoints', '$testCaseId'),
+				";
+			}
+		}
+		$query = substr($query, 0, -1).";";
+		if (!mysqli_query($db, $query)){
+			$data["message"] = "Failure";
+			$data["error"] = $query."insert item".mysqli_error();
 			return json_encode($data);
 		}
 		
@@ -395,7 +486,6 @@
 		return json_encode($data);
 	}
 	
-	// Testing Needed
 	function editStudentExam($json) {
 		global $db;
 		$data = array();
@@ -422,15 +512,46 @@
 		$questions = $json["questions"];
 		for ($i = 0; $i < count($questions); $i++) {
 			$questionId = $questions[$i]["questionId"];
-			$pointsEarned = $questions[$i]["points"];
+			$function = $questions[$i]["function"]["itemId"];
+			$fPoints = $questions[$i]["function"]["pointsEarned"];
+			$colon = $questions[$i]["colon"]["itemId"];
+			$colPoints = $questions[$i]["colon"]["pointsEarned"];
+			$constraint = $questions[$i]["constraint"]["itemId"];
+			$conPoints = $questions[$i]["constraint"]["pointsEarned"];
+			$testCases = $questions[$i]["testCases"];
 			$comments = $questions[$i]["comments"];
 			$query .= "
 				UPDATE 490examGradesTbl 
 				SET 
-					pointsEarned = '$pointsEarned', 
 					comments = '$comments'
 				WHERE 490studentExamTbl_sExamId = '$sExamId' AND 490questionTbl_questionId = '$questionId';
+			
+				UPDATE 490itemTbl 
+				SET 
+					pointsEarned = '$fPoints'
+				WHERE itemId = '$function';
+				
+				UPDATE 490itemTbl 
+				SET 
+					pointsEarned = '$colPoints'
+				WHERE itemId = '$colon';
+				
+				UPDATE 490itemTbl 
+				SET 
+					pointsEarned = '$conPoints'
+				WHERE itemId = '$constraint';
 			";
+			
+			for ($j=0; $j < count($testCases); $j++) {
+				$itemId = $testCases[$j]["itemId"];
+				$pointsEarned = $testCases[$j]["pointsEarned"];
+				$query .= "
+					UPDATE 490itemTbl 
+					SET 
+						pointsEarned = '$pointsEarned'
+					WHERE itemId = '$itemId';
+				";
+			}
 		}
 		if (mysqli_multi_query($db, $query)){
 			do {
@@ -498,13 +619,60 @@
 				$questionId = $questions[$j]["questionId"];
 				$pointsEarned = '0';
 				$totalPoints = $questions[$j]["totalPoints"];
-				$query .= "('$id', '$questionId', '$pointsEarned', '$totalPoints', '', ''),";
+				$query .= "(DEFAULT, '$id', '$questionId', '$totalPoints', '', ''),";
 			}
 		}
 		$query = substr($query, 0, -1).";";
 		if (!mysqli_query($db, $query)){
 			$data["message"] = "Failure";
 			$data["error"] = "insert".mysqli_error();
+			return json_encode($data);
+		}
+		$idList = implode("','", $sExamIds);
+		
+		$examqIds = array();
+		$query = "
+			SELECT DISTINCT 490examGradesTbl.examqId, 490testCaseTbl.testCaseId
+			FROM
+			490examGradesTbl
+			JOIN
+			490testCaseTbl
+			ON 490examGradesTbl.490questionTbl_questionId = 490testCaseTbl.490questionTbl_questionId
+			WHERE 490examGradesTbl.490studentExamTbl_sExamId IN ('$idList');
+		";
+		$result = mysqli_query($db, $query);
+		if ($result->num_rows == 0){
+			$data["message"] = "Failure";
+			$data["error"] = "select examqId".mysqli_error();
+			return json_encode($data);
+		}
+		while ($row = mysqli_fetch_array($result)) {
+			array_push($examqIds, $row);
+		}
+		
+		$prev = "";
+		$count = 0;
+		$query = "INSERT INTO 490itemTbl VALUES ";
+		for ($i=0; $i < count($examqIds); $i++) {
+			$id = $examqIds[$i];
+			$examqid = $row["examqId"];
+			$testCaseId = $row["testCaseId"];
+			if ($prev != $examqId) {
+				$count = 0;
+				$query .= "
+					(DEFAULT, '$examqId', 'function', '', '', NULL),
+					(DEFAULT, '$examqId', 'colon', '', '', NULL),
+					(DEFAULT, '$examqId', 'constraints', '', '', NULL),
+				";
+				$prev = $examqId;
+			}
+			$query .= "(DEFAULT, '$examqId', 'testCase$count, '', '', '$testCaseId'),";
+			$count++;
+		}
+		$query = substr($query, 0, -1).";";
+		if (!mysqli_query($db, $query)){
+			$data["message"] = "Failure";
+			$data["error"] = $query."insert item".mysqli_error();
 			return json_encode($data);
 		}
 		

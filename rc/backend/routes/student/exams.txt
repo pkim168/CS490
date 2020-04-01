@@ -14,11 +14,12 @@ GET
 				questionId: (String),
 				question: (String),
 				functionName: (String),
+				constraints: (String),
 				difficulty: 'Easy, 'Medium', or 'Hard'
 				tag: (string)
 				testCases: {
 					0: {
-						case: Testcase,
+						testCaseId: (Int),
 						data: {
 							parameters: {
 								0: Parameter,
@@ -30,7 +31,7 @@ GET
 						}
 					},
 					1: {
-						case: Testcase,
+						testCaseId: (Int),
 						data: {
 							parameters: {
 								0: Parameter,
@@ -49,11 +50,12 @@ GET
 				questionId: (String),
 				question: (String),
 				functionName: (String),
+				constraints: (String),
 				difficulty: 'Easy, 'Medium', or 'Hard'
 				tag: (string)
 				testCases: {
 					0: {
-						case: Testcase,
+						testCaseId: (Int),
 						data: {
 							parameters: {
 								0: Parameter,
@@ -65,7 +67,7 @@ GET
 						}
 					},
 					1: {
-						case: Testcase,
+						testCaseId: (Int),
 						data: {
 							parameters: {
 								0: Parameter,
@@ -122,12 +124,24 @@ GET
 			0: {
 				questionId: (String),
 				question: (String),
-				functionName: (String),
-				difficulty: 'Easy, 'Medium', or 'Hard'
-				tag: (string)
+				function: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				colon: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				constraints: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
 				testCases: {
 					0: {
-						case: Testcase,
+						itemId: (Int),
 						data: {
 							parameters: {
 								0: Parameter,
@@ -136,10 +150,12 @@ GET
 							},
 							argc: Num of Arguments,
 							result: Expected output
-						}
+						},
+						pointsEarned: (Int),
+						totalSubPoints: (Int)
 					},
 					1: {
-						case: Testcase,
+						itemId: (Int),
 						data: {
 							parameters: {
 								0: Parameter,
@@ -148,24 +164,37 @@ GET
 							},
 							argc: Num of Arguments,
 							result: Expected output
-						}
+						},
+						pointsEarned: (Int),
+						totalSubPoints: (Int)
 					},
 					etc.
 				}
 				answer: (String),
 				comments: (String),
-				pointsEarned: (String),
 				totalPoints: (String)
 			},
 			1: {
 				questionId: (String),
 				question: (String),
-				functionName: (String),
-				difficulty: 'Easy, 'Medium', or 'Hard'
-				tag: (string)
+				function: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				colon: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				constraints: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
 				testCases: {
 					0: {
-						case: Testcase,
+						itemId: (Int),
 						data: {
 							parameters: {
 								0: Parameter,
@@ -174,10 +203,12 @@ GET
 							},
 							argc: Num of Arguments,
 							result: Expected output
-						}
+						},
+						pointsEarned: (Int),
+						totalSubPoints: (Int)
 					},
 					1: {
-						case: Testcase,
+						itemId: (Int),
 						data: {
 							parameters: {
 								0: Parameter,
@@ -186,13 +217,14 @@ GET
 							},
 							argc: Num of Arguments,
 							result: Expected output
-						}
+						},
+						pointsEarned: (Int),
+						totalSubPoints: (Int)
 					},
 					etc.
 				}
 				answer: (String),
 				comments: (String),
-				pointsEarned: (String),
 				totalPoints: (String)
 			},
 			etc.
@@ -209,17 +241,65 @@ INSERT
 			questions: {
 				0: {
 					questionId: (String),
+					function: {
+						pointsEarned: (Int),
+						totalSubPoints (Int)
+					},
+					colon: {
+						pointsEarned: (Int),
+						totalSubPoints (Int)
+					},
+					constraints: {
+						pointsEarned: (Int),
+						totalSubPoints (Int)
+					},
+					testCases: {
+						0: {
+							testCaseId: (Int),
+							pointsEarned: (Int),
+							totalSubPoints: (Int)
+						},
+						1: {
+							testCaseId: (Int),
+							pointsEarned: (Int),
+							totalSubPoints: (Int)
+						},
+						etc.
+					}
 					answer: (String),
-					pointsEarned: (String),
-					totalPoints: (String),
-					comments: (String)
+					comments: (String),
+					totalPoints: (String)
 				},
 				1: {
 					questionId: (String),
+					function: {
+						pointsEarned: (Int),
+						totalSubPoints (Int)
+					},
+					colon: {
+						pointsEarned: (Int),
+						totalSubPoints (Int)
+					},
+					constraint: {
+						pointsEarned: (Int),
+						totalSubPoints (Int)
+					},
+					testCases: {
+						0: {
+							testCaseId: (Int),
+							pointsEarned: (Int),
+							totalSubPoints: (Int)
+						},
+						1: {
+							testCaseId: (Int),
+							pointsEarned: (Int),
+							totalSubPoints: (Int)
+						},
+						etc.
+					}
 					answer: (String),
-					pointsEarned: (String),
+					comments: (String),
 					totalPoints: (String)
-					comments: (String)
 				},
 				etc.
 			}

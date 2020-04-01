@@ -15,6 +15,9 @@
 			if(!empty($json['tag'])) {
 				$tag = getData($json['tag']);
 			}
+			if(!empty($json['constraints'])) {
+				$tag = getData($json['constraints']);
+			}
 			echo getQuestions($difficulty, $tag);
 			break;
 		
@@ -28,18 +31,31 @@
 			
 	}
 	
-	function getQuestions($difficulty, $tag) {
+	function getQuestions($difficulty, $tag, $constraints) {
 		global $db;
 		$data = array();
-		if(!empty($difficulty) && !empty($tag)) {
+		$flag = 0;
+		if(!empty($difficulty){
 			$difficulty = " WHERE difficultyLvl = '".$difficulty."'";
-			$tag = " AND tag = '".$tag."'";
-		}
-		else if(!empty($difficulty)) {
-			$difficulty = " WHERE difficultyLvl = '".$difficulty."'";
+			$flag++;
 		}
 		else if(!empty($tag)) {
-			$tag = " WHERE tag = '".$tag."'";
+			if ($flag == 0) {
+				$tag = " WHERE tag = '".$tag."'";
+				$flag++;
+			}
+			else {
+				$tag = " AND tag = '".$tag."'";
+			}
+		}
+		else if(!empty($constraints)) {
+			if ($flag == 0) {
+				$constraints = " WHERE constraints = '".$constraints."'";
+				$flag++;
+			}
+			else {
+				$constraints = " AND constraints = '".$constraints."'";
+			}
 		}
 		$query = "SELECT * FROM 
 			490questionTbl
@@ -66,6 +82,7 @@
 				$temp["functionName"] = $row["functionName"];
 				$temp["difficulty"] = $row["difficultyLvl"];
 				$temp["tag"] = $row["tag"];
+				$temp["constraints"] = $row["constraints"];
 				$temp["testCases"] = array($row["testCase"]);
 				$questionId = $row["questionId"];
 				array_push($data, $temp);
@@ -108,10 +125,13 @@
 		if (!empty($json['tag'])) {
 			$tag = getData($json['tag']);
 		}
-		$query = "INSERT INTO 490questionTbl VALUES (DEFAULT, '$fName', '$question', '$diff', '$tag');";
+		if (!empty($json['constraints'])) {
+			$constraints = getData($json['constraints']);
+		}
+		$query = "INSERT INTO 490questionTbl VALUES (DEFAULT, '$fName', '$question', '$diff', '$tag', '$constraints');";
 		if (!mysqli_query($db, $query)){
 			$data["message"] = "Failure";
-			$data["error"] = "questionTbl".mysqli_error().$fName.$question.$diff.$tag;
+			$data["error"] = "questionTbl".mysqli_error().$fName.$question.$diff.$tag.$constraints;
 			return json_encode($data);
 		}
 		$questionId = mysqli_insert_id($db);
@@ -119,7 +139,6 @@
 		$query = "";
 		$tCases = $json['testCases'];
 		foreach ($tCases as $test) {
-			$case = $test["case"];
 			$tData = json_encode($test["data"]);
 			$query .= "INSERT INTO 490testCaseTbl VALUES (DEFAULT, '$questionId', '$case', '$tData'); ";
 		}
