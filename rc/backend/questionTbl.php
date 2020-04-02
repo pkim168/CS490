@@ -35,11 +35,11 @@
 		global $db;
 		$data = array();
 		$flag = 0;
-		if(!empty($difficulty){
+		if (!empty($difficulty)) {
 			$difficulty = " WHERE difficultyLvl = '".$difficulty."'";
 			$flag++;
 		}
-		else if(!empty($tag)) {
+		else if (!empty($tag)) {
 			if ($flag == 0) {
 				$tag = " WHERE tag = '".$tag."'";
 				$flag++;
@@ -48,7 +48,7 @@
 				$tag = " AND tag = '".$tag."'";
 			}
 		}
-		else if(!empty($constraints)) {
+		else if (!empty($constraints)) {
 			if ($flag == 0) {
 				$constraints = " WHERE constraints = '".$constraints."'";
 				$flag++;
@@ -140,7 +140,7 @@
 		$tCases = $json['testCases'];
 		foreach ($tCases as $test) {
 			$tData = json_encode($test["data"]);
-			$query .= "INSERT INTO 490testCaseTbl VALUES (DEFAULT, '$questionId', '$case', '$tData'); ";
+			$query .= "INSERT INTO 490testCaseTbl VALUES (DEFAULT, '$questionId', '$tData'); ";
 		}
 		unset($test);
 		

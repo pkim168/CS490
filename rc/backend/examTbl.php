@@ -408,7 +408,7 @@
 		}
 		
 		$count = 0;
-		query = "INSERT INTO 490itemTbl VALUES ";
+		$query = "INSERT INTO 490itemTbl VALUES ";
 		while ($row = mysqli_fetch_array($result)) {
 			$examqId = $row["examqId"];
 			$fPoints = $questions[$count]["function"]["pointsEarned"];
