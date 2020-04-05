@@ -57,16 +57,20 @@
 					</tr>
 					<?php
 						for ($i = 0; $i < count($json); $i++) {
-							echo "<tr>";
-							echo "<td>".$json[$i]['examId']."</td>";
 							if ($json[$i]['status'] == 0) {
+								echo "<tr>";
+								echo "<td>".$json[$i]['examId']."</td>";
 								echo "<td>Not Taken</td>";
 								echo "<td><button type='button' id='".$json[$i]['examId']."' style='height: 40px; width: 100%' onclick='takeExam(this.id)'>Take Exam</button></td>";
+								echo "</tr>";
 							} else if ($json[$i]['status'] == 2) {
+								echo "<tr>";
+								echo "<td>".$json[$i]['examId']."</td>";
 								echo "<td>Released</td>";
 								echo "<td><button type='button' id='".$json[$i]['examId']."' style='height: 40px; width: 100%' onclick='viewResults(this.id)'>View Results</button></td>";
+								echo "</tr>";
 							}
-							echo "</tr>";
+							
 						}
 					?>
 				</table>
