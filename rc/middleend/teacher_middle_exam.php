@@ -83,7 +83,7 @@ function get_exams($requestType,$ucid){
 	//data from json response
 	$data = array('requestType' => $requestType, 'ucid' => $ucid);
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/rc/examTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
@@ -103,7 +103,7 @@ function get_exam_questions($requestType,$examId){
 	//data from json response
 	$data = array('requestType' => $requestType, 'examId' => $examId);
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/rc/examTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
@@ -123,7 +123,7 @@ function get_exam_statuses($requestType,$examId){
 	//data from json response
 	$data = array('requestType' => $requestType, 'examId' => $examId);
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/rc/examTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
@@ -143,7 +143,7 @@ function get_student_answers($requestType,$examId,$ucid){
 	//data from json response
 	$data = array('requestType' => $requestType, 'examId' => $examId, 'ucid' => $ucid);
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/rc/examTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
@@ -161,7 +161,7 @@ function get_student_answers($requestType,$examId,$ucid){
 // curl backend 
 function create_new_exam($response){
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/rc/examTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
@@ -179,7 +179,7 @@ function create_new_exam($response){
 // curl backend 
 function edit_student_exam($response){
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/rc/examTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
@@ -199,7 +199,7 @@ function release_exam($requestType,$examId){
 	//data from json response
 	$data = array('requestType' => $requestType, 'examId' => $examId);
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/rc/examTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
