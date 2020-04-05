@@ -106,7 +106,7 @@
 						for ($i = 0; $i < count($json); $i++) {
 							echo "<tr id=".$json[$i]["questionId"].">";
 							echo "<td>".$json[$i]["question"]."</td>";
-							echo "<td><textarea style='width: 300px; height: 400px; resize:vertical' id='testCase' required></textarea></td>";
+							echo "<td><textarea style='width: 98%; height: 400px; resize:vertical' id='testCase' required></textarea></td>";
 							echo "<td>".$json[$i]["totalPoints"]."</td>";
 							echo "</tr>";
 						}
