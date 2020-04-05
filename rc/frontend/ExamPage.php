@@ -101,25 +101,13 @@
 						<th> Question </th>
 						<th> Answer </th>
 						<th> Points </th>
-						<th> Test Cases </th>
 					</tr>
 					<?php
 						for ($i = 0; $i < count($json); $i++) {
 							echo "<tr id=".$json[$i]["questionId"].">";
 							echo "<td>".$json[$i]["question"]."</td>";
-							echo "<td><textarea style='width: 100%; resize:vertical' id='testCase' required></textarea></td>";
+							echo "<td><textarea style='width: 300px; height: 400px; resize:vertical' id='testCase' required></textarea></td>";
 							echo "<td>".$json[$i]["totalPoints"]."</td>";
-							$testCases = $json[$i]["testCases"];
-							$str = $testCases[0]['case'];
-							for ($j=0; $j < count($testCases); $j++) {
-								$parameters = "\nParameters: ";
-								$data = json_decode($testCases[$j]['data'], true);
-								for ($h=0; $h < count($data['parameters']); $h++) {
-									$parameters .= $data['parameters'][strval($h)]."; ";
-								}
-								$str .= $parameters."\nOutput: ".$data['result']."\n";
-							}
-							echo "<td><pre>".$str."</pre></td>";
 							echo "</tr>";
 						}
 					?>
