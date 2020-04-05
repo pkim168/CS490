@@ -57,7 +57,7 @@ function get_exam_questions($requestType,$examId){
 	//data from json response
 	$data = array('requestType' => $requestType, 'examId' => $examId);
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/rc/examTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
@@ -77,7 +77,7 @@ function get_student_exam_answers($requestType,$examId,$ucid){
 	//data from json response
 	$data = array('requestType' => $requestType, 'examId' => $examId, 'ucid' => $ucid);
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/rc/examTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
@@ -97,7 +97,7 @@ function get_student_exams($requestType,$ucid){
 	//data from json response
 	$data = array('requestType' => $requestType, 'ucid' => $ucid);
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/rc/examTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
@@ -114,7 +114,7 @@ function get_student_exams($requestType,$ucid){
 
 function submit_student_exam($response){
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/rc/examTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
