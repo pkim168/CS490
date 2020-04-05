@@ -11,7 +11,7 @@
 	if ($_SESSION['role'] == '1') {
 		header('Location: ./studentView.php');
 	}
-	$url = "https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php";
+	$url = "https://web.njit.edu/~jrd62/CS490/rc/teacher_middle_exam.php";
 	$ch = curl_init($url);
 	$payload = file_get_contents('php://input');
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);

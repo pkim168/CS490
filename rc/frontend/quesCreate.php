@@ -56,14 +56,14 @@
 					formData['testCases'].push(testCase);
 				}
 				// cURL to middle end
-				fetch("https://web.njit.edu/~dn236/CS490/beta/CreateQuestion2.php", {
+				fetch("https://web.njit.edu/~dn236/CS490/rc/CreateQuestion2.php", {
 					method: "POST",
 					body: JSON.stringify(formData)
 				})
 				.then((response) => {
 					console.log(response);
 					response.json().then((data) => {
-						location.href = 'https://web.njit.edu/~dn236/CS490/beta/teacherView.php';
+						location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';
 					})
 				})
 				.catch(function(error) {
@@ -165,7 +165,7 @@
 				  console.log(p);
 				}
 				// cURL to middle end
-				fetch("https://web.njit.edu/~dn236/CS490/beta/CreateExam2getQuestions.php", {
+				fetch("https://web.njit.edu/~dn236/CS490/rc/CreateExam2getQuestions.php", {
 					method: "POST",
 					body: formData
 				})

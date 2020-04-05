@@ -20,7 +20,7 @@
 	$data['requestType'] = 'getStudentAnswers';
 	$data['examId'] = $_SESSION['examId'];
 	$data['ucid'] = $_SESSION['studentId'];
-	$url = "https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php";
+	$url = "https://web.njit.edu/~jrd62/CS490/rc/teacher_middle_exam.php";
 	
 	$ch = curl_init($url);
 	$payload = json_encode($data);
@@ -63,13 +63,13 @@
 					formData['questions'].push(question);
 				}
 				// cURL to middle end
-				fetch("https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php", {
+				fetch("https://web.njit.edu/~jrd62/CS490/rc/teacher_middle_exam.php", {
 					method: "POST",
 					body: JSON.stringify(formData)
 				})
 				.then((response) => {
 					console.log(response);
-					location.href = "".concat('https://web.njit.edu/~dn236/CS490/beta/teacherExamStudents.php?examId=',document.getElementById('examId').innerText);
+					location.href = "".concat('https://web.njit.edu/~dn236/CS490/rc/teacherExamStudents.php?examId=',document.getElementById('examId').innerText);
 				})
 				.catch(function(error) {
 					console.log(error);

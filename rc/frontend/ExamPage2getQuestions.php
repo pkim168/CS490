@@ -15,7 +15,7 @@
 	if(empty($_POST["tag"])){
 		$tag = $_POST["tag"];
 	}
-	$url = "https://web.njit.edu/~jrd62/CS490/student_middle.php";
+	$url = "https://web.njit.edu/~jrd62/CS490/rc/student_middle.php";
 	
 	$ch = curl_init($url);
 	$data = array()

@@ -58,7 +58,7 @@
 				}
 				// cURL to middle end
 				// 
-				fetch("https://web.njit.edu/~jrd62/CS490/beta/grading.php", {
+				fetch("https://web.njit.edu/~jrd62/CS490/rc/grading.php", {
 					method: "POST",
 					body: JSON.stringify(formData)
 				})
@@ -67,7 +67,7 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							location.href = 'https://web.njit.edu/~dn236/CS490/beta/studentView.php';
+							location.href = 'https://web.njit.edu/~dn236/CS490/rc/studentView.php';
 						}
 						else if (data["message"] == "Failure"){
 							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));

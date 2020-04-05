@@ -21,7 +21,7 @@
 		<link rel="stylesheet" href="styles.css">
 		<script>
 			function exam(id) {
-				location.href = "".concat('https://web.njit.edu/~dn236/CS490/beta/teacherExamStudents.php?examId=', id);
+				location.href = "".concat('https://web.njit.edu/~dn236/CS490/rc/teacherExamStudents.php?examId=', id);
 			}
 			
 			function releaseExam(name) {
@@ -34,7 +34,7 @@
 				formData.append('requestType', 'releaseExam');
 				formData.append('examId', id);
 				// cURL to middle end
-				fetch("https://web.njit.edu/~dn236/CS490/beta/releaseExams.php", {
+				fetch("https://web.njit.edu/~dn236/CS490/rc/releaseExams.php", {
 					method: "POST",
 					body: formData
 				})
@@ -43,7 +43,7 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							location.href = 'https://web.njit.edu/~dn236/CS490/beta/teacherView.php';
+							location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';
 						}
 						else {
 							alert(''.concat("There was a problem releasing the exam. Please try again. Error message: ", data['error']));
@@ -69,7 +69,7 @@
 				$data = array();
 				$data['requestType'] = 'getExams';
 				$data['ucid'] = $_SESSION['ucid'];
-				$url = "https://web.njit.edu/~dn236/CS490/beta/getExams.php";
+				$url = "https://web.njit.edu/~dn236/CS490/rc/getExams.php";
 				$ch = curl_init($url);
 				$payload = json_encode($data);
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);

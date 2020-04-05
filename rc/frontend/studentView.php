@@ -40,10 +40,10 @@
 				<h1> <?php echo "Welcome ".$_SESSION['ucid']?> </h1>
 			</div>
 			<div class="flex-container row">
-				<button type="button" style="height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/beta/studentExamList.php';">See All Exams</button>
+				<button type="button" style="height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/studentExamList.php';">See All Exams</button>
 			</div>
 			<div class="flex-container row">
-				<button type="button" style="height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/beta/logout.php';">Log Out</button>
+				<button type="button" style="height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/logout.php';">Log Out</button>
 			</div>
 		</div>
 		

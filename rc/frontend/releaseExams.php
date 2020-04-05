@@ -7,7 +7,7 @@
 		header('Location: ./studentView.php');
 	}
 	
-	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/rc/examTbl.php";
 	
 	$ch = curl_init($url);
 	$data = array();

@@ -21,7 +21,7 @@
 	$data = array();
 	$data['requestType'] = 'getExamStatuses';
 	$data['examId'] = $_SESSION['examId'];
-	$url = "https://web.njit.edu/~jrd62/CS490/beta/teacher_middle_exam.php";
+	$url = "https://web.njit.edu/~jrd62/CS490/rc/teacher_middle_exam.php";
 	
 	$ch = curl_init($url);
 	$payload = json_encode($data);
@@ -38,7 +38,7 @@
 		<link rel="stylesheet" href="styles.css">
 		<script>
 			function exam(id) {
-				location.href = "".concat('https://web.njit.edu/~dn236/CS490/beta/teacherExamReview.php?studentId=',id);
+				location.href = "".concat('https://web.njit.edu/~dn236/CS490/rc/teacherExamReview.php?studentId=',id);
 			}
 		</script>
 	</head>

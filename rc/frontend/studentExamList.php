@@ -16,7 +16,7 @@
 	$data = array();
 	$data['requestType'] = 'getStudentExams';
 	$data['ucid'] = $_SESSION['ucid'];
-	$url = "https://web.njit.edu/~jrd62/CS490/beta/student_middle.php";
+	$url = "https://web.njit.edu/~jrd62/CS490/rc/student_middle.php";
 	
 	$ch = curl_init($url);
 	$payload = json_encode($data);
@@ -33,11 +33,11 @@
 		<link rel="stylesheet" href="styles.css">
 		<script>
 			function takeExam(id) {
-				location.href = "".concat('https://web.njit.edu/~dn236/CS490/beta/ExamPage.php?examId=', id);
+				location.href = "".concat('https://web.njit.edu/~dn236/CS490/rc/ExamPage.php?examId=', id);
 			}
 			
 			function viewResults(id) {
-				location.href = "".concat('https://web.njit.edu/~dn236/CS490/beta/studentExamReview.php?examId=', id);
+				location.href = "".concat('https://web.njit.edu/~dn236/CS490/rc/studentExamReview.php?examId=', id);
 			}
 		</script>
 	</head>
