@@ -43,7 +43,7 @@ function get_questions($requestType,$difficulty,$tag){
 	//data from json response
 	$data = array('requestType' => $requestType, 'difficulty' => $difficulty, 'tag' => $tag);
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/questionTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/rc/questionTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
@@ -63,7 +63,7 @@ function get_tags($requestType){
 	//data from json response
 	$data = array('requestType' => $requestType);
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/questionTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/rc/questionTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
@@ -81,7 +81,7 @@ function get_tags($requestType){
 // curl backend 
 function new_question($response){
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/questionTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/rc/questionTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	

@@ -15,7 +15,7 @@ function get_exam_questions($requestType,$examId){
 	//data from json response
 	$data = array('requestType' => $requestType, 'examId' => $examId);
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/rc/examTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
@@ -39,17 +39,12 @@ $student_questions = array();
 //grading each question
 for($i = 0; $i < $question_num; $i++){
     $question = $questions[$i];
-    //string question
-    $question_str = $question['question'];
-    //difficulty
-    $difficulty = $question['difficulty'];
-    //tag
-    $tag = $question['tag'];
-    //questionId
     $questionId = $question['questionId'];
-    //student answer
+    $question_str = $question['question'];
+    $difficulty = $question['difficulty'];
+    $tag = $question['tag'];
+    $questionId = $question['questionId'];
     $answer = $question['answer'];
-    //totalPoints
     $totalPoints = $question['totalPoints'];
 
     //grabbing testcases from backend
@@ -83,7 +78,7 @@ for($i = 0; $i < $question_num; $i++){
 //student answers
 $student_answers = array('requestType' => 'submitStudentExam', 'ucid' => $ucid, 'examId' => $examId, 'questions' => $student_questions);
 //url to backend
-$url = "https://web.njit.edu/~pk549/490/beta/examTbl.php";
+$url = "https://web.njit.edu/~pk549/490/rc/examTbl.php";
 //initialize curl session and return a curl handle
 $ch = curl_init($url);
 //options for a curl transfer	
