@@ -39,26 +39,42 @@ $student_questions = array();
 //grading each question
 for($i = 0; $i < $question_num; $i++){
     $question = $questions[$i];
+    //for each question grab the following
     $questionId = $question['questionId'];
     $question_str = $question['question'];
-    $difficulty = $question['difficulty'];
-    $tag = $question['tag'];
-    $questionId = $question['questionId'];
+    $function = $question['function'];
+    $colon = $question['colon'];
+    $constraints = $question['constraints'];
+    $testCases = $question['testCases'];
     $answer = $question['answer'];
+    $comments = $question['comments'];
     $totalPoints = $question['totalPoints'];
+    $parameters = "\nParameters: ";
 
     //grabbing testcases from backend
     $backend_question = $backend_questions[$i];
+    $backend_question_str = $backend_question['question'];
     $backend_questionId = $backend_question['questionId'];
     $backend_functionName = $backend_question['functionName'];
+    $backend_difficulty = $backend_question['difficulty'];
+    $backend_tag = $backend_question['tag'];
+    $backend_constraints = $backend_question['constraints'];
     $backend_testCases = $backend_question['testCases'];
-    $functionName = $backend_testCases[0]['case'];
-    for ($j=0; $j < count($backend_testCases); $j++) {
-        $parameters = "\nParameters: ";
+    $backend_parameters = "";
+
+    for ($j=0; $j < count($testCases); $j++) {
         $data = json_decode($testCases[$j]['data'], true);
         $result = $data['result'];
         for ($h=0; $h < count($data['parameters']); $h++) {
             $parameters .= $data['parameters'][strval($h)]."; ";
+        }
+    }
+
+    for ($j=0; $j < count($backend_testCases); $j++) {
+        $data = json_decode($testCases[$j]['data'], true);
+        $backend_result = $data['result'];
+        for ($h=0; $h < count($data['parameters']); $h++) {
+            $backend_parameters .= $data['parameters'][strval($h)]."; ";
         }
     }
 
