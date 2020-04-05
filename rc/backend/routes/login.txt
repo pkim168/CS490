@@ -1,4 +1,4 @@
-Login Verification (https://web.njit.edu/~pk549/490/beta/userTbl.php)
+Login Verification (https://web.njit.edu/~pk549/490/rc/userTbl.php)
 	Send:
 	{
 		requestType: 'login'

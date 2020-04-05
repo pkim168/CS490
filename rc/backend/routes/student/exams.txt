@@ -1,7 +1,7 @@
 GET
 	// Get a list of all questions in an exam
 	// Use to create exam when student takes the exam
-	Get Exam Questions (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+	Get Exam Questions (https://web.njit.edu/~pk549/490/rc/examTbl.php)
 		Send:
 		{
 			requestType: 'getExamQuestions',
@@ -87,7 +87,7 @@ GET
 
 	// Get a list of all Exams assigned to a student
 	// Use to show all exams a student has. Includes exam status
-	Get Student's Exams (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+	Get Student's Exams (https://web.njit.edu/~pk549/490/rc/examTbl.php)
 		Send:
 		{
 			requestType: 'getStudentExams',
@@ -111,7 +111,7 @@ GET
 	
 	// Get a list of questions and answers for a student's exam
 	// Use when student is reviewing exam
-	Get Student Exam Answers (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+	Get Student Exam Answers (https://web.njit.edu/~pk549/490/rc/examTbl.php)
 		Send:
 		{
 			requestType: 'getStudentAnswers',
@@ -232,7 +232,7 @@ GET
 
 INSERT	
 	// Submit student's exam. Changes status to 1
-	Submit Student's Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+	Submit Student's Exam (https://web.njit.edu/~pk549/490/rc/examTbl.php)
 		Send:
 		{
 			requestType: 'submitStudentExam',

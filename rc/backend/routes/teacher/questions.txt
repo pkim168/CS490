@@ -1,6 +1,6 @@
 GET
 	// Get a list of all questions in the database
-	Get Questions (https://web.njit.edu/~pk549/490/beta/questionTbl.php)
+	Get Questions (https://web.njit.edu/~pk549/490/rc/questionTbl.php)
 		Send:
 		{
 			requestType: 'getQuestions',
@@ -41,7 +41,7 @@ GET
 		}
 
 	// Get a list of all tags in the database
-	Get Tags (https://web.njit.edu/~pk549/490/beta/questionTbl.php)
+	Get Tags (https://web.njit.edu/~pk549/490/rc/questionTbl.php)
 		Send:
 		{
 			requestType: 'getTags'
@@ -56,7 +56,7 @@ GET
 
 INSERT
 	// Insert new question into the database
-	New Question (https://web.njit.edu/~pk549/490/beta/questionTbl.php)
+	New Question (https://web.njit.edu/~pk549/490/rc/questionTbl.php)
 		Send:
 		{
 			requestType: 'newQuestion',

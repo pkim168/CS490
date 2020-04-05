@@ -1,6 +1,6 @@
 GET
 	// Get a list of all exams created by a teacher
-	Get All Exams (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+	Get All Exams (https://web.njit.edu/~pk549/490/rc/examTbl.php)
 		Send:
 		{
 			requestType: 'getExams',
@@ -15,7 +15,7 @@ GET
 		}
 
 	// Get a list of students who took an exam
-	Get Student Exam Statuses (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+	Get Student Exam Statuses (https://web.njit.edu/~pk549/490/rc/examTbl.php)
 		Send:
 		{
 			requestType: 'getExamStatuses',
@@ -36,7 +36,7 @@ GET
 		}
 
 	// Get a list of questions and answers for a student's exam
-	Get Student Exam Answers (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+	Get Student Exam Answers (https://web.njit.edu/~pk549/490/rc/examTbl.php)
 		Send:
 		{
 			requestType: 'getStudentAnswers',
@@ -158,7 +158,7 @@ GET
 INSERT
 
 	// Create new Exam. Creates student exams with status 0
-	Create new Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+	Create new Exam (https://web.njit.edu/~pk549/490/rc/examTbl.php)
 		Send:
 		{
 			requestType: "createNewExam",
@@ -183,7 +183,7 @@ INSERT
 		}
 		
 	// Add comments and change score for a student's exam
-	Edit Student Exam (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+	Edit Student Exam (https://web.njit.edu/~pk549/490/rc/examTbl.php)
 		Send:
 		{
 			requestType: "editStudentExam",
@@ -254,7 +254,7 @@ INSERT
 		}
 		
 	// Release exams to students. Changes status to 2
-	Release Student Exams (https://web.njit.edu/~pk549/490/beta/examTbl.php)
+	Release Student Exams (https://web.njit.edu/~pk549/490/rc/examTbl.php)
 		Send:
 		{
 			requestType: "releaseExam",
