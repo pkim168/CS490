@@ -99,8 +99,8 @@
 			
 			function testCases(value, id) {
 				if (!isNaN(value)){
+					document.getElementById("testCases").innerHTML = "";
 					if(value>1 && value <7){
-						document.getElementById("testCases").innerHTML = "";
 						for (var i = 1; i<= value; i++) {
 							var col = document.createElement("div");
 							col.setAttribute("class", "flex-container column");
@@ -148,6 +148,10 @@
 							document.getElementById("testCases").appendChild(col);
 						}
 					}
+					else {
+					document.getElementById(id).value = "";
+					}
+						
 				}
 				else {
 					document.getElementById(id).value = "";
