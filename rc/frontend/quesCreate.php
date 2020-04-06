@@ -35,6 +35,7 @@
 				formData['question'] = document.getElementById('question').value;
 				formData['functionName'] = document.getElementById('functionName').value;
 				formData['difficulty'] = document.getElementById('difficulty').value;
+				formData['constraints'] = document.getElementById('constraint').value;
 				formData['tag'] = document.getElementById('tag').value;
 				formData['testCases'] = [];
 				numTestCases = document.getElementById('numTestCases').value;
@@ -155,11 +156,13 @@
 			}
 			
 			function filter() {
-				var diff = document.getElementById("qdifficulty").value;
-				var tag = document.getElementById("qtag").value;
+				var diff = document.getElementById("difficulty").value;
+				var tag = document.getElementById("tag").value;
+				var constraint = document.getElementById("constraint").value;
 				let formData = new FormData();
 				formData.append('requestType', 'getQuestions');
 				formData.append('difficulty', diff);
+				formData.append('constraints', constraint);
 				formData.append('tag', tag);
 				for (var p of formData) {
 				  console.log(p);
@@ -180,6 +183,7 @@
 							console.log(data['error']);
 							return;
 						}
+						console.log(data['state']);
 						var count = Object.keys(data).length;
 						for (var i=0; i<count; i++) {
 							var tr = document.createElement('tr');
@@ -187,6 +191,13 @@
 							var td = document.createElement('td');
 							td.textContent = data[i]['question'];
 							tr.appendChild(td);
+							var tb = document.createElement('td');
+							var button = document.createElement('button');
+							button.setAttribute("type", "button");
+							button.setAttribute("onclick", "add(this.closest('tr'))");
+							button.textContent = "Add";
+							tb.appendChild(button);
+							tr.appendChild(tb);
 							document.getElementById('questions').appendChild(tr);
 						}
 					})
@@ -225,8 +236,8 @@
 						</select>
 					</div>
 					<div class="flex-container row" style="width: 98%;">
-						<label style="width: 50%;">Tag:</label>
-						<select style="width: 50%;" id="tag" required>
+						<label style="width: 50%;">Constraint:</label>
+						<select style="width: 50%;" id="constraint" required>
 							<option value="" selected></option>
 							<option value="Lists">Lists</option>
 							<option value="Operations">Operations</option>
@@ -234,8 +245,13 @@
 						</select>
 					</div>
 					<div class="flex-container row" style="width: 98%;">
-						<label style="width: 50%;">Test Case:</label>
-						<textarea style="width: 50%; resize:none" id="testCase" required></textarea>
+						<label style="width: 50%;">Tag:</label>
+						<select style="width: 50%;" id="tag" required>
+							<option value="" selected></option>
+							<option value="Lists">Lists</option>
+							<option value="Operations">Operations</option>
+							<option value="Recursion">recursion</option>
+						</select>
 					</div>
 					<div class="flex-container row" style="width: 98%;">
 						<label style="width: 50%;"># of Test Cases:</label>
