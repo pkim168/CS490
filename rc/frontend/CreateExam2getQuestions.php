@@ -7,13 +7,16 @@
 		header('Location: ./studentView.php');
 	}
 	
-	$difficulty = $tag = "";
+	$difficulty = $tag = $constraints"";
 	
 	if(!empty($_POST["difficulty"])){
 		$difficulty = $_POST["difficulty"];
 	}
 	if(!empty($_POST["tag"])){
 		$tag = $_POST["tag"];
+	}
+	if(!empty($_POST["constraints"])){
+		$constraints = $_POST["constraints"];
 	}
 	$url = "https://web.njit.edu/~jrd62/CS490/rc/teacher_middle_questions.php";
 	
@@ -22,6 +25,7 @@
 	$data['requestType'] = 'getQuestions';
 	$data['difficulty'] = $difficulty;
 	$data['tag'] = $tag;
+	$data['constraints'] = $constraints;
 	$payload = json_encode($data);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
