@@ -83,7 +83,7 @@
 			}
 			else {
 				if (!empty($keyword)) {
-					if (preg_match("/".$keyword."/", $row["question"])) {
+					if (preg_match("/".$keyword."/i", $row["question"])) {
 						$temp["questionId"] = $row["questionId"];
 						$temp["question"] = $row["question"];
 						$temp["functionName"] = $row["functionName"];
