@@ -98,53 +98,55 @@
 			}
 			
 			function testCases(value, id) {
-				if (!isNaN(value)&& value>1 && value<7){
-					document.getElementById("testCases").innerHTML = "";
-					for (var i = 1; i<= value; i++) {
-						var col = document.createElement("div");
-						col.setAttribute("class", "flex-container column");
-						col.setAttribute("style", "width:95%; border:1px black solid");
-						col.setAttribute("id", ''.concat("testCase ",i.toString()));
-						var title = document.createElement("label");
-						title.textContent = ''.concat("Test Case ", i.toString());
-						col.appendChild(title);
-						var row = document.createElement("div");
-						row.setAttribute("class", "flex-container row");
-						row.setAttribute("style", "width:95%");
-						var label = document.createElement("label");
-						label.setAttribute("style", "width:50%");
-						label.textContent = "# of Arguments";
-						row.appendChild(label);
-						var input = document.createElement("input");
-						input.setAttribute("style", "width:50%");
-						input.setAttribute("type", "number");
-						input.setAttribute("min", "1");
-						input.setAttribute("id", ''.concat("input ",i.toString()));
-						input.setAttribute("oninput", "argument(this.value, this.id)")
-						input.defaultValue = "";
-						input.required = true;
-						row.appendChild(input);
-						col.appendChild(row);
-						var c2 = document.createElement("div");
-						c2.setAttribute("class", "flex-container column");
-						c2.setAttribute("style", "width:95%");
-						c2.setAttribute("id", ''.concat("argument ",i.toString()));
-						col.appendChild(c2);
-						var r2 = document.createElement("div");
-						r2.setAttribute("class", "flex-container row");
-						r2.setAttribute("style", "width:95%");
-						var l2 = document.createElement("label");
-						l2.setAttribute("style", "width:50%");
-						l2.textContent = "Output";
-						r2.appendChild(l2);
-						var i2 = document.createElement("input");
-						i2.setAttribute("style", "width:50%");
-						i2.setAttribute("type", "text");
-						i2.setAttribute("id", ''.concat("output ",i.toString()));
-						i2.required = true;
-						r2.appendChild(i2);
-						col.appendChild(r2);
-						document.getElementById("testCases").appendChild(col);
+				if (!isNaN(value)){
+					if(value>1 && value <7){
+						document.getElementById("testCases").innerHTML = "";
+						for (var i = 1; i<= value; i++) {
+							var col = document.createElement("div");
+							col.setAttribute("class", "flex-container column");
+							col.setAttribute("style", "width:95%; border:1px black solid");
+							col.setAttribute("id", ''.concat("testCase ",i.toString()));
+							var title = document.createElement("label");
+							title.textContent = ''.concat("Test Case ", i.toString());
+							col.appendChild(title);
+							var row = document.createElement("div");
+							row.setAttribute("class", "flex-container row");
+							row.setAttribute("style", "width:95%");
+							var label = document.createElement("label");
+							label.setAttribute("style", "width:50%");
+							label.textContent = "# of Arguments";
+							row.appendChild(label);
+							var input = document.createElement("input");
+							input.setAttribute("style", "width:50%");
+							input.setAttribute("type", "number");
+							input.setAttribute("min", "1");
+							input.setAttribute("id", ''.concat("input ",i.toString()));
+							input.setAttribute("oninput", "argument(this.value, this.id)")
+							input.defaultValue = "";
+							input.required = true;
+							row.appendChild(input);
+							col.appendChild(row);
+							var c2 = document.createElement("div");
+							c2.setAttribute("class", "flex-container column");
+							c2.setAttribute("style", "width:95%");
+							c2.setAttribute("id", ''.concat("argument ",i.toString()));
+							col.appendChild(c2);
+							var r2 = document.createElement("div");
+							r2.setAttribute("class", "flex-container row");
+							r2.setAttribute("style", "width:95%");
+							var l2 = document.createElement("label");
+							l2.setAttribute("style", "width:50%");
+							l2.textContent = "Output";
+							r2.appendChild(l2);
+							var i2 = document.createElement("input");
+							i2.setAttribute("style", "width:50%");
+							i2.setAttribute("type", "text");
+							i2.setAttribute("id", ''.concat("output ",i.toString()));
+							i2.required = true;
+							r2.appendChild(i2);
+							col.appendChild(r2);
+							document.getElementById("testCases").appendChild(col);
+						}
 					}
 				}
 				else {
