@@ -11,14 +11,16 @@ switch($requestType) {
     case 'getQuestions':
         //initial setting of variables
         $requestType="getQuestions";
-        $difficulty="";
-        $tag="";
+		$difficulty="";
+		$constraints="";
+		$tag="";
 
         if(isset($response['requestType'])) $requestType = $response['requestType'];
-        if(isset($response['difficulty'])) $difficulty = $response['difficulty'];
+		if(isset($response['difficulty'])) $difficulty = $response['difficulty'];
+		if(isset($response['constraints'])) $constraints = $response['constraints'];
         if(isset($response['tag'])) $tag = $response['tag'];
 
-        $res_project=get_questions($requestType,$difficulty,$tag);	
+        $res_project=get_questions($requestType,$difficulty,$constraints,$tag);	
         echo $res_project;
         break;
     case 'getTags':
@@ -39,9 +41,9 @@ switch($requestType) {
 }
 
 // curl backend 
-function get_questions($requestType,$difficulty,$tag){
+function get_questions($requestType,$difficulty,$constraints,$tag){
 	//data from json response
-	$data = array('requestType' => $requestType, 'difficulty' => $difficulty, 'tag' => $tag);
+	$data = array('requestType' => $requestType, 'difficulty' => $difficulty, 'constraints' => $constraints, 'tag' => $tag);
 	//url to backend
 	$url = "https://web.njit.edu/~pk549/490/rc/questionTbl.php";
 	//initialize curl session and return a curl handle
