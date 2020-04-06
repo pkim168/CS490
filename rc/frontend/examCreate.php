@@ -190,17 +190,22 @@
 				<label> &nbsp Constraint: </label>
 				<select id="constraint">
 					<option value="" selected></option>
-					<option value="Easy">Easy</option>
-					<option value="Medium">Medium</option>
-					<option value="Hard">Hard</option>
+					<option value="for">for</option>
+					<option value="while">while</option>
+					<option value="print">print</option>
 				</select>
 				<!--- Values will be changed --->
 				<label> &nbsp Tag: </label>
 				<select id="tag">
 					<option value="" selected></option>
+					<option value="" selected></option>
 					<option value="Lists">Lists</option>
-					<option value="Operations">Operations</option>
-					<option value="Recursion">recursion</option>
+					<option value="Additon">Addition</option>
+					<option value="Recursion">Recursion</option>
+					<option value="Multiplication">Multiplication</option>
+					<option value="Subtraction">Subtraction</option>
+					<option value="Division">Division</option>
+					<option value="Modulus">Modulus</option>
 				</select>
 				<button type="button" style="height: 27px; width: 80px" onclick="filter()">Filter</button>
 			</div>

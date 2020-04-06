@@ -41,6 +41,7 @@
 				numTestCases = document.getElementById('numTestCases').value;
 				for (var i=0; i<numTestCases; i++) {
 					let data = {};
+					var testCase = {};
 					var argc = document.getElementById("".concat('input ', (i+1).toString())).value;
 					data['argc'] = argc;
 					data['parameters'] = [];
@@ -97,7 +98,7 @@
 			}
 			
 			function testCases(value, id) {
-				if (!isNaN(value)){
+				if (!isNaN(value)&& value>1 && value<7){
 					document.getElementById("testCases").innerHTML = "";
 					for (var i = 1; i<= value; i++) {
 						var col = document.createElement("div");
@@ -236,18 +237,23 @@
 						<label style="width: 50%;">Constraint:</label>
 						<select style="width: 50%;" id="constraint" required>
 							<option value="" selected></option>
-							<option value="Lists">Lists</option>
-							<option value="Operations">Operations</option>
-							<option value="Recursion">recursion</option>
+							<option value="for">for</option>
+							<option value="while">while</option>
+							<option value="print">print</option>
 						</select>
 					</div>
 					<div class="flex-container row" style="width: 98%;">
 						<label style="width: 50%;">Tag:</label>
 						<select style="width: 50%;" id="tag" required>
 							<option value="" selected></option>
+							<option value="" selected></option>
 							<option value="Lists">Lists</option>
-							<option value="Operations">Operations</option>
-							<option value="Recursion">recursion</option>
+							<option value="Additon">Addition</option>
+							<option value="Recursion">Recursion</option>
+							<option value="Multiplication">Multiplication</option>
+							<option value="Subtraction">Subtraction</option>
+							<option value="Division">Division</option>
+							<option value="Modulus">Modulus</option>
 						</select>
 					</div>
 					<div class="flex-container row" style="width: 98%;">
@@ -277,19 +283,23 @@
 					<option value="Hard">Hard</option>
 				</select>
 				<label> &nbsp Constraint: </label>
-				<select id="qConstraint">
+				<select id="qconstraint">
 					<option value="" selected></option>
-					<option value="Easy">Easy</option>
-					<option value="Medium">Medium</option>
-					<option value="Hard">Hard</option>
+					<option value="for">for</option>
+					<option value="while">while</option>
+					<option value="print">print</option>
 				</select>
 				<!--- Values will be changed --->
 				<label> &nbsp Tag: </label>
 				<select id="qtag">
 					<option value="" selected></option>
 					<option value="Lists">Lists</option>
-					<option value="Operations">Operations</option>
-					<option value="Recursion">recursion</option>
+					<option value="Additon">Addition</option>
+					<option value="Recursion">Recursion</option>
+					<option value="Multiplication">Multiplication</option>
+					<option value="Subtraction">Subtraction</option>
+					<option value="Division">Division</option>
+					<option value="Modulus">Modulus</option>
 				</select>
 				<button type="button" style="height: 27px; width: 80px" onclick="filter()">Filter</button>
 			</div>
