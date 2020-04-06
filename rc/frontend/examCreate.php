@@ -73,9 +73,11 @@
 			function filter() {
 				var diff = document.getElementById("difficulty").value;
 				var tag = document.getElementById("tag").value;
+				var constraint = document.getElementById("constraint").value;
 				let formData = new FormData();
 				formData.append('requestType', 'getQuestions');
 				formData.append('difficulty', diff);
+				formData.append('constraints', constraint);
 				formData.append('tag', tag);
 				for (var p of formData) {
 				  console.log(p);
@@ -179,6 +181,13 @@
 			<div id="filters" class="flex-container row" style="width:100%; float:left">
 				<label> &nbsp Difficulty: </label>
 				<select id="difficulty">
+					<option value="" selected></option>
+					<option value="Easy">Easy</option>
+					<option value="Medium">Medium</option>
+					<option value="Hard">Hard</option>
+				</select>
+				<label> &nbsp Constraint: </label>
+				<select id="constraint">
 					<option value="" selected></option>
 					<option value="Easy">Easy</option>
 					<option value="Medium">Medium</option>
