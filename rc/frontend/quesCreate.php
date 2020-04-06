@@ -40,9 +40,6 @@
 				formData['testCases'] = [];
 				numTestCases = document.getElementById('numTestCases').value;
 				for (var i=0; i<numTestCases; i++) {
-					let testCase = {};
-					var caseString = document.getElementById("testCase").value;
-					testCase['case'] = caseString;
 					let data = {};
 					var argc = document.getElementById("".concat('input ', (i+1).toString())).value;
 					data['argc'] = argc;
