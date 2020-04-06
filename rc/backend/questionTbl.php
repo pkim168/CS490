@@ -39,7 +39,7 @@
 			$difficulty = " WHERE difficultyLvl = '".$difficulty."'";
 			$flag++;
 		}
-		else if (!empty($tag)) {
+		if (!empty($tag)) {
 			if ($flag == 0) {
 				$tag = " WHERE tag = '".$tag."'";
 				$flag++;
@@ -48,7 +48,7 @@
 				$tag = " AND tag = '".$tag."'";
 			}
 		}
-		else if (!empty($constraints)) {
+		if (!empty($constraints)) {
 			if ($flag == 0) {
 				$constraints = " WHERE constraints = '".$constraints."'";
 				$flag++;
@@ -61,7 +61,7 @@
 			490questionTbl
 			JOIN
 			490testCaseTbl
-			ON 490questionTbl.questionId = 490testCaseTbl.490questionTbl_questionId".$difficulty.$tag." ORDER BY 490questionTbl.questionId;";
+			ON 490questionTbl.questionId = 490testCaseTbl.490questionTbl_questionId".$difficulty.$tag.$constraints." ORDER BY 490questionTbl.questionId;";
 		
 		$count = -1;
 		$questionId = "";
