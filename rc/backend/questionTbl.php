@@ -95,12 +95,6 @@
 						$questionId = $row["questionId"];
 						array_push($data, $temp);
 						$count++;
-						$data["message"] = "Success";
-						$data["error"] = $keyword;
-					}
-					else {
-						$data["message"] = "Failure";
-						$data["error"] = $keyword.$row["question"];
 					}
 				}
 				else {
