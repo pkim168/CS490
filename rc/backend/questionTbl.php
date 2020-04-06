@@ -10,6 +10,7 @@
 			$difficulty = "";
 			$tag = "";
 			$constraints = "";
+			$keyword = "";
 			if(!empty($json['difficulty'])) {
 				$difficulty = getData($json['difficulty']);
 			}
@@ -19,7 +20,10 @@
 			if(!empty($json['constraints'])) {
 				$constraints = getData($json['constraints']);
 			}
-			echo getQuestions($difficulty, $tag, $constraints);
+			if(!empty($json['keyword'])) {
+				$keyword = getData($json['keyword']);
+			}
+			echo getQuestions($difficulty, $tag, $constraints, $keyword);
 			break;
 		
 		case 'getTags':
@@ -32,7 +36,7 @@
 			
 	}
 	
-	function getQuestions($difficulty, $tag, $constraints) {
+	function getQuestions($difficulty, $tag, $constraints, $keyword) {
 		global $db;
 		$data = array();
 		$flag = 0;
@@ -78,17 +82,40 @@
 				array_push($data[$count]["testCases"], $row["testCase"]);
 			}
 			else {
-				$temp["questionId"] = $row["questionId"];
-				$temp["question"] = $row["question"];
-				$temp["functionName"] = $row["functionName"];
-				$temp["difficulty"] = $row["difficultyLvl"];
-				$temp["tag"] = $row["tag"];
-				$temp["constraints"] = $row["constraints"];
-				$temp["testCases"] = array($row["testCase"]);
-				$temp["state"] = $constraints;
-				$questionId = $row["questionId"];
-				array_push($data, $temp);
-				$count++;
+				if (!empty($keyword)) {
+					if (preg_match("/".$keyword."/", $row["question"])) {
+						$temp["questionId"] = $row["questionId"];
+						$temp["question"] = $row["question"];
+						$temp["functionName"] = $row["functionName"];
+						$temp["difficulty"] = $row["difficultyLvl"];
+						$temp["tag"] = $row["tag"];
+						$temp["constraints"] = $row["constraints"];
+						$temp["testCases"] = array($row["testCase"]);
+						$temp["state"] = $constraints;
+						$questionId = $row["questionId"];
+						array_push($data, $temp);
+						$count++;
+						$data["message"] = "Success";
+						$data["error"] = $keyword;
+					}
+					else {
+						$data["message"] = "Failure";
+						$data["error"] = $keyword.$row["question"];
+					}
+				}
+				else {
+					$temp["questionId"] = $row["questionId"];
+					$temp["question"] = $row["question"];
+					$temp["functionName"] = $row["functionName"];
+					$temp["difficulty"] = $row["difficultyLvl"];
+					$temp["tag"] = $row["tag"];
+					$temp["constraints"] = $row["constraints"];
+					$temp["testCases"] = array($row["testCase"]);
+					$temp["state"] = $constraints;
+					$questionId = $row["questionId"];
+					array_push($data, $temp);
+					$count++;
+				}
 			}
 		}
 		return json_encode($data);
