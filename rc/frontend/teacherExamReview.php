@@ -95,7 +95,6 @@
 					<tr>
 						<th> Question </th>
 						<th> Answer </th>
-						<th> Test Cases </th>
 						<th> Points Earned </th>
 						<th> Points Total </th>
 						<th> Comments </th>
