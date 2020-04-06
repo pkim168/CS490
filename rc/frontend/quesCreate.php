@@ -156,9 +156,9 @@
 			}
 			
 			function filter() {
-				var diff = document.getElementById("difficulty").value;
-				var tag = document.getElementById("tag").value;
-				var constraint = document.getElementById("constraint").value;
+				var diff = document.getElementById("qdifficulty").value;
+				var tag = document.getElementById("qtag").value;
+				var constraint = document.getElementById("qconstraint").value;
 				let formData = new FormData();
 				formData.append('requestType', 'getQuestions');
 				formData.append('difficulty', diff);
@@ -274,6 +274,13 @@
 			<div id="filters" class="flex-container row" style="width:100%; float:left">
 				<label> &nbsp Difficulty: </label>
 				<select id="qdifficulty">
+					<option value="" selected></option>
+					<option value="Easy">Easy</option>
+					<option value="Medium">Medium</option>
+					<option value="Hard">Hard</option>
+				</select>
+				<label> &nbsp Constraint: </label>
+				<select id="qConstraint">
 					<option value="" selected></option>
 					<option value="Easy">Easy</option>
 					<option value="Medium">Medium</option>
