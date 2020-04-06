@@ -51,6 +51,7 @@
 					let question = {};
 					var questionId = table.rows[i].id;
 					var comments = table.rows[i].cells[5].firstChild.value;
+					var qtable = document.getElementById("examId").innerText;
 					if (table.rows[i].cells[3].firstChild.value == "") {
 						var points = table.rows[i].cells[3].firstChild.placeholder;
 					}
