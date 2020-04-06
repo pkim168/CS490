@@ -181,6 +181,8 @@
 				.then((response) => {
 					console.log(response);
 					response.json().then((data) => {
+						console.log(data["message"]);
+						console.log(data["error"]);
 						var questions = document.getElementById('questions');
 						while (questions.childNodes.length > 2) {
 							questions.removeChild(questions.lastChild);
