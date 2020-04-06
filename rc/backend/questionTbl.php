@@ -9,6 +9,7 @@
 		case 'getQuestions':
 			$difficulty = "";
 			$tag = "";
+			$constraints = "";
 			if(!empty($json['difficulty'])) {
 				$difficulty = getData($json['difficulty']);
 			}
@@ -16,9 +17,9 @@
 				$tag = getData($json['tag']);
 			}
 			if(!empty($json['constraints'])) {
-				$tag = getData($json['constraints']);
+				$constraints = getData($json['constraints']);
 			}
-			echo getQuestions($difficulty, $tag);
+			echo getQuestions($difficulty, $tag, $constraints);
 			break;
 		
 		case 'getTags':
@@ -84,6 +85,7 @@
 				$temp["tag"] = $row["tag"];
 				$temp["constraints"] = $row["constraints"];
 				$temp["testCases"] = array($row["testCase"]);
+				$temp["state"] = $constraints;
 				$questionId = $row["questionId"];
 				array_push($data, $temp);
 				$count++;

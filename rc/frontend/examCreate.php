@@ -98,6 +98,7 @@
 							console.log(data['error']);
 							return;
 						}
+						console.log(data['state']);
 						var count = Object.keys(data).length;
 						for (var i=0; i<count; i++) {
 							var tr = document.createElement('tr');
