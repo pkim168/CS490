@@ -63,6 +63,7 @@ INSERT
 			question: (String),
 			functionName: (String),
 			difficulty: 'Easy, 'Medium', or 'Hard'
+			constraints: (String),
 			tag: (string)
 			testCases: {
 				0: {

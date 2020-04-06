@@ -81,8 +81,14 @@
 				SELECT * FROM
 				490studentExamTbl
 				JOIN
-				490examGradesTbl
-				ON 490studentExamTbl.sExamId = 490examGradesTbl.490studentExamTbl_sExamId
+				(
+					SELECT * FROM
+					490examGradesTbl
+					JOIN
+					490questionTbl
+					ON 490studentExamTbl.490questionTbl_questionId = 490questionTbl.questionId
+				} as C
+				ON 490studentExamTbl.sExamId = C.490studentExamTbl_sExamId
 				WHERE 490studentExamTbl.490userTbl_ucid = '$ucid' AND 490studentExamTbl.490examTbl_examId = '$examId'
 			) as A
 			JOIN
@@ -111,6 +117,7 @@
 				switch ($row["subitem"]) {
 					case "function":
 						$data[$count]["function"]["itemId"] = $row["itemId"];
+						$data[$count]["function"]["functionName"] = $row["functionName"];
 						$data[$count]["function"]["pointsEarned"] = $row["pointsEarned"];
 						$data[$count]["function"]["totalPoints"] = $row["totalPoints"];
 						break;
@@ -123,6 +130,7 @@
 					
 					case "constraint":
 						$data[$count]["constraints"]["itemId"] = $row["itemId"];
+						$data[$count]["constraints"]["constraint"] = $row["constraints"];
 						$data[$count]["constraints"]["pointsEarned"] = $row["pointsEarned"];
 						$data[$count]["constraints"]["totalPoints"] = $row["totalPoints"];
 						break;
