@@ -200,7 +200,6 @@
 				<label> &nbsp Tag: </label>
 				<select id="tag">
 					<option value="" selected></option>
-					<option value="" selected></option>
 					<option value="Lists">Lists</option>
 					<option value="Additon">Addition</option>
 					<option value="Recursion">Recursion</option>

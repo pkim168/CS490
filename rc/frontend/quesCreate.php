@@ -256,7 +256,6 @@
 						<label style="width: 50%;">Tag:</label>
 						<select style="width: 50%;" id="tag" required>
 							<option value="" selected></option>
-							<option value="" selected></option>
 							<option value="Lists">Lists</option>
 							<option value="Additon">Addition</option>
 							<option value="Recursion">Recursion</option>
