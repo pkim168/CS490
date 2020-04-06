@@ -107,27 +107,37 @@
 							echo "<tr id=".$json[$i]["questionId"].">";
 							echo "<td>".$json[$i]["question"]."</td>";
 							echo "<td>".$json[$i]["answer"]."</td>";
+							echo '<td><table id="'.$json[$i]["questionId"].'points" style="width:100%">';
+							echo '<tr><th>Function Name</th><th>Colon</th><th>Constraint</th><th>Test Cases</th></tr>';
+							echo '<tr><td id="'.$json[$i]["function"]["itemId"].'">'."<td><input style='width: 100%;' placeholder='".$json[$i]["function"]["pointsEarned"]."'></td>"."/".$json[$i]["function"]["totalSubPoints"]."</td>";
+							$totalPointsEarned += $json[$i]["function"]["pointsEarned"];
+							echo '<td id="'.$json[$i]["colon"]["itemId"].'">'."<td><input style='width: 100%;' placeholder='".$json[$i]["colon"]["pointsEarned"]."'></td>"."/".$json[$i]["colon"]["totalSubPoints"]."</td>";
+							$totalPointsEarned += $json[$i]["colon"]["pointsEarned"];
+							echo '<td id="'.$json[$i]["constraints"]["itemId"].'">'."<td><input style='width: 100%;' placeholder='".$json[$i]["constraints"]["pointsEarned"]."'></td>"."/".$json[$i]["constraints"]["totalSubPoints"]."</td>";
+							$totalPointsEarned += $json[$i]["constraints"]["pointsEarned"];
+							echo '<td><table id="'.$json[$i]["questionId"].'testCases" style="width:100%">';
 							$testCases = $json[$i]["testCases"];
-							$str = $testCases[0]['case'];
 							for ($j=0; $j < count($testCases); $j++) {
-								$parameters = "\nParameters: ";
+								echo '<tr id="'.$testCases[$j]["itemId"].'">';
+								$parameters = "Parameters: ";
 								$data = json_decode($testCases[$j]['data'], true);
 								for ($h=0; $h < count($data['parameters']); $h++) {
 									$parameters .= $data['parameters'][strval($h)]."; ";
 								}
-								$str .= $parameters."\nOutput: ".$data['result']."\n";
+								$str .= $parameters."\nOutput: ".$data['result'];
+								echo "<td><pre>".$str."</pre></td>";
+								echo "<td>"."<td><input style='width: 100%;' placeholder='".$testCases[$j]["pointsEarned"]."'></td>"."/".$testCases[$j]["totalSubPoints"]."</td></tr>";
+								$totalPointsEarned += $testCases[$j]["pointsEarned"];
 							}
-							echo "<td><pre>".$str."</pre></td>";
-							echo "<td><input style='width: 100%;' placeholder='".$json[$i]["pointsEarned"]."'></td>";							
+							echo "</table></td></tr></table></td>";						
 							echo "<td>".$json[$i]["totalPoints"]."</td>";
 							echo "<td><textarea style='width: 100%; resize:vertical'>".$json[$i]["comments"]."</textarea></td>";
-							
 							echo "</tr>";
 							$totalPointsEarned += (float)$json[$i]["pointsEarned"];
 							$maxPoints +=  (float)$json[$i]["totalPoints"];
 						}
 						$percentage = ceil(100*($totalPointsEarned / $maxPoints));
-						echo "<td></td><td></td><td></td><td></td><td> Percentage: ".$percentage."% </td><td></td>";
+						echo "<td></td><td></td><td></td><td> Percentage: ".$percentage."% </td>";
 					?>
 				</table>
 			</div>

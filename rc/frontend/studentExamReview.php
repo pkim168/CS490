@@ -62,7 +62,7 @@
 						<th> Comments </th>
 					</tr>
 					<?php
-						$totalPoints=0;
+						$totalPointsEarned=0;
 						$maxPoints=0;
 						for ($i = 0; $i < count($json); $i++) {
 							echo "<tr id=".$json[$i]["questionId"].">";
