@@ -7,7 +7,7 @@
 		header('Location: ./studentView.php');
 	}
 	
-	$difficulty = $tag = $constraints"";
+	$difficulty = $tag = $constraints = "";
 	
 	if(!empty($_POST["difficulty"])){
 		$difficulty = $_POST["difficulty"];
