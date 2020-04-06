@@ -74,11 +74,13 @@
 				var diff = document.getElementById("difficulty").value;
 				var tag = document.getElementById("tag").value;
 				var constraint = document.getElementById("constraint").value;
+				var keyword = document.getElementById("keyword").value;
 				let formData = new FormData();
 				formData.append('requestType', 'getQuestions');
 				formData.append('difficulty', diff);
 				formData.append('constraints', constraint);
 				formData.append('tag', tag);
+				formData.append('keyword', keyword);
 				for (var p of formData) {
 				  console.log(p);
 				}
@@ -207,6 +209,8 @@
 					<option value="Division">Division</option>
 					<option value="Modulus">Modulus</option>
 				</select>
+				<label> &nbsp Keyword: </label>
+				<input type="text" id="keyword"/>
 				<button type="button" style="height: 27px; width: 80px" onclick="filter()">Filter</button>
 			</div>
 			<div class="flex-container row" style="width:98%; float:left">

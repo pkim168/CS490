@@ -6,7 +6,9 @@ GET
 			requestType: 'getQuestions',
 			/* Optional Fields */
 			difficulty: 'Easy', 'Medium', or 'Hard'
+			constraints: TBD
 			tag: To be decided
+			keyword: (String)
 		}
 
 		Receive:
@@ -68,25 +70,25 @@ INSERT
 			testCases: {
 				0: {
 					data: {
-							parameters: {
-								0: Parameter,
-								1: Parameter,
-								etc.
-							},
-							argc: Num of Arguments,
-							result: Expected output
-						}
+						parameters: {
+							0: Parameter,
+							1: Parameter,
+							etc.
+						},
+						argc: Num of Arguments,
+						result: Expected output
+					}
 				},
 				1: {
 					data: {
-							parameters: {
-								0: Parameter,
-								1: Parameter,
-								etc.
-							},
-							argc: Num of Arguments,
-							result: Expected output
-						}
+						parameters: {
+							0: Parameter,
+							1: Parameter,
+							etc.
+						},
+						argc: Num of Arguments,
+						result: Expected output
+					}
 				},
 				etc.
 			}
