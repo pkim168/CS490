@@ -78,6 +78,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     $result = "";
     $testCases_num = count($backend_testCases);
     for($j = 0; $j < $testCases_num; $j++) {
+        $testCaseId = $backend_testCases[$j]['testCaseId'];
         $data = json_decode($backend_testCases[$j]['data'], true);
         $result = $data['result'];
         for ($h=0; $h < count($data['parameters']); $h++) {
@@ -159,16 +160,13 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     else{
         $comments .= "Sorry you did have the colon.\n";
     }
-
-    //counting the amount of parameters
-    $parameter_count = substr_count($parameters, ",");
+    $testCase_array = array();
     //setting file
     $file = "test.py";
     //testing for each parameter
-    for($i = 0; $i < $parameter_count; $i++){
-        //individual parameter
-        $split_leftt = explode(",", $parameters);
-        $parameter = $split_leftt[$i];
+    for($i = 0; $i < $testCases_num; $i++){
+        //grab test case id
+        $testCaseId = $backend_testCases[$j]['testCaseId'];
         //inserting code into file
         file_put_contents($file, $answer . "\n" . "print($answer_function_name($parameters))");
         //running the python code
@@ -181,10 +179,13 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         else{
             $comments .= "Result was incorrect. Correct result was $result";
         }
+
+        $temp = array('testCaseId' => $testCaseId, 'pointsEarned' => $testCases_pointsEarned, 'totalSubPoints' => (($totalPoints*.20)/$testCases_num));
+        array_push($testcases, $temp);
     }
 
     //packaging the grade 
-    $grade = array('questionId' => $questionId, 'function' => array( 'pointsEarned' => $function_pointsEarned, 'totalPoints' => ($totalPoints*.2)), 'colon' => array( 'pointsEarned' => $colon_pointsEarned, 'totalPoints' => ($totalPoints*.2)), 'constraints' => array( 'pointsEarned' => $constraints_pointsEarned, 'totalPoints' => ($totalPoints*.2)), 'testCases' => '', 'answer' => $answer, 'comments' => $comments, 'totalPoints' => $totalPoints);
+    $grade = array('questionId' => $questionId, 'function' => array('pointsEarned' => $function_pointsEarned, 'totalPoints' => ($totalPoints*.2)), 'colon' => array('pointsEarned' => $colon_pointsEarned, 'totalPoints' => ($totalPoints*.2)), 'constraints' => array( 'pointsEarned' => $constraints_pointsEarned, 'totalPoints' => ($totalPoints*.2)), 'testCases' => array(), 'answer' => $answer, 'comments' => $comments, 'totalPoints' => $totalPoints);
 
     //returning grade
     return $grade;
