@@ -153,7 +153,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
 
     //colon testing, if colon is in the student answer then they get points
     if(strpos($answer, ':') !== false){
-        $comments .= "Awesome you got the comment.\n";
+        $comments .= "Awesome you got the colon.\n";
         $colon_pointsEarned += ($totalPoints*0.2);
     }
     else{
@@ -184,7 +184,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     }
 
     //packaging the grade 
-    $grade = $data = array('questionId' => $questionId, 'function' => [$function_pointsEarned, ($totalPoints*20)], 'colon' => [$colon_pointsEarned, ($totalPoints*20)], 'constrains' => [$constraints_pointsEarned, ($totalPoints*20)], 'testCases' => [], 'answer' => $answer, 'comments' => $comments, 'totalPoints' => $totalPoints);
+    $grade = $data = array('questionId' => $questionId, 'function' => [$function_pointsEarned, ($totalPoints*.2)], 'colon' => [$colon_pointsEarned, ($totalPoints*.2)], 'constraints' => [$constraints_pointsEarned, ($totalPoints*.2)], 'testCases' => [], 'answer' => $answer, 'comments' => $comments, 'totalPoints' => $totalPoints);
 
     //returning grade
     return $grade;
