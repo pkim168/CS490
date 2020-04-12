@@ -392,6 +392,7 @@
 		for ($i = 0; $i < count($questions); $i++) {
 			$questionId = $questions[$i]["questionId"];
 			$answer = $questions[$i]["answer"];
+			$answer = mysqli_real_escape_string($db, $answer);
 			$totalPoints = $questions[$i]["totalPoints"];
 			$comments = getData($questions[$i]["comments"]);
 			$query .= "(DEFAULT, '$sExamId', '$questionId', '$totalPoints', '$answer', '$comments'),";

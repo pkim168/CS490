@@ -83,6 +83,7 @@
 			}
 			else {
 				if (!empty($keyword)) {
+					$keyword = mysqli_real_escape_string($db, $keyword);
 					if (preg_match("/".$keyword."/i", $row["question"])) {
 						$temp["questionId"] = $row["questionId"];
 						$temp["question"] = $row["question"];
