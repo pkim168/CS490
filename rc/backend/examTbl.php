@@ -582,6 +582,79 @@
 		global $db;
 		$data = array();
 		$query = "
+			SELECT 490userTbl_ucid
+			FROM
+			490studentExamTbl
+			WHERE 490examTbl_examId = '$examId' and status = '0';
+		";
+		$result = mysqli_query($db, $query);
+		if ($result->num_rows == 0){
+			$data["message"] = "Failure";
+			$data["error"] = "select ucid".mysqli_error();
+			return json_encode($data);
+		}
+		$ucids = array();
+		while ($row = mysqli_fetch_array($result)) {
+			array_push($ucids, $row["490userTbl_ucid"]);
+		}
+		
+		$query = "
+			SELECT 490questionTbl_questionId, points
+			FROM
+			490examQuestionTbl
+			WHERE 490examTbl_examId = '$examId';
+		";
+		$result = mysqli_query($db, $query);
+		if ($result->num_rows == 0){
+			$data["message"] = "Failure";
+			$data["error"] = "select quest".mysqli_error();
+			return json_encode($data);
+		}
+		$questions = array();
+		while ($row = mysqli_fetch_array($result)) {
+			$temp = array();
+			$temp['questionId'] = $row['490questionTbl_questionId'];
+			$temp['answer'] = "";
+			$temp['totalPoints'] = $row['points'];
+			array_push($questions, $temp);
+		}
+		$data['requestType'] = 'submitStudentExam';
+		$data['examId'] = $examId;
+		$data['questions'] = $questions;
+		for ($i=0; $i < count($ucids); $i++) {
+			$id = $ucids[$i];
+			$data['ucid'] = $id;
+			$url = "https://web.njit.edu/~jrd62/CS490/rc/grading.php";
+			$ch = curl_init($url);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+			$response_questions = curl_exec($ch);
+			curl_close ($ch);
+			$response_decode = json_decode($response_questions, true);
+			if ($response_decode['message'] == "Failure") {
+				echo $json_encode($response_decode);
+				return;
+			}
+		}
+		$query = "
+			UPDATE 490studentExamTbl 
+			SET status = '2'
+			WHERE 490examTbl_examId = '$examId';
+		";
+		if (!mysqli_query($db, $query)){
+			$data["message"] = "Failure";
+			$data["error"] = "update".mysqli_error();
+			return json_encode($data);
+		}
+		
+		
+		// Get all students not in exam grades table
+		// for each student, create exam grade
+		$data["message"] = "Success";
+		return json_encode($data);
+		/*
+		$query = "
 			SELECT sExamId
 			FROM
 			490studentExamTbl
@@ -634,7 +707,7 @@
 			$data["error"] = "insert".mysqli_error();
 			return json_encode($data);
 		}
-		$idList = implode("','", $sExamIds);
+		$idList = implode(",", $sExamIds);
 		
 		$examqIds = array();
 		$query = "
@@ -644,25 +717,31 @@
 			JOIN
 			490testCaseTbl
 			ON 490examGradesTbl.490questionTbl_questionId = 490testCaseTbl.490questionTbl_questionId
-			WHERE 490examGradesTbl.490studentExamTbl_sExamId IN ('$idList');
+			WHERE 490examGradesTbl.490studentExamTbl_sExamId IN ($idList)
+			ORDER BY 490examGradesTbl.examqId ASC;
 		";
 		$result = mysqli_query($db, $query);
 		if ($result->num_rows == 0){
 			$data["message"] = "Failure";
-			$data["error"] = "select examqId".mysqli_error();
+			$data["error"] = "select examqId".mysqli_error().$idList;
 			return json_encode($data);
 		}
+		$data["error"] = "";
 		while ($row = mysqli_fetch_array($result)) {
-			array_push($examqIds, $row);
+			$test = array();
+			$test["examqId"] = $row["examqId"];
+			$test["testCaseId"] = $row["testCaseId"];
+			$data["error"] .= $row["examqId"]." ".$row["testCaseId"]."/";
+			array_push($examqIds, $test);
 		}
 		
 		$prev = "";
 		$count = 0;
 		$query = "INSERT INTO 490itemTbl VALUES ";
 		for ($i=0; $i < count($examqIds); $i++) {
-			$id = $examqIds[$i];
-			$examqid = $row["examqId"];
-			$testCaseId = $row["testCaseId"];
+			$examqId = $examqIds[$i]["examqId"];
+			$testCaseId = $examqIds[$i]["testCaseId"];
+			$data["error"] .= $prev." ".$examqId." ".$testCaseId." |";
 			if ($prev != $examqId) {
 				$count = 0;
 				$query .= "
@@ -678,7 +757,7 @@
 		$query = substr($query, 0, -1).";";
 		if (!mysqli_query($db, $query)){
 			$data["message"] = "Failure";
-			$data["error"] = $query."insert item".mysqli_error();
+			$data["error"] .= $query."insert item".mysqli_error().$idList;
 			return json_encode($data);
 		}
 		
@@ -698,5 +777,6 @@
 		// for each student, create exam grade
 		$data["message"] = "Success";
 		return json_encode($data);
+		*/
 	}
 ?>

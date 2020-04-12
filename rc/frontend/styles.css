@@ -102,6 +102,9 @@ button {
   background-color: rgb(180,180,180);
   border: 2px solid rgb(100,100,100);
 }
+.rc {
+	border-radius: 25px;
+}
 
 textarea {
 	background-color:white;

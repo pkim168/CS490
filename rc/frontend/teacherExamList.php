@@ -24,7 +24,7 @@
 				location.href = "".concat('https://web.njit.edu/~dn236/CS490/rc/teacherExamStudents.php?examId=', id);
 			}
 			
-			function releaseExam(name) {
+			/* function releaseExam(name) {
 				var bool = confirm("Are you sure you want to release this exam?");
 				if (!bool) {
 					return false;
@@ -54,7 +54,7 @@
 					console.log(error);
 				});
 				return;
-			} 
+			}  */
 		</script>
 	</head>
 	<body>
@@ -82,12 +82,17 @@
 				curl_close($ch);
 				$json = json_decode($result, true);
 				if (!isset($json['message'])) {
+					echo "<div style='height: 95%; width:95%; display: inline-block; margin: 0% 0% 0% 0%;' class='flex-container row'>";
 					for ($i = 0; $i < count($json); $i++) {
+						echo "<button class='rc' type='button' id='".$json[$i]."' style='height: 40px; width: 150px' onclick='exam(this.id)'>Exam ".$json[$i]."</button>";
+					}
+					echo "</div>";
+					/* for ($i = 0; $i < count($json); $i++) {
 						echo "<div style='height: 60px; margin: 0% 0% 0% 0%;' class='flex-container row'>";
 						echo "<button type='button' id='".$json[$i]."' style='height: 40px; width: 150px' onclick='exam(this.id)'>Exam ".$json[$i]."</button>";
 						echo "<button type='button' id=r".$json[$i]." style='height: 40px; width: 150px; margin: 0px 10px 0px;' onclick='releaseExam(this.id)'>Release Exam ".$json[$i]."</button>";
 						echo "</div>";
-					}
+					} */
 				}
 			?>
 		</div>

@@ -40,6 +40,38 @@
 			function exam(id) {
 				location.href = "".concat('https://web.njit.edu/~dn236/CS490/rc/teacherExamReview.php?studentId=',id);
 			}
+			
+			function releaseExam(name) {
+				var bool = confirm("Are you sure you want to release this exam?");
+				if (!bool) {
+					return false;
+				}
+				var id = name;
+				let formData = new FormData();
+				formData.append('requestType', 'releaseExam');
+				formData.append('examId', id);
+				// cURL to middle end
+				fetch("https://web.njit.edu/~dn236/CS490/rc/releaseExams.php", {
+					method: "POST",
+					body: formData
+				})
+				.then((response) => {
+					console.log(response);
+					response.json().then((data) => {
+						if (data["message"] == "Success") {
+							// Redirect back after successful submission
+							location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';
+						}
+						else {
+							alert(''.concat("There was a problem releasing the exam. Please try again. Error message: ", data['error']));
+						}
+					})
+				})
+				.catch(function(error) {
+					console.log(error);
+				});
+				return;
+			} 
 		</script>
 	</head>
 	<body>
@@ -55,6 +87,8 @@
 					<tr>
 						<th> Student Id </th>
 						<th> Status </th>
+						<?php
+							echo "<th><button type='button' id=".$_GET['examId']." style='height: 100%; width: 100%; margin: 0px 10px 0px;' onclick='releaseExam(this.id)'>Release Exam ".$_GET['examId']."</button>"
 					</tr>
 					<?php
 						if (!isset($json['message'])) {
