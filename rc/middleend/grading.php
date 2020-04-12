@@ -184,7 +184,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     }
 
     //packaging the grade 
-    $grade = $data = array('questionId' => $questionId, 'function' => [$function_pointsEarned, ($totalPoints*.2)], 'colon' => [$colon_pointsEarned, ($totalPoints*.2)], 'constraints' => [$constraints_pointsEarned, ($totalPoints*.2)], 'testCases' => [], 'answer' => $answer, 'comments' => $comments, 'totalPoints' => $totalPoints);
+    $grade = array('questionId' => $questionId, 'function' => array( 'pointsEarned' => $function_pointsEarned, 'totalPoints' => ($totalPoints*.2)), 'colon' => array( 'pointsEarned' => $colon_pointsEarned, 'totalPoints' => ($totalPoints*.2)), 'constraints' => array( 'pointsEarned' => $constraints_pointsEarned, 'totalPoints' => ($totalPoints*.2)), 'testCases' => '', 'answer' => $answer, 'comments' => $comments, 'totalPoints' => $totalPoints);
 
     //returning grade
     return $grade;
