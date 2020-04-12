@@ -67,11 +67,11 @@
 				<div class="flex-container column" style="margin: 0%; float:right;">
 					<div class="flex-container row">
 						<label style="width: 120px;">UCID:</label>
-						<input style="width: 120px;" type="text" id="ucid" name="ucid" placeholder="Required field" autofocus required>
+						<input style="text-align:left; width: 120px;" type="text" id="ucid" name="ucid" placeholder="Required field" autofocus required>
 					</div>
 					<div class="flex-container row">
 						<label style="width: 120px;">Password:</label>
-						<input style="width: 120px;" type="password" id="pass" name="pass" placeholder="Required field" required>
+						<input style="text-align:left; width: 120px;" type="password" id="pass" name="pass" placeholder="Required field" required>
 					</div>
 					<div class="flex-container row">
 						  <button type="button" style="height: 40px; width: 150px" onclick="login()">Login</button>

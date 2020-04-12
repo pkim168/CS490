@@ -1,12 +1,17 @@
 * {
+  background-color:rgb(35,35,35);
   box-sizing: border-box;
+  border: 0px solid white;
 }
 
 body{
+  background-color:rgb(35,35,35);
+  color:white;
   font-family: verdana;
 }
 
 div{
+  background-color:rgb(35,35,35);
   display: inline-block;
   float: left;
   margin: 2.5% 0% 2.5% 0%;
@@ -38,12 +43,13 @@ input {
   display: inline-block;
   height: 25px;
   box-sizing: border-box;
+  text-align: left;
 }
 
-input[type="submit"]{
+input{
   display: inline-block;
-  background-color: gray;
-  color: white;
+  background-color: white;
+  color: black;
   text-align: center;
   box-sizing: border-box;
 }
@@ -52,7 +58,7 @@ form {
 	margin: 0 auto;
   padding: 0px 0px;
   display: inline-block;
-  border: 1px solid black;
+  border: 1px solid white;
 }
 
 select{
@@ -66,16 +72,45 @@ label {
 }
 
 table {
+	background-color:rgb(180,180,180);
     table-layout: auto;
     border-collapse: collapse;
     width: 100%;
-    border: 1px solid #ccc;
+    border: 0px solid #ccc;
 }
 
 table th {
-  border: 2px solid black;
+  border: 2px solid rgb(100,100,100);
+  color: black;
+  background-color: rgb(180,180,180);
 }
 
 table td {
-  border: 1px solid #ccc;
+  border: 2px solid rgb(100,100,100);
+  color: black;
+  background-color: rgb(180,180,180);
 }
+
+table tr {
+  border: 2px solid rgb(100,100,100);
+}
+button {
+  background-color: rgb(180,180,180);
+  border: 2px solid rgb(100,100,100);
+}
+
+textarea {
+	background-color:white;
+	color: black;
+}
+
+select {
+	background-color: white;
+	color: black;
+}
+
+select option{
+	background-color:white;
+	color: black;
+}
+	

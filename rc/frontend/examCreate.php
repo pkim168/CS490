@@ -195,18 +195,20 @@
 					<option value="for">for</option>
 					<option value="while">while</option>
 					<option value="print">print</option>
+					<option value="if">if</option>
 				</select>
 				<!--- Values will be changed --->
 				<label> &nbsp Tag: </label>
 				<select id="tag">
 					<option value="" selected></option>
 					<option value="Lists">Lists</option>
-					<option value="Additon">Addition</option>
+					<option value="Addition">Addition</option>
 					<option value="Recursion">Recursion</option>
 					<option value="Multiplication">Multiplication</option>
 					<option value="Subtraction">Subtraction</option>
 					<option value="Division">Division</option>
 					<option value="Modulus">Modulus</option>
+					<option value="Operations">Operations</option>
 				</select>
 				<label> &nbsp Keyword: </label>
 				<input type="text" id="keyword"/>

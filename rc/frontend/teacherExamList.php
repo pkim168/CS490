@@ -80,9 +80,9 @@
 				$json = json_decode($result, true);
 				if (!isset($json['message'])) {
 					for ($i = 0; $i < count($json); $i++) {
-						echo "<div class='flex-container row'>";
+						echo "<div style='height: 60px; margin: 0% 0% 0% 0%;' class='flex-container row'>";
 						echo "<button type='button' id='".$json[$i]."' style='height: 40px; width: 150px' onclick='exam(this.id)'>Exam ".$json[$i]."</button>";
-						echo "<button type='button' id=r".$json[$i]." style='height: 40px; width: 150px' onclick='releaseExam(this.id)'>Release Exam ".$json[$i]."</button>";
+						echo "<button type='button' id=r".$json[$i]." style='height: 40px; width: 150px; margin: 0px 10px 0px;' onclick='releaseExam(this.id)'>Release Exam ".$json[$i]."</button>";
 						echo "</div>";
 					}
 				}

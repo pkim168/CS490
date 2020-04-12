@@ -89,7 +89,7 @@
 			echo "<p id='ucid' hidden>{$_SESSION['ucid']}</p>";
 			echo "<p id='examId' hidden>{$_SESSION['examId']}</p>";
 		?>
-		<div class="flex-container column" style="width: 100%; margin: 0%; float:left; border-right: 1px black solid;">
+		<div class="flex-container column" style="width: 100%; margin: 0%; float:left; border-right: 0px black solid;">
 			<div class="flex-container column" style="margin: 0%; float:left;">
 				<div class="flex-container row">
 					<h1> <?php echo "Exam ".$_SESSION['examId']?> </h1>
@@ -105,11 +105,12 @@
 					<?php
 						for ($i = 0; $i < count($json); $i++) {
 							echo "<tr id=".$json[$i]["questionId"].">";
-							echo "<td>".$json[$i]["question"]."</td>";
-							echo "<td><textarea style='width: 98%; height: 400px; resize:vertical' id='testCase' required></textarea></td>";
-							echo "<td>".$json[$i]["totalPoints"]."</td>";
+							echo "<td style ='width:40%;'>".$json[$i]["question"]."</td>";
+							echo "<td><textarea style='width: 100%; height: 150px; resize:both' id='testCase' required></textarea></td>";
+							echo "<td style=;width:5%;'>".$json[$i]["totalPoints"]."</td>";
 							echo "</tr>";
 						}
+						
 					?>
 				</table>
 			</div>

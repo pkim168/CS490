@@ -62,6 +62,7 @@
 				.then((response) => {
 					console.log(response);
 					response.json().then((data) => {
+						
 						location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';
 					})
 				})
@@ -218,7 +219,7 @@
 		</script>
 	</head>
 	<body onload="clearInp()">
-		<div class="flex-container column" style="width: 50%; margin: 0%; float:left; border-right: 1px black solid;">
+		<div class="flex-container column" style="width: 50%; margin: 0%; float:left; border-right: 1px rgb(100,100,100); solid;">
 			<div class="flex-container column" style="width:100% margin: 0%; float:left;">
 				<div class="flex-container row">
 					<h1> New Question </h1>
@@ -227,16 +228,16 @@
 			<form onsubmit="create(); return false;" style="width: 98%">
 				<div class="flex-container column" style="width: 100%;margin: 0%; float:right;" id="form">
 					<div class="flex-container row" style="width: 98%;">
-						<label style="width: 50%;">Question:</label>
-						<textarea style="width: 50%; resize:none" id="question" required autofocus></textarea>
+						<label style="width: 150px;">Question:</label>
+						<textarea style="width: 70%; resize:vertical" id="question" required autofocus></textarea>
 					</div>
 					<div class="flex-container row" style="width: 98%;">
-						<label style="width: 50%;">Function Name:</label>
-						<input style="width: 50%;" type="text" id="functionName" required/>
+						<label style="width: 150px;">Function Name:</label>
+						<input style="width: 70%;" type="text" id="functionName" required/>
 					</div>
 					<div class="flex-container row" style="width: 98%;">
-						<label style="width: 50%;">Difficulty:</label>
-						<select style="width: 50%;" id="difficulty" required>
+						<label style="width: 150px;">Difficulty:</label>
+						<select style="width: 70%;" id="difficulty" required>
 							<option value="" selected></option>
 							<option value="Easy">Easy</option>
 							<option value="Medium">Medium</option>
@@ -244,30 +245,33 @@
 						</select>
 					</div>
 					<div class="flex-container row" style="width: 98%;">
-						<label style="width: 50%;">Constraint:</label>
-						<select style="width: 50%;" id="constraint" required>
+						<label style="width: 150px;">Constraint:</label>
+						<select style="width: 70%;" id="constraint" required>
 							<option value="" selected></option>
 							<option value="for">for</option>
 							<option value="while">while</option>
 							<option value="print">print</option>
+							<option value="if">if</option>
+							
 						</select>
 					</div>
 					<div class="flex-container row" style="width: 98%;">
-						<label style="width: 50%;">Tag:</label>
-						<select style="width: 50%;" id="tag" required>
+						<label style="width: 150px;">Tag:</label>
+						<select style="width: 70%;" id="tag" required>
 							<option value="" selected></option>
 							<option value="Lists">Lists</option>
-							<option value="Additon">Addition</option>
+							<option value="Addition">Addition</option>
 							<option value="Recursion">Recursion</option>
 							<option value="Multiplication">Multiplication</option>
 							<option value="Subtraction">Subtraction</option>
 							<option value="Division">Division</option>
 							<option value="Modulus">Modulus</option>
+							<option value="Operations">Operations</option>
 						</select>
 					</div>
 					<div class="flex-container row" style="width: 98%;">
-						<label style="width: 50%;"># of Test Cases:</label>
-						<input style="width: 50%;" type="number" id="numTestCases" min="1" value = "" oninput="testCases(this.value, this.id)" required />
+						<label style="width: 150px;"># of Test Cases:</label>
+						<input style="width: 70%;" type="number" id="numTestCases" min="2" max ="6" value = "" oninput="testCases(this.value, this.id)" required />
 					</div>
 					<div class="flex-container column" style="width: 98%;" id="testCases">
 					</div>
@@ -277,7 +281,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="flex-container column" style="width: 50%; margin: 0%; float:right; border-left: 1px black solid;">
+		<div class="flex-container column" style="width: 50%; margin: 0%; float:right; border-left: 0px black solid;">
 			<div class="flex-container column" style="margin: 0%; float:left;">
 				<div class="flex-container row">
 					<h1> Question Bank </h1>
@@ -297,18 +301,20 @@
 					<option value="for">for</option>
 					<option value="while">while</option>
 					<option value="print">print</option>
+					<option value="if">if</option>
 				</select>
 				<!--- Values will be changed --->
 				<label> &nbsp Tag: </label>
 				<select id="qtag">
 					<option value="" selected></option>
 					<option value="Lists">Lists</option>
-					<option value="Additon">Addition</option>
+					<option value="Addition">Addition</option>
 					<option value="Recursion">Recursion</option>
 					<option value="Multiplication">Multiplication</option>
 					<option value="Subtraction">Subtraction</option>
 					<option value="Division">Division</option>
 					<option value="Modulus">Modulus</option>
+					<option value="Operations">Operations</option>
 				</select>
 				<label> &nbsp Keyword: </label>
 				<input type="text" id="keyword"/>
