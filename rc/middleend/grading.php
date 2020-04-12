@@ -76,7 +76,6 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     //point system testcases 20,functionname 20, constraints 20, colon 20, parameters 20 
     //setting initial grade and comments
     $function_pointsEarned = 0;
-    $testCases_pointsEarned = 0;
     $constraints_pointsEarned = 0;
     $colon_pointsEarned = 0;
     $parameters_pointsEarned = 0;
@@ -129,11 +128,17 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         $testCaseId = $backend_testCases[$i]['testCaseId'];
         $parameters = "";
         $result = "";
+        $testCases_pointsEarned = 0;
         $data = json_decode($backend_testCases[$i]['data'], true);
         $result = $data['result'];
         //grabbing parameters
         for ($h=0; $h < count($data['parameters']); $h++) {
-            $parameters .= "'".$data['parameters'][strval($h)]."'".",";
+            if(is_numeric($data['parameters'][strval($h)])){
+                $parameters .= $data['parameters'][strval($h)].",";
+            }
+            else{
+                $parameters .= "'".$data['parameters'][strval($h)]."'".",";
+            }
         }
         $parameters = substr($parameters, 0, -1);
         //inserting code into file
