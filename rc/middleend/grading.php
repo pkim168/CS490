@@ -92,11 +92,11 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     $answer_function_name = $split[1];
     //checking if function name is correct
     if($answer_function_name == $functionName){
-        $comments .= "Congrats. Function name is correct!";
+        $comments .= "Congrats. Function name is correct!\n";
         $function_pointsEarned += ($totalPoints*0.2);
     }
     else{
-        $comments .= "Better luck next time. Function name is incorrect. Functions $functionName and $answer_function_name";
+        $comments .= "Better luck next time. Function name is incorrect. The correct answer should be: $answer_function_name.\n";
     }
 
     //constraint testing
@@ -106,7 +106,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         $constraints_pointsEarned += ($totalPoints*0.2);
     }
     else{
-        $comments .= "Sorry you got wrong constraint. The actual constraint was: $backend_constraints\n";
+        $comments .= "Sorry you got wrong constraint. The actual constraint was: $backend_constraints.\n";
     }
 
     //colon testing, if colon is in the student answer then they get points
@@ -144,11 +144,11 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         $runpython = exec("python $file");
         //checking if code matches the result
         if ($runpython == $result){
-            $comments .= "Awesome code results were correct";
+            $comments .= "Awesome code results were correct.\n";
             $testCases_pointsEarned += (($totalPoints*0.2)/$testCases_num);
         }
         else{
-            $comments .= "Result was incorrect. Correct result was $result";
+            $comments .= "Result was incorrect. Correct result was $result.\n";
         }
 
         $temp = array('testCaseId' => $testCaseId, 'pointsEarned' => $testCases_pointsEarned, 'totalSubPoints' => (($totalPoints*.20)/$testCases_num));
