@@ -139,8 +139,9 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         }
         //inserting code into file
         file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer . "\n" . "print($answer_function_name($parameters))");
+        $command = escapeshellcmd('/usr/custom/$file');
         //running the python code
-        $runpython = exec("python $file");
+        $runpython = shell_exec($command);
         //checking if code matches the result
         if ($runpython == $result){
             $comments .= "Awesome code results were correct.\n";
