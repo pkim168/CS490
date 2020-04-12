@@ -28,7 +28,7 @@ function get_exam_questions($requestType,$examId){
 	curl_close ($ch);
 	$response_decode = json_decode($response_questions, true);
 	//return response
-	return $response_decode[0];
+	return $response_decode;
 }
 
 //counting the amount of questions within exam
