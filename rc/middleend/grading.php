@@ -138,7 +138,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
             $parameters .= $data['parameters'][strval($h)]."; ";
         }
         //inserting code into file
-        file_put_contents($file, $student_answer . "\n" . "print($answer_function_name($parameters))");
+        file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer . "\n" . "print($answer_function_name($parameters))");
         //running the python code
         $runpython = exec("python $file");
         //checking if code matches the result
