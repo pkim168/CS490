@@ -73,19 +73,6 @@ echo $send;
 
 
 function grade($answer, $questionId, $functionName, $backend_constraints, $backend_testCases, $totalPoints){
-    //for each test case lets grab the parameters and results
-    $parameters = "";
-    $result = "";
-    $testCases_num = count($backend_testCases);
-    for($j = 0; $j < $testCases_num; $j++) {
-        $testCaseId = $backend_testCases[$j]['testCaseId'];
-        $data = json_decode($backend_testCases[$j]['data'], true);
-        $result = $data['result'];
-        for ($h=0; $h < count($data['parameters']); $h++) {
-            $parameters .= $data['parameters'][strval($h)]."; ";
-        }
-    }
-
     //point system testcases 20,functionname 20, constraints 20, colon 20, parameters 20 
     //setting initial grade and comments
     $function_pointsEarned = 0;
@@ -110,6 +97,19 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     }
     else{
         $comments .= "Better luck next time. Function name is incorrect. Functions $functionName and $answer_function_name";
+    }
+
+    //for each test case lets grab the parameters and results
+    $parameters = "";
+    $result = "";
+    $testCases_num = count($backend_testCases);
+    for($j = 0; $j < $testCases_num; $j++) {
+        $testCaseId = $backend_testCases[$j]['testCaseId'];
+        $data = json_decode($backend_testCases[$j]['data'], true);
+        $result = $data['result'];
+        for ($h=0; $h < count($data['parameters']); $h++) {
+            $parameters .= $data['parameters'][strval($h)]."; ";
+        }
     }
 
     //parameters testing
