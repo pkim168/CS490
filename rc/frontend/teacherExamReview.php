@@ -89,7 +89,6 @@
 						questions["testCases"].push(temp);
 					}
 					question['questionId'] = questionId;
-					question['points'] = points;
 					question['comments'] = comments;
 					formData['questions'].push(question);
 				}
@@ -163,7 +162,7 @@
 							}
 							echo "</table></td></tr></table></td>";						
 							echo "<td>".$json[$i]["totalPoints"]."</td>";
-							echo "<td><textarea style='width: 100%; resize:vertical'>".$json[$i]["comments"]."</textarea></td>";
+							echo "<td><textarea style='width: 100%; vertical: 100%; resize:vertical'>".$json[$i]["comments"]."</textarea></td>";
 							echo "</tr>";
 							$totalPointsEarned += (float)$json[$i]["pointsEarned"];
 							$maxPoints +=  (float)$json[$i]["totalPoints"];

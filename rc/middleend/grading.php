@@ -95,7 +95,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         $function_pointsEarned += ($totalPoints*0.2);
     }
     else{
-        $comments .= "Better luck next time. Function name is incorrect. The correct answer should be: $answer_function_name.\n";
+        $comments .= "Better luck next time. Function name is incorrect. The correct answer should be: $functionName.\n";
     }
 
     //constraint testing
