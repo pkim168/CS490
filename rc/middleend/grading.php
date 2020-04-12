@@ -28,7 +28,7 @@ function get_exam_questions($requestType,$examId){
 	curl_close ($ch);
 	$response_decode = json_decode($response_questions, true);
 	//return response
-	return $response_decode[0];
+	return $response_decode;
 }
 
 //counting the amount of questions within exam
@@ -50,7 +50,7 @@ for($i = 0; $i < $question_num; $i++){
     //counting the number of test cases
     $testCases_num = count($backend_testCases);
     //calculate grade for each question, get back array
-    $grade = grade($answer, $questionId, $functionName, $backend_constraints, $backend_testCases, $totalPoints);
+    $grade = grade($answer, $questionId, $backend_functionName, $backend_constraints, $backend_testCases, $totalPoints);
     //pushing to student questions
     array_push($student_questions, $grade);
 }
@@ -73,18 +73,6 @@ echo $send;
 
 
 function grade($answer, $questionId, $functionName, $backend_constraints, $backend_testCases, $totalPoints){
-    //for each test case lets grab the parameters and results
-    $parameters = "";
-    $result = "";
-    $testCases_num = count($backend_testCases);
-    for($j = 0; $j < $testCases_num; $j++) {
-        $data = json_decode($backend_testCases[$j]['data'], true);
-        $result = $data['result'];
-        for ($h=0; $h < count($data['parameters']); $h++) {
-            $parameters .= $data['parameters'][strval($h)]."; ";
-        }
-    }
-
     //point system testcases 20,functionname 20, constraints 20, colon 20, parameters 20 
     //setting initial grade and comments
     $function_pointsEarned = 0;
@@ -96,8 +84,8 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
 
     //function name testing
     //cleaning students answer of white space in the beginning
-    $answer = ltrim($answer);
-    $split = preg_split("/\s+|\(|:/", $answer);
+    $student_answer = ltrim($answer);
+    $split = preg_split("/\s+|\(|:/", $student_answer);
     //grabbing the first word, which should be def
     $def = $split [0]; 
     //grabbing the function name
@@ -108,51 +96,21 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         $function_pointsEarned += ($totalPoints*0.2);
     }
     else{
-        $comments .= "Better luck next time. Function name is incorrect. Funcations $functionName and $answer_function_name";
+        $comments .= "Better luck next time. Function name is incorrect. Functions $functionName and $answer_function_name";
     }
-
-    //parameters testing
-    //splitting original student answer
-    $split_left = explode(")", $answer);
-    //should give you everything up to ')'
-    $temp = $split_left[0];
-    //splitting it again giving you everything up to '('
-    $split_right = explode("(", $temp);
-    //the student parameters
-    $answer_parameter = $split_right[1];
-    //removing any additional space
-    $student_parameters = preg_replace("/\s/","", $answer_parameter);
-    $parameters = preg_replace("/\s/","", $parameters);
-    //backend parameter count
-    $parameter_count = substr_count($parameters, ",");
-    //student parameter count
-    $student_parameter_count = substr_count($student_parameters, ",");
-    //checking if student parameter count is equal to backend parameter count
-    if($student_parameter_count == $parameter_count){
-        $comments .= "Awesome you got the parameters correct\n";
-        $parameters_pointsEarned += ($totalPoints*0.2);
-    }
-    else{
-        $comments .= "Better luck next time. The parameters you entered were incorrect. $\n";
-    } 
-    //tested and working up til this point
 
     //constraint testing
     //counting the amount of constraints
-    $constraint_count = count($backend_constraints);
-    //checking if answer contains each constraint
-    for($p = 0; $p < $constraint_count; $p++) {
-        if(strpos($backend_constraints[$p], $answer) !== false){
-            $comments .= "Awesome you got right constraint.\n";
-            $constraints_pointsEarned += ($totalPoints*0.2);
-        }
-        else{
-            $comments .= "Sorry you got wrong constraint. The actual constraint was: $backend_constraints[$p]\n";
-        }
+    if(strpos($student_answer, $backend_constraints) !== false){
+        $comments .= "Awesome you got right constraint.\n";
+        $constraints_pointsEarned += ($totalPoints*0.2);
+    }
+    else{
+        $comments .= "Sorry you got wrong constraint. The actual constraint was: $backend_constraints\n";
     }
 
     //colon testing, if colon is in the student answer then they get points
-    if(strpos($answer, ':') !== false){
+    if(strpos($student_answer, ':') !== false){
         $comments .= "Awesome you got the colon.\n";
         $colon_pointsEarned += ($totalPoints*0.2);
     }
@@ -160,31 +118,45 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         $comments .= "Sorry you did have the colon.\n";
     }
 
-    //counting the amount of parameters
-    $parameter_count = substr_count($parameters, ",");
+    //test case testing
+    //for each test case lets grab the parameters and results
+    $parameters = "";
+    $result = "";
+    $testCases_num = count($backend_testCases);
+    for($j = 0; $j < $testCases_num; $j++) {
+        $testCaseId = $backend_testCases[$j]['testCaseId'];
+        $data = json_decode($backend_testCases[$j]['data'], true);
+        $result = $data['result'];
+        for ($h=0; $h < count($data['parameters']); $h++) {
+            $parameters .= $data['parameters'][strval($h)]."; ";
+        }
+    }
+    $testCase_array = array();
     //setting file
     $file = "test.py";
     //testing for each parameter
-    for($i = 0; $i < $parameter_count; $i++){
-        //individual parameter
-        $split_leftt = explode(",", $parameters);
-        $parameter = $split_leftt[$i];
+    for($i = 0; $i < $testCases_num; $i++){
+        //grab test case id
+        $testCaseId = $backend_testCases[$j]['testCaseId'];
         //inserting code into file
-        file_put_contents($file, $answer . "\n" . "print($answer_function_name($parameters))");
+        file_put_contents($file, $student_answer . "\n" . "print($answer_function_name($parameters))");
         //running the python code
         $runpython = exec("python $file");
         //checking if code matches the result
         if ($runpython == $result){
             $comments .= "Awesome code results were correct";
-            $testCases_pointsEarned += ($totalPoints*0.2);
+            $testCases_pointsEarned += (($totalPoints*0.2)/$testCases_num);
         }
         else{
             $comments .= "Result was incorrect. Correct result was $result";
         }
+
+        $temp = array('testCaseId' => $testCaseId, 'pointsEarned' => $testCases_pointsEarned, 'totalSubPoints' => (($totalPoints*.20)/$testCases_num));
+        array_push($testCase_array, $temp);
     }
 
     //packaging the grade 
-    $grade = array('questionId' => $questionId, 'function' => array( 'pointsEarned' => $function_pointsEarned, 'totalPoints' => ($totalPoints*.2)), 'colon' => array( 'pointsEarned' => $colon_pointsEarned, 'totalPoints' => ($totalPoints*.2)), 'constraints' => array( 'pointsEarned' => $constraints_pointsEarned, 'totalPoints' => ($totalPoints*.2)), 'testCases' => '', 'answer' => $answer, 'comments' => $comments, 'totalPoints' => $totalPoints);
+    $grade = array('questionId' => $questionId, 'function' => array('pointsEarned' => $function_pointsEarned, 'totalSubPoints' => ($totalPoints*.2)), 'colon' => array('pointsEarned' => $colon_pointsEarned, 'totalSubPoints' => ($totalPoints*.2)), 'constraints' => array('pointsEarned' => $constraints_pointsEarned, 'totalSubPoints' => ($totalPoints*.2)), 'testCases' => $testCase_array, 'answer' => $student_answer, 'comments' => $comments, 'totalPoints' => $totalPoints);
 
     //returning grade
     return $grade;
