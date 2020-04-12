@@ -50,7 +50,7 @@ for($i = 0; $i < $question_num; $i++){
     //counting the number of test cases
     $testCases_num = count($backend_testCases);
     //calculate grade for each question, get back array
-    $grade = grade($answer, $questionId, $functionName, $backend_constraints, $backend_testCases, $totalPoints);
+    $grade = grade($answer, $questionId, $backend_functionName, $backend_constraints, $backend_testCases, $totalPoints);
     //pushing to student questions
     array_push($student_questions, $grade);
 }
