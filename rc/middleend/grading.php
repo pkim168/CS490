@@ -119,9 +119,6 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     }
 
     //test case testing
-    //for each test case lets grab the parameters and results
-    $parameters = "";
-    $result = "";
     $testCases_num = count($backend_testCases);
     $testCase_array = array();
     //setting file
@@ -130,15 +127,21 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     for($i = 0; $i < $testCases_num; $i++){
         //grab test case id
         $testCaseId = $backend_testCases[$i]['testCaseId'];
-        //grabbing results
+        $parameters = "";
+        $result = "";
         $data = json_decode($backend_testCases[$i]['data'], true);
         $result = $data['result'];
         //grabbing parameters
         for ($h=0; $h < count($data['parameters']); $h++) {
             $parameters .= $data['parameters'][strval($h)]."; ";
         }
+        $split_left = explode(";", $parameters);
+        $temp = $split_left[0];
+        $tempp = $split_left[1];
+        $temppp = $split_left[2];
+        $newparameters = $temp . "," . $tempp . "," . $temppp;
         //inserting code into file
-        file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer . "\n" . "print($answer_function_name($parameters))");
+        file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer . "\n" . "print($answer_function_name($newparameters))");
         $command = escapeshellcmd('/usr/custom/$file');
         //running the python code
         $runpython = shell_exec($command);
@@ -148,7 +151,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
             $testCases_pointsEarned += (($totalPoints*0.2)/$testCases_num);
         }
         else{
-            $comments .= "Result was incorrect. Your result was: $runpython/$parameters. Correct result was $result.\n";
+            $comments .= "Result was incorrect. Your result was: $runpython/$newparameters. Correct result was $result.\n";
         }
 
         $temp = array('testCaseId' => $testCaseId, 'pointsEarned' => $testCases_pointsEarned, 'totalSubPoints' => (($totalPoints*.20)/$testCases_num));
