@@ -140,14 +140,14 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         //inserting code into file
         file_put_contents($file, $student_answer . "\n" . "print($answer_function_name($parameters))");
         //running the python code
-        $runpython = shell_exec("python $file");
+        $runpython = exec("python $file");
         //checking if code matches the result
         if ($runpython == $result){
             $comments .= "Awesome code results were correct.\n";
             $testCases_pointsEarned += (($totalPoints*0.2)/$testCases_num);
         }
         else{
-            $comments .= "Result was incorrect. Your result was:$runpython. Correct result was $result.\n";
+            $comments .= "Result was incorrect. Your result was: $runpython. Correct result was $result.\n";
         }
 
         $temp = array('testCaseId' => $testCaseId, 'pointsEarned' => $testCases_pointsEarned, 'totalSubPoints' => (($totalPoints*.20)/$testCases_num));
