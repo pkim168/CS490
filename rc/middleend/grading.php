@@ -148,7 +148,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
             $testCases_pointsEarned += (($totalPoints*0.2)/$testCases_num);
         }
         else{
-            $comments .= "Result was incorrect. Your result was: $runpython. Correct result was $result.\n";
+            $comments .= "Result was incorrect. Your result was: $runpython/$parameters. Correct result was $result.\n";
         }
 
         $temp = array('testCaseId' => $testCaseId, 'pointsEarned' => $testCases_pointsEarned, 'totalSubPoints' => (($totalPoints*.20)/$testCases_num));
