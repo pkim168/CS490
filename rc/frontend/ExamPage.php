@@ -67,6 +67,7 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
+							return false;
 							location.href = 'https://web.njit.edu/~dn236/CS490/rc/studentView.php';
 						}
 						else if (data["message"] == "Failure"){
@@ -75,6 +76,7 @@
 						else {
 							alert('unknown error');
 						}
+						return false;
 					})
 				})
 				.catch(function(error) {
@@ -89,6 +91,7 @@
 			echo "<p id='ucid' hidden>{$_SESSION['ucid']}</p>";
 			echo "<p id='examId' hidden>{$_SESSION['examId']}</p>";
 		?>
+		
 		<div class="flex-container column" style="width: 100%; margin: 0%; float:left; border-right: 0px black solid;">
 			<div class="flex-container column" style="margin: 0%; float:left;">
 				<div class="flex-container row">

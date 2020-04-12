@@ -157,7 +157,10 @@
 		<?php
 			echo "<p id='ucid' hidden>{$_SESSION['ucid']}</p>";
 		?>
-		<div class="flex-container column" style="width: 50%; margin: 0%; float:left; border-right: 1px black solid;">
+		<div  style = "align-items: left; width: 100%;">
+			<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';">Back</button>
+		</div>
+		<div class="flex-container column" style="width: 50%; margin: 0%; float:left; border-right: 0px black solid;">
 			<div class="flex-container column" style="margin: 0%; float:left;">
 				<div class="flex-container row">
 					<h1> New Exam </h1>
@@ -175,7 +178,7 @@
 				<button type="button" style="height: 40px; width: 150px" onclick="submit()">Create Exam</button>
 			</div>
 		</div>
-		<div class="flex-container column" style="width: 50%; margin: 0%; float:right; border-left: 1px black solid;">
+		<div class="flex-container column" style="width: 50%; margin: 0%; float:right; border-left: 0px black solid;">
 			<div class="flex-container column" style="margin: 0%; float:left;">
 				<div class="flex-container row">
 					<h1> Question Bank </h1>

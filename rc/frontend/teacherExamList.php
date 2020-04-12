@@ -54,7 +54,7 @@
 					console.log(error);
 				});
 				return;
-			}
+			} 
 		</script>
 	</head>
 	<body>
@@ -62,7 +62,10 @@
 			echo "<p id='ucid' hidden>{$_SESSION['ucid']}</p>";
 		?>
 		<div class="flex-container column" style="width: 100%; margin: 0%; float:left; border-right: 1px black solid;">
-			<div class="flex-container row">
+			<div  style = "align-items: left; width: 100%;">
+				<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';">Back</button>
+			</div>
+			<div class="flex-container row" style="margin:0%;">
 				<h1> Exams </h1>
 			</div>
 			<?php
@@ -88,6 +91,7 @@
 				}
 			?>
 		</div>
+		
 		
 	</body>
 </html>

@@ -39,6 +39,10 @@ div{
   justify-content: left;
 }
 
+.center{
+  justify-content: center;
+}
+
 input {
   display: inline-block;
   height: 25px;
