@@ -123,21 +123,20 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     $parameters = "";
     $result = "";
     $testCases_num = count($backend_testCases);
-    for($j = 0; $j < $testCases_num; $j++) {
-        $testCaseId = $backend_testCases[$j]['testCaseId'];
-        $data = json_decode($backend_testCases[$j]['data'], true);
-        $result = $data['result'];
-        for ($h=0; $h < count($data['parameters']); $h++) {
-            $parameters .= $data['parameters'][strval($h)]."; ";
-        }
-    }
     $testCase_array = array();
     //setting file
     $file = "test.py";
     //testing for each parameter
     for($i = 0; $i < $testCases_num; $i++){
         //grab test case id
-        $testCaseId = $backend_testCases[$j]['testCaseId'];
+        $testCaseId = $backend_testCases[$i]['testCaseId'];
+        //grabbing results
+        $data = json_decode($backend_testCases[$i]['data'], true);
+        $result = $data['result'];
+        //grabbing parameters
+        for ($h=0; $h < count($data['parameters']); $h++) {
+            $parameters .= $data['parameters'][strval($h)]."; ";
+        }
         //inserting code into file
         file_put_contents($file, $student_answer . "\n" . "print($answer_function_name($parameters))");
         //running the python code
