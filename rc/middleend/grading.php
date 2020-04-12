@@ -133,7 +133,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         $result = $data['result'];
         //grabbing parameters
         for ($h=0; $h < count($data['parameters']); $h++) {
-            $parameters .= $data['parameters'][strval($h)].",";
+            $parameters .= "'".$data['parameters'][strval($h)]."'".",";
         }
         $parameters = substr($parameters, 0, -1);
         //inserting code into file
