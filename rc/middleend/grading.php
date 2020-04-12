@@ -109,7 +109,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         $function_pointsEarned += ($totalPoints*0.2);
     }
     else{
-        $comments .= "Better luck next time. Function name is incorrect. Funcations $functionName and $answer_function_name";
+        $comments .= "Better luck next time. Function name is incorrect. Functions $functionName and $answer_function_name";
     }
 
     //parameters testing
@@ -174,7 +174,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         //checking if code matches the result
         if ($runpython == $result){
             $comments .= "Awesome code results were correct";
-            $testCases_pointsEarned += ($totalPoints*0.2);
+            $testCases_pointsEarned += (($totalPoints*0.2)/$testCases_num);
         }
         else{
             $comments .= "Result was incorrect. Correct result was $result";
