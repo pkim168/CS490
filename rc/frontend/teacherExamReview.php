@@ -150,6 +150,7 @@
 							$testCases = $json[$i]["testCases"];
 							for ($j=0; $j < count($testCases); $j++) {
 								echo '<tr id="'.$testCases[$j]["itemId"].'">';
+								$str = "";
 								$parameters = "Parameters: ";
 								$data = json_decode($testCases[$j]['data'], true);
 								for ($h=0; $h < count($data['parameters']); $h++) {

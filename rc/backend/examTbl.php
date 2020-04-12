@@ -86,14 +86,14 @@
 					490examGradesTbl
 					JOIN
 					490questionTbl
-					ON 490studentExamTbl.490questionTbl_questionId = 490questionTbl.questionId
-				} as C
+					ON 490examGradesTbl.490questionTbl_questionId = 490questionTbl.questionId
+				) as C
 				ON 490studentExamTbl.sExamId = C.490studentExamTbl_sExamId
 				WHERE 490studentExamTbl.490userTbl_ucid = '$ucid' AND 490studentExamTbl.490examTbl_examId = '$examId'
 			) as A
 			JOIN
 			(
-				SELECT * FROM 
+				SELECT 490itemTbl.itemId, 490itemTbl.490examGradesTbl_examqId, 490itemTbl.subitem, 490itemTbl.pointsEarned, 490itemTbl.totalSubPoints, 490itemTbl.testCaseId, 490testCaseTbl.490questionTbl_questionId, 490testCaseTbl.testData FROM 
 				490itemTbl
 				LEFT JOIN
 				490testCaseTbl
@@ -119,20 +119,20 @@
 						$data[$count]["function"]["itemId"] = $row["itemId"];
 						$data[$count]["function"]["functionName"] = $row["functionName"];
 						$data[$count]["function"]["pointsEarned"] = $row["pointsEarned"];
-						$data[$count]["function"]["totalPoints"] = $row["totalPoints"];
+						$data[$count]["function"]["totalSubPoints"] = $row["totalSubPoints"];
 						break;
 					
 					case "colon":
 						$data[$count]["colon"]["itemId"] = $row["itemId"];
 						$data[$count]["colon"]["pointsEarned"] = $row["pointsEarned"];
-						$data[$count]["colon"]["totalPoints"] = $row["totalPoints"];
+						$data[$count]["colon"]["totalSubPoints"] = $row["totalSubPoints"];
 						break;
 					
-					case "constraint":
+					case "constraints":
 						$data[$count]["constraints"]["itemId"] = $row["itemId"];
 						$data[$count]["constraints"]["constraint"] = $row["constraints"];
 						$data[$count]["constraints"]["pointsEarned"] = $row["pointsEarned"];
-						$data[$count]["constraints"]["totalPoints"] = $row["totalPoints"];
+						$data[$count]["constraints"]["totalSubPoints"] = $row["totalSubPoints"];
 						break;
 					
 					default:
@@ -158,19 +158,19 @@
 					case "function":
 						$temp["function"]["itemId"] = $row["itemId"];
 						$temp["function"]["pointsEarned"] = $row["pointsEarned"];
-						$temp["function"]["totalPoints"] = $row["totalPoints"];
+						$temp["function"]["totalSubPoints"] = $row["totalSubPoints"];
 						break;
 					
 					case "colon":
 						$temp["colon"]["itemId"] = $row["itemId"];
 						$temp["colon"]["pointsEarned"] = $row["pointsEarned"];
-						$temp["colon"]["totalPoints"] = $row["totalPoints"];
+						$temp["colon"]["totalSubPoints"] = $row["totalSubPoints"];
 						break;
 					
 					case "constraints":
 						$temp["constraints"]["itemId"] = $row["itemId"];
 						$temp["constraints"]["pointsEarned"] = $row["pointsEarned"];
-						$temp["constraints"]["totalPoints"] = $row["totalPoints"];
+						$temp["constraints"]["totalSubPoints"] = $row["totalSubPoints"];
 						break;
 					
 					default:
