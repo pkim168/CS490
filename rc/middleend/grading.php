@@ -145,7 +145,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         $constraints_pointsEarned += ($totalPoints*0.2);
     }
     else{
-        $comments .= "Sorry you got wrong constraint. The actual constraint was: $backend_constraints[$p]\n";
+        $comments .= "Sorry you got wrong constraint. The actual constraint was: $backend_constraints\n";
     }
 
     //colon testing, if colon is in the student answer then they get points
