@@ -30,6 +30,10 @@
 	$result = curl_exec($ch);
 	curl_close($ch);
 	$json = json_decode($result, true);
+	if($json["message"]){
+		$err = $json["error"];
+		echo "<script> console.log(".$err.")</script>";
+	}
 	
 	
 	

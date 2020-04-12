@@ -246,6 +246,7 @@
 			$test = array();
 			if ($questionId == $row["questionId"]) {
 				$test["data"] = $row["testData"];
+				$test["testCaseId"] = $row["testCaseId"];
 				array_push($data[$count]["testCases"], $test);
 			}
 			else {
@@ -391,8 +392,7 @@
 		$questions = $json["questions"];
 		for ($i = 0; $i < count($questions); $i++) {
 			$questionId = $questions[$i]["questionId"];
-			$answer = $questions[$i]["answer"];
-			$answer = mysqli_real_escape_string($db, $answer);
+			$answer = getData($questions[$i]["answer"]);
 			$totalPoints = $questions[$i]["totalPoints"];
 			$comments = getData($questions[$i]["comments"]);
 			$query .= "(DEFAULT, '$sExamId', '$questionId', '$totalPoints', '$answer', '$comments'),";
@@ -422,29 +422,26 @@
 			$examqId = $row["examqId"];
 			$fPoints = $questions[$count]["function"]["pointsEarned"];
 			$fTolPoints = $questions[$count]["function"]["totalSubPoints"];
-			$colTolPoints = $questions[$count]["colon"]["pointsEarned"];
-			$colPoints = $questions[$count]["colon"]["totalSubPoints"];
+			$colPoints = $questions[$count]["colon"]["pointsEarned"];
+			$colTolPoints = $questions[$count]["colon"]["totalSubPoints"];
 			$conPoints = $questions[$count]["constraints"]["pointsEarned"];
 			$conTolPoints = $questions[$count]["constraints"]["totalSubPoints"];
 			$testCases = $questions[$count]["testCases"];
-			$query .= "
-				(DEFAULT, '$examqId', 'function', '$fPoints', '$fTolPoints', NULL),
+			$query .= "(DEFAULT, '$examqId', 'function', '$fPoints', '$fTolPoints', NULL),
 				(DEFAULT, '$examqId', 'colon', '$colPoints', '$colTolPoints', NULL),
-				(DEFAULT, '$examqId', 'constraints', '$conPoints', '$conTolPoints', NULL),
-			";
+				(DEFAULT, '$examqId', 'constraints', '$conPoints', '$conTolPoints', NULL),";
 			for ($j=0; $j < count($testCases); $j++) {
 				$testCaseId = $testCases[$j]["testCaseId"];
 				$pointsEarned = $testCases[$j]["pointsEarned"];
 				$totalSubPoints = $testCases[$j]["totalSubPoints"];
-				$query .= "
-					(DEFAULT, '$examqId', 'testCase$j', '$pointsEarned', '$totalSubPoints', '$testCaseId'),
-				";
+				$query .= "(DEFAULT, '$examqId', 'testCase$j', '$pointsEarned', '$totalSubPoints', '$testCaseId'),";
 			}
+			$count++;
 		}
 		$query = substr($query, 0, -1).";";
 		if (!mysqli_query($db, $query)){
 			$data["message"] = "Failure";
-			$data["error"] = $query."insert item".mysqli_error();
+			$data["error"] = $query."insert item".mysqli_error().count($testCases).$count;
 			return json_encode($data);
 		}
 		
