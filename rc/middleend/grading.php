@@ -99,45 +99,6 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         $comments .= "Better luck next time. Function name is incorrect. Functions $functionName and $answer_function_name";
     }
 
-    //for each test case lets grab the parameters and results
-    $parameters = "";
-    $result = "";
-    $testCases_num = count($backend_testCases);
-    for($j = 0; $j < $testCases_num; $j++) {
-        $testCaseId = $backend_testCases[$j]['testCaseId'];
-        $data = json_decode($backend_testCases[$j]['data'], true);
-        $result = $data['result'];
-        for ($h=0; $h < count($data['parameters']); $h++) {
-            $parameters .= $data['parameters'][strval($h)]."; ";
-        }
-    }
-
-    //parameters testing
-    //splitting original student answer
-    $split_left = explode(")", $student_answer);
-    //should give you everything up to ')'
-    $temp = $split_left[0];
-    //splitting it again giving you everything up to '('
-    $split_right = explode("(", $temp);
-    //the student parameters
-    $answer_parameter = $split_right[1];
-    //removing any additional space
-    $student_parameters = preg_replace("/\s/","", $answer_parameter);
-    $parameters = preg_replace("/\s/","", $parameters);
-    //backend parameter count
-    $parameter_count = substr_count($parameters, ",");
-    //student parameter count
-    $student_parameter_count = substr_count($student_parameters, ",");
-    //checking if student parameter count is equal to backend parameter count
-    if($student_parameter_count == $parameter_count){
-        $comments .= "Awesome you got the parameters correct\n";
-        $parameters_pointsEarned += ($totalPoints*0.2);
-    }
-    else{
-        $comments .= "Better luck next time. The parameters you entered were incorrect. $\n";
-    } 
-    //tested and working up til this point
-
     //constraint testing
     //counting the amount of constraints
     if(strpos($student_answer, $backend_constraints) !== false){
@@ -155,6 +116,20 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     }
     else{
         $comments .= "Sorry you did have the colon.\n";
+    }
+
+    //test case testing
+    //for each test case lets grab the parameters and results
+    $parameters = "";
+    $result = "";
+    $testCases_num = count($backend_testCases);
+    for($j = 0; $j < $testCases_num; $j++) {
+        $testCaseId = $backend_testCases[$j]['testCaseId'];
+        $data = json_decode($backend_testCases[$j]['data'], true);
+        $result = $data['result'];
+        for ($h=0; $h < count($data['parameters']); $h++) {
+            $parameters .= $data['parameters'][strval($h)]."; ";
+        }
     }
     $testCase_array = array();
     //setting file
