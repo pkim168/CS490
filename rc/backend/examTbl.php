@@ -100,7 +100,7 @@
 				ON 490itemTbl.testCaseId = 490testCaseTbl.testCaseId
 			) as B
 			ON A.examqId = 490examGradesTbl_examqId
-			ORDER BY A.490questionTbl_questionId;
+			ORDER BY A.490questionTbl_questionId ASC, B.itemId ASC;
 		";
 		
 		$count = -1;
