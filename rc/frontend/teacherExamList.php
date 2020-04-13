@@ -62,9 +62,6 @@
 			echo "<p id='ucid' hidden>{$_SESSION['ucid']}</p>";
 		?>
 		<div class="flex-container column" style="width: 100%; margin: 0%; float:left; border-right: 1px black solid;">
-			<div  style = "align-items: left; width: 100%;">
-				<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';">Back</button>
-			</div>
 			<div class="flex-container row" style="margin:0%;">
 				<h1> Exams </h1>
 			</div>
@@ -83,7 +80,7 @@
 				$json = json_decode($result, true);
 				if (!isset($json['message'])) {
 					for ($i = 0; $i < count($json); $i++) {
-						echo "<div style='height: 95%; width:95%; display: inline-block; margin: 0% 0% 0% 0%;' class='flex-container row'>";
+						echo "<div style='height: 125%; width:95%; display: inline-block; margin: 0% 0% 0% 0%;' class='flex-container row'>";
 						echo "<button class='rc' type='button' id='".$json[$i]."' style='height: 40px; width: 25%' onclick='exam(this.id)'>Exam ".$json[$i]."</button>";
 						echo "</div>";
 					}
@@ -95,6 +92,9 @@
 					} */
 				}
 			?>
+		</div>
+		<div  style = "align-items: center; width: 100%;">
+				<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';">Back</button>
 		</div>
 		
 		
