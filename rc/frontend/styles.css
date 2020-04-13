@@ -102,10 +102,19 @@ button {
   background-color: rgb(180,180,180);
   border: 2px solid rgb(100,100,100);
 }
+
+button:hover {
+	background-color: rgb(100,100,100);
+	border: 2px solid rgb(180,180,180);
+}
 .rc {
 	border-radius: 25px;
 }
 
+.rc:hover{
+	background-color: rgb(100,100,100);
+	border: 2px solid rgb(180,180,180);
+}
 textarea {
 	background-color:white;
 	color: black;
