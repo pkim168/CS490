@@ -522,8 +522,8 @@
 			$fPoints = $questions[$i]["function"]["pointsEarned"];
 			$colon = $questions[$i]["colon"]["itemId"];
 			$colPoints = $questions[$i]["colon"]["pointsEarned"];
-			$constraint = $questions[$i]["constraint"]["itemId"];
-			$conPoints = $questions[$i]["constraint"]["pointsEarned"];
+			$constraint = $questions[$i]["constraints"]["itemId"];
+			$conPoints = $questions[$i]["constraints"]["pointsEarned"];
 			$testCases = $questions[$i]["testCases"];
 			$comments = $questions[$i]["comments"];
 			$query .= "
