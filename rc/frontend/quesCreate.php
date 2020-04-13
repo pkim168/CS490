@@ -201,12 +201,6 @@
 							td.textContent = data[i]['question'];
 							tr.appendChild(td);
 							var tb = document.createElement('td');
-							var button = document.createElement('button');
-							button.setAttribute("type", "button");
-							button.setAttribute("onclick", "add(this.closest('tr'))");
-							button.textContent = "Add";
-							tb.appendChild(button);
-							tr.appendChild(tb);
 							document.getElementById('questions').appendChild(tr);
 						}
 					})

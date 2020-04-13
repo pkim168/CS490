@@ -175,7 +175,7 @@
 				</table>
 			</div>
 			<div class="flex-container row">
-				<button type="button" style="height: 40px; width: 150px" onclick="submit()">Create Exam</button>
+				<button type="button" class='rc'; style="height: 40px; width: 150px" onclick="submit()">Create Exam</button>
 			</div>
 		</div>
 		<div class="flex-container column" style="width: 50%; margin: 0%; float:right; border-left: 0px black solid;">
