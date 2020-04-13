@@ -228,7 +228,7 @@
 					</div>
 					<div class="flex-container row" style="width: 98%;">
 						<label style="width: 150px;">Function Name:</label>
-						<input style="width: 70%;" type="text" id="functionName" required/>
+						<input style="width: 70%; text-align: left;" type="text" id="functionName" required/>
 					</div>
 					<div class="flex-container row" style="width: 98%;">
 						<label style="width: 150px;">Difficulty:</label>
@@ -266,7 +266,7 @@
 					</div>
 					<div class="flex-container row" style="width: 98%;">
 						<label style="width: 150px;"># of Test Cases:</label>
-						<input style="width: 70%;" type="number" id="numTestCases" min="2" max ="6" value = "" oninput="testCases(this.value, this.id)" required />
+						<input style=" text-align: left; width: 70%;" type="number" id="numTestCases" min="2" max ="6" value = "" oninput="testCases(this.value, this.id)" required />
 					</div>
 					<div class="flex-container column" style="width: 98%;" id="testCases">
 					</div>
@@ -313,7 +313,7 @@
 					<option value="Operations">Operations</option>
 				</select>
 				<label> &nbsp Keyword: </label>
-				<input type="text" id="keyword"> </input>
+				<input style="text-align: left;" type="text" id="keyword"> </input>
 				<button type="button" style="height: 27px; width: 80px" onclick="filter()">Filter</button>
 			</div>
 			<div class="flex-container row" style="width:98%; float:left">

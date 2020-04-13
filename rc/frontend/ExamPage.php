@@ -67,7 +67,7 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							return false;
+							
 							location.href = 'https://web.njit.edu/~dn236/CS490/rc/studentView.php';
 						}
 						else if (data["message"] == "Failure"){
@@ -109,7 +109,7 @@
 						for ($i = 0; $i < count($json); $i++) {
 							echo "<tr id=".$json[$i]["questionId"].">";
 							echo "<td style ='width:40%;'>".$json[$i]["question"]."</td>";
-							echo "<td><textarea style='width: 100%; height: 150px; resize:both' id='testCase' required></textarea></td>";
+							echo "<td><textarea style='width: 100%; height: 150px; resize:both' id='testCase'></textarea></td>";
 							echo "<td style=;width:5%;'>".$json[$i]["totalPoints"]."</td>";
 							echo "</tr>";
 						}
