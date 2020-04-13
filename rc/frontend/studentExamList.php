@@ -77,7 +77,7 @@
 				</table>
 			</div>
 		</div>
-		<div  style = "align-items: center; width: 100%;">
+		<div  style = "diplay: flex; align-items: center; width: 100%;">
 			<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/studentView.php';">Back</button>
 		</div>
 	</body>
