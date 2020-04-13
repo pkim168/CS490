@@ -79,11 +79,11 @@
 						question["constraints"]["pointsEarned"] = qtable.rows[1].cells[2].firstChild.placeholder;
 					}
 					else {
-						question["constraints"]["pointsEarned"] = table.rows[1].cells[2].firstChild.value;
+						question["constraints"]["pointsEarned"] = qtable.rows[1].cells[2].firstChild.value;
 					}
 					question["testCases"] = [];
 					var tTable = document.getElementById("".concat(questionId, "testCases"));
-					for (var j=1; j<tTable.rows.length-1; j++) {
+					for (var j=0; j<tTable.rows.length-1; j++) {
 						let temp = {};
 						temp["itemId"] = tTable.rows[j].id;
 						if (tTable.rows[j].cells[1].firstChild.value == "") {
@@ -101,7 +101,6 @@
 					console.log("one loop done");
 				}
 				console.log(formData);
-				return false;
 				// cURL to middle end
 				fetch("https://web.njit.edu/~jrd62/CS490/rc/teacher_middle_exam.php", {
 					method: "POST",
