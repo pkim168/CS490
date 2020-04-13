@@ -186,7 +186,7 @@
 			</div>
 			<div class="flex-container row">
 				<button type="button" style="height: 40px; width: 150px" onclick="submit()">Submit Changes</button>
-				<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherExamList.php';">Back</button>
+				<button type="button" style=" margin: 0px 0px 0px 25px; height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherExamList.php';">Back</button>
 			</div>
 		</div>
 		

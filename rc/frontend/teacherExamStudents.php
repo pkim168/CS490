@@ -115,10 +115,11 @@
 					?>
 				</table>
 			</div>
+			<div class="flex-container row">
+				<button type="button" style=" margin: 0px 0px 0px 25px; height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherExamList.php';">Back</button>
+			</div>
 		</div>
-		<div  style = "diplay: flex; align-items: center; width: 100%;">
-				<button type="button" style="height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherExamList.php';">Back</button>
-		</div>
+		
 	</body>
 </html>
 <?php ob_flush();?>
