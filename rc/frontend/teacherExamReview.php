@@ -92,6 +92,7 @@
 					question['questionId'] = questionId;
 					question['comments'] = comments;
 					formData['questions'].push(question);
+					console.log("one loop done");
 				}
 				console.log(formData);
 				return false;
