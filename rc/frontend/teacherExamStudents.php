@@ -88,7 +88,7 @@
 						<th> Student Id </th>
 						<th> Status </th>
 						<?php
-							echo "<th><button type='button' id=".$_GET['examId']." style='height: 100%; width: 100%; margin: 0px 10px 0px;' onclick='releaseExam(this.id)'>Release Exam ".$_GET['examId']."</button>"
+							echo "<th><button type='button' id=".$_GET['examId']." style='height: 100%; width: 100%;' onclick='releaseExam(this.id)'>Release Exam ".$_GET['examId']."</button>"
 						?>
 					</tr>
 					<?php
@@ -115,7 +115,7 @@
 			</div>
 		</div>
 		<div  style = "align-items: center; width: 100%;">
-				<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherExamReview.php';">Back</button>
+				<button type="button" style="height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherExamReview.php';">Back</button>
 		</div>
 	</body>
 </html>
