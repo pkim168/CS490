@@ -217,7 +217,7 @@
 		<div class="flex-container column" style="width: 50%; margin: 0%; float:left; border-right: 1px rgb(100,100,100); solid;">
 			<div class="flex-container column" style="width:100% margin: 0%; float:left;">
 				<div class="flex-container row">
-					<h1> New Question </h1>
+					<h1 class="arial";> New Question </h1>
 				</div>
 			</div>
 			<form onsubmit="create(); return false;" style="width: 98%">
@@ -280,7 +280,7 @@
 		
 			<div class="flex-container column" style="margin: 0%; float:left;">
 				<div class="flex-container row">
-					<h1> Question Bank </h1>
+					<h1 class="arial"> Question Bank </h1>
 				</div>
 			</div>
 			<div id="filters" class="flex-container row" style="width:100%; float:left">
