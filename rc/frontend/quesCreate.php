@@ -329,8 +329,8 @@
 				</table>
 			</div>
 		</div>
-		<div  style = "diplay: flex; align-items: center; width: 100%;">
-			<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';">Back</button>
+		<div  style = "display: flex; justify-content: center; width: 100%;">
+				<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';">Back</button>
 		</div>
 	</body>
 </html>
