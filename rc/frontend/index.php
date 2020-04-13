@@ -62,9 +62,9 @@
 		</script>
 	</head> 
 	<body>
-		<div id="div" class="flex-container column" style="margin: 0%;">
-			<form style="align-content: space-around; width:240px; float:left; padding: 5px 10px;" class="flex-container column" >
-				<div class="flex-container column" style="margin: 0%; float:right;">
+		<div id="div" class="flex-container column" style="height: 100%; width: 100%; justify-content: center; margin: 0%;">
+			<form style="align-content: space-around; width:300px; float:left; padding: 10px 10px;" class="flex-container column" >
+				<div class="flex-container column" style=" width: 99%; margin: 0%; float:right;">
 					<div class="flex-container row">
 						<label style="width: 120px;">UCID:</label>
 						<input style="text-align:left; width: 120px;" type="text" id="ucid" name="ucid" placeholder="Required field" autofocus required>

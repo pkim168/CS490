@@ -157,9 +157,7 @@
 		<?php
 			echo "<p id='ucid' hidden>{$_SESSION['ucid']}</p>";
 		?>
-		<div  style = "align-items: left; width: 100%;">
-			<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';">Back</button>
-		</div>
+		
 		<div class="flex-container column" style="width: 50%; margin: 0%; float:left; border-right: 0px black solid;">
 			<div class="flex-container column" style="margin: 0%; float:left;">
 				<div class="flex-container row">
@@ -224,6 +222,9 @@
 					</tr>
 				</table>
 			</div>
+		</div>
+		<div  style = "align-items: left; width: 100%;">
+			<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';">Back</button>
 		</div>
 	</body>
 </html>
