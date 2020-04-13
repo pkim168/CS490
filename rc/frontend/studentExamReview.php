@@ -67,7 +67,7 @@
 						for ($i = 0; $i < count($json); $i++) {
 							echo "<tr id=".$json[$i]["questionId"].">";
 							echo "<td>".$json[$i]["question"]."</td>";
-							echo "<td>".$json[$i]["answer"]."</td>";
+							echo "<td><pre style='background-color:rgb(180,180,180);'>".$json[$i]["answer"]."</pre></td>";
 							echo '<td><table id="'.$json[$i]["questionId"].'points" style="width:100%">';
 							echo '<tr><th>Function Name</th><th>Colon</th><th>Constraint</th><th>Test Cases</th></tr>';
 							echo '<tr><td id="'.$json[$i]["function"]["itemId"].'">'.$json[$i]["function"]["pointsEarned"]."/".$json[$i]["function"]["totalSubPoints"]."</td>";
@@ -92,7 +92,7 @@
 							}
 							echo "</table></td></tr></table></td>";						
 							echo "<td>".$json[$i]["totalPoints"]."</td>";
-							echo "<td>".$json[$i]["comments"]."</td>";
+							echo "<td><pre style='background-color:rgb(180,180,180);'>".$json[$i]["comments"]."</pre></td>";
 							echo "</tr>";
 							$totalPointsEarned += (float)$json[$i]["pointsEarned"];
 							$maxPoints +=  (float)$json[$i]["totalPoints"];
