@@ -56,6 +56,7 @@
 					var questionId = table.rows[i].id;
 					var comments = table.rows[i].cells[4].firstChild.value;
 					var qtable = document.getElementById("".concat(questionId, "points"));
+					console.log(qtable);
 					question["function"] = {};
 					question["colon"] = {};
 					question["constraints"] = {};
