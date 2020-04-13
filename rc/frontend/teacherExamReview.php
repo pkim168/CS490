@@ -102,6 +102,10 @@
 				})
 				.then((response) => {
 					console.log(response);
+					if (response["message"] == "Failure") {
+						console.log(response['error']);
+						return false;
+					}
 					location.href = "".concat('https://web.njit.edu/~dn236/CS490/rc/teacherExamStudents.php?examId=',document.getElementById('examId').innerText);
 				})
 				.catch(function(error) {
