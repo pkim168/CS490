@@ -87,7 +87,7 @@
 						let temp = {};
 						temp["itemId"] = tTable.rows[j].id;
 						temp["pointsEarned"] = tTable.rows[j].cells[1].firstChild.value
-						questions["testCases"].push(temp);
+						question["testCases"].push(temp);
 					}
 					question['questionId'] = questionId;
 					question['comments'] = comments;
@@ -139,7 +139,7 @@
 						for ($i = 0; $i < count($json); $i++) {
 							echo "<tr id=".$json[$i]["questionId"].">";
 							echo "<td>".$json[$i]["question"]."</td>";
-							echo "<td>".$json[$i]["answer"]."</td>";
+							echo "<td><pre style='background-color:rgb(180,180,180);'>".$json[$i]["answer"]."</pre></td>";
 							echo '<td><table id="'.$json[$i]["questionId"].'points" style="width:100%">';
 							echo '<tr><th>Function Name</th><th>Colon</th><th>Constraint</th><th>Test Cases</th></tr>';
 							echo '<tr><td id="'.$json[$i]["function"]["itemId"].'">'."<input style='width: 25%;' placeholder='".$json[$i]["function"]["pointsEarned"]."'>"." /".$json[$i]["function"]["totalSubPoints"]."</td>";
