@@ -169,7 +169,7 @@
 								}
 								$str .= $parameters."\nOutput: ".$data['result'];
 								echo "<td><pre style='background-color:rgb(180,180,180);'>".$str."</pre></td>";
-								echo "<td>"."<input style='width: 25%;' placeholder='".$testCases[$j]["pointsEarned"]."'>"." /".$testCases[$j]["totalSubPoints"]."</td></tr>";
+								echo "<td>"."<input style='width: 40%;' placeholder='".$testCases[$j]["pointsEarned"]."'>"." /".$testCases[$j]["totalSubPoints"]."</td></tr>";
 								$totalPointsEarned += $testCases[$j]["pointsEarned"];
 							}
 							echo "</table></td></tr></table></td>";						
