@@ -214,7 +214,7 @@
 					<option value="Operations">Operations</option>
 				</select>
 				<label> &nbsp Keyword: </label>
-				<input type="text" id="keyword"/>
+				<input type="text" id="keyword"></input>
 				<button type="button" style="height: 27px; width: 80px" onclick="filter()">Filter</button>
 			</div>
 			<div class="flex-container row" style="width:98%; float:left">
