@@ -117,7 +117,7 @@
 			</div>
 		</div>
 		<div  style = "diplay: flex; align-items: center; width: 100%;">
-				<button type="button" style="height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherExamReview.php';">Back</button>
+				<button type="button" style="height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherExamList.php';">Back</button>
 		</div>
 	</body>
 </html>

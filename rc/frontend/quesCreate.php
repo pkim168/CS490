@@ -276,7 +276,7 @@
 					<div class="flex-container column" style="width: 98%;" id="testCases">
 					</div>
 					<div class="flex-container row">
-						<input type="submit" style="background-color: rgb(180,180,180);border-radius: 25px; border: 2px solid rgb(100,100,100); height: 40px; width: 150px" value="Submit Question">
+						<input class='rc' type="submit" style=" height: 40px; width: 150px" value="Submit Question">
 					</div>
 				</div>
 			</form>
