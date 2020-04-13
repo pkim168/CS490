@@ -93,6 +93,7 @@
 							temp["pointsEarned"] = tTable.rows[j].cells[1].firstChild.value;
 						}
 						question["testCases"].push(temp);
+						console.log(temp);
 					}
 					question['questionId'] = questionId;
 					question['comments'] = comments;
