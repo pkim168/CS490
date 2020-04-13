@@ -219,9 +219,6 @@
 		</script>
 	</head>
 	<body onload="clearInp()">
-		<div  style = "align-items: left; width: 100%;">
-			<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';">Back</button>
-		</div>
 		<div class="flex-container column" style="width: 50%; margin: 0%; float:left; border-right: 1px rgb(100,100,100); solid;">
 			<div class="flex-container column" style="width:100% margin: 0%; float:left;">
 				<div class="flex-container row">
@@ -285,6 +282,7 @@
 			</form>
 		</div>
 		<div class="flex-container column" style="width: 50%; margin: 0%; float:right; border-left: 0px black solid;">
+		
 			<div class="flex-container column" style="margin: 0%; float:left;">
 				<div class="flex-container row">
 					<h1> Question Bank </h1>
@@ -330,6 +328,9 @@
 					</tr>
 				</table>
 			</div>
+		</div>
+		<div  style = "align-items: center; width: 100%;">
+			<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';">Back</button>
 		</div>
 	</body>
 </html>
