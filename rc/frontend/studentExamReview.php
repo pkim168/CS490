@@ -46,9 +46,6 @@
 			echo "<p id='ucid' hidden>{$_SESSION['ucid']}</p>";
 			echo "<p id='examId' hidden>{$_SESSION['examId']}</p>";
 		?>
-		<div  style = "align-items: left; width: 100%;">
-			<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/studentExamList.php';">Back</button>
-		</div>
 		<div class="flex-container column" style="width: 100%; margin: 0%; float:left; border-right: 1px black solid;">
 			<div class="flex-container column" style="margin: 0%; float:left;">
 				<div class="flex-container row">
@@ -89,7 +86,7 @@
 									$parameters .= $data['parameters'][strval($h)]."; ";
 								}
 								$str .= $parameters."\nOutput: ".$data['result'];
-								echo "<td><pre>".$str."</pre></td>";
+								echo "<td><pre style='background-color:rgb(180,180,180);'>".$str."</pre></td>";
 								echo "<td>".$testCases[$j]["pointsEarned"]."/".$testCases[$j]["totalSubPoints"]."</td></tr>";
 								$totalPointsEarned += $testCases[$j]["pointsEarned"];
 							}
@@ -106,7 +103,9 @@
 				</table>
 			</div>
 		</div>
-		
+		<div  style = "align-items: center; width: 100%;">
+			<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/studentExamList.php';">Back</button>
+		</div>
 	</body>
 </html>
 <?php ob_flush();?>
