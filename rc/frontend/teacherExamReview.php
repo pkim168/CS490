@@ -62,19 +62,19 @@
 					question["function"]["itemId"] = qtable.rows[0].cells[0].id;
 					question["colon"]["itemId"] = qtable.rows[0].cells[1].id;
 					question["constraints"]["itemId"] = qtable.rows[0].cells[2].id;
-					if (qtable.rows[0].cells[0].firstChild.value == "") {
+					if (qtable.rows[i].cells[0].firstChild.value == "") {
 						question["function"]["pointsEarned"] = qtable.rows[i].cells[0].firstChild.placeholder;
 					}
 					else {
 						question["function"]["pointsEarned"] = qtable.rows[i].cells[0].firstChild.value;
 					}
-					if (qtable.rows[0].cells[1].firstChild.value == "") {
+					if (qtable.rows[i].cells[1].firstChild.value == "") {
 						question["colon"]["itemId"]["pointsEarned"] = qtable.rows[i].cells[1].firstChild.placeholder;
 					}
 					else {
 						question["colon"]["itemId"]["pointsEarned"] = qtable.rows[i].cells[1].firstChild.value;
 					}
-					if (qtable.rows[0].cells[2].firstChild.value == "") {
+					if (qtable.rows[i].cells[2].firstChild.value == "") {
 						question["constraints"]["pointsEarned"] = qtable.rows[i].cells[2].firstChild.placeholder;
 					}
 					else {
@@ -82,10 +82,10 @@
 					}
 					question["testCases"] = {};
 					var tTable = document.getElementById("".concat(questionId, "testCases"));
-					for (var i=1; i<tTable.rows.length-1; i++) {
+					for (var j=1; j<tTable.rows.length-1; j++) {
 						let temp = {};
-						temp["itemId"] = tTable.rows[i].id;
-						temp["pointsEarned"] = tTable.rows[i].cells[1].firstChild.value
+						temp["itemId"] = tTable.rows[j].id;
+						temp["pointsEarned"] = tTable.rows[j].cells[1].firstChild.value
 						questions["testCases"].push(temp);
 					}
 					question['questionId'] = questionId;
@@ -162,7 +162,7 @@
 							}
 							echo "</table></td></tr></table></td>";						
 							echo "<td>".$json[$i]["totalPoints"]."</td>";
-							echo "<td><textarea style='width: 100%; vertical: 100%; resize:vertical'>".$json[$i]["comments"]."</textarea></td>";
+							echo "<td><textarea style='width: 100%; height: 100%; resize:vertical'>".$json[$i]["comments"]."</textarea></td>";
 							echo "</tr>";
 							$totalPointsEarned += (float)$json[$i]["pointsEarned"];
 							$maxPoints +=  (float)$json[$i]["totalPoints"];
