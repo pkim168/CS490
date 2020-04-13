@@ -50,6 +50,17 @@ input {
   text-align: left;
 }
 
+.rc {
+	background-color: rgb(180,180,180);
+	border: 2px solid rgb(100,100,100);
+	border-radius: 25px;
+}
+
+.rc:hover{
+	background-color: rgb(100,100,100);
+	border: 2px solid rgb(180,180,180);
+}
+
 input{
   display: inline-block;
   background-color: white;
@@ -57,6 +68,7 @@ input{
   text-align: center;
   box-sizing: border-box;
 }
+
 
 form {
 	margin: 0 auto;
@@ -115,6 +127,27 @@ button:hover {
 	background-color: rgb(100,100,100);
 	border: 2px solid rgb(180,180,180);
 }
+
+.danger{
+	color:red;
+	background-color: rgb(100,100,100);
+}
+
+.danger:hover {
+	color:white;
+	background-color:red;
+}
+
+.addques{
+	color:rgb(0,255,64);
+	background-color: rgb(100,100,100);
+}
+
+.addques:hover {
+	color:white;
+	background-color:rgb(0,255,64);
+}
+	
 textarea {
 	background-color:white;
 	color: black;

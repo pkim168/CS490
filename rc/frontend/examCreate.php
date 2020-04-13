@@ -112,6 +112,7 @@
 							var button = document.createElement('button');
 							button.setAttribute("type", "button");
 							button.setAttribute("onclick", "add(this.closest('tr'))");
+							button.setAttribute("class", "addques");
 							button.textContent = "Add";
 							tb.appendChild(button);
 							tr.appendChild(tb);
@@ -144,6 +145,7 @@
 				button.setAttribute("type", "button");
 				button.setAttribute("style", "height: 40px; width: 150px");
 				button.setAttribute("onclick", "this.closest('tr').remove()");
+				button.setAttribute("class", "danger");
 				button.textContent = "Delete";
 				td.appendChild(button);
 				tr.appendChild(td);
