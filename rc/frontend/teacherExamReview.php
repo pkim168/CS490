@@ -81,10 +81,10 @@
 					else {
 						question["constraints"]["pointsEarned"] = table.rows[1].cells[2].firstChild.value;
 					}
-					question["testCases"] = [];
+					question["testCases"] = {};
 					var tTable = document.getElementById("".concat(questionId, "testCases"));
 					for (var j=1; j<tTable.rows.length-1; j++) {
-						let temp = [];
+						let temp = {};
 						temp["itemId"] = tTable.rows[j].id;
 						if (tTable.rows[j].cells[1].firstChild.value == "") {
 							temp["pointsEarned"] = tTable.rows[j].cells[1].firstChild.placeholder;
