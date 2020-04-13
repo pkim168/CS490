@@ -73,7 +73,7 @@ echo $send;
 
 
 function grade($answer, $questionId, $functionName, $backend_constraints, $backend_testCases, $totalPoints){
-    //point system testcases 20,functionname 20, constraints 20, colon 20, parameters 20 
+    //point system testcases 20,functionname 20, constraints 20, colon 20
     //setting initial grade and comments
     $function_pointsEarned = 0;
     $constraints_pointsEarned = 0;
@@ -119,10 +119,10 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     }
 
     //test case testing
-	$testCase_totalPoints = $totalPoints-$pointsPerItem*4;
+	$testCase_totalPoints = $totalPoints-$pointsPerItem*3;
     $testCases_num = count($backend_testCases);
 	$pointsPerCase = floor($testCase_totalPoints/$testCases_num);
-	$lastCasePoints = $testCase_totalPoints-$pointsPerCase*$testCases_num;
+	$lastCasePoints = $testCase_totalPoints-$pointsPerCase*($testCases_num-1);
     $testCase_array = array();
     //setting file
     $file = "test.py";
