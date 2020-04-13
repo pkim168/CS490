@@ -60,9 +60,9 @@
 					question["function"] = {};
 					question["colon"] = {};
 					question["constraints"] = {};
-					question["function"]["itemId"] = qtable.rows[0].cells[0].id;
-					question["colon"]["itemId"] = qtable.rows[0].cells[1].id;
-					question["constraints"]["itemId"] = qtable.rows[0].cells[2].id;
+					question["function"]["itemId"] = qtable.rows[1].cells[0].id;
+					question["colon"]["itemId"] = qtable.rows[1].cells[1].id;
+					question["constraints"]["itemId"] = qtable.rows[1].cells[2].id;
 					if (qtable.rows[1].cells[0].firstChild.value == "") {
 						question["function"]["pointsEarned"] = qtable.rows[1].cells[0].firstChild.placeholder;
 					}
@@ -70,10 +70,10 @@
 						question["function"]["pointsEarned"] = qtable.rows[1].cells[0].firstChild.value;
 					}
 					if (qtable.rows[1].cells[1].firstChild.value == "") {
-						question["colon"]["itemId"]["pointsEarned"] = qtable.rows[1].cells[1].firstChild.placeholder;
+						question["colon"]["pointsEarned"] = qtable.rows[1].cells[1].firstChild.placeholder;
 					}
 					else {
-						question["colon"]["itemId"]["pointsEarned"] = qtable.rows[1].cells[1].firstChild.value;
+						question["colon"]["pointsEarned"] = qtable.rows[1].cells[1].firstChild.value;
 					}
 					if (qtable.rows[1].cells[2].firstChild.value == "") {
 						question["constraints"]["pointsEarned"] = qtable.rows[1].cells[2].firstChild.placeholder;
@@ -95,7 +95,6 @@
 					console.log("one loop done");
 				}
 				console.log(formData);
-				return false;
 				// cURL to middle end
 				fetch("https://web.njit.edu/~jrd62/CS490/rc/teacher_middle_exam.php", {
 					method: "POST",
