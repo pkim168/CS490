@@ -181,7 +181,7 @@
 		<div class="flex-container column" style="width: 50%; margin: 0%; float:right; border-left: 0px black solid;">
 			<div class="flex-container column" style="margin: 0%; float:left;">
 				<div class="flex-container row">
-					<h1> Question Bank </h1>
+					<h1 class="arial"> Question Bank </h1>
 				</div>
 			</div>
 			<div id="filters" class="flex-container row" style="width:100%; float:left">

@@ -4,10 +4,15 @@
   border: 0px solid white;
 }
 
+h1{
+  font-family: "Arial Black";
+}
+
 body{
   background-color:rgb(35,35,35);
   color:white;
   font-family: verdana;
+  
 }
 
 div{
