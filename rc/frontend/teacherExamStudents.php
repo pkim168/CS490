@@ -88,7 +88,9 @@
 						<th> Student Id </th>
 						<th> Status </th>
 						<?php
-							echo "<th><button type='button' id=".$_GET['examId']." style='height: 100%; width: 100%;' onclick='releaseExam(this.id)'>Release Exam ".$_GET['examId']."</button>"
+							if ($json[0]['status'] != 2) {
+								echo "<th><button type='button' id=".$_GET['examId']." style='height: 100%; width: 100%;' onclick='releaseExam(this.id)'>Release Exam ".$_GET['examId']."</button>";
+							}
 						?>
 					</tr>
 					<?php
