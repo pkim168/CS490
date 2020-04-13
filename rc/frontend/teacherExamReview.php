@@ -101,6 +101,7 @@
 					console.log("one loop done");
 				}
 				console.log(formData);
+				return false;
 				// cURL to middle end
 				fetch("https://web.njit.edu/~jrd62/CS490/rc/teacher_middle_exam.php", {
 					method: "POST",
