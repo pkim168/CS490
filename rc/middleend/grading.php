@@ -122,7 +122,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
 	$testCase_totalPoints = $totalPoints-$pointsPerItem*4;
     $testCases_num = count($backend_testCases);
 	$pointsPerCase = floor($testCase_totalPoints/$testCases_num);
-	$lastCasePoints = $testCase_totalPoints-$test*$testCases_num;
+	$lastCasePoints = $testCase_totalPoints-$pointsPerCase*$testCases_num;
     $testCase_array = array();
     //setting file
     $file = "test.py";
