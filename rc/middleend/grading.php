@@ -158,20 +158,20 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         if ($runpython == $result){
             $comments .= "Awesome code results were correct.\n";
 			if ($i == $testCases_num-1) {
-				$testCases_pointsEarned += ($lastCasePoints);
+				$testCases_pointsEarned += $lastCasePoints;
 			}
 			else {
-				$testCases_pointsEarned += ($pointsPerCase);
+				$testCases_pointsEarned += $pointsPerCase;
 			}
         }
         else{
             $comments .= "Result was incorrect. Your result was: $runpython. Correct result was $result.\n";
         }
 		if ($i == $testCases_num-1) {
-			$temp = array('testCaseId' => $testCaseId, 'pointsEarned' => $testCases_pointsEarned, 'totalSubPoints' => ($lastCasePoints);
+			$temp = array('testCaseId' => $testCaseId, 'pointsEarned' => $testCases_pointsEarned, 'totalSubPoints' => $lastCasePoints);
 		}
 		else {
-			$temp = array('testCaseId' => $testCaseId, 'pointsEarned' => $testCases_pointsEarned, 'totalSubPoints' => ($pointsPerCase);
+			$temp = array('testCaseId' => $testCaseId, 'pointsEarned' => $testCases_pointsEarned, 'totalSubPoints' => $pointsPerCase);
 		}
         
         array_push($testCase_array, $temp);
