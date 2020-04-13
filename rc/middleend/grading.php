@@ -80,6 +80,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     $colon_pointsEarned = 0;
     $parameters_pointsEarned = 0;
     $comments = "";
+	$pointsPerItem = floor($totalPoints*.2);
 
     //function name testing
     //cleaning students answer of white space in the beginning
@@ -92,7 +93,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     //checking if function name is correct
     if($answer_function_name == $functionName){
         $comments .= "Congrats. Function name is correct!\n";
-        $function_pointsEarned += ($totalPoints*0.2);
+        $function_pointsEarned += floor($totalPoints*0.2);
     }
     else{
         $comments .= "Better luck next time. Function name is incorrect. The correct answer should be: $functionName.\n";
@@ -102,7 +103,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     //counting the amount of constraints
     if(strpos($student_answer, $backend_constraints) !== false){
         $comments .= "Awesome you got right constraint.\n";
-        $constraints_pointsEarned += ($totalPoints*0.2);
+        $constraints_pointsEarned += floor($totalPoints*0.2);
     }
     else{
         $comments .= "Sorry you got wrong constraint. The actual constraint was: $backend_constraints.\n";
@@ -111,14 +112,17 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     //colon testing, if colon is in the student answer then they get points
     if(strpos($student_answer, ':') !== false){
         $comments .= "Awesome you got the colon.\n";
-        $colon_pointsEarned += ($totalPoints*0.2);
+        $colon_pointsEarned += floor($totalPoints*0.2);
     }
     else{
         $comments .= "Sorry you didn't have the colon.\n";
     }
 
     //test case testing
+	$testCase_totalPoints = $totalPoints-$pointsPerItem*4;
     $testCases_num = count($backend_testCases);
+	$pointsPerCase = floor($testCase_totalPoints/$testCases_num);
+	$lastCasePoints = $testCase_totalPoints-$test*$testCases_num;
     $testCase_array = array();
     //setting file
     $file = "test.py";
@@ -153,18 +157,28 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         //checking if code matches the result
         if ($runpython == $result){
             $comments .= "Awesome code results were correct.\n";
-            $testCases_pointsEarned += (($totalPoints*0.2)/$testCases_num);
+			if ($i == $testCases_num-1) {
+				$testCases_pointsEarned += ($lastCasePoints);
+			}
+			else {
+				$testCases_pointsEarned += ($pointsPerCase);
+			}
         }
         else{
             $comments .= "Result was incorrect. Your result was: $runpython. Correct result was $result.\n";
         }
-
-        $temp = array('testCaseId' => $testCaseId, 'pointsEarned' => $testCases_pointsEarned, 'totalSubPoints' => (($totalPoints*.20)/$testCases_num));
+		if ($i == $testCases_num-1) {
+			$temp = array('testCaseId' => $testCaseId, 'pointsEarned' => $testCases_pointsEarned, 'totalSubPoints' => ($lastCasePoints);
+		}
+		else {
+			$temp = array('testCaseId' => $testCaseId, 'pointsEarned' => $testCases_pointsEarned, 'totalSubPoints' => ($pointsPerCase);
+		}
+        
         array_push($testCase_array, $temp);
     }
 
     //packaging the grade 
-    $grade = array('questionId' => $questionId, 'function' => array('pointsEarned' => $function_pointsEarned, 'totalSubPoints' => ($totalPoints*.2)), 'colon' => array('pointsEarned' => $colon_pointsEarned, 'totalSubPoints' => ($totalPoints*.2)), 'constraints' => array('pointsEarned' => $constraints_pointsEarned, 'totalSubPoints' => ($totalPoints*.2)), 'testCases' => $testCase_array, 'answer' => $student_answer, 'comments' => $comments, 'totalPoints' => $totalPoints);
+    $grade = array('questionId' => $questionId, 'function' => array('pointsEarned' => $function_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'colon' => array('pointsEarned' => $colon_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'constraints' => array('pointsEarned' => $constraints_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'testCases' => $testCase_array, 'answer' => $student_answer, 'comments' => $comments, 'totalPoints' => $totalPoints);
 
     //returning grade
     return $grade;
