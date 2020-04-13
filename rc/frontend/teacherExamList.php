@@ -84,7 +84,7 @@
 				if (!isset($json['message'])) {
 					echo "<div style='height: 95%; width:95%; display: inline-block; margin: 0% 0% 0% 0%;' class='flex-container row'>";
 					for ($i = 0; $i < count($json); $i++) {
-						echo "<button class='rc' type='button' id='".$json[$i]."' style='height: 40px; width: 150px' onclick='exam(this.id)'>Exam ".$json[$i]."</button>";
+						echo "<button class='rc' type='button' id='".$json[$i]."' style='height: 40px; width: 25%' onclick='exam(this.id)'>Exam ".$json[$i]."</button>";
 					}
 					echo "</div>";
 					/* for ($i = 0; $i < count($json); $i++) {
