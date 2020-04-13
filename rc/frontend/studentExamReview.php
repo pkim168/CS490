@@ -85,8 +85,8 @@
 								for ($h=0; $h < count($data['parameters']); $h++) {
 									$parameters .= $data['parameters'][strval($h)]."; ";
 								}
-								$str .= $parameters."\nOutput: ".$data['result'];
-								echo "<td><pre style='background-color:rgb(180,180,180);'>".$str."</pre></td>";
+								$parameters .= "\nOutput: ".$data['result'];
+								echo "<td><pre style='background-color:rgb(180,180,180);'>".$parameters."</pre></td>";
 								echo "<td>".$testCases[$j]["pointsEarned"]."/".$testCases[$j]["totalSubPoints"]."</td></tr>";
 								$totalPointsEarned += $testCases[$j]["pointsEarned"];
 							}

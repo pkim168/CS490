@@ -114,7 +114,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         $colon_pointsEarned += ($totalPoints*0.2);
     }
     else{
-        $comments .= "Sorry you did have the colon.\n";
+        $comments .= "Sorry you didn't have the colon.\n";
     }
 
     //test case testing
@@ -156,7 +156,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
             $testCases_pointsEarned += (($totalPoints*0.2)/$testCases_num);
         }
         else{
-            $comments .= "Result was incorrect. Your result was: $runpython/$parameters. Correct result was $result.\n";
+            $comments .= "Result was incorrect. Your result was: $runpython. Correct result was $result.\n";
         }
 
         $temp = array('testCaseId' => $testCaseId, 'pointsEarned' => $testCases_pointsEarned, 'totalSubPoints' => (($totalPoints*.20)/$testCases_num));
