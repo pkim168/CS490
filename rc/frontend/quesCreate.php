@@ -185,7 +185,7 @@
 						console.log(data["message"]);
 						console.log(data["error"]);
 						var questions = document.getElementById('questions');
-						console.log(questions;)
+						console.log(questions);
 						while (questions.childNodes.length > 2) {
 							questions.removeChild(questions.lastChild);
 						}
