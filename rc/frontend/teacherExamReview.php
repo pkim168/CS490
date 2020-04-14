@@ -152,17 +152,17 @@
 							echo "<td>".$json[$i]["question"]."</td>";
 							echo "<td><pre style='background-color:rgb(180,180,180);'>".$json[$i]["answer"]."</pre></td>";
 							echo '<td><table id="'.$json[$i]["questionId"].'points" style="width:100%">';
-							echo '<tr><th>Function Name</th><th>Colon</th><th>Constraint</th><th>Test Cases</th></tr>';
-							echo '<tr><td id="'.$json[$i]["function"]["itemId"].'">'."<input style='width: 25%;' placeholder='".$json[$i]["function"]["pointsEarned"]."'>"." /".$json[$i]["function"]["totalSubPoints"]."</td>";
+							echo '<tr><th style="width: 20%">Function Name</th><th style="width: 20%">Colon</th><th style="width: 20%">Constraint</th><th style="width: 40%">Test Cases</th></tr>';
+							echo '<tr><td style="min-width: 100px; max-width:100px" id="'.$json[$i]["function"]["itemId"].'">'."<input style='width: 25%' placeholder='".$json[$i]["function"]["pointsEarned"]."'>"." /".$json[$i]["function"]["totalSubPoints"]."</td>";
 							$totalPointsEarned += (float)$json[$i]["function"]["pointsEarned"];
 							$questionPoints += $json[$i]["function"]["pointsEarned"];
-							echo '<td id="'.$json[$i]["colon"]["itemId"].'">'."<input style='width: 25%;' placeholder='".$json[$i]["colon"]["pointsEarned"]."'>"." /".$json[$i]["colon"]["totalSubPoints"]."</td>";
+							echo '<td style="min-width: 100px; max-width:100px" id="'.$json[$i]["colon"]["itemId"].'">'."<input style='width: 25%' placeholder='".$json[$i]["colon"]["pointsEarned"]."'>"." /".$json[$i]["colon"]["totalSubPoints"]."</td>";
 							$totalPointsEarned += (float)$json[$i]["colon"]["pointsEarned"];
 							$questionPoints += $json[$i]["function"]["pointsEarned"];
-							echo '<td id="'.$json[$i]["colon"]["itemId"].'">'."<input style='width: 25%;' placeholder='".$json[$i]["constraints"]["pointsEarned"]."'>"." /".$json[$i]["constraints"]["totalSubPoints"]."</td>";
+							echo '<td style="min-width: 100px; max-width:100px" id="'.$json[$i]["colon"]["itemId"].'">'."<input style='width: 25%' placeholder='".$json[$i]["constraints"]["pointsEarned"]."'>"." /".$json[$i]["constraints"]["totalSubPoints"]."</td>";
 							$totalPointsEarned += (float)$json[$i]["constraints"]["pointsEarned"];
 							$questionPoints += $json[$i]["constraints"]["pointsEarned"];
-							echo '<td><table id="'.$json[$i]["questionId"].'testCases" style="width:100%">';
+							echo '<td ><table id="'.$json[$i]["questionId"].'testCases" style="width:10%">';
 							$testCases = $json[$i]["testCases"];
 							for ($j=0; $j < count($testCases); $j++) {
 								echo '<tr id="'.$testCases[$j]["itemId"].'">';
