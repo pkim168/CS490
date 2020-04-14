@@ -1,0 +1,312 @@
+GET
+	// Get a list of all questions in an exam
+	// Use to create exam when student takes the exam
+	Get Exam Questions (https://web.njit.edu/~pk549/490/rc/examTbl.php)
+		Send:
+		{
+			requestType: 'getExamQuestions',
+			examId: (string)
+		}
+
+		Receive:
+		{
+			0: {
+				questionId: (String),
+				question: (String),
+				functionName: (String),
+				constraints: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: {
+						testCaseId: (Int),
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					1: {
+						testCaseId: (Int),
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					etc.
+				}
+				totalPoints: (String)
+			},
+			1: {
+				questionId: (String),
+				question: (String),
+				functionName: (String),
+				constraints: (String),
+				difficulty: 'Easy, 'Medium', or 'Hard'
+				tag: (string)
+				testCases: {
+					0: {
+						testCaseId: (Int),
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					1: {
+						testCaseId: (Int),
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						}
+					},
+					etc.
+				}
+				totalPoints: (String)
+			},
+			etc.
+		}
+
+	// Get a list of all Exams assigned to a student
+	// Use to show all exams a student has. Includes exam status
+	Get Student's Exams (https://web.njit.edu/~pk549/490/rc/examTbl.php)
+		Send:
+		{
+			requestType: 'getStudentExams',
+			ucid: (string)
+		}
+
+		Receive:
+		{
+			0: {
+				examId: (String),
+				studentExamId: (String),
+				status: (String)
+			},
+			1: {
+				examId: (String),
+				studentExamId: (String),
+				status: (String)
+			},
+			etc.
+		}
+	
+	// Get a list of questions and answers for a student's exam
+	// Use when student is reviewing exam
+	Get Student Exam Answers (https://web.njit.edu/~pk549/490/rc/examTbl.php)
+		Send:
+		{
+			requestType: 'getStudentAnswers',
+			examId: (String),
+			ucid: (String)
+		}
+
+		Receive:
+		{
+			0: {
+				questionId: (String),
+				question: (String),
+				function: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				colon: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				constraints: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				testCases: {
+					0: {
+						itemId: (Int),
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						},
+						pointsEarned: (Int),
+						totalSubPoints: (Int)
+					},
+					1: {
+						itemId: (Int),
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						},
+						pointsEarned: (Int),
+						totalSubPoints: (Int)
+					},
+					etc.
+				}
+				answer: (String),
+				comments: (String),
+				totalPoints: (String)
+			},
+			1: {
+				questionId: (String),
+				question: (String),
+				function: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				colon: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				constraints: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				testCases: {
+					0: {
+						itemId: (Int),
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						},
+						pointsEarned: (Int),
+						totalSubPoints: (Int)
+					},
+					1: {
+						itemId: (Int),
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						},
+						pointsEarned: (Int),
+						totalSubPoints: (Int)
+					},
+					etc.
+				}
+				answer: (String),
+				comments: (String),
+				totalPoints: (String)
+			},
+			etc.
+		}
+
+INSERT	
+	// Submit student's exam. Changes status to 1
+	Submit Student's Exam (https://web.njit.edu/~pk549/490/rc/examTbl.php)
+		Send:
+		{
+			requestType: 'submitStudentExam',
+			ucid: (String),
+			examId: (String),
+			questions: {
+				0: {
+					questionId: (String),
+					function: {
+						pointsEarned: (Int),
+						totalSubPoints (Int)
+					},
+					colon: {
+						pointsEarned: (Int),
+						totalSubPoints (Int)
+					},
+					constraints: {
+						pointsEarned: (Int),
+						totalSubPoints (Int)
+					},
+					testCases: {
+						0: {
+							testCaseId: (Int),
+							pointsEarned: (Int),
+							totalSubPoints: (Int)
+						},
+						1: {
+							testCaseId: (Int),
+							pointsEarned: (Int),
+							totalSubPoints: (Int)
+						},
+						etc.
+					}
+					answer: (String),
+					comments: (String),
+					totalPoints: (String)
+				},
+				1: {
+					questionId: (String),
+					function: {
+						pointsEarned: (Int),
+						totalSubPoints (Int)
+					},
+					colon: {
+						pointsEarned: (Int),
+						totalSubPoints (Int)
+					},
+					constraint: {
+						pointsEarned: (Int),
+						totalSubPoints (Int)
+					},
+					testCases: {
+						0: {
+							testCaseId: (Int),
+							pointsEarned: (Int),
+							totalSubPoints: (Int)
+						},
+						1: {
+							testCaseId: (Int),
+							pointsEarned: (Int),
+							totalSubPoints: (Int)
+						},
+						etc.
+					}
+					answer: (String),
+					comments: (String),
+					totalPoints: (String)
+				},
+				etc.
+			}
+		}
+		
+		Receive:
+		{
+			message: "Success" or "Failed"
+			error: Error Message
+		}

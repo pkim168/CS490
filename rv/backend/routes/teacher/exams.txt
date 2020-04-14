@@ -1,0 +1,269 @@
+GET
+	// Get a list of all exams created by a teacher
+	Get All Exams (https://web.njit.edu/~pk549/490/rc/examTbl.php)
+		Send:
+		{
+			requestType: 'getExams',
+			ucid: teacherId
+		}
+
+		Receive:
+		{
+			0: examId,
+			1: examId,
+			etc.
+		}
+
+	// Get a list of students who took an exam
+	Get Student Exam Statuses (https://web.njit.edu/~pk549/490/rc/examTbl.php)
+		Send:
+		{
+			requestType: 'getExamStatuses',
+			examId: (String)
+		}
+
+		Receive:
+		{
+			0: {
+				ucid: studentId,
+				status: (string)
+			},
+			1: {
+				ucid: studentId,
+				status: (string)
+			},
+			etc.
+		}
+
+	// Get a list of questions and answers for a student's exam
+	Get Student Exam Answers (https://web.njit.edu/~pk549/490/rc/examTbl.php)
+		Send:
+		{
+			requestType: 'getStudentAnswers',
+			examId: (String),
+			ucid: (String)
+		}
+
+		Receive:
+		{
+			0: {
+				questionId: (String),
+				question: (String),
+				function: {
+					itemId: (Int),
+					functionName: (String)
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				colon: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				constraints: {
+					itemId: (Int),
+					constraint: (String)
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				testCases: {
+					0: {
+						itemId: (Int),
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						},
+						pointsEarned: (Int),
+						totalSubPoints: (Int)
+					},
+					1: {
+						itemId: (Int),
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						},
+						pointsEarned: (Int),
+						totalSubPoints: (Int)
+					},
+					etc.
+				}
+				answer: (String),
+				comments: (String),
+				totalPoints: (String)
+			},
+			1: {
+				questionId: (String),
+				question: (String),
+				function: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				colon: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				constraints: {
+					itemId: (Int),
+					pointsEarned: (Int),
+					totalSubPoints (Int)
+				},
+				testCases: {
+					0: {
+						itemId: (Int),
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						},
+						pointsEarned: (Int),
+						totalSubPoints: (Int)
+					},
+					1: {
+						itemId: (Int),
+						data: {
+							parameters: {
+								0: Parameter,
+								1: Parameter,
+								etc.
+							},
+							argc: Num of Arguments,
+							result: Expected output
+						},
+						pointsEarned: (Int),
+						totalSubPoints: (Int)
+					},
+					etc.
+				}
+				answer: (String),
+				comments: (String),
+				totalPoints: (String)
+			},
+			etc.
+		}
+
+INSERT
+
+	// Create new Exam. Creates student exams with status 0
+	Create new Exam (https://web.njit.edu/~pk549/490/rc/examTbl.php)
+		Send:
+		{
+			requestType: "createNewExam",
+			ucid: (String),
+			totalPoints: (String),
+			questions: {
+				0: {
+					questionId: (String),
+					points: (String)
+				},
+				1: {
+					questionId: (String),
+					points: (String)
+				},
+				etc.
+			}
+		}
+		Receive:
+		{
+			message: "Success" or "Failed"
+			error: Error Message
+		}
+		
+	// Add comments and change score for a student's exam
+	Edit Student Exam (https://web.njit.edu/~pk549/490/rc/examTbl.php)
+		Send:
+		{
+			requestType: "editStudentExam",
+			examId: (String),
+			ucid: studentId,
+			questions: {
+				0: {
+					questionId: (String),
+					function: {
+						itemId: (Int),
+						pointsEarned: (Int)
+					},
+					colon: {
+						itemId: (Int),
+						pointsEarned: (Int)
+					},
+					constraints: {
+						itemId: (Int),
+						pointsEarned: (Int)
+					},
+					testCases: {
+						0: {
+							itemId: (Int),
+							pointsEarned: (Int)
+						},
+						1: {
+							itemId: (Int),
+							pointsEarned: (Int)
+						},
+						etc.
+					}
+					comments: (String)
+				},
+				1: {
+					questionId: (String),
+					function: {
+						itemId: (Int),
+						pointsEarned: (Int)
+					},
+					colon: {
+						itemId: (Int),
+						pointsEarned: (Int)
+					},
+					constraints: {
+						itemId: (Int),
+						pointsEarned: (Int)
+					},
+					testCases: {
+						0: {
+							itemId: (Int),
+							pointsEarned: (Int)
+						},
+						1: {
+							itemId: (Int),
+							pointsEarned: (Int)
+						},
+						etc.
+					}
+					comments: (String)
+				},
+				etc.
+			}
+		}
+
+		Receive: 
+		{
+			message: "Success" or "Failed"
+		}
+		
+	// Release exams to students. Changes status to 2
+	Release Student Exams (https://web.njit.edu/~pk549/490/rc/examTbl.php)
+		Send:
+		{
+			requestType: "releaseExam",
+			examId: (String)
+		}
+
+		Receive: 
+		{
+			message: "Success" or "Failed"
+		}

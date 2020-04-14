@@ -1,0 +1,6 @@
+When exam is created, insert into studentExam table (status = 0)
+Exam for student should be created using exam question table
+When student submits, then insert into examGrades table (use ucid to find sExamId) (status = 1)
+Teacher releases exam (Status = 2);
+
+outer join? on studentExamTBL join examTBl on examId. Get examId that is in examTbl but not in studentExamTbl
