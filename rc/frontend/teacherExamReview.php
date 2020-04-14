@@ -169,7 +169,7 @@
 								}
 								$str .= $parameters."\nOutput: ".$data['result'];
 								echo "<td><pre style='background-color:rgb(180,180,180);'>".$str."</pre></td>";
-								echo "<td>"."<input style='width: 25%;' placeholder='".$testCases[$j]["pointsEarned"]."'>"." /".$testCases[$j]["totalSubPoints"]."</td></tr>";
+								echo "<td>"."<input style='width: 40%;' placeholder='".$testCases[$j]["pointsEarned"]."'>"." /".$testCases[$j]["totalSubPoints"]."</td></tr>";
 								$totalPointsEarned += $testCases[$j]["pointsEarned"];
 							}
 							echo "</table></td></tr></table></td>";						
@@ -186,7 +186,7 @@
 			</div>
 			<div class="flex-container row">
 				<button type="button" style="height: 40px; width: 150px" onclick="submit()">Submit Changes</button>
-				<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherExamList.php';">Back</button>
+				<button type="button" style=" margin: 0px 0px 0px 25px; height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherExamList.php';">Back</button>
 			</div>
 		</div>
 		
