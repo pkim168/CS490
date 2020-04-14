@@ -98,6 +98,7 @@
 					question['questionId'] = questionId;
 					question['comments'] = comments;
 					formData['questions'].push(question);
+					console.log(question);
 					console.log("one loop done");
 				}
 				console.log(formData);
@@ -108,14 +109,16 @@
 				})
 				.then((response) => {
 					console.log(response);
-					console.log(response['message']);
-					console.log(response['error']);
-					return false;
-					if (response["message"] == "Failure") {
-						console.log(response['error']);
-						return false;
-					}
-					location.href = "".concat('https://web.njit.edu/~dn236/CS490/rc/teacherExamStudents.php?examId=',document.getElementById('examId').innerText);
+					response.json().then((data) => {
+						console.log(data['message']);
+						console.log(data['error']);
+						if (data["message"] == "Failure") {
+							console.log(data['error']);
+							return false;
+						}
+						location.href = "".concat('https://web.njit.edu/~dn236/CS490/rc/teacherExamStudents.php?examId=',document.getElementById('examId').innerText);
+					})
+					
 				})
 				.catch(function(error) {
 					console.log(error);
@@ -198,7 +201,7 @@
 			</div>
 			<div class="flex-container row">
 				<button type="button" style="height: 40px; width: 150px" onclick="submit()">Submit Changes</button>
-				<button type="button" style=" margin: 0px 0px 0px 25px; height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherExamList.php';">Back</button>
+				<button type="button" style=" margin: 0px 0px 0px 25px; height: 40px; width: 150px" onclick="<?php echo "location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherExamStudents.php?examId=".$_SESSION['examId']."';";?>">Back</button>
 			</div>
 		</div>
 		
