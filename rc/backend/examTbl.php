@@ -495,6 +495,7 @@
 	function editStudentExam($json) {
 		global $db;
 		$data = array();
+		$data['error'] = 'h';
 		$ucid = $examId = "";
 		if (!empty($json['ucid'])) {
 			$ucid = getData($json['ucid']);
@@ -516,16 +517,18 @@
 		$sExamId = $row["sExamId"];
 		$query = "";
 		$questions = $json["questions"];
+		$data['error'] .= count($questions).'..';
 		for ($i = 0; $i < count($questions); $i++) {
-			$questionId = $questions[$i]["questionId"];
-			$function = $questions[$i]["function"]["itemId"];
-			$fPoints = $questions[$i]["function"]["pointsEarned"];
-			$colon = $questions[$i]["colon"]["itemId"];
-			$colPoints = $questions[$i]["colon"]["pointsEarned"];
-			$constraint = $questions[$i]["constraints"]["itemId"];
-			$conPoints = $questions[$i]["constraints"]["pointsEarned"];
+			$questionId = getData($questions[$i]["questionId"]);
+			$function = getData($questions[$i]["function"]["itemId"]);
+			$fPoints = getData($questions[$i]["function"]["pointsEarned"]);
+			$colon = getData($questions[$i]["colon"]["itemId"]);
+			$colPoints = getData($questions[$i]["colon"]["pointsEarned"]);
+			$constraint = getData($questions[$i]["constraints"]["itemId"]);
+			$conPoints = getData($questions[$i]["constraints"]["pointsEarned"]);
 			$testCases = $questions[$i]["testCases"];
-			$comments = $questions[$i]["comments"];
+			$comments = getData($questions[$i]["comments"]);
+			$data['error'] .= $fPoints.' '.$colPoints.' '.$conPoints.' '.'.';
 			$query .= "
 				UPDATE 490examGradesTbl 
 				SET 
@@ -549,8 +552,8 @@
 			";
 			
 			for ($j=0; $j < count($testCases); $j++) {
-				$itemId = $testCases[$j]["itemId"];
-				$pointsEarned = $testCases[$j]["pointsEarned"];
+				$itemId = getData($testCases[$j]["itemId"]);
+				$pointsEarned = getData($testCases[$j]["pointsEarned"]);
 				$query .= "
 					UPDATE 490itemTbl 
 					SET 
@@ -562,15 +565,10 @@
 		if (mysqli_multi_query($db, $query)){
 			do {
 				$result = mysqli_store_result($db);
-				if (!$result) {
-					$data["message"] = "Failure";
-					$data["error"] = 'update'.mysqli_error();
-					return json_encode($data);
-				}
 			} while (mysqli_next_result($db));
 		} else {
 			$data["message"] = "Failure";
-			$data["error"] = ''.mysqli_error();
+			$data["error"] = 'hi'.mysqli_error($db);
 			return json_encode($data);
 		}
 		
@@ -641,7 +639,7 @@
 		";
 		if (!mysqli_query($db, $query)){
 			$data["message"] = "Failure";
-			$data["error"] = "update".mysqli_error();
+			$data["error"] = "update".mysqli_error().$examId;
 			return json_encode($data);
 		}
 		

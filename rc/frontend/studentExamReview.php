@@ -74,9 +74,11 @@
 							echo '<tr><td id="'.$json[$i]["function"]["itemId"].'">'.$json[$i]["function"]["pointsEarned"]."/".$json[$i]["function"]["totalSubPoints"]."</td>";
 							$totalPointsEarned += (float)$json[$i]["function"]["pointsEarned"];
 							$questionPoints += $json[$i]["function"]["pointsEarned"];
+							
 							echo '<td id="'.$json[$i]["colon"]["itemId"].'">'.$json[$i]["colon"]["pointsEarned"]."/".$json[$i]["colon"]["totalSubPoints"]."</td>";
 							$totalPointsEarned += (float)$json[$i]["colon"]["pointsEarned"];
-							$questionPoints += $json[$i]["function"]["pointsEarned"];
+							$questionPoints += $json[$i]["colon"]["pointsEarned"];
+							
 							echo '<td id="'.$json[$i]["constraints"]["itemId"].'">'.$json[$i]["constraints"]["pointsEarned"]."/".$json[$i]["constraints"]["totalSubPoints"]."</td>";
 							$totalPointsEarned += (float)$json[$i]["constraints"]["pointsEarned"];
 							$questionPoints += $json[$i]["constraints"]["pointsEarned"];
