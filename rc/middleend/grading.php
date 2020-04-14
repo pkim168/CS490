@@ -146,7 +146,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         }
         $parameters = substr($parameters, 0, -1);
         //inserting code into file
-		if (strpos($student_answer, 'print') || $student_answer == "") {
+		if (strpos($student_answer, 'print') || $answer_function_name == "") {
 			file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer . "\n" . "$answer_function_name($parameters)");
 		}
 		else {
