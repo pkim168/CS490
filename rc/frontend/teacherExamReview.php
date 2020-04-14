@@ -161,7 +161,7 @@
 							echo '<td id="'.$json[$i]["colon"]["itemId"].'">'."<input style='width: 25%;' placeholder='".$json[$i]["colon"]["pointsEarned"]."'>"." /".$json[$i]["colon"]["totalSubPoints"]."</td>";
 							$totalPointsEarned += (float)$json[$i]["colon"]["pointsEarned"];
 							$questionPoints += $json[$i]["function"]["pointsEarned"];
-							echo '<td id="'.$json[$i]["colon"]["itemId"].'">'."<input style='width: 25%;' placeholder='".$json[$i]["constraints"]["pointsEarned"]."'>"." /".$json[$i]["constraints"]["totalSubPoints"]."</td>";
+							echo '<td id="'.$json[$i]["constraints"]["itemId"].'">'."<input style='width: 25%;' placeholder='".$json[$i]["constraints"]["pointsEarned"]."'>"." /".$json[$i]["constraints"]["totalSubPoints"]."</td>";
 							$totalPointsEarned += (float)$json[$i]["constraints"]["pointsEarned"];
 							$questionPoints += $json[$i]["constraints"]["pointsEarned"];
 							echo '<td><table id="'.$json[$i]["questionId"].'testCases" style="width:100%">';
