@@ -108,6 +108,7 @@
 				})
 				.then((response) => {
 					console.log(response);
+					return false;
 					if (response["message"] == "Failure") {
 						console.log(response['error']);
 						return false;
@@ -177,7 +178,7 @@
 								$totalPointsEarned += (float)$testCases[$j]["pointsEarned"];
 								$questionPoints += $testCases[$j]["pointsEarned"];
 							}
-							echo "</table></td></tr></table></td>";						
+							echo "</table></td></tr></table></td>";
 							echo "<td>".$questionPoints."/".$json[$i]["totalPoints"]."</td>";
 							echo "<td><textarea style='width: 100%; height: 140px; resize:both'>".$json[$i]["comments"]."</textarea></td>";
 							echo "</tr>";
