@@ -495,6 +495,7 @@
 	function editStudentExam($json) {
 		global $db;
 		$data = array();
+		$data['error'] = '';
 		$ucid = $examId = "";
 		if (!empty($json['ucid'])) {
 			$ucid = getData($json['ucid']);
@@ -526,6 +527,7 @@
 			$conPoints = $questions[$i]["constraints"]["pointsEarned"];
 			$testCases = $questions[$i]["testCases"];
 			$comments = $questions[$i]["comments"];
+			$data['error'] .= $fPoints.' '.colPoints.' '.conPoints.' '.'.';
 			$query .= "
 				UPDATE 490examGradesTbl 
 				SET 

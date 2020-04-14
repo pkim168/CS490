@@ -108,6 +108,8 @@
 				})
 				.then((response) => {
 					console.log(response);
+					console.log(response['message']);
+					console.log(response['error']);
 					return false;
 					if (response["message"] == "Failure") {
 						console.log(response['error']);
