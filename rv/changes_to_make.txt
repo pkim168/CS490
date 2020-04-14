@@ -1,0 +1,20 @@
+make tag and constraint not required
+
+make sure constraint in function name isn't considered good
+	e.g. function name forloop with constraint "for" will consider constraint ok
+	
+Adjust spacing for table. Less space for question
+
+Add colon if missing
+
+make each element a row of the table for grading
+put comments into a table with each one a row
+add comments section to points earned table
+add comments to actual points part
+comments section should be blank for additional comments.
+
+codingbat.com as example
+submit button should autodirect when making changes
+fix percentage in student exam review
+
+make tables prettier
