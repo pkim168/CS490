@@ -175,7 +175,7 @@
 								echo "<td><pre style='background-color:rgb(180,180,180);'>".$str."</pre></td>";
 								echo "<td>"."<input style='width: 40%;' placeholder='".$testCases[$j]["pointsEarned"]."'>"." /".$testCases[$j]["totalSubPoints"]."</td></tr>";
 								$totalPointsEarned += (float)$testCases[$j]["pointsEarned"];
-								$questionPoints += $json[$i]$testCases[$j]["pointsEarned"];
+								$questionPoints += $testCases[$j]["pointsEarned"];
 							}
 							echo "</table></td></tr></table></td>";						
 							echo "<td>"$questionPoints."/".$json[$i]["totalPoints"]."</td>";
