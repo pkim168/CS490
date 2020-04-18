@@ -60,10 +60,10 @@
 					question["function"] = {};
 					question["colon"] = {};
 					question["constraints"] = {};
-					question["function"]["itemId"] = qtable.rows[1].cells[0].id;
+					question["function"]["itemId"] = qtable.rows[0].cells[1].id;
 					question["colon"]["itemId"] = qtable.rows[1].cells[1].id;
-					question["constraints"]["itemId"] = qtable.rows[1].cells[2].id;
-					if (qtable.rows[1].cells[0].firstChild.value == "") {
+					question["constraints"]["itemId"] = qtable.rows[2].cells[1].id;
+					if (qtable.rows[0].cells[1].firstChild.value == "") {
 						question["function"]["pointsEarned"] = qtable.rows[1].cells[0].firstChild.placeholder;
 					}
 					else {
@@ -75,7 +75,7 @@
 					else {
 						question["colon"]["pointsEarned"] = qtable.rows[1].cells[1].firstChild.value;
 					}
-					if (qtable.rows[1].cells[2].firstChild.value == "") {
+					if (qtable.rows[2].cells[1].firstChild.value == "") {
 						question["constraints"]["pointsEarned"] = qtable.rows[1].cells[2].firstChild.placeholder;
 					}
 					else {
@@ -152,16 +152,23 @@
 							echo "<td>".$json[$i]["question"]."</td>";
 							echo "<td><pre style='background-color:rgb(180,180,180);'>".$json[$i]["answer"]."</pre></td>";
 							echo '<td><table id="'.$json[$i]["questionId"].'points" style="width:100%">';
-							echo '<tr><th style="width: 20%">Function Name</th><th style="width: 20%">Colon</th><th style="width: 20%">Constraint</th><th style="width: 40%">Test Cases</th></tr>';
-							echo '<tr><td style="min-width: 100px; max-width:100px" id="'.$json[$i]["function"]["itemId"].'">'."<input style='width: 25%' placeholder='".$json[$i]["function"]["pointsEarned"]."'>"." /".$json[$i]["function"]["totalSubPoints"]."</td>";
+							
+							echo '<tr><th style="width: 20%">Function Name</th>';
+							echo '<tr><td style="min-width: 100px; max-width:100px" id="'.$json[$i]["function"]["itemId"].'">'."<input style='width: 25%' placeholder='".$json[$i]["function"]["pointsEarned"]."'>"." /".$json[$i]["function"]["totalSubPoints"]."</td></tr>";
 							$totalPointsEarned += (float)$json[$i]["function"]["pointsEarned"];
 							$questionPoints += $json[$i]["function"]["pointsEarned"];
-							echo '<td style="min-width: 100px; max-width:100px" id="'.$json[$i]["colon"]["itemId"].'">'."<input style='width: 25%' placeholder='".$json[$i]["colon"]["pointsEarned"]."'>"." /".$json[$i]["colon"]["totalSubPoints"]."</td>";
+							
+							echo '<tr><th style="width: 20%">Colon</th>';
+							echo '<td style="min-width: 100px; max-width:100px" id="'.$json[$i]["colon"]["itemId"].'">'."<input style='width: 25%' placeholder='".$json[$i]["colon"]["pointsEarned"]."'>"." /".$json[$i]["colon"]["totalSubPoints"]."</td></tr>";
 							$totalPointsEarned += (float)$json[$i]["colon"]["pointsEarned"];
 							$questionPoints += $json[$i]["function"]["pointsEarned"];
-							echo '<td style="min-width: 100px; max-width:100px" id="'.$json[$i]["colon"]["itemId"].'">'."<input style='width: 25%' placeholder='".$json[$i]["constraints"]["pointsEarned"]."'>"." /".$json[$i]["constraints"]["totalSubPoints"]."</td>";
+							
+							echo '<tr><th style="width: 20%">Constraint</th>';
+							echo '<td style="min-width: 100px; max-width:100px" id="'.$json[$i]["constraints"]["itemId"].'">'."<input style='width: 25%' placeholder='".$json[$i]["constraints"]["pointsEarned"]."'>"." /".$json[$i]["constraints"]["totalSubPoints"]."</td></tr>";
 							$totalPointsEarned += (float)$json[$i]["constraints"]["pointsEarned"];
 							$questionPoints += $json[$i]["constraints"]["pointsEarned"];
+							
+							echo '<tr><th style="width: 40%">Test Cases</th>';
 							echo '<td ><table id="'.$json[$i]["questionId"].'testCases" style="width:10%">';
 							$testCases = $json[$i]["testCases"];
 							for ($j=0; $j < count($testCases); $j++) {
