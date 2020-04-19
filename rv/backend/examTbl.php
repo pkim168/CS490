@@ -153,6 +153,7 @@
 				$temp["testCases"] = array();
 				$temp["answer"] = $row["answer"];
 				$temp["comments"] = $row["comments"];
+				$temp["feedback"] = $row["feedback"];
 				$temp["totalPoints"] = $row["totalPoints"];
 				switch ($row["subitem"]) {
 					case "function":
