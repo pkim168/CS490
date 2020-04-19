@@ -21,7 +21,7 @@
 	$data = array();
 	$data['requestType'] = 'getExamQuestions';
 	$data['examId'] = $_SESSION['examId'];
-	$url = "https://web.njit.edu/~jrd62/CS490/rv/student_middle.php";
+	$url = "https://web.njit.edu/~jrd62/CS490/rc/student_middle.php";
 	
 	$ch = curl_init($url);
 	$payload = json_encode($data);
@@ -58,7 +58,7 @@
 				}
 				// cURL to middle end
 				// 
-				fetch("https://web.njit.edu/~jrd62/CS490/rv/grading.php", {
+				fetch("https://web.njit.edu/~jrd62/CS490/rc/grading.php", {
 					method: "POST",
 					body: JSON.stringify(formData)
 				})
@@ -101,15 +101,15 @@
 			<div class="flex-container row" style="width:98%; float:left">
 				<table id="equestions" style="width:100%">
 					<tr>
-						<th style="max-width: 30%;"> Question </th>
+						<th> Question </th>
 						<th> Answer </th>
 						<th> Points </th>
 					</tr>
 					<?php
 						for ($i = 0; $i < count($json); $i++) {
 							echo "<tr id=".$json[$i]["questionId"].">";
-							echo "<td style ='width:40%;'>".$json[$i]["question"]."</td>";
-							echo "<td><textarea style='width: 100%; height: 150px; resize:both' id='testCase'></textarea></td>";
+							echo "<td style='width: 20%;'>".$json[$i]["question"]."</td>";
+							echo "<td><textarea style='width: 100%; height: 150px; resize:both' ></textarea></td>";
 							echo "<td style=;width:5%;'>".$json[$i]["totalPoints"]."</td>";
 							echo "</tr>";
 						}
