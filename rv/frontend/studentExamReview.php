@@ -93,26 +93,24 @@
 							$totalPointsEarned += (float)$json[$i]["constraints"]["pointsEarned"];
 							$questionPoints += $json[$i]["constraints"]["pointsEarned"];
 							
-							echo '<tr><th>Test Cases</th>';
-							echo '<td><table id="'.$json[$i]["questionId"].'testCases" style="width:100%">';
 							$testCases = $json[$i]["testCases"];
 							for ($j=0; $j < count($testCases); $j++) {
-								echo '<tr id="'.$testCases[$j]["itemId"].'">';
+								echo '<tr><th style="width: 40%">Test Case '.($j+1).'</th>';
+								echo '<td id="'.$testCases[$j]["itemId"].'"><input style="width: 40%;" placeholder="'.$testCases[$j]["pointsEarned"].'">'.' /'.$testCases[$j]["totalSubPoints"].'</td>';
+								$str = "";
 								$parameters = "Parameters: ";
 								$data = json_decode($testCases[$j]['data'], true);
 								for ($h=0; $h < count($data['parameters']); $h++) {
 									$parameters .= $data['parameters'][strval($h)]."; ";
 								}
-								$parameters .= "\nOutput: ".$data['result'];
-								echo "<td><pre style='background-color:rgb(180,180,180);'>".$parameters."</pre></td>";
-								echo "<td>".$testCases[$j]["pointsEarned"]."/".$testCases[$j]["totalSubPoints"]."</td></tr>";
-								echo '<td>'.$comments[2+$j].'</td></tr>';
+								$str .= $parameters."\nOutput: ".$data['result']."\n";
+								echo "<td><pre style='background-color:rgb(180,180,180);'>".$str.$comments[2+$j].'</pre></td></tr>';
 								$totalPointsEarned += (float)$testCases[$j]["pointsEarned"];
 								$questionPoints += $testCases[$j]["pointsEarned"];
 							}
 							echo "</table></td></tr></table></td>";
 							echo "<td>".$questionPoints."/".$json[$i]["totalPoints"]."</td>";
-							echo "<td><pre style='background-color:rgb(180,180,180);'>".$json[$i]["comments"]."</pre></td>";
+							echo "<td><pre style='background-color:rgb(180,180,180);'>".$json[$i]["feedback"]."</pre></td>";
 							echo "</tr>";
 							//$totalPointsEarned += (float)$json[$i]["pointsEarned"];
 							$maxPoints +=  (float)$json[$i]["totalPoints"];
