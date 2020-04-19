@@ -38,7 +38,7 @@
 		<link rel="stylesheet" href="styles.css">
 		<script>
 			function exam(id) {
-				location.href = "".concat('https://web.njit.edu/~dn236/CS490/rc/teacherExamReview.php?studentId=',id);
+				location.href = "".concat('https://web.njit.edu/~dn236/CS490/rv/teacherExamReview.php?studentId=',id);
 			}
 			
 			function releaseExam(name) {
@@ -51,7 +51,7 @@
 				formData.append('requestType', 'releaseExam');
 				formData.append('examId', id);
 				// cURL to middle end
-				fetch("https://web.njit.edu/~dn236/CS490/rc/releaseExams.php", {
+				fetch("https://web.njit.edu/~dn236/CS490/rv/releaseExams.php", {
 					method: "POST",
 					body: formData
 				})
@@ -60,7 +60,7 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';
+							location.href = 'https://web.njit.edu/~dn236/CS490/rv/teacherView.php';
 						}
 						else {
 							alert(''.concat("There was a problem releasing the exam. Please try again. Error message: ", data['error']));
@@ -116,7 +116,7 @@
 				</table>
 			</div>
 			<div class="flex-container row">
-				<button type="button" style=" margin: 0px 0px 0px 25px; height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherExamList.php';">Back</button>
+				<button type="button" style=" margin: 0px 0px 0px 25px; height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rv/teacherExamList.php';">Back</button>
 			</div>
 		</div>
 		

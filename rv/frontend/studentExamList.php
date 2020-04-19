@@ -33,11 +33,11 @@
 		<link rel="stylesheet" href="styles.css">
 		<script>
 			function takeExam(id) {
-				location.href = "".concat('https://web.njit.edu/~dn236/CS490/rc/ExamPage.php?examId=', id);
+				location.href = "".concat('https://web.njit.edu/~dn236/CS490/rv/ExamPage.php?examId=', id);
 			}
 			
 			function viewResults(id) {
-				location.href = "".concat('https://web.njit.edu/~dn236/CS490/rc/studentExamReview.php?examId=', id);
+				location.href = "".concat('https://web.njit.edu/~dn236/CS490/rv/studentExamReview.php?examId=', id);
 			}
 		</script>
 	</head>
@@ -78,7 +78,7 @@
 			</div>
 		</div>
 		<div  style = "display: flex; justify-content: center; width: 100%;">
-				<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/studentView.php';">Back</button>
+				<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rv/studentView.php';">Back</button>
 		</div>
 	</body>
 </html>

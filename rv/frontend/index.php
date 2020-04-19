@@ -31,7 +31,7 @@
 				formData.append('ucid', ucid);
 				formData.append('pass', pass);
 				
-				fetch("https://web.njit.edu/~dn236/CS490/rc/login.php", {
+				fetch("https://web.njit.edu/~dn236/CS490/rv/login.php", {
 					method: "POST",
 					body: formData
 				})
@@ -40,12 +40,12 @@
 					response.json().then((data) => {
 						if(data["message"] == "Verified") {
 							if(data['role']==  1 ){
-								var str = "https://web.njit.edu/~dn236/CS490/rc/studentView.php?ucid=";
+								var str = "https://web.njit.edu/~dn236/CS490/rv/studentView.php?ucid=";
 								str = "".concat(str,ucid,"&role=",data['role']);
 								location.href = str;
 							
 							}else{
-								var str = "https://web.njit.edu/~dn236/CS490/rc/teacherView.php?ucid=";
+								var str = "https://web.njit.edu/~dn236/CS490/rv/teacherView.php?ucid=";
 								str = "".concat(str,ucid,"&role=",data['role']);
 								location.href = str;
 							}

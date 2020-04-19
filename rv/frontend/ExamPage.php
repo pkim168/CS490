@@ -21,7 +21,7 @@
 	$data = array();
 	$data['requestType'] = 'getExamQuestions';
 	$data['examId'] = $_SESSION['examId'];
-	$url = "https://web.njit.edu/~jrd62/CS490/rc/student_middle.php";
+	$url = "https://web.njit.edu/~jrd62/CS490/rv/student_middle.php";
 	
 	$ch = curl_init($url);
 	$payload = json_encode($data);
@@ -58,7 +58,7 @@
 				}
 				// cURL to middle end
 				// 
-				fetch("https://web.njit.edu/~jrd62/CS490/rc/grading.php", {
+				fetch("https://web.njit.edu/~jrd62/CS490/rv/grading.php", {
 					method: "POST",
 					body: JSON.stringify(formData)
 				})
@@ -68,7 +68,7 @@
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
 							
-							location.href = 'https://web.njit.edu/~dn236/CS490/rc/studentView.php';
+							location.href = 'https://web.njit.edu/~dn236/CS490/rv/studentView.php';
 						}
 						else if (data["message"] == "Failure"){
 							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));
@@ -101,7 +101,7 @@
 			<div class="flex-container row" style="width:98%; float:left">
 				<table id="equestions" style="width:100%">
 					<tr>
-						<th> Question </th>
+						<th style="max-width: 30%;"> Question </th>
 						<th> Answer </th>
 						<th> Points </th>
 					</tr>

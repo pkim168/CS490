@@ -48,7 +48,7 @@
 				formData['ucid'] = document.getElementById("ucid").innerText;
 				formData['totalPoints'] = score;
 				// cURL to middle end
-				fetch("https://web.njit.edu/~dn236/CS490/rc/CreateExam2makeExam.php", {
+				fetch("https://web.njit.edu/~dn236/CS490/rv/CreateExam2makeExam.php", {
 					method: "POST",
 					body: JSON.stringify(formData)
 				})
@@ -57,7 +57,7 @@
 					response.json().then((data) => {
 						if (data["message"] == "Success") {
 							// Redirect back after successful submission
-							location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';
+							location.href = 'https://web.njit.edu/~dn236/CS490/rv/teacherView.php';
 						}
 						else {
 							alert(''.concat("There was a problem submitting the exam. Please try again. Error message: ", data['error']));
@@ -85,7 +85,7 @@
 				  console.log(p);
 				}
 				// cURL to middle end
-				fetch("https://web.njit.edu/~dn236/CS490/rc/CreateExam2getQuestions.php", {
+				fetch("https://web.njit.edu/~dn236/CS490/rv/CreateExam2getQuestions.php", {
 					method: "POST",
 					body: formData
 				})
@@ -226,7 +226,7 @@
 			</div>
 		</div>
 		<div  style = "display: flex; justify-content: center; width: 100%;">
-				<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';">Back</button>
+				<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rv/teacherView.php';">Back</button>
 		</div>
 	</body>
 </html>

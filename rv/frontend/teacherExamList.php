@@ -21,7 +21,7 @@
 		<link rel="stylesheet" href="styles.css">
 		<script>
 			function exam(id) {
-				location.href = "".concat('https://web.njit.edu/~dn236/CS490/rc/teacherExamStudents.php?examId=', id);
+				location.href = "".concat('https://web.njit.edu/~dn236/CS490/rv/teacherExamStudents.php?examId=', id);
 			}
 			
 			/* function releaseExam(name) {
@@ -69,7 +69,7 @@
 				$data = array();
 				$data['requestType'] = 'getExams';
 				$data['ucid'] = $_SESSION['ucid'];
-				$url = "https://web.njit.edu/~dn236/CS490/rc/getExams.php";
+				$url = "https://web.njit.edu/~dn236/CS490/rv/getExams.php";
 				$ch = curl_init($url);
 				$payload = json_encode($data);
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
@@ -94,7 +94,7 @@
 			?>
 		</div>
 		<div  style = "display: flex; justify-content: center; width: 100%;">
-				<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';">Back</button>
+				<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rv/teacherView.php';">Back</button>
 		</div>
 		
 		

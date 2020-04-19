@@ -55,7 +55,7 @@
 					formData['testCases'].push(testCase);
 				}
 				// cURL to middle end
-				fetch("https://web.njit.edu/~dn236/CS490/rc/CreateQuestion2.php", {
+				fetch("https://web.njit.edu/~dn236/CS490/rv/CreateQuestion2.php", {
 					method: "POST",
 					body: JSON.stringify(formData)
 				})
@@ -63,7 +63,7 @@
 					console.log(response);
 					response.json().then((data) => {
 						
-						location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';
+						location.href = 'https://web.njit.edu/~dn236/CS490/rv/teacherView.php';
 					})
 				})
 				.catch(function(error) {
@@ -79,7 +79,7 @@
 					for (var i = 1; i<= value; i++) {
 						var row = document.createElement("div");
 						row.setAttribute("class", "flex-container row");
-						row.setAttribute("style", "width:95%");
+						row.setAttribute("style", "width:100%");
 						var label = document.createElement("label");
 						label.setAttribute("style", "width:50%");
 						label.textContent = ''.concat("Argument ", i.toString());
@@ -175,7 +175,7 @@
 				  console.log(p);
 				}
 				// cURL to middle end
-				fetch("https://web.njit.edu/~dn236/CS490/rc/CreateExam2getQuestions.php", {
+				fetch("https://web.njit.edu/~dn236/CS490/rv/CreateExam2getQuestions.php", {
 					method: "POST",
 					body: formData
 				})
@@ -241,7 +241,7 @@
 					</div>
 					<div class="flex-container row" style="width: 98%;">
 						<label style="width: 150px;">Constraint:</label>
-						<select style="width: 70%;" id="constraint" required>
+						<select style="width: 70%;" id="constraint">
 							<option value="" selected></option>
 							<option value="for">for</option>
 							<option value="while">while</option>
@@ -252,8 +252,8 @@
 					</div>
 					<div class="flex-container row" style="width: 98%;">
 						<label style="width: 150px;">Tag:</label>
-						<select style="width: 70%;" id="tag" required>
-							<option value="" selected></option>
+						<select style="width: 70%;" id="tag">
+							<option value="none" selected></option>
 							<option value="Lists">Lists</option>
 							<option value="Addition">Addition</option>
 							<option value="Recursion">Recursion</option>
@@ -325,7 +325,7 @@
 			</div>
 		</div>
 		<div  style = "display: flex; justify-content: center; width: 100%;">
-				<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherView.php';">Back</button>
+				<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rv/teacherView.php';">Back</button>
 		</div>
 	</body>
 </html>

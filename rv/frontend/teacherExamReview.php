@@ -113,7 +113,7 @@
 						console.log(response['error']);
 						return false;
 					}
-					location.href = "".concat('https://web.njit.edu/~dn236/CS490/rc/teacherExamStudents.php?examId=',document.getElementById('examId').innerText);
+					location.href = "".concat('https://web.njit.edu/~dn236/CS490/rv/teacherExamStudents.php?examId=',document.getElementById('examId').innerText);
 				})
 				.catch(function(error) {
 					console.log(error);
@@ -199,7 +199,7 @@
 			</div>
 			<div class="flex-container row">
 				<button type="button" style="height: 40px; width: 150px" onclick="submit()">Submit Changes</button>
-				<button type="button" style=" margin: 0px 0px 0px 25px; height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/teacherExamList.php';">Back</button>
+				<button type="button" style=" margin: 0px 0px 0px 25px; height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rv/teacherExamList.php';">Back</button>
 			</div>
 		</div>
 		
