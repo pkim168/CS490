@@ -96,7 +96,7 @@
 							$testCases = $json[$i]["testCases"];
 							for ($j=0; $j < count($testCases); $j++) {
 								echo '<tr><th style="width: 40%">Test Case '.($j+1).'</th>';
-								echo '<td id="'.$testCases[$j]["itemId"].'"><input style="width: 40%;" placeholder="'.$testCases[$j]["pointsEarned"].'">'.' /'.$testCases[$j]["totalSubPoints"].'</td>';
+								echo '<td id="'.$testCases[$j]["itemId"].'">'.$testCases[$j]["pointsEarned"].' /'.$testCases[$j]["totalSubPoints"].'</td>';
 								$str = "";
 								$parameters = "Parameters: ";
 								$data = json_decode($testCases[$j]['data'], true);
