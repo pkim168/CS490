@@ -108,7 +108,7 @@
 								$totalPointsEarned += (float)$testCases[$j]["pointsEarned"];
 								$questionPoints += $testCases[$j]["pointsEarned"];
 							}
-							echo "</table></td></tr></table></td>";
+							echo "</table></td>";
 							echo "<td>".$questionPoints."/".$json[$i]["totalPoints"]."</td>";
 							echo "<td><pre style='background-color:rgb(180,180,180);'>".$json[$i]["feedback"]."</pre></td>";
 							echo "</tr>";
