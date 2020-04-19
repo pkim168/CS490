@@ -395,7 +395,7 @@
 			$answer = getData($questions[$i]["answer"]);
 			$totalPoints = $questions[$i]["totalPoints"];
 			$comments = getData($questions[$i]["comments"]);
-			$query .= "(DEFAULT, '$sExamId', '$questionId', '$totalPoints', '$answer', '$comments'),";
+			$query .= "(DEFAULT, '$sExamId', '$questionId', '$totalPoints', '$answer', '$comments', NULL),";
 		}
 		$query = substr($query, 0, -1).";";
 		if (!mysqli_query($db, $query)){

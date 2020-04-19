@@ -84,7 +84,9 @@
 					question["testCases"] = [];
 					for (var j=3; j<qtable.rows.length; j++) {
 						let temp = {};
-						temp["itemId"] = qtable.rows[j].id;
+						temp["itemId"] = qtable.rows[j].cells[1].id;
+						console.log(temp["itemId"]);
+						console.log(qtable.rows[j].cells[1].id);
 						if (qtable.rows[j].cells[1].firstChild.value == "") {
 							temp["pointsEarned"] = qtable.rows[j].cells[1].firstChild.placeholder;
 						}
