@@ -140,7 +140,7 @@
 						<th> Answer </th>
 						<th> Points Earned </th>
 						<th> Points Total </th>
-						<th> Comments </th>
+						<th> Feedback </th>
 					</tr>
 					<?php
 						$totalPointsEarned=0;
@@ -151,19 +151,24 @@
 							echo "<td>".$json[$i]["question"]."</td>";
 							echo "<td><pre style='background-color:rgb(180,180,180);'>".$json[$i]["answer"]."</pre></td>";
 							echo '<td><table id="'.$json[$i]["questionId"].'points" style="width:100%">';
+							$comments = explode("\n", $json[$i]["comments"]);
+							
 							
 							echo '<tr><th style="width: 20%">Function Name</th>';
-							echo '<td style="min-width: 100px; max-width:100px" id="'.$json[$i]["function"]["itemId"].'">'."<input style='width: 25%' placeholder='".$json[$i]["function"]["pointsEarned"]."'>"." /".$json[$i]["function"]["totalSubPoints"]."</td></tr>";
+							echo '<td style="min-width: 100px; max-width:100px" id="'.$json[$i]["function"]["itemId"].'">'."<input style='width: 25%' placeholder='".$json[$i]["function"]["pointsEarned"]."'>"." /".$json[$i]["function"]["totalSubPoints"]."</td>";
+							echo '<td>'.$comments[0].'</td></tr>';
 							$totalPointsEarned += (float)$json[$i]["function"]["pointsEarned"];
 							$questionPoints += $json[$i]["function"]["pointsEarned"];
 							
 							echo '<tr><th style="width: 20%">Colon</th>';
 							echo '<td style="min-width: 100px; max-width:100px" id="'.$json[$i]["colon"]["itemId"].'">'."<input style='width: 25%' placeholder='".$json[$i]["colon"]["pointsEarned"]."'>"." /".$json[$i]["colon"]["totalSubPoints"]."</td></tr>";
+							echo '<td>'.$comments[1].'</td></tr>';
 							$totalPointsEarned += (float)$json[$i]["colon"]["pointsEarned"];
 							$questionPoints += $json[$i]["function"]["pointsEarned"];
 							
 							echo '<tr><th style="width: 20%">Constraint</th>';
 							echo '<td style="min-width: 100px; max-width:100px" id="'.$json[$i]["constraints"]["itemId"].'">'."<input style='width: 25%' placeholder='".$json[$i]["constraints"]["pointsEarned"]."'>"." /".$json[$i]["constraints"]["totalSubPoints"]."</td></tr>";
+							echo '<td>'.$comments[2].'</td></tr>';
 							$totalPointsEarned += (float)$json[$i]["constraints"]["pointsEarned"];
 							$questionPoints += $json[$i]["constraints"]["pointsEarned"];
 							
@@ -180,13 +185,14 @@
 								}
 								$str .= $parameters."\nOutput: ".$data['result'];
 								echo "<td><pre style='background-color:rgb(180,180,180);'>".$str."</pre></td>";
-								echo "<td>"."<input style='width: 40%;' placeholder='".$testCases[$j]["pointsEarned"]."'>"." /".$testCases[$j]["totalSubPoints"]."</td></tr>";
+								echo "<td>"."<input style='width: 40%;' placeholder='".$testCases[$j]["pointsEarned"]."'>"." /".$testCases[$j]["totalSubPoints"]."</td>";
+								echo '<td>'.$comments[2+$j].'</td></tr>';
 								$totalPointsEarned += (float)$testCases[$j]["pointsEarned"];
 								$questionPoints += $testCases[$j]["pointsEarned"];
 							}
 							echo "</table></td></tr></table></td>";
 							echo "<td>".$questionPoints."/".$json[$i]["totalPoints"]."</td>";
-							echo "<td><textarea style='width: 100%; height: 140px; resize:both'>".$json[$i]["comments"]."</textarea></td>";
+							echo "<td><textarea style='width: 100%; height: 140px; resize:both'>"."</textarea></td>";
 							echo "</tr>";
 							//$totalPointsEarned += (float)$json[$i]["pointsEarned"];
 							$maxPoints +=  (float)$json[$i]["totalPoints"];
