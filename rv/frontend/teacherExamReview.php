@@ -191,7 +191,7 @@
 							}
 							echo "</table></td>";
 							echo "<td>".$questionPoints."/".$json[$i]["totalPoints"]."</td>";
-							echo "<td><textarea style='width: 100%; height: 140px; resize:both'>"."</textarea></td>";
+							echo "<td><textarea style='width: 100%; height: 140px; resize:both'>".$json[$i]["feedback"]."</textarea></td>";
 							echo "</tr>";
 							//$totalPointsEarned += (float)$json[$i]["pointsEarned"];
 							$maxPoints +=  (float)$json[$i]["totalPoints"];
