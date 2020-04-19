@@ -7,7 +7,7 @@
 		header('Location: ./studentView.php');
 	}
 	
-	$url = "https://web.njit.edu/~pk549/cs490/rc/teacher_middle_exam.php";
+	$url = "https://web.njit.edu/~jrd62/CS490/rc/teacher_middle_exam.php";
 	
 	$ch = curl_init($url);
 	$data = array();
