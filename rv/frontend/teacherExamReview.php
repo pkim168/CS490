@@ -82,15 +82,14 @@
 						question["constraints"]["pointsEarned"] = qtable.rows[2].cells[1].firstChild.value;
 					}
 					question["testCases"] = [];
-					var tTable = document.getElementById("".concat(questionId, "testCases"));
-					for (var j=0; j<tTable.rows.length; j++) {
+					for (var j=3; j<qtable.rows.length; j++) {
 						let temp = {};
-						temp["itemId"] = tTable.rows[j].id;
-						if (tTable.rows[j].cells[1].firstChild.value == "") {
-							temp["pointsEarned"] = tTable.rows[j].cells[1].firstChild.placeholder;
+						temp["itemId"] = qtable.rows[j].id;
+						if (qtable.rows[j].cells[1].firstChild.value == "") {
+							temp["pointsEarned"] = qtable.rows[j].cells[1].firstChild.placeholder;
 						}
 						else {
-							temp["pointsEarned"] = tTable.rows[j].cells[1].firstChild.value;
+							temp["pointsEarned"] = qtable.rows[j].cells[1].firstChild.value;
 						}
 						question["testCases"].push(temp);
 						console.log(temp);
@@ -108,6 +107,7 @@
 				})
 				.then((response) => {
 					console.log(response);
+					return false;
 					if (response["message"] == "Failure") {
 						console.log(response['error']);
 						return false;
@@ -156,37 +156,35 @@
 							
 							echo '<tr><th style="width: 20%">Function Name</th>';
 							echo '<td style="min-width: 100px; max-width:100px" id="'.$json[$i]["function"]["itemId"].'">'."<input style='width: 25%' placeholder='".$json[$i]["function"]["pointsEarned"]."'>"." /".$json[$i]["function"]["totalSubPoints"]."</td>";
-							echo '<td>'.$comments[0].'</td></tr>';
+							echo '<td><pre>'.$comments[0].'</pre></td></tr>';
 							$totalPointsEarned += (float)$json[$i]["function"]["pointsEarned"];
 							$questionPoints += $json[$i]["function"]["pointsEarned"];
 							
 							echo '<tr><th style="width: 20%">Colon</th>';
 							echo '<td style="min-width: 100px; max-width:100px" id="'.$json[$i]["colon"]["itemId"].'">'."<input style='width: 25%' placeholder='".$json[$i]["colon"]["pointsEarned"]."'>"." /".$json[$i]["colon"]["totalSubPoints"]."</td>";
-							echo '<td>'.$comments[1].'</td></tr>';
+							echo '<td><pre>'.$comments[1].'</pre></td></tr>';
 							$totalPointsEarned += (float)$json[$i]["colon"]["pointsEarned"];
 							$questionPoints += $json[$i]["function"]["pointsEarned"];
 							
 							echo '<tr><th style="width: 20%">Constraint</th>';
 							echo '<td style="min-width: 100px; max-width:100px" id="'.$json[$i]["constraints"]["itemId"].'">'."<input style='width: 25%' placeholder='".$json[$i]["constraints"]["pointsEarned"]."'>"." /".$json[$i]["constraints"]["totalSubPoints"]."</td>";
-							echo '<td>'.$comments[2].'</td></tr>';
+							echo '<td><pre>'.$comments[2].'</pre></td></tr>';
 							$totalPointsEarned += (float)$json[$i]["constraints"]["pointsEarned"];
 							$questionPoints += $json[$i]["constraints"]["pointsEarned"];
 							
-							echo '<tr><th style="width: 40%">Test Cases</th>';
-							echo '<td colspan="2"><table id="'.$json[$i]["questionId"].'testCases" style="width:10%">';
+							
 							$testCases = $json[$i]["testCases"];
 							for ($j=0; $j < count($testCases); $j++) {
-								echo '<tr id="'.$testCases[$j]["itemId"].'">';
+								echo '<tr id="'.$testCases[$j]["itemId"].'><th style="width: 40%">Test Case '.($j+1).'</th>';
+								echo "<td>"."<input style='width: 40%;' placeholder='".$testCases[$j]["pointsEarned"]."'>"." /".$testCases[$j]["totalSubPoints"]."</td>";
 								$str = "";
 								$parameters = "Parameters: ";
 								$data = json_decode($testCases[$j]['data'], true);
 								for ($h=0; $h < count($data['parameters']); $h++) {
 									$parameters .= $data['parameters'][strval($h)]."; ";
 								}
-								$str .= $parameters."\nOutput: ".$data['result'];
-								echo "<td><pre style='background-color:rgb(180,180,180);'>".$str."</pre></td>";
-								echo "<td>"."<input style='width: 40%;' placeholder='".$testCases[$j]["pointsEarned"]."'>"." /".$testCases[$j]["totalSubPoints"]."</td>";
-								echo '<td>'.$comments[2+$j].'</td></tr>';
+								$str .= $parameters."\nOutput: ".$data['result']."\n";
+								echo "<td><pre style='background-color:rgb(180,180,180);'>".$str.$comments[2+$j].'</pre></td></tr>';
 								$totalPointsEarned += (float)$testCases[$j]["pointsEarned"];
 								$questionPoints += $testCases[$j]["pointsEarned"];
 							}
