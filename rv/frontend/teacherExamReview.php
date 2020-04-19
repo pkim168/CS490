@@ -173,7 +173,7 @@
 							$questionPoints += $json[$i]["constraints"]["pointsEarned"];
 							
 							echo '<tr><th style="width: 40%">Test Cases</th>';
-							echo '<td ><table id="'.$json[$i]["questionId"].'testCases" style="width:10%">';
+							echo '<td colspan="2"><table id="'.$json[$i]["questionId"].'testCases" style="width:10%">';
 							$testCases = $json[$i]["testCases"];
 							for ($j=0; $j < count($testCases); $j++) {
 								echo '<tr id="'.$testCases[$j]["itemId"].'">';
