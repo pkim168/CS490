@@ -527,12 +527,12 @@
 			$constraint = getData($questions[$i]["constraints"]["itemId"]);
 			$conPoints = getData($questions[$i]["constraints"]["pointsEarned"]);
 			$testCases = $questions[$i]["testCases"];
-			$comments = getData($questions[$i]["comments"]);
+			$feedback = getData($questions[$i]["feedback"]);
 			$data['error'] .= $fPoints.' '.$colPoints.' '.$conPoints.' '.'.';
 			$query .= "
 				UPDATE 490examGradesTbl 
 				SET 
-					comments = '$comments'
+					feedback = '$feedback'
 				WHERE 490studentExamTbl_sExamId = '$sExamId' AND 490questionTbl_questionId = '$questionId';
 			
 				UPDATE 490itemTbl 

@@ -54,7 +54,7 @@
 				for (var i=1; i<table.rows.length-1; i++) {
 					let question = {};
 					var questionId = table.rows[i].id;
-					var comments = table.rows[i].cells[4].firstChild.value;
+					var feedback = table.rows[i].cells[4].firstChild.value;
 					var qtable = document.getElementById("".concat(questionId, "points"));
 					console.log(qtable);
 					question["function"] = {};
@@ -95,7 +95,7 @@
 						console.log(temp);
 					}
 					question['questionId'] = questionId;
-					question['comments'] = comments;
+					question['feedback'] = feedback;
 					formData['questions'].push(question);
 					console.log("one loop done");
 				}
