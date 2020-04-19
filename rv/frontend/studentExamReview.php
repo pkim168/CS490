@@ -70,6 +70,7 @@
 							echo "<td>".$json[$i]["question"]."</td>";
 							echo "<td><pre style='background-color:rgb(180,180,180);'>".$json[$i]["answer"]."</pre></td>";
 							echo '<td><table id="'.$json[$i]["questionId"].'points" style="width:100%">';
+							$comments = explode("\n", $json[$i]["comments"]);
 							
 							//function row
 							echo '<tr><th>Function Name</th>';
