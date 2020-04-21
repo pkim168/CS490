@@ -99,6 +99,7 @@ GET
 				}
 				answer: (String),
 				comments: (String),
+				feedback: (string),
 				totalPoints: (String)
 			},
 			1: {
@@ -152,6 +153,7 @@ GET
 				}
 				answer: (String),
 				comments: (String),
+				feedback: (string),
 				totalPoints: (String)
 			},
 			etc.
@@ -218,6 +220,7 @@ INSERT
 						etc.
 					}
 					comments: (String)
+					feedback: (string),
 				},
 				1: {
 					questionId: (String),
@@ -245,6 +248,7 @@ INSERT
 						etc.
 					}
 					comments: (String)
+					feedback: (string),
 				},
 				etc.
 			}
