@@ -73,7 +73,7 @@
 							$comments = explode("\n", $json[$i]["comments"]);
 							
 							//function row
-							echo '<tr><th>Function Name</th>';
+							echo '<tr><th style="width: 100px;">Function Name</th>';
 							echo '<td id="'.$json[$i]["function"]["itemId"].'">'.$json[$i]["function"]["pointsEarned"]."/".$json[$i]["function"]["totalSubPoints"]."</td>";
 							echo '<td>'.$comments[0].'</td></tr>';
 							$totalPointsEarned += (float)$json[$i]["function"]["pointsEarned"];
