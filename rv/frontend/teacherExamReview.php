@@ -81,6 +81,7 @@
 					else {
 						question["constraints"]["pointsEarned"] = qtable.rows[2].cells[1].firstChild.value;
 					}
+					
 					question["testCases"] = [];
 					for (var j=3; j<qtable.rows.length; j++) {
 						let temp = {};
@@ -154,29 +155,29 @@
 							echo '<td><table id="'.$json[$i]["questionId"].'points" style="width:100%">';
 							$comments = explode("\n", $json[$i]["comments"]);
 							
-							echo '<tr><th style="width:100px;">Function Name</th>';
-							echo '<td style="min-width: 75px; max-width:75px" id="'.$json[$i]["function"]["itemId"].'">'."<input style='width: 40%' placeholder='".$json[$i]["function"]["pointsEarned"]."'>"." /".$json[$i]["function"]["totalSubPoints"]."</td>";
-							echo '<td style="max-width:40%;"><pre style="background-color:rgb(180,180,180);">'.$comments[0].'</pre></td></tr>';
+							echo '<tr><th style="width:10%;">Function Name</th>';
+							echo '<td style="width:5%;" id="'.$json[$i]["function"]["itemId"].'">'."<input style='width: 50%' placeholder='".$json[$i]["function"]["pointsEarned"]."'>"." /".$json[$i]["function"]["totalSubPoints"]."</td>";
+							echo '<td style="width:85%;"><textarea style="width:100%; resize:none; background-color:rgb(180,180,180);" readonly>'.$comments[0].'</textarea></td></tr>';
 							$totalPointsEarned += (float)$json[$i]["function"]["pointsEarned"];
 							$questionPoints += $json[$i]["function"]["pointsEarned"];
 							
-							echo '<tr><th>Colon</th>';
-							echo '<td style="min-width: 75px; max-width:75px" id="'.$json[$i]["colon"]["itemId"].'">'."<input style='width: 40%' placeholder='".$json[$i]["colon"]["pointsEarned"]."'>"." /".$json[$i]["colon"]["totalSubPoints"]."</td>";
-							echo '<td style="max-width:40%;"><pre style="background-color:rgb(180,180,180);">'.$comments[1].'</pre></td></tr>';
+							echo '<tr><th style="width:10%;">Colon</th>';
+							echo '<td style="width: 5%;" id="'.$json[$i]["colon"]["itemId"].'">'."<input style='width: 50%' placeholder='".$json[$i]["colon"]["pointsEarned"]."'>"." /".$json[$i]["colon"]["totalSubPoints"]."</td>";
+							echo '<td style="width:85%;"><pre style="background-color:rgb(180,180,180);">'.$comments[1].'</pre></td></tr>';
 							$totalPointsEarned += (float)$json[$i]["colon"]["pointsEarned"];
 							$questionPoints += $json[$i]["function"]["pointsEarned"];
 							
-							echo '<tr><th>Constraint</th>';
-							echo '<td style="min-width: 75px; max-width:75px" id="'.$json[$i]["constraints"]["itemId"].'">'."<input style='width: 40%' placeholder='".$json[$i]["constraints"]["pointsEarned"]."'>"." /".$json[$i]["constraints"]["totalSubPoints"]."</td>";
-							echo '<td style="max-width:40%;"><pre style="background-color:rgb(180,180,180);">'.$comments[2].'</pre></td></tr>';
+							echo '<tr><th style="width:10%;">Constraint</th>';
+							echo '<td style="width: 5%;" id="'.$json[$i]["constraints"]["itemId"].'">'."<input style='width: 50%' placeholder='".$json[$i]["constraints"]["pointsEarned"]."'>"." /".$json[$i]["constraints"]["totalSubPoints"]."</td>";
+							echo '<td style="width:85%;"><textarea style="width:100%; resize:none; background-color:rgb(180,180,180);" readonly>'.$comments[2].'</textarea></td></tr>';
 							$totalPointsEarned += (float)$json[$i]["constraints"]["pointsEarned"];
 							$questionPoints += $json[$i]["constraints"]["pointsEarned"];
 							
 							
 							$testCases = $json[$i]["testCases"];
 							for ($j=0; $j < count($testCases); $j++) {
-								echo '<tr><th style="width:100px;">Test Case '.($j+1).'</th>';
-								echo '<td id="'.$testCases[$j]["itemId"].'"><input style="width: 40%;" placeholder="'.$testCases[$j]["pointsEarned"].'">'.' /'.$testCases[$j]["totalSubPoints"].'</td>';
+								echo '<tr><th style="width:10%;">Test Case '.($j+1).'</th>';
+								echo '<td style="width:5%;" id="'.$testCases[$j]["itemId"].'"><input style="width: 50%;" placeholder="'.$testCases[$j]["pointsEarned"].'">'.' /'.$testCases[$j]["totalSubPoints"].'</td>';
 								$str = "";
 								$parameters = "Parameters: ";
 								$data = json_decode($testCases[$j]['data'], true);
@@ -184,13 +185,13 @@
 									$parameters .= $data['parameters'][strval($h)]."; ";
 								}
 								$str .= $parameters."\nOutput: ".$data['result']."\n";
-								echo "<td><pre style='background-color:rgb(180,180,180); max-width:40%;'>".$str.$comments[2+$j].'</pre></td></tr>';
+								echo '<td style="min-height:50px; max-width:85%"><textarea style="height:65px; width:100%; resize:none; background-color:rgb(180,180,180);" readonly>'.$str.$comments[2+$j].'</textarea></td></tr>';
 								$totalPointsEarned += (float)$testCases[$j]["pointsEarned"];
 								$questionPoints += $testCases[$j]["pointsEarned"];
 							}
 							echo "</table></td>";
 							echo "<td>".$questionPoints."/".$json[$i]["totalPoints"]."</td>";
-							echo "<td><textarea style='width: 100%; height: 140px; resize:both'>".$json[$i]["feedback"]."</textarea></td>";
+							echo "<td style='max-width: 400px; max-height: 500px;'><textarea style='max-width: 100%; min-height: 250px; max-height:500px; resize:both'>".$json[$i]["feedback"]."</textarea></td>";
 							echo "</tr>";
 							//$totalPointsEarned += (float)$json[$i]["pointsEarned"];
 							$maxPoints +=  (float)$json[$i]["totalPoints"];
