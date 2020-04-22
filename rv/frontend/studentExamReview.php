@@ -19,7 +19,7 @@
 	$data['requestType'] = 'getStudentAnswers';
 	$data['examId'] = $_SESSION['examId'];
 	$data['ucid'] = $_SESSION['ucid'];
-	$url = "https://web.njit.edu/~jrd62/CS490/rc/student_middle.php";
+	$url = "https://web.njit.edu/~jrd62/CS490/rv/student_middle.php";
 	
 	$ch = curl_init($url);
 	$payload = json_encode($data);
@@ -122,7 +122,7 @@
 			</div>
 		</div>
 		<div  style = "display: flex; justify-content: center; width: 100%;">
-				<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rc/studentExamList.php';">Back</button>
+				<button type="button" style=" height: 40px; width: 150px" onclick="location.href = 'https://web.njit.edu/~dn236/CS490/rv/studentExamList.php';">Back</button>
 		</div>
 	</body>
 </html>

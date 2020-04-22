@@ -21,7 +21,7 @@
 	$data = array();
 	$data['requestType'] = 'getExamQuestions';
 	$data['examId'] = $_SESSION['examId'];
-	$url = "https://web.njit.edu/~jrd62/CS490/rc/student_middle.php";
+	$url = "https://web.njit.edu/~jrd62/CS490/rv/student_middle.php";
 	
 	$ch = curl_init($url);
 	$payload = json_encode($data);
@@ -58,7 +58,7 @@
 				}
 				// cURL to middle end
 				// 
-				fetch("https://web.njit.edu/~jrd62/CS490/rc/grading.php", {
+				fetch("https://web.njit.edu/~jrd62/CS490/rv/grading.php", {
 					method: "POST",
 					body: JSON.stringify(formData)
 				})

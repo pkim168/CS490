@@ -16,7 +16,7 @@
 	$data = array();
 	$data['requestType'] = 'getStudentExams';
 	$data['ucid'] = $_SESSION['ucid'];
-	$url = "https://web.njit.edu/~jrd62/CS490/rc/student_middle.php";
+	$url = "https://web.njit.edu/~jrd62/CS490/rv/student_middle.php";
 	
 	$ch = curl_init($url);
 	$payload = json_encode($data);

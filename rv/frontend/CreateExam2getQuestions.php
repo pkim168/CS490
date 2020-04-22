@@ -21,7 +21,7 @@
 	if(!empty($_POST["keyword"])){
 		$keyword = $_POST["keyword"];
 	}
-	$url = "https://web.njit.edu/~jrd62/CS490/rc/teacher_middle_questions.php";
+	$url = "https://web.njit.edu/~jrd62/CS490/rv/teacher_middle_questions.php";
 	
 	$ch = curl_init($url);
 	$data = array();
