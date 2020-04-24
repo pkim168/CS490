@@ -102,7 +102,10 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     //constraint testing
     $student_answer_substr = substr($student_answer,strpos($student_answer,':'),strlen($student_answer));
     //counting the amount of constraints
-    if(strpos($student_answer_substr, $backend_constraints) !== false){
+    if(empty($backend_constraints)){
+        $comments .= "";
+    }
+    else if(strpos($student_answer_substr, $backend_constraints) !== false){
         $comments .= "Awesome you got right constraint.\n";
         $constraints_pointsEarned += floor($totalPoints*0.2);
     }
@@ -120,7 +123,12 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     }
 
     //test case testing
-	$testCase_totalPoints = $totalPoints-$pointsPerItem*3;
+    if($backend_constraints == ""){
+        $testCase_totalPoints = $totalPoints-$pointsPerItem*2;
+    }
+    else{
+        $testCase_totalPoints = $totalPoints-$pointsPerItem*3;
+    }
     $testCases_num = count($backend_testCases);
 	$pointsPerCase = floor($testCase_totalPoints/$testCases_num);
 	$lastCasePoints = $testCase_totalPoints-$pointsPerCase*($testCases_num-1);
@@ -146,12 +154,14 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
             }
         }
         $parameters = substr($parameters, 0, -1);
+
+        $student_answer_new = "def $answer_function_name($parameters):" . $student_answer_substr;
         //inserting code into file
-		if (strpos($student_answer, 'print') || $answer_function_name == "") {
-			file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer . "\n" . "$answer_function_name($parameters)");
+		if (strpos($student_answer_new, 'print') || $answer_function_name == "") {
+			file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer_new . "\n" . "$answer_function_name($parameters)");
 		}
 		else {
-			file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer . "\n" . "print($answer_function_name($parameters))");
+			file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer_new . "\n" . "print($answer_function_name($parameters))");
 		}
         /* if($backend_constraints == 'print'){
             file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer . "\n" . "$answer_function_name($parameters)");
@@ -185,7 +195,12 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     }
 
     //packaging the grade 
-    $grade = array('questionId' => $questionId, 'function' => array('pointsEarned' => $function_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'colon' => array('pointsEarned' => $colon_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'constraints' => array('pointsEarned' => $constraints_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'testCases' => $testCase_array, 'answer' => $student_answer, 'comments' => $comments, 'totalPoints' => $totalPoints);
+    if(empty($backend_constraints)){
+        $grade = array('questionId' => $questionId, 'function' => array('pointsEarned' => $function_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'colon' => array('pointsEarned' => $colon_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'constraints' => array('pointsEarned' => $constraints_pointsEarned, 'totalSubPoints' => 0), 'testCases' => $testCase_array, 'answer' => $student_answer, 'comments' => $comments, 'totalPoints' => $totalPoints);
+    }
+    else {
+        $grade = array('questionId' => $questionId, 'function' => array('pointsEarned' => $function_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'colon' => array('pointsEarned' => $colon_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'constraints' => array('pointsEarned' => $constraints_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'testCases' => $testCase_array, 'answer' => $student_answer, 'comments' => $comments, 'totalPoints' => $totalPoints);
+    }
 
     //returning grade
     return $grade;
