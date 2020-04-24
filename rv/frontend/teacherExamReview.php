@@ -150,7 +150,7 @@
 						<th style='width:20%;'> Question </th>
 						<th> Answer </th>
 						<th> Points Earned </th>
-						<th> Points Total </th>
+						<th style='width:2%;'> Points Total </th>
 						<th> Feedback </th>
 					</tr>
 					<?php
@@ -174,7 +174,7 @@
 							echo '<td style="width: 8%;" id="'.$json[$i]["colon"]["itemId"].'">'."<input style='width: 50%' placeholder='".$json[$i]["colon"]["pointsEarned"]."'>"."/".$json[$i]["colon"]["totalSubPoints"]."</td>";
 							echo '<td style="width:85%;"><pre style="background-color:rgb(180,180,180);">'.$comments[1].'</pre></td></tr>';
 							$totalPointsEarned += (float)$json[$i]["colon"]["pointsEarned"];
-							$questionPoints += $json[$i]["function"]["pointsEarned"];
+							$questionPoints += $json[$i]["colon"]["pointsEarned"];
 							
 							$flag=2;
 							if(!$json[$i]["constraints"]["totalSubPoints"]==0){
@@ -197,13 +197,13 @@
 									$parameters .= $data['parameters'][strval($h)]."; ";
 								}
 								$str .= $parameters."\nOutput: ".$data['result']."\n";
-								echo '<td style="min-height:50px; max-width:85%"><textarea style="height:65px; width:100%; resize:none; background-color:rgb(180,180,180);" readonly>'.$str.$comments[$flag+$j].'</textarea></td></tr>';
+								echo '<td style="min-height:50px; width:85%"><textarea style="height:65px; width:100%; resize:none; background-color:rgb(180,180,180);" readonly>'.$str.$comments[$flag+$j].'</textarea></td></tr>';
 								$totalPointsEarned += (float)$testCases[$j]["pointsEarned"];
 								$questionPoints += $testCases[$j]["pointsEarned"];
 							}
 							echo "</table></td>";
-							echo "<td>".$questionPoints."/".$json[$i]["totalPoints"]."</td>";
-							echo "<td style='vertical-align:top; height:100%; max-width: 400px; max-height: 500px;'><textarea class='rev'>".$json[$i]["feedback"]."</textarea></td>";
+							echo "<td style='text-align:center'>".$questionPoints."/".$json[$i]["totalPoints"]."</td>";
+							echo "<td style='vertical-align:top; max-width: 400px; max-height: 500px;'><textarea style='resize:both; height:250px; max-height:500px; min-height:99%; min-width:99%; max-width:100%; margin:0px;'>".$json[$i]["feedback"]."</textarea></td>";
 							echo "</tr>";
 							$totalPointsEarned += (float)$json[$i]["pointsEarned"];
 							$maxPoints +=  (float)$json[$i]["totalPoints"];
