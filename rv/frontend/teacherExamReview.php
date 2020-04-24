@@ -77,7 +77,7 @@
 						question["colon"]["pointsEarned"] = qtable.rows[1].cells[1].firstChild.value;
 					}
 					var flag=2;
-					if (qtable.rows[2].cells[0].innerHTML == "Constraints"){
+					if (qtable.rows[2].cells[0].innerHTML == "Constraint"){
 						flag=3;
 						if (qtable.rows[2].cells[1].firstChild.value == "") {
 							question["constraints"]["pointsEarned"] = qtable.rows[2].cells[1].firstChild.placeholder;
