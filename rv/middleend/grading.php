@@ -15,7 +15,7 @@ function get_exam_questions($requestType,$examId){
 	//data from json response
 	$data = array('requestType' => $requestType, 'examId' => $examId);
 	//url to backend
-	$url = "https://web.njit.edu/~pk549/490/rc/examTbl.php";
+	$url = "https://web.njit.edu/~pk549/490/rv/examTbl.php";
 	//initialize curl session and return a curl handle
 	$ch = curl_init($url);
 	//options for a curl transfer	
@@ -57,7 +57,7 @@ for($i = 0; $i < $question_num; $i++){
 //send student answers to backend
 $student_answers = array('requestType' => 'submitStudentExam', 'ucid' => $ucid, 'examId' => $examId, 'questions' => $student_questions);
 //url to backend
-$url = "https://web.njit.edu/~pk549/490/rc/examTbl.php";
+$url = "https://web.njit.edu/~pk549/490/rv/examTbl.php";
 //initialize curl session and return a curl handle
 $ch = curl_init($url);
 //options for a curl transfer	
@@ -100,8 +100,9 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     }
 
     //constraint testing
+    $student_answer_substr = substr($student_answer,strpos($student_answer,':'),strlen($student_answer));
     //counting the amount of constraints
-    if(strpos($student_answer, $backend_constraints) !== false){
+    if(strpos($student_answer_substr, $backend_constraints) !== false){
         $comments .= "Awesome you got right constraint.\n";
         $constraints_pointsEarned += floor($totalPoints*0.2);
     }
@@ -110,7 +111,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     }
 
     //colon testing, if colon is in the student answer then they get points
-    if(strpos($student_answer, ':') !== false){
+    if(strpos($student_answer, '):') !== false){
         $comments .= "Awesome you got the colon.\n";
         $colon_pointsEarned += floor($totalPoints*0.2);
     }
