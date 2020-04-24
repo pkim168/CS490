@@ -154,12 +154,14 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
             }
         }
         $parameters = substr($parameters, 0, -1);
+
+        $student_answer_new = "def $answer_function_name($parameters):" . $student_answer_substr;
         //inserting code into file
-		if (strpos($student_answer, 'print') || $answer_function_name == "") {
-			file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer . "\n" . "$answer_function_name($parameters)");
+		if (strpos($student_answer_new, 'print') || $answer_function_name == "") {
+			file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer_new . "\n" . "$answer_function_name($parameters)");
 		}
 		else {
-			file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer . "\n" . "print($answer_function_name($parameters))");
+			file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer_new . "\n" . "print($answer_function_name($parameters))");
 		}
         /* if($backend_constraints == 'print'){
             file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer . "\n" . "$answer_function_name($parameters)");
