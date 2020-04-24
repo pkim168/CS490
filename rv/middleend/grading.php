@@ -100,7 +100,23 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     }
 
     //constraint testing
-    $student_answer_substr = substr($student_answer,strpos($student_answer,':'),strlen($student_answer));
+    $student_answer_substr = "";
+    $student_answer_colon = "";
+    if(strpos($student_answer, ':') !== false )
+    {
+        $student_answer_substr = substr($student_answer,strpos($student_answer,':')+1,strlen($student_answer));
+    }
+    else{
+        $split_left = explode(")", $answer);
+        $temp = $split_left[0];
+        $split_right = explode("(", $temp);
+        $answer_parameter = $split_right[1];
+        $student_parameters = preg_replace("/s/","", $answer_parameter);
+        $student_answer_colon = "def $answer_function_name($student_parameters): " . substr($student_answer,strpos($student_answer,')'),strlen($student_answer));
+        $student_answer_substr = substr($student_answer,strpos($student_answer,')'),strlen($student_answer));
+    }
+
+    if($student_answer)
     //counting the amount of constraints
     if(empty($backend_constraints)){
         $comments .= "";
@@ -154,15 +170,22 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
             }
         }
         $parameters = substr($parameters, 0, -1);
-
-        $student_answer_new = "def $answer_function_name($parameters):" . $student_answer_substr;
         //inserting code into file
-		if (strpos($student_answer_new, 'print') || $answer_function_name == "") {
-			file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer_new . "\n" . "$answer_function_name($parameters)");
-		}
-		else {
-			file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer_new . "\n" . "print($answer_function_name($parameters))");
-		}
+        if(strpos($student_answer, ':') !== false )
+            if (strpos($student_answer_substr, 'print') || $answer_function_name == "") {
+                file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer . "\n" . "$answer_function_name($parameters)");
+            }
+            else {
+                file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer . "\n" . "print($answer_function_name($parameters))");
+            }
+        else{
+            if (strpos($student_answer_substr, 'print') || $answer_function_name == "") {
+                file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer_colon . "\n" . "$answer_function_name($parameters)");
+            }
+            else {
+                file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer_colon . "\n" . "print($answer_function_name($parameters))");
+            }
+        }
         /* if($backend_constraints == 'print'){
             file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer . "\n" . "$answer_function_name($parameters)");
         }
