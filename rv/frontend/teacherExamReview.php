@@ -76,9 +76,9 @@
 					else {
 						question["colon"]["pointsEarned"] = qtable.rows[1].cells[1].firstChild.value;
 					}
-					$flag=2;
+					var flag=2;
 					if (qtable.rows[2].cells[0].firstChild.value == "Constraints"){
-						$flag=3;
+						flag=3;
 						if (qtable.rows[2].cells[1].firstChild.value == "") {
 							question["constraints"]["pointsEarned"] = qtable.rows[2].cells[1].firstChild.placeholder;
 						}
@@ -87,7 +87,7 @@
 						}
 					}
 					question["testCases"] = [];
-					for (var $flag=3; j<qtable.rows.length; j++) {
+					for (var j=flag; j<qtable.rows.length; j++) {
 						let temp = {};
 						temp["itemId"] = qtable.rows[j].cells[1].id;
 						console.log(temp["itemId"]);
