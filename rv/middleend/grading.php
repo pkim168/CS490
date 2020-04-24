@@ -102,7 +102,10 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     //constraint testing
     $student_answer_substr = substr($student_answer,strpos($student_answer,':'),strlen($student_answer));
     //counting the amount of constraints
-    if(strpos($student_answer_substr, $backend_constraints) !== false){
+    if(empty($backend_constraints)){
+        $comments .= "";
+    }
+    else if(strpos($student_answer_substr, $backend_constraints) !== false){
         $comments .= "Awesome you got right constraint.\n";
         $constraints_pointsEarned += floor($totalPoints*0.2);
     }
