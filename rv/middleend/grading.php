@@ -171,13 +171,14 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         }
         $parameters = substr($parameters, 0, -1);
         //inserting code into file
-        if(strpos($student_answer, ':') !== false )
+        if(strpos($student_answer, ':') !== false ){
             if (strpos($student_answer_substr, 'print') || $answer_function_name == "") {
                 file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer . "\n" . "$answer_function_name($parameters)");
             }
             else {
                 file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer . "\n" . "print($answer_function_name($parameters))");
             }
+        }
         else{
             if (strpos($student_answer_substr, 'print') || $answer_function_name == "") {
                 file_put_contents($file, "#!/usr/bin/env python\n" . $student_answer_colon . "\n" . "$answer_function_name($parameters)");
