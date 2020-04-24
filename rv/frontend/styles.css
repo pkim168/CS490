@@ -158,6 +158,14 @@ textarea {
 	color: black;
 }
 
+.rev{
+	max-width:100%;
+	min-width:100%;
+	max-height:500px;
+	min-height:100%;
+	margin:0px;
+	resize:both;
+}
 select {
 	background-color: white;
 	color: black;
