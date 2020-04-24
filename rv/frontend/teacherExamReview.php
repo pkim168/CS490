@@ -169,7 +169,7 @@
 							$questionPoints += $json[$i]["function"]["pointsEarned"];
 							
 							$flag=2;
-							if($json[$i]["constraints"]["totalSubPoints"]){
+							if(!$json[$i]["constraints"]["totalSubPoints"]==0){
 								$flag=3;
 								echo '<tr><th style="width:8%;">Constraint</th>';
 								echo '<td style="width: 10%;" id="'.$json[$i]["constraints"]["itemId"].'">'."<input style='width: 50%' placeholder='".$json[$i]["constraints"]["pointsEarned"]."'>"."/".$json[$i]["constraints"]["totalSubPoints"]."</td>";
