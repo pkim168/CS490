@@ -187,7 +187,7 @@
 									$parameters .= $data['parameters'][strval($h)]."; ";
 								}
 								$str .= $parameters."\nOutput: ".$data['result']."\n";
-								echo '<td style="min-height:50px; max-width:85%"><textarea style="height:65px; width:100%; resize:none; background-color:rgb(180,180,180);" readonly>'.$str.$comments[2+$j].'</textarea></td></tr>';
+								echo '<td style="min-height:50px; max-width:85%"><textarea style="height:65px; width:100%; resize:none; background-color:rgb(180,180,180);" readonly>'.$str.$comments[3+$j].'</textarea></td></tr>';
 								$totalPointsEarned += (float)$testCases[$j]["pointsEarned"];
 								$questionPoints += $testCases[$j]["pointsEarned"];
 							}
