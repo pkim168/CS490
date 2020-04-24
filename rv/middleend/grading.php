@@ -120,7 +120,12 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     }
 
     //test case testing
-	$testCase_totalPoints = $totalPoints-$pointsPerItem*3;
+    if($backend_constraints == ""){
+        $testCase_totalPoints = $totalPoints-$pointsPerItem*2;
+    }
+    else{
+        $testCase_totalPoints = $totalPoints-$pointsPerItem*3;
+    }
     $testCases_num = count($backend_testCases);
 	$pointsPerCase = floor($testCase_totalPoints/$testCases_num);
 	$lastCasePoints = $testCase_totalPoints-$pointsPerCase*($testCases_num-1);
@@ -185,7 +190,12 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     }
 
     //packaging the grade 
-    $grade = array('questionId' => $questionId, 'function' => array('pointsEarned' => $function_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'colon' => array('pointsEarned' => $colon_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'constraints' => array('pointsEarned' => $constraints_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'testCases' => $testCase_array, 'answer' => $student_answer, 'comments' => $comments, 'totalPoints' => $totalPoints);
+    if(empty($backend_constraints)){
+        $grade = array('questionId' => $questionId, 'function' => array('pointsEarned' => $function_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'colon' => array('pointsEarned' => $colon_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'constraints' => array('pointsEarned' => $constraints_pointsEarned, 'totalSubPoints' => 0), 'testCases' => $testCase_array, 'answer' => $student_answer, 'comments' => $comments, 'totalPoints' => $totalPoints);
+    }
+    else {
+        $grade = array('questionId' => $questionId, 'function' => array('pointsEarned' => $function_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'colon' => array('pointsEarned' => $colon_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'constraints' => array('pointsEarned' => $constraints_pointsEarned, 'totalSubPoints' => $pointsPerItem), 'testCases' => $testCase_array, 'answer' => $student_answer, 'comments' => $comments, 'totalPoints' => $totalPoints);
+    }
 
     //returning grade
     return $grade;
