@@ -187,7 +187,7 @@
 							
 							$testCases = $json[$i]["testCases"];
 							for ($j=0; $j < count($testCases); $j++) {
-								echo '<tr><th style="width:10%;">Test Case '.($j+1).'</th>';
+								echo '<tr><th style="max-width:10%;">Test Case '.($j+1).'</th>';
 								echo '<td style="width:5%;" id="'.$testCases[$j]["itemId"].'"><input style="width: 50%;" placeholder="'.$testCases[$j]["pointsEarned"].'">'.'/'.$testCases[$j]["totalSubPoints"].'</td>';
 								$str = "";
 								$parameters = "Parameters: ";

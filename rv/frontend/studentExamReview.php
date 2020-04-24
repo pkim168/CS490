@@ -73,16 +73,16 @@
 							$comments = explode("\n", $json[$i]["comments"]);
 							
 							//function row
-							echo '<tr><th style="width: 10%;">Function Name</th>';
+							echo '<tr><th style="min-width:100px;">Function Name</th>';
 							echo '<td style="width:10%;" id="'.$json[$i]["function"]["itemId"].'">'.$json[$i]["function"]["pointsEarned"]."/".$json[$i]["function"]["totalSubPoints"]."</td>";
 							echo '<td style="width:85%;">'.$comments[0].'</td></tr>';
 							$totalPointsEarned += (float)$json[$i]["function"]["pointsEarned"];
 							$questionPoints += $json[$i]["function"]["pointsEarned"];
 
 							//colon row
-							echo '<th style="width:10%;">Colon</th>';
+							echo '<th style="min-width:100px;">Colon</th>';
 							echo '<td style="width:10%;" id="'.$json[$i]["colon"]["itemId"].'">'.$json[$i]["colon"]["pointsEarned"]."/".$json[$i]["colon"]["totalSubPoints"]."</td>";
-							echo '<td style="min-width:85%;">'.$comments[1].'</td></tr>';
+							echo '<td style="width:85%;">'.$comments[1].'</td></tr>';
 							$totalPointsEarned += (float)$json[$i]["colon"]["pointsEarned"];
 							$questionPoints += $json[$i]["colon"]["pointsEarned"];
 							
@@ -90,7 +90,7 @@
 							$flag=2;
 							if($json[$i]["constraints"]["totalSubPoints"]){
 								$flag=3;
-								echo '<th style="width:85%;">Constraint</th>';
+								echo '<th style="min-width:100px;">Constraint</th>';
 								echo '<td style="width:10%;" id="'.$json[$i]["constraints"]["itemId"].'">'.$json[$i]["constraints"]["pointsEarned"]."/".$json[$i]["constraints"]["totalSubPoints"]."</td>";
 								echo '<td style="width:85%;">'.$comments[2].'</td></tr>';
 								$totalPointsEarned += (float)$json[$i]["constraints"]["pointsEarned"];
@@ -99,8 +99,8 @@
 							
 							$testCases = $json[$i]["testCases"];
 							for ($j=0; $j < count($testCases); $j++) {
-								echo '<tr><th style="width: 10%">Test Case '.($j+1).'</th>';
-								echo '<td style="width:5%;" id="'.$testCases[$j]["itemId"].'">'.$testCases[$j]["pointsEarned"].' /'.$testCases[$j]["totalSubPoints"].'</td>';
+								echo '<tr><th style="min-width:100px">Test Case '.($j+1).'</th>';
+								echo '<td style="width:10%;" id="'.$testCases[$j]["itemId"].'">'.$testCases[$j]["pointsEarned"].' /'.$testCases[$j]["totalSubPoints"].'</td>';
 								$str = "";
 								$parameters = "Parameters: ";
 								$data = json_decode($testCases[$j]['data'], true);
