@@ -76,13 +76,16 @@
 					else {
 						question["colon"]["pointsEarned"] = qtable.rows[1].cells[1].firstChild.value;
 					}
-					if (qtable.rows[2].cells[1].firstChild.value == "") {
-						question["constraints"]["pointsEarned"] = qtable.rows[2].cells[1].firstChild.placeholder;
+					$flag=2;
+					if (qtable.rows[2]/cells[0].firstchild.value=="Constraints"){
+						$flag=3;
+						if (qtable.rows[2].cells[1].firstChild.value == "") {
+							question["constraints"]["pointsEarned"] = qtable.rows[2].cells[1].firstChild.placeholder;
+						}
+						else {
+							question["constraints"]["pointsEarned"] = qtable.rows[2].cells[1].firstChild.value;
+						}
 					}
-					else {
-						question["constraints"]["pointsEarned"] = qtable.rows[2].cells[1].firstChild.value;
-					}
-					
 					question["testCases"] = [];
 					for (var j=3; j<qtable.rows.length; j++) {
 						let temp = {};
@@ -101,9 +104,11 @@
 					question['questionId'] = questionId;
 					question['feedback'] = feedback;
 					formData['questions'].push(question);
+					console.log("question");
 					console.log("one loop done");
 				}
 				console.log(formData);
+				return(false);
 				// cURL to middle end
 				fetch("https://web.njit.edu/~jrd62/CS490/rv/teacher_middle_exam.php", {
 					method: "POST",
