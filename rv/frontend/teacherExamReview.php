@@ -77,7 +77,7 @@
 						question["colon"]["pointsEarned"] = qtable.rows[1].cells[1].firstChild.value;
 					}
 					var flag=2;
-					if (qtable.rows[2].cells[0].firstChild.value == "Constraints"){
+					if (qtable.rows[2].cells[0].innerHTML == "Constraints"){
 						flag=3;
 						if (qtable.rows[2].cells[1].firstChild.value == "") {
 							question["constraints"]["pointsEarned"] = qtable.rows[2].cells[1].firstChild.placeholder;
@@ -104,8 +104,9 @@
 					question['questionId'] = questionId;
 					question['feedback'] = feedback;
 					formData['questions'].push(question);
+					
 					console.log(question);
-				console.log(question['constraints']);
+					console.log(question['constraints']);
 					console.log("one loop done");
 				}
 				console.log(formData);
