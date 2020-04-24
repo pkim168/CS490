@@ -112,7 +112,7 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         $split_right = explode("(", $temp);
         $answer_parameter = $split_right[1];
         $student_parameters = preg_replace("/s/","", $answer_parameter);
-        $student_answer_colon = "def $answer_function_name($student_parameters): " . substr($student_answer,strpos($student_answer,')'),strlen($student_answer));
+        $student_answer_colon = "def $answer_function_name($student_parameters): " . substr($student_answer,strpos($student_answer,')')+1,strlen($student_answer));
         $student_answer_substr = substr($student_answer,strpos($student_answer,')'),strlen($student_answer));
     }
 
