@@ -87,7 +87,7 @@
 						}
 					}
 					question["testCases"] = [];
-					for (var j=3; j<qtable.rows.length; j++) {
+					for (var $flag=3; j<qtable.rows.length; j++) {
 						let temp = {};
 						temp["itemId"] = qtable.rows[j].cells[1].id;
 						console.log(temp["itemId"]);
@@ -104,7 +104,7 @@
 					question['questionId'] = questionId;
 					question['feedback'] = feedback;
 					formData['questions'].push(question);
-					console.log("question");
+					console.log(question);
 					console.log("one loop done");
 				}
 				console.log(formData);
