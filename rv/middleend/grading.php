@@ -116,7 +116,15 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
         $student_answer_substr = substr($student_answer,strpos($student_answer,')'),strlen($student_answer));
     }
 
-    if($student_answer)
+    //colon testing, if colon is in the student answer then they get points
+    if(strpos($student_answer, '):') !== false){
+        $comments .= "Awesome you got the colon.\n";
+        $colon_pointsEarned += floor($totalPoints*0.2);
+    }
+    else{
+        $comments .= "Sorry you didn't have the colon.\n";
+    }
+
     //counting the amount of constraints
     if(empty($backend_constraints)){
         $comments .= "";
@@ -127,15 +135,6 @@ function grade($answer, $questionId, $functionName, $backend_constraints, $backe
     }
     else{
         $comments .= "Sorry you got wrong constraint. The actual constraint was: $backend_constraints.\n";
-    }
-
-    //colon testing, if colon is in the student answer then they get points
-    if(strpos($student_answer, '):') !== false){
-        $comments .= "Awesome you got the colon.\n";
-        $colon_pointsEarned += floor($totalPoints*0.2);
-    }
-    else{
-        $comments .= "Sorry you didn't have the colon.\n";
     }
 
     //test case testing
