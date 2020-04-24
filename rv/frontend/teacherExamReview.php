@@ -105,6 +105,7 @@
 					question['feedback'] = feedback;
 					formData['questions'].push(question);
 					console.log(question);
+				console.log(question['constraints']);
 					console.log("one loop done");
 				}
 				console.log(formData);
