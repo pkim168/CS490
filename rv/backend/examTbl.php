@@ -517,6 +517,7 @@
 		$row = mysqli_fetch_array($result);
 		$sExamId = $row["sExamId"];
 		$query = "";
+		$query1 = "";
 		$questions = $json["questions"];
 		$data['error'] .= count($questions).'..';
 		for ($i = 0; $i < count($questions); $i++) {
@@ -555,7 +556,7 @@
 			for ($j=0; $j < count($testCases); $j++) {
 				$itemId = getData($testCases[$j]["itemId"]);
 				$pointsEarned = getData($testCases[$j]["pointsEarned"]);
-				$query .= "
+				$query1 .= "
 					UPDATE 490itemTbl 
 					SET 
 						pointsEarned = '$pointsEarned'
@@ -572,8 +573,18 @@
 			$data["error"] = 'hi'.mysqli_error($db);
 			return json_encode($data);
 		}
+		if (mysqli_multi_query($db, $query1)){
+			do {
+				$result = mysqli_store_result($db);
+			} while (mysqli_next_result($db));
+		} else {
+			$data["message"] = "Failure";
+			$data["error"] = 'hi'.mysqli_error($db);
+			return json_encode($data);
+		}
 		
 		$data["message"] = "Success";
+		$data["error"] = 'hi'.$query;
 		return json_encode($data);
 	}
 	
