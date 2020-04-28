@@ -58,16 +58,15 @@
 					var feedback = table.rows[i].cells[4].firstChild.value;
 					var qtable = document.getElementById("".concat(questionId, "points"));
 					var flag=2;
-					if (qtable.rows[2].cells[0].innerHTML == "Constraint"){
-						flag=3;
-					}
+					
 					console.log(qtable);
 					question["function"] = {};
 					question["colon"] = {};
 					question["constraints"] = {};
 					question["function"]["itemId"] = qtable.rows[0].cells[1].id;
 					question["colon"]["itemId"] = qtable.rows[1].cells[1].id;
-					if (flag==3){
+					if (qtable.rows[2].cells[0].innerHTML == "Constraint"){
+						flag=3;
 						question["constraints"]["itemId"] = qtable.rows[2].cells[1].id;
 					}
 					if (qtable.rows[0].cells[1].firstChild.value == "") {
