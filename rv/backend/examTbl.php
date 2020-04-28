@@ -630,7 +630,7 @@
 			for ($i=0; $i < count($ucids); $i++) {
 				$id = $ucids[$i];
 				$data['ucid'] = $id;
-				$url = "https://web.njit.edu/~jrd62/CS490/rc/grading.php";
+				$url = "https://web.njit.edu/~jrd62/CS490/rv/grading.php";
 				$ch = curl_init($url);
 				curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
