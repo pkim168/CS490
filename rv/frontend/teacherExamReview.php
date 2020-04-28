@@ -57,13 +57,19 @@
 					var questionId = table.rows[i].id;
 					var feedback = table.rows[i].cells[4].firstChild.value;
 					var qtable = document.getElementById("".concat(questionId, "points"));
+					var flag=2;
+					if (qtable.rows[2].cells[0].innerHTML == "Constraint"){
+						flag=3;
+					}
 					console.log(qtable);
 					question["function"] = {};
 					question["colon"] = {};
 					question["constraints"] = {};
 					question["function"]["itemId"] = qtable.rows[0].cells[1].id;
 					question["colon"]["itemId"] = qtable.rows[1].cells[1].id;
-					question["constraints"]["itemId"] = qtable.rows[2].cells[1].id;
+					if (flag==3){
+						question["constraints"]["itemId"] = qtable.rows[2].cells[1].id;
+					}
 					if (qtable.rows[0].cells[1].firstChild.value == "") {
 						question["function"]["pointsEarned"] = qtable.rows[0].cells[1].firstChild.placeholder;
 					}
@@ -76,9 +82,8 @@
 					else {
 						question["colon"]["pointsEarned"] = qtable.rows[1].cells[1].firstChild.value;
 					}
-					var flag=2;
-					if (qtable.rows[2].cells[0].innerHTML == "Constraint"){
-						flag=3;
+					
+					if (flag==3){
 						if (qtable.rows[2].cells[1].firstChild.value == "") {
 							question["constraints"]["pointsEarned"] = qtable.rows[2].cells[1].firstChild.placeholder;
 						}
@@ -115,8 +120,11 @@
 					method: "POST",
 					body: JSON.stringify(formData)
 				})
+				
 				.then((response) => {
 					console.log(response);
+					console.log(response['error']);
+					return false;
 					if (response["message"] == "Failure") {
 						console.log(response['error']);
 						return false;
@@ -179,7 +187,7 @@
 							if(!$json[$i]["constraints"]["totalSubPoints"]==0){
 								$flag=3;
 								echo '<tr><th style="width:8%;">Constraint</th>';
-								echo '<td style="width:10%;" id="'.$json[$i]["constraints"]["itemId"].'">'."<input style='width: 50%' placeholder='".$json[$i]["constraints"]["pointsEarned"]."'>"."/".$json[$i]["constraints"]["totalSubPoints"]."</td>";
+								echo '<td style="width:8%;" id="'.$json[$i]["constraints"]["itemId"].'">'."<input style='width: 50%' placeholder='".$json[$i]["constraints"]["pointsEarned"]."'>"."/".$json[$i]["constraints"]["totalSubPoints"]."</td>";
 								echo '<td style="width:85%;"><textarea style="width:100%; resize:none; background-color:rgb(180,180,180);" readonly>'.$comments[2].'</textarea></td></tr>';
 								$totalPointsEarned += (float)$json[$i]["constraints"]["pointsEarned"];
 								$questionPoints += $json[$i]["constraints"]["pointsEarned"];
