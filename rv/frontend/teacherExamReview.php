@@ -179,7 +179,7 @@
 							if(!$json[$i]["constraints"]["totalSubPoints"]==0){
 								$flag=3;
 								echo '<tr><th style="width:8%;">Constraint</th>';
-								echo '<td style="width: 10%;" id="'.$json[$i]["constraints"]["itemId"].'">'."<input style='width: 50%' placeholder='".$json[$i]["constraints"]["pointsEarned"]."'>"."/".$json[$i]["constraints"]["totalSubPoints"]."</td>";
+								echo '<td style="width:10%;" id="'.$json[$i]["constraints"]["itemId"].'">'."<input style='width: 50%' placeholder='".$json[$i]["constraints"]["pointsEarned"]."'>"."/".$json[$i]["constraints"]["totalSubPoints"]."</td>";
 								echo '<td style="width:85%;"><textarea style="width:100%; resize:none; background-color:rgb(180,180,180);" readonly>'.$comments[2].'</textarea></td></tr>';
 								$totalPointsEarned += (float)$json[$i]["constraints"]["pointsEarned"];
 								$questionPoints += $json[$i]["constraints"]["pointsEarned"];
@@ -187,7 +187,7 @@
 							
 							$testCases = $json[$i]["testCases"];
 							for ($j=0; $j < count($testCases); $j++) {
-								echo '<tr><th style="max-width:10%;">Test Case '.($j+1).'</th>';
+								echo '<tr><th style="min-width:100px; max-width:10%;">Test Case '.($j+1).'</th>';
 								echo '<td style="width:5%;" id="'.$testCases[$j]["itemId"].'"><input style="width: 50%;" placeholder="'.$testCases[$j]["pointsEarned"].'">'.'/'.$testCases[$j]["totalSubPoints"].'</td>';
 								$str = "";
 								$parameters = "Parameters: ";
